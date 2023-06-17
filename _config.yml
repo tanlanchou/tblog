@@ -4,10 +4,10 @@
 
 # Site
 title: 成天乱写
-subtitle: ''
-description: ''
-keywords:
-author: John Doe
+subtitle: '代码和生活'
+description: '乱写东西的地方，讲讲代码和生活'
+keywords: 
+author: tommy
 language: en
 timezone: ''
 
@@ -98,7 +98,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: a4
+theme: next 
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment

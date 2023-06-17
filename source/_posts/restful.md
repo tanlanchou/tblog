@@ -4,6 +4,7 @@ date: 2023-06-15 13:40:51
 tags: 
     - web
     - 后端
+description: restful = Representational State Transfer = 表现层状态转化.
 ---
 
 # restful
@@ -25,6 +26,7 @@ delete 删除
 http 的四种类型对应四种动作。
 
 理解基本上是正确的。
+
 
 ### 01. 语义解释
 
