@@ -11,6 +11,8 @@ tags:
 
 1. [Vue lifecycle 实现](/tblog/2023/06/20/vue_lifecycle/)
 2. [beforeCreate, created vs setup](/tblog/2023/06/20/vue_setup_created_before_created/)
+3. [beforeMount vs onBeforeMount](/tblog/2023/06/24/vue_beforeMount_onBeforeMount/)
+4. [mounted vs onMounted](/tblog/2023/06/26/vue_mounted/)
 
 ### 02. Vue3菜
 
