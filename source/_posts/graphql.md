@@ -1,5 +1,5 @@
 ---
-title: 防抖和节流
+title: graphgl
 date: 2023-06-15 15:29:01
 tags: 
     - web
