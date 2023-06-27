@@ -33,3 +33,7 @@ tags:
 1. [浏览器解析过程](/tblog/2023/06/15/browser_parsing/)
 2. [graphgl](/tblog/2023/06/15/graphql/)
 3. [防抖和节流](/tblog/2023/06/15/debounce_throttle/)
+
+### 06. vue2.x
+
+1. [watcher](/tblog/2023/06/27/vue2_watch/)
