@@ -8,14 +8,15 @@ tags:
 
 # 文章目录
 
-### 01. Vue生命周期源码对比
+### 01. Vue源码对比
 
 1. [Vue lifecycle 实现](/tblog/2023/06/20/vue_lifecycle/)
 2. [beforeCreate, created vs setup](/tblog/2023/06/20/vue_setup_created_before_created/)
 3. [beforeMount vs onBeforeMount](/tblog/2023/06/24/vue_beforeMount_onBeforeMount/)
 4. [mounted vs onMounted](/tblog/2023/06/26/vue_mounted/)
-5. [beforeUpdate](/tblog/2023/06/26/vue_beforeUpdate/)
-6. [updated](/tblog/2023/06/28/vue_updated_onUpdated/)
+5. [beforeUpdate vs onBeforeUpdate](/tblog/2023/06/26/vue_beforeUpdate/)
+6. [updated vs onUpdated](/tblog/2023/06/28/vue_updated_onUpdated/)
+7. [beforeDestroy vs onBeforeUnmount](/tblog/2023/06/28/vue_beforeDestroy_onBeforeUnmount/)
 
 ### 02. Vue3源码
 
