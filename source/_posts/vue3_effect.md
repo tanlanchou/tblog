@@ -1,3 +1,4 @@
+---
 title: vue3 effect
 date: 2023-6-21 14:51:59
 tags: 
@@ -98,7 +99,7 @@ activeEffect!.deps.push(dep) //activeEffect.deps增加dep
 
 这一部分就是增加 track 的代码，总之就是在 `dep` 和 `effect` 相互关联, dep 在 targetMap 中。
 
-###  02. triggger
+### 02. triggger
 
 `triggger function`
 
