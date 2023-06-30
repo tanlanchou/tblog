@@ -10,13 +10,164 @@ tags:
 description: 对比 Vue2.x Vue3.x keep-alive 组件对比
 ---
 
-# Vue3.x keep-alive 源码
+# 1. Vue3.x keep-alive 源码
 
 **packages/runtime-core/src/components/KeepAlive.ts**
 
 看源码知道 keepalive 分为以下几个功能
 
 setup 函数，里面定义了 activate，deactivate，unmount，pruneCache，pruneCacheEntry，matches，move，以及生命周期函数注册和调用。
+
+
+### 1.1 setup
+
+setup 会在创建的时候执行，他主要包含了以下功能
+
+定义了三个变量
+
+```ts
+const cache: Cache = new Map() //缓存
+const keys: Keys = new Set() //字典，存放key
+let current: VNode | null = null //当前的组件
+```
+
+从上下文中拿到了几个方法
+
+```ts
+const {
+  renderer: {
+    p: patch,
+    m: move,
+    um: _unmount,
+    o: { createElement }
+  }
+} = sharedContext
+```
+
+创建容器 `const storageContainer = createElement('div')`
+
+然后创建 `activate & deactivate` 两个方法到 `sharedContext` 当中，`sharedContext = instance.ctx as KeepAliveContext`，也就是当前组件(**keepalive**)的上下文。
+
+```ts
+sharedContext.activate = (...) => { ... }
+sharedContext.deactivate = (...) => { ... }
+```
+
+然后创建 `unmount` 方法, 卸载组件
+
+```ts
+function unmount(vnode: VNode) {
+  // reset the shapeFlag so it can be properly unmounted
+  resetShapeFlag(vnode)
+  _unmount(vnode, instance, parentSuspense, true)
+}
+```
+
+`pruneCache` 用于清理缓存中的组件
+
+```ts
+function pruneCache(filter?: (name: string) => boolean) {
+  cache.forEach((vnode, key) => {
+    const name = getComponentName(vnode.type as ConcreteComponent)
+    if (name && (!filter || !filter(name))) {
+      pruneCacheEntry(key)
+    }
+  })
+}
+```
+
+`pruneCacheEntry` 清理一个指定的缓存 
+
+```ts
+function pruneCacheEntry(key: CacheKey) {
+  const cached = cache.get(key) as VNode
+  if (!current || !isSameVNodeType(cached, current)) {
+    unmount(cached)
+  } else if (current) {
+    // current active instance should no longer be kept-alive.
+    // we can't unmount it now but it might be later, so reset its flag now.
+    resetShapeFlag(current)
+  }
+  cache.delete(key)
+  keys.delete(key)
+}
+```
+
+监听 `include` 和 `exclude` 属性的变化，根据变化重新清理缓存
+
+
+
+缓存子树，如果 `pendingCacheKey` 有值，在 `Mounted`, `Updated` 这两个生命周期会触发的时候调用 缓存子树的方法
+
+```ts
+let pendingCacheKey: CacheKey | null = null
+const cacheSubtree = () => {
+  if (pendingCacheKey != null) {
+    cache.set(pendingCacheKey, getInnerChild(instance.subTree))
+  }
+}
+onMounted(cacheSubtree)
+onUpdated(cacheSubtree)
+```
+
+然后返回一个方法，相当于一个闭包, 在放回的方法里面
+
+拿到插槽里面的组件，组件没有或者多以一个，报错。
+
+```ts
+if (!slots.default) {
+  return null
+}
+
+const children = slots.default()
+const rawVNode = children[0]
+```
+
+再拿到对应的方法 `const { include, exclude, max } = props`
+
+```ts
+if (
+  (include && (!name || !matches(include, name))) ||
+  (exclude && name && matches(exclude, name))
+) {
+  current = vnode
+  return rawVNode
+}
+```
+这里就不是很懂了，因为在我的逻辑里面，按照他的这个条件，应该是不使用或者不渲染，但是他这边的逻辑其实是，满足这个条件立刻渲染，不使用缓存。
+
+接下来就是判断是否缓存的问题
+
+```ts
+//这里拿到 key, 然后获取缓存
+const key = vnode.key == null ? comp : vnode.key
+const cachedVNode = cache.get(key)
+// 将当前的键赋值给待缓存的键，上面说明了，这里会触发钩子函数中的子树缓存
+pendingCacheKey = key
+
+if (cachedVNode) {
+  //如果有缓存，复用缓存
+  vnode.el = cachedVNode.el
+  vnode.component = cachedVNode.component
+  //这里是动画的处理，触发过渡动画的钩子
+  if (vnode.transition) {
+    setTransitionHooks(vnode, vnode.transition!)
+  }
+  vnode.shapeFlag |= ShapeFlags.COMPONENT_KEPT_ALIVE
+  //更新key
+  keys.delete(key)
+  keys.add(key)
+} else {
+  //如果没有缓存，加入key，判断max数量，删除多余的缓存。
+  keys.add(key)
+  if (max && keys.size > parseInt(max as string, 10)) {
+    pruneCacheEntry(keys.values().next().value)
+  }
+}
+```
+这里就是 `keep-alive setup` 的全貌了, 主要就是声明一些方法，主要是 active, deActive, 和卸载组件，缓存管理的一些方法，并且返回一个函数，用于创建处理插槽中的新组件。
+
+### 1.2 deactivate
 
 ```ts
 import {
