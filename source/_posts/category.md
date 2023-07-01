@@ -28,6 +28,7 @@ tags:
 1. [effect](/tblog/2023/06/21/vue3_effect/)
 2. [ref](/tblog/2023/06/29/vue3_ref/)
 3. [reactive](/tblog/2023/06/29/vue3_reactive/)
+4. [keep-alive](/tblog/2023/06/29/vue_keep_alive/)
 
 ### 03. javascript最基础
 
