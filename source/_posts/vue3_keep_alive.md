@@ -1,13 +1,13 @@
 ---
-title: vue keep-alive
+title: vue3 keep-alive
 date: 2023-06-29 13:22:01
 tags: 
     - vue2
     - vue3
     - 前端
     - keep-alive
-    - ts
-description: 对比 Vue2.x Vue3.x keep-alive 组件对比
+    - typescript
+description: Vue3.x keep-alive 源码分析，知道怎么缓存，以及大概流程
 ---
 
 # 1. Vue3.x keep-alive 源码

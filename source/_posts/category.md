@@ -20,6 +20,7 @@ tags:
 6. [updated vs onUpdated](/tblog/2023/06/28/vue_updated_onUpdated/)
 7. [beforeDestroy vs onBeforeUnmount](/tblog/2023/06/28/vue_beforeDestroy_onBeforeUnmount/)
 8. [destroyed vs onUnmounted](/tblog/2023/06/29/vue_destroyed_onUnmounted/)
+9. [actived vs onActivated](/tblog/2023/07/02/vue_active.md)
 
 **patch 对比**
 
@@ -28,7 +29,7 @@ tags:
 1. [effect](/tblog/2023/06/21/vue3_effect/)
 2. [ref](/tblog/2023/06/29/vue3_ref/)
 3. [reactive](/tblog/2023/06/29/vue3_reactive/)
-4. [keep-alive](/tblog/2023/06/29/vue_keep_alive/)
+4. [keep-alive](/tblog/2023/06/29/vue3_keep_alive/)
 
 ### 03. javascript最基础
 
