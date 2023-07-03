@@ -8,6 +8,10 @@ tags:
 
 # 文章目录
 
+### 00. me
+
+- [npmjs库 t_valid_type](https://www.npmjs.com/package/t_valid_type)
+
 ### 01. Vue源码对比
 
 **生命周期对比**
@@ -20,9 +24,8 @@ tags:
 6. [updated vs onUpdated](/tblog/2023/06/28/vue_updated_onUpdated/)
 7. [beforeDestroy vs onBeforeUnmount](/tblog/2023/06/28/vue_beforeDestroy_onBeforeUnmount/)
 8. [destroyed vs onUnmounted](/tblog/2023/06/29/vue_destroyed_onUnmounted/)
-9. [actived vs onActivated](/tblog/2023/07/02/vue_active.md)
-
-**patch 对比**
+9. [actived vs onActivated](/tblog/2023/07/02/vue_active/)
+10. [deactivated vs onDeactivated](/tblog/2023/07/02/vue_deactivated/)
 
 ### 02. Vue3源码
 
@@ -34,19 +37,43 @@ tags:
 ### 03. javascript最基础
 
 1. [async & defer](/tblog/2023/06/15/async&defer/)
+2. [看 node-deep-equal](/tblog/2023/07/03/node_deep_equal/)
+3. [javascript 异步编程有哪些方式？](/tblog/2023/07/03/async_code/)
+4. [es6 更新总结](/tblog/2023/07/03/baseEs6/)
+5. [作用域和闭包](/tblog/2023/07/03/closures_and_scopes/)
+6. [深拷贝方法优缺点总结和自己写的思路](/tblog/2023/07/03/deepClone/)
+7. [浏览器事件循环总结](/tblog/2023/07/03/eventLoop/)
+8. [javascript new 做了什么？](/tblog/2023/07/03/js_new/)
+9. [javascript 类型判断方法总结](/tblog/2023/07/03/js_type_check/)
+10. [为什么要用 void 0 代替 undefined](/tblog/2023/07/03/undefined_void_0/)
 
 ### 04. ts基础
 
 1. [typescript 类型有哪些？](/tblog/2023/06/15/typescript_type/)
 2. [type 和 interface 区别](/tblog/2023/06/15/type_interface/)
 
-### 05. web基础
+### 05. web基础和基础css
 
 1. [浏览器解析过程](/tblog/2023/06/15/browser_parsing/)
 2. [graphgl](/tblog/2023/06/15/graphql/)
 3. [防抖和节流](/tblog/2023/06/15/debounce_throttle/)
+4. [BFC 布局模型](/tblog/2023/07/03/BFC/)
+5. [css 垂直居中方案](/tblog/2023/07/03/Implementation_Methods_for_Horizontal_and_Vertical_Centering/)
+6. [IFC 布局模型](/tblog/2023/07/03/IFC/)
+7. [重绘和回流的基本概念](/tblog/2023/07/03/repaint_reflow/)
 
-### 06. vue2.x源码
+### 06. typescript...
+
+1. [ConstructSignature 错误](/tblog/2023/07/03/constructSignatureError/)
+2. [装饰器(js & ts)](/tblog/2023/07/03/ts_decorator/)
+3. [infer](/tblog/2023/07/03/ts_Infer/)
+4. [mixin](/tblog/2023/07/03/ts_mixin/)
+5. [三斜杠指令](tblog/2023/07/03/ts_triple-slash-directives/)
+6. [泛型](/tblog/2023/07/03/ts_Generics/)
+7. [typescript 基础点](/tblog/2023/07/03/ts_baseTypescript/)
+8. [type 和 interface 区别](/tblog/2023/07/03/ts_type_interface/)
+
+### 07. vue2.x源码
 
 1. [watcher](/tblog/2023/06/27/vue2_watch/)
 2. [dep](/tblog/2023/06/27/vue2_Dep/)

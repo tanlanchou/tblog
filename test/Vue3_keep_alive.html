@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 3 Keep-Alive Test</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="toggleComponent">Toggle Component</button>
+        <keep-alive>
+            <component :is="currentComponent" v-if="isComponentActive"></component>
+        </keep-alive>
+    </div>
+
+    <script>
+        const ComponentA = {
+            template: '<div>Component A</div>',
+            created() {
+                console.log('Component A created');
+            },
+            deactivated() {
+                console.log('Component A deactivated');
+            },
+        };
+
+        const ComponentB = {
+            template: '<div>Component B</div>',
+            created() {
+                console.log('Component B created');
+            },
+            deactivated() {
+                console.log('Component B deactivated');
+            },
+        };
+
+        const app = Vue.createApp({
+            data() {
+                return {
+                    isComponentActive: false,
+                    currentComponent: 'ComponentA',
+                };
+            },
+            methods: {
+                toggleComponent() {
+                    this.isComponentActive = !this.isComponentActive;
+                    this.currentComponent = this.isComponentActive ? 'ComponentA' : 'ComponentB';
+                },
+            },
+        });
+
+        app.component('ComponentA', ComponentA);
+        app.component('ComponentB', ComponentB);
+
+        app.mount('#app');
+    </script>
+</body>
+
+</html>

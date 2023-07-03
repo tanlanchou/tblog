@@ -4,6 +4,7 @@ date: 2023-06-15 15:30:01
 tags: 
     - web
     - javascript
+    - 浏览器
 description: 浏览器解析过程，从url到页面渲染完成
 ---
 

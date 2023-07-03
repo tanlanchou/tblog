@@ -178,23 +178,23 @@ sharedContext.deactivate = (vnode: VNode) => {
   // 异步执行
   queuePostRenderEffect(() => {
     //deactivate 钩子触发
-	if (instance.da) {
-	  invokeArrayFns(instance.da)
-	}
-	
-	//onVnodeUnmounted 钩子
-	const vnodeHook = vnode.props && vnode.props.onVnodeUnmounted
-	if (vnodeHook) {
-	  invokeVNodeHook(vnodeHook, instance.parent, vnode)
-	}
-	
-	//标记 deactived
-	instance.isDeactivated = true
+    if (instance.da) {
+      invokeArrayFns(instance.da)
+    }
+    
+    //onVnodeUnmounted 钩子
+    const vnodeHook = vnode.props && vnode.props.onVnodeUnmounted
+    if (vnodeHook) {
+      invokeVNodeHook(vnodeHook, instance.parent, vnode)
+    }
+    
+    //标记 deactived
+    instance.isDeactivated = true
   }, parentSuspense)
 
   if (__DEV__ || __FEATURE_PROD_DEVTOOLS__) {
-	// Update components tree
-	devtoolsComponentAdded(instance)
+    // Update components tree
+    devtoolsComponentAdded(instance)
   }
 }
 ```

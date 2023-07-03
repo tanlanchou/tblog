@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue 3 onErrorCaptured Example</title>
+  <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+  <div id="app">
+    <my-component></my-component>
+  </div>
+
+  <script>
+    const MyComponent = {
+      template: `
+        <div>
+          <button @click="triggerError">Trigger Error</button>
+        </div>
+      `,
+      methods: {
+        triggerError() {
+          throw new Error('An error occurred in MyComponent.');
+        }
+      }
+    };
+
+    const app = Vue.createApp({
+      components: {
+        'my-component': MyComponent
+      },
+      onErrorCaptured(error, vm, info) {
+        debugger;
+        console.error('Error captured in app:', error);
+        console.error('Vue instance:', vm);
+        console.error('Error info:', info);
+        // 可以在此处处理错误或将其传递给更高层级的组件
+      }
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+</html>
