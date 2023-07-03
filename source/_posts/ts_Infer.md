@@ -6,7 +6,6 @@ tags:
 description: infer 可以在 extends 条件类型的字句中，在真实分支中引用此推断类型变量，推断待推断的类型
 ---
 
-# infer
 
 > infer 是在 typescript 2.8中新增的关键字。
 > infer 可以在 extends 条件类型的字句中，在真实分支中引用此推断类型变量，推断待推断的类型。

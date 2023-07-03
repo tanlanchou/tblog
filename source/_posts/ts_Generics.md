@@ -6,8 +6,6 @@ tags:
 description: 泛型基本语法和使用
 ---
 
-# Type manipulation & Creating Types from Types
-
 官网这一章从最开始的泛型基本语法讲起，然后通过 keyof， typeof，ReturonType 等方式来类型，更方便的创建类型，只是后面玩的太花了，我确实想不到这么多玩法有什么应用类型，可能后续 typescript 用的多了以后再来复习吧。
 
 ### 01. Generics 泛型
