@@ -1,15 +1,13 @@
 触发布局 https://juejin.cn/post/7070092857754779661
 同步布局 https://juejin.cn/post/7070092857754779661
 
-
+图片的懒加载有哪些方案
 
 tcp 慢启动
 
 字母’x’在CSS世界中的角色和故事
 https://www.zhangxinxu.com/wordpress/2015/06/about-letter-x-of-css/
 
-
-new 做了什么？
 
 如何实现继承？(优先级低）
 
@@ -20,6 +18,10 @@ Proxy 对比 Object.define 优点
 Vue3 生命周期，以及周边
 
 suspense
+
+Transition
+
+nextTick()
 
 vue3 diff 算法区别
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue 3 Suspense Example</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>Vue 3 Suspense Example</h1>
+    <Suspense>
+      <template #default>
+        <!-- 异步组件 -->
+        <AsyncComponent />
+      </template>
+
+      <template #fallback>
+        <!-- 回退组件 -->
+        <FallbackComponent />
+      </template>
+    </Suspense>
+  </div>
+
+  <script src="https://unpkg.com/vue@next"></script>
+  <script>
+    const AsyncComponent = defineComponent({
+        loader: () => {  }
+    })
+
+    const FallbackComponent = {
+      template: '<div>加载中...</div>',
+    };
+
+    const app = Vue.createApp({
+      components: {
+        Suspense: Vue.Suspense,
+        AsyncComponent,
+        FallbackComponent,
+      },
+    });
+
+    app.mount('#app');
+  </script>
+</body>
+
+</html>

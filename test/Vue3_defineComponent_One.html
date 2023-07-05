@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 3 Async Component Example</title>
+    <script src="https://unpkg.com/vue@3.0.0/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-async-component></my-async-component>
+    </div>
+
+    <script>
+        const MyAsyncComponent = Vue.defineAsyncComponent(() => {
+            // 异步加载组件的逻辑
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        template: '<div>This is an async component!</div>'
+                    });
+                }, 2000);
+            });
+        });
+
+        const app = Vue.createApp({
+            components: {
+                MyAsyncComponent
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+
+</html>

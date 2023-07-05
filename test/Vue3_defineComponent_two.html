@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue 3 Async Component Example</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app">
+        <async-component></async-component>
+    </div>
+
+    <script>
+        const ErrorComponent = Vue.defineComponent({
+            name: 'ErrorComponent',
+            template: `<div>this is my error</div>`
+        });
+
+        const LoadingComponent = Vue.defineComponent({
+            name: 'LoadingComponent',
+            template: `<div>this is my Loading....</div>`
+        });
+        debugger;
+        const AsyncComponent = Vue.defineAsyncComponent({
+            // 使用 AsyncComponentOptions 配置对象
+            loader: () => {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        resolve({
+                            template: '<div>This is an async component!</div>'
+                        });
+                    }, 10000);
+                });
+            },
+            errorComponent: ErrorComponent,
+            loadingComponent: LoadingComponent,
+            delay: 200, // 可选项，加载延迟
+            timeout: 3000, // 可选项，超时时间
+            timeoutComponent: { // 可选项，加载超时时显示的组件或配置对象
+                template: '<div>Component loading timed out.</div>'
+            },
+            suspensible: true // 可选项，启用组件的暂停和恢复功能
+        });
+
+        const app = Vue.createApp({
+            components: {
+                AsyncComponent
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+
+</html>
