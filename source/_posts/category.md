@@ -12,9 +12,17 @@ tags:
 
 - [npmjs库 t_valid_type](https://www.npmjs.com/package/t_valid_type)
 
-### 01. Vue源码对比
+### 01. Vue3源码
 
-**生命周期对比**
+- [nextTick源码](/tblog/2023/07/07/nextTick/)
+- [任务调度源码解析](/tblog/2023/07/08/Vue3_queue/)
+- [defineAsyncComponent & Suspense 使用和源码分析](/tblog/2023/07/06/Vue3_Suspense/)
+- [effect](/tblog/2023/06/21/vue3_effect/)
+- [ref](/tblog/2023/06/29/vue3_ref/)
+- [reactive](/tblog/2023/06/29/vue3_reactive/)
+- [keep-alive](/tblog/2023/06/29/vue3_keep_alive/)
+
+### 02. Vue源码对比
 
 1. [Vue lifecycle 实现](/tblog/2023/06/20/vue_lifecycle/)
 2. [beforeCreate, created vs setup](/tblog/2023/06/20/vue_setup_created_before_created/)
@@ -26,14 +34,6 @@ tags:
 8. [destroyed vs onUnmounted](/tblog/2023/06/29/vue_destroyed_onUnmounted/)
 9. [actived vs onActivated](/tblog/2023/07/02/vue_active/)
 10. [deactivated vs onDeactivated](/tblog/2023/07/02/vue_deactivated/)
-
-### 02. Vue3源码
-
-- [vue3 defineAsyncComponent & Suspense 使用和源码分析](/tblog/2023/07/06/Vue3_Suspense/)
-- [effect](/tblog/2023/06/21/vue3_effect/)
-- [ref](/tblog/2023/06/29/vue3_ref/)
-- [reactive](/tblog/2023/06/29/vue3_reactive/)
-- [keep-alive](/tblog/2023/06/29/vue3_keep_alive/)
 
 ### 03. javascript最基础
 
