@@ -29,7 +29,7 @@ tags:
 
 ### 02. Vue3源码
 
-- [vue3 defineAsyncComponent & Suspense 使用和源码分析](http://localhost:4000/tblog/2023/07/06/Vue3_Suspense/)
+- [vue3 defineAsyncComponent & Suspense 使用和源码分析](/tblog/2023/07/06/Vue3_Suspense/)
 - [effect](/tblog/2023/06/21/vue3_effect/)
 - [ref](/tblog/2023/06/29/vue3_ref/)
 - [reactive](/tblog/2023/06/29/vue3_reactive/)
@@ -37,26 +37,28 @@ tags:
 
 ### 03. javascript最基础
 
-1. [async & defer](/tblog/2023/06/15/async&defer/)
-2. [看 node-deep-equal](/tblog/2023/07/03/node_deep_equal/)
-3. [javascript 异步编程有哪些方式？](/tblog/2023/07/03/async_code/)
-4. [es6 更新总结](/tblog/2023/07/03/baseEs6/)
-5. [作用域和闭包](/tblog/2023/07/03/closures_and_scopes/)
-6. [深拷贝方法优缺点总结和自己写的思路](/tblog/2023/07/03/deepClone/)
-7. [浏览器事件循环总结](/tblog/2023/07/03/eventLoop/)
-8. [javascript new 做了什么？](/tblog/2023/07/03/js_new/)
-9. [javascript 类型判断方法总结](/tblog/2023/07/03/js_type_check/)
-10. [为什么要用 void 0 代替 undefined](/tblog/2023/07/03/undefined_void_0/)
+- [async & defer](/tblog/2023/06/15/async&defer/)
+- [看 node-deep-equal](/tblog/2023/07/03/node_deep_equal/)
+- [javascript 异步编程有哪些方式？](/tblog/2023/07/03/async_code/)
+- [es6 更新总结](/tblog/2023/07/03/baseEs6/)
+- [作用域和闭包](/tblog/2023/07/03/closures_and_scopes/)
+- [深拷贝方法优缺点总结和自己写的思路](/tblog/2023/07/03/deepClone/)
+- [浏览器事件循环总结](/tblog/2023/07/03/eventLoop/)
+- [javascript new 做了什么？](/tblog/2023/07/03/js_new/)
+- [javascript 类型判断方法总结](/tblog/2023/07/03/js_type_check/)
+- [为什么要用 void 0 代替 undefined](/tblog/2023/07/03/undefined_void_0/)
 
 ### 05. web基础和基础css
 
-1. [浏览器解析过程](/tblog/2023/06/15/browser_parsing/)
-2. [graphgl](/tblog/2023/06/15/graphql/)
-3. [防抖和节流](/tblog/2023/06/15/debounce_throttle/)
-4. [BFC 布局模型](/tblog/2023/07/03/BFC/)
-5. [css 垂直居中方案](/tblog/2023/07/03/Implementation_Methods_for_Horizontal_and_Vertical_Centering/)
-6. [IFC 布局模型](/tblog/2023/07/03/IFC/)
-7. [重绘和回流的基本概念](/tblog/2023/07/03/repaint_reflow/)
+- [fetch 简单介绍](/tblog/2023/07/07/web_fetch/)
+- [图片懒加载4中方案](/tblog/2023/07/06/web_img_lazy_loading/)
+- [浏览器解析过程](/tblog/2023/06/15/browser_parsing/)
+- [graphgl](/tblog/2023/06/15/graphql/)
+- [防抖和节流](/tblog/2023/06/15/debounce_throttle/)
+- [BFC 布局模型](/tblog/2023/07/03/BFC/)
+- [css 垂直居中方案](/tblog/2023/07/03/Implementation_Methods_for_Horizontal_and_Vertical_Centering/)
+- [IFC 布局模型](/tblog/2023/07/03/IFC/)
+- [重绘和回流的基本概念](/tblog/2023/07/03/repaint_reflow/)
 
 ### 06. typescript...
 

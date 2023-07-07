@@ -1,7 +1,7 @@
 触发布局 https://juejin.cn/post/7070092857754779661
 同步布局 https://juejin.cn/post/7070092857754779661
 
-图片的懒加载有哪些方案
+
 
 tcp 慢启动
 
@@ -15,9 +15,7 @@ iterator & generator
 
 Proxy 对比 Object.define 优点
 
-Vue3 生命周期，以及周边
 
-suspense
 
 Transition
 
@@ -72,3 +70,17 @@ instanceof vs. Array.isArray()
 MutationObserver,queueMicrotask
 
 module
+
+https://developer.mozilla.org/zh-CN/docs/Learn/Performance web性能专题
+
+JavaScript Fetch API
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader 
+
+Intersection_Observer_API
+
+getBoundingClientRect
+
+ Service Worker 里面，拦截用户提交的表单，修改某些数据以后，再提交给服务器。这是什么？Form Submission Interception
+
+ new window.AudioContext();

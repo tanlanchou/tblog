@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Intersection Observer API Test</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: gray;
+            margin: 20px;
+        }
+
+        .visible {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Intersection Observer API Test</h1>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <script>
+        // 创建 Intersection Observer 对象
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // 元素进入视口时添加 CSS 类名
+                    entry.target.classList.add('visible');
+                } else {
+                    // 元素离开视口时移除 CSS 类名
+                    entry.target.classList.remove('visible');
+                }
+            });
+        });
+
+        // 监听所有具有 ".box" 类名的元素
+        const boxes = document.querySelectorAll('.box');
+        boxes.forEach(box => {
+            observer.observe(box);
+        });
+    </script>
+</body>
+
+</html>

@@ -40,10 +40,8 @@ description:
 
 
 ```html
-...
 <script src="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjBkb65gsX_AhXnQPUHHasODVkQFnoECBYQAQ&url=https%3A%2F%2Fcloud.google.com%2Fcdn%3Fhl%3Dzh-cn&usg=AOvVaw3iWKHtZqUXGJwR-4dEGXk8"></script>
 </body>
-...
 ```
 
 好处是可以有2点
