@@ -37,6 +37,8 @@ tags:
 
 ### 03. javascript最基础
 
+- [浏览器复制](/tblog/2023/07/08/clipboard/)
+- [fetch 简单介绍](/tblog/2023/07/07/web_fetch/)
 - [async & defer](/tblog/2023/06/15/async&defer/)
 - [看 node-deep-equal](/tblog/2023/07/03/node_deep_equal/)
 - [javascript 异步编程有哪些方式？](/tblog/2023/07/03/async_code/)
@@ -50,7 +52,6 @@ tags:
 
 ### 05. web基础和基础css
 
-- [fetch 简单介绍](/tblog/2023/07/07/web_fetch/)
 - [图片懒加载4中方案](/tblog/2023/07/06/web_img_lazy_loading/)
 - [浏览器解析过程](/tblog/2023/06/15/browser_parsing/)
 - [graphgl](/tblog/2023/06/15/graphql/)
@@ -76,3 +77,7 @@ tags:
 
 1. [watcher](/tblog/2023/06/27/vue2_watch/)
 2. [dep](/tblog/2023/06/27/vue2_Dep/)
+
+### 08. 做点题
+
+- [css 如何实现左侧固定 300px，右侧自适应的布局](/tblog/2023/07/08/%5BQ017%5DHow_does_css_achieve_a_fixed_300px_on_the_left_and_an_daptive_layout_on_the_right/)
