@@ -37,6 +37,7 @@ tags:
 
 ### 03. javascript最基础
 
+- [浏览器事件流](/tblog/2023/07/09/browser_event/)
 - [浏览器复制](/tblog/2023/07/08/clipboard/)
 - [fetch 简单介绍](/tblog/2023/07/07/web_fetch/)
 - [async & defer](/tblog/2023/06/15/async&defer/)
