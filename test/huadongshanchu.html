@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>左滑列表</title>
+  <style>
+    .list-item {
+      position: relative;
+      overflow: hidden;
+      height: 50px;
+      background-color: #f1f1f1;
+      margin-bottom: 10px;
+    }
+    
+    .list-item-content {
+      padding: 10px;
+    }
+    
+    .list-item-menu {
+      position: absolute;
+      top: 0;
+      right: -100px;
+      width: 100px;
+      height: 50px;
+      background-color: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: right 0.3s ease;
+    }
+    
+    .list-item:hover .list-item-menu {
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li class="list-item">
+      <div class="list-item-content">列表项 1</div>
+      <div class="list-item-menu">
+        <button onclick="deleteItem(this)">删除</button>
+      </div>
+    </li>
+    <li class="list-item">
+      <div class="list-item-content">列表项 2</div>
+      <div class="list-item-menu">
+        <button onclick="deleteItem(this)">删除</button>
+      </div>
+    </li>
+    <li class="list-item">
+      <div class="list-item-content">列表项 3</div>
+      <div class="list-item-menu">
+        <button onclick="deleteItem(this)">删除</button>
+      </div>
+    </li>
+    <!-- 添加更多列表项 -->
+  </ul>
+
+  <script>
+    function deleteItem(button) {
+      // 执行删除操作
+      var listItem = button.parentNode.parentNode;
+      listItem.parentNode.removeChild(listItem);
+    }
+  </script>
+</body>
+</html>

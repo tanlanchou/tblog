@@ -4,7 +4,6 @@ date: 2023-06-15 13:40:51
 tags: 
     - web
     - 后端
-description: restful = Representational State Transfer = 表现层状态转化.
 ---
 
 # restful

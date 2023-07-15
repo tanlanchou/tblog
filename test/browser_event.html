@@ -57,7 +57,7 @@
         // inner.addEventListener('click', f(`inner`), true); // 事件捕获阶段
         // btn.addEventListener('click', f(`btn`), true); // 事件捕获阶段
 
-        outer.addEventListener('click', f(`outer`), {}); // 事件冒泡阶段
+        outer.addEventListener('click', f(`outer`), { passive: }); // 事件冒泡阶段
         middle.addEventListener('click', f(`middle`), {}); // 事件冒泡阶段
         inner.addEventListener('click', f(`inner`), {}); // 事件冒泡阶段
         btn.addEventListener('click', f(`btn`), {}); // 事件冒泡阶段

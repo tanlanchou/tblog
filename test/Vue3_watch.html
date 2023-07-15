@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vue 3 Watch Example</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h2>Counter: {{ counter }}</h2>
+        <button @click="incrementCounter">Increment</button>
+        <button @click="decrementCounter">Decrement</button>
+        <h2>Double Counter: {{ doubleCounter }}</h2>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            setup() {
+                // 响应式数据
+                const counter = Vue.ref(0);
+
+                // 监听counter的变化
+                Vue.watch(counter, (newValue, oldValue) => {
+                    console.log(`Counter changed: ${oldValue} => ${newValue}`);
+                });
+
+                // 计算属性
+                const doubleCounter = Vue.computed(() => counter.value * 2);
+
+                // 方法
+                function incrementCounter() {
+                    counter.value++;
+                }
+
+                function decrementCounter() {
+                    counter.value--;
+                }
+
+                return {
+                    counter,
+                    doubleCounter,
+                    incrementCounter,
+                    decrementCounter
+                };
+            }
+        });
+
+        app.mount('#app');
+    </script>
+</body>
+
+</html>

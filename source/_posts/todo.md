@@ -9,7 +9,6 @@ tcp 慢启动
 https://www.zhangxinxu.com/wordpress/2015/06/about-letter-x-of-css/
 
 
-如何实现继承？(优先级低）
 
 iterator & generator
 
@@ -23,7 +22,7 @@ setup 是怎么运行的？
 
 vue3 diff 算法区别
 
-queue flushJobs ..
+watch & comput
 
 vue3 PatchFlags
 
@@ -81,8 +80,15 @@ Intersection_Observer_API
 
 getBoundingClientRect
 
- Service Worker 里面，拦截用户提交的表单，修改某些数据以后，再提交给服务器。这是什么？Form Submission Interception
+Service Worker 里面，拦截用户提交的表单，修改某些数据以后，再提交给服务器。这是什么？Form Submission Interception
 
- new window.AudioContext();
+new window.AudioContext();
 
- AbortController
+AbortController
+
+Life of a frame & requestIdleCallback 这个建议花点时间看看
+ https://juejin.cn/post/6844903592831238157
+ https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/life_of_a_frame.md
+
+
+ https://zh.javascript.info/arraybuffer-binary-arrays

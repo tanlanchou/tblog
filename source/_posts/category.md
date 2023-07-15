@@ -50,6 +50,12 @@ tags:
 - [javascript new 做了什么？](/tblog/2023/07/03/js_new/)
 - [javascript 类型判断方法总结](/tblog/2023/07/03/js_type_check/)
 - [为什么要用 void 0 代替 undefined](/tblog/2023/07/03/undefined_void_0/)
+- [Array](/tblog/2023/07/12/es6_array/)
+
+### 04. 微信小程序
+
+- [微信小程序入门](/tblog/2023/07/13/ss_baisc/)
+- [一个简单的todoList](/tblog/2023/07/14/ss_simple_todo/)
 
 ### 05. web基础和基础css
 
