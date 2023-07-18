@@ -52,8 +52,10 @@ tags:
 - [为什么要用 void 0 代替 undefined](/tblog/2023/07/03/undefined_void_0/)
 - [Array](/tblog/2023/07/12/es6_array/)
 
-### 04. 微信小程序
+### 04. 多端开发
 
+- [Uni-app过文档](/tblog/2023/07/18/uniapp_base/)
+- [uni-app 引导图和广告](/tblog/2023/07/18/uniapp_guird/)
 - [微信小程序入门](/tblog/2023/07/13/ss_baisc/)
 - [一个简单的todoList](/tblog/2023/07/14/ss_simple_todo/)
 
