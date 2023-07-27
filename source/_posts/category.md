@@ -52,10 +52,12 @@ tags:
 - [为什么要用 void 0 代替 undefined](/tblog/2023/07/03/undefined_void_0/)
 - [Array](/tblog/2023/07/12/es6_array/)
 
-### 04. 多端开发
+### 04. uniapp & nestjs
 
-- [Uni-app过文档](/tblog/2023/07/18/uniapp_base/)
+- [uni-app过文档](/tblog/2023/07/18/uniapp_base/)
+- [uni-app调试](/tblog/2023/07/18/uniapp_tiaoshi/)
 - [uni-app 引导图和广告](/tblog/2023/07/18/uniapp_guird/)
+- [nestjs 登录和任务](/tblog/2023/07/23/uniapp_nest_login_list/)
 - [微信小程序入门](/tblog/2023/07/13/ss_baisc/)
 - [一个简单的todoList](/tblog/2023/07/14/ss_simple_todo/)
 
