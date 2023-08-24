@@ -37,6 +37,7 @@ tags:
 
 ### 03. javascript最基础
 
+- [箭头函数有prototype吗？为什么？](/tblog/2023/08/20/%5BQ001%5DArrowFunctionvsFunction/)
 - [浏览器事件流](/tblog/2023/07/09/browser_event/)
 - [浏览器复制](/tblog/2023/07/08/clipboard/)
 - [fetch 简单介绍](/tblog/2023/07/07/web_fetch/)
@@ -63,7 +64,7 @@ tags:
 
 ### 05. web基础和基础css
 
-- [图片懒加载4中方案](/tblog/2023/07/06/web_img_lazy_loading/)
+- [图片懒加载4种方案](/tblog/2023/07/06/web_img_lazy_loading/)
 - [浏览器解析过程](/tblog/2023/06/15/browser_parsing/)
 - [graphgl](/tblog/2023/06/15/graphql/)
 - [防抖和节流](/tblog/2023/06/15/debounce_throttle/)
@@ -86,8 +87,9 @@ tags:
 
 ### 07. vue2.x源码
 
-1. [watcher](/tblog/2023/06/27/vue2_watch/)
-2. [dep](/tblog/2023/06/27/vue2_Dep/)
+- [extend](/tblog/2023/08/19/Vue_extends/)
+- [watcher](/tblog/2023/06/27/vue2_watch/)
+- [dep](/tblog/2023/06/27/vue2_Dep/)
 
 ### 08. 做点题
 

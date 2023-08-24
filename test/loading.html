@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            position: relative;
+            height: 100vh;
+            /* 100% 视口高度，使内容垂直居中 */
+        }
+
+        .centered-div {
+            position: absolute;
+            top: 50%;
+            /* 上边缘位于父容器中央 */
+            left: 50%;
+            /* 左边缘位于父容器中央 */
+            transform: translate(-50%, -50%);
+            /* 使用 transform 来进行垂直和水平居中 */
+            text-align: center;
+            /* 文本水平居中 */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="centered-div">
+            <p>1111</p>
+        </div>
+    </div>
+</body>
+
+</html>
