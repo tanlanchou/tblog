@@ -91,6 +91,7 @@ tags:
 - [extend](/tblog/2023/08/19/Vue_extends/)
 - [watcher](/tblog/2023/06/27/vue2_watch/)
 - [dep](/tblog/2023/06/27/vue2_Dep/)
+- [vue2 extend](/tblog/2023/08/19/Vue_extends/)
 
 ### 08. 杂项
 

@@ -1,5 +1,5 @@
 ---
-title: Vue2.extends
+title: Vue2.extend
 date: 2023-08-19 14:47:21
 tags: 
     - 插件
@@ -7,11 +7,11 @@ tags:
     - vue2
 ---
 
-### 01. 什么是 Vue.extends
+### 01. 什么是 Vue.extend
 
 > Vue.extend 返回的是一个扩展实例构造器，也就是预设了部分选项的Vue实例构造器
 
-在实际的过程中，我尝试了使用 `Vue.extends`
+在实际的过程中，我尝试了使用 `Vue.extend`
 
 ```js
 const MyComponent = Vue.extend({
