@@ -14,6 +14,7 @@ tags:
 
 ### 01. Vue3源码
 
+- [setup](/tblog/2023/07/31/vue3_setup/)
 - [nextTick源码](/tblog/2023/07/08/nextTick/)
 - [任务调度源码解析](/tblog/2023/07/08/Vue3_queue/)
 - [defineAsyncComponent & Suspense 使用和源码分析](/tblog/2023/07/06/Vue3_Suspense/)
