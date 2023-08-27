@@ -92,6 +92,10 @@ tags:
 - [watcher](/tblog/2023/06/27/vue2_watch/)
 - [dep](/tblog/2023/06/27/vue2_Dep/)
 
+### 08. 杂项
+
+- [为什么 npm install 需要 sudo](/tblog/2023/08/27/sudo_npm_install/)
+
 ### 08. 做点题
 
 - [css 如何实现左侧固定 300px，右侧自适应的布局](/tblog/2023/07/08/%5BQ017%5DHow_does_css_achieve_a_fixed_300px_on_the_left_and_an_daptive_layout_on_the_right/)
