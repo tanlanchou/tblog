@@ -12,18 +12,19 @@ tags:
 
 - [npmjs库 t_valid_type](https://www.npmjs.com/package/t_valid_type)
 
-### 01. Vue3源码
+### 01. Vue3
 
-- [setup](/tblog/2023/07/31/vue3_setup/)
+- [vue3 createVNode & render](/tblog/2023/08/27/vue3_plugin/)
+- [setup源码](/tblog/2023/07/31/vue3_setup/)
 - [nextTick源码](/tblog/2023/07/08/nextTick/)
 - [任务调度源码解析](/tblog/2023/07/08/Vue3_queue/)
 - [defineAsyncComponent & Suspense 使用和源码分析](/tblog/2023/07/06/Vue3_Suspense/)
-- [effect](/tblog/2023/06/21/vue3_effect/)
-- [ref](/tblog/2023/06/29/vue3_ref/)
-- [reactive](/tblog/2023/06/29/vue3_reactive/)
-- [keep-alive](/tblog/2023/06/29/vue3_keep_alive/)
+- [effect源码](/tblog/2023/06/21/vue3_effect/)
+- [ref源码](/tblog/2023/06/29/vue3_ref/)
+- [reactive源码](/tblog/2023/06/29/vue3_reactive/)
+- [keep-alive源码](/tblog/2023/06/29/vue3_keep_alive/)
 
-### 02. Vue源码对比
+### 02. Vue对比
 
 1. [Vue lifecycle 实现](/tblog/2023/06/20/vue_lifecycle/)
 2. [beforeCreate, created vs setup](/tblog/2023/06/20/vue_setup_created_before_created/)

@@ -114,10 +114,10 @@ export default {
     install(vm) {
         vm.prototype.$loading = {
             show: () => {
-                $loading.flag = true
+                loading.flag = true
             },
             hide: () => {
-                $loading.flag = false
+                loading.flag = false
             }
         }
     }
