@@ -62,7 +62,7 @@ line-height: 2.4em;
 
 这里就有3个 `line box`.
 
-![alt text](/home/tommy/tCode/record/blog/img/截图 2023-06-05 16-41-10.png)
+![alt text](/img/截图 2023-06-05 16-41-10.png)
 
 其中两个匿名，一个 em， 其实我刚才是很疑惑为什么要知道这个？然后资料中给了一个例子
 
@@ -83,7 +83,7 @@ line-height: 2.4em;
 
 我薄弱的知识中道理上去说，应该是并排的，其实不是。
 
-![alt text](/home/tommy/tCode/record/blog/img/截图 2023-06-05 16-45-18.png)
+![alt text](/img/截图 2023-06-05 16-45-18.png)
 
 结果是这个样子。
 
@@ -99,7 +99,7 @@ line-height: 2.4em;
 
 ### 4. line 线
 
-![alt text](/home/tommy/tCode/record/blog/img/css-ifc-baseline.jpg)
+![alt text](/img/css-ifc-baseline.jpg)
 
 理论上我们都是通过默认的基线水平排列，就是baseline这条线， top, middle, bottom 通过 vertical-align 设置。
 

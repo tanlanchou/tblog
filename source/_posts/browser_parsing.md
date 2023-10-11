@@ -92,7 +92,7 @@ B 接收能力 30, 发送能力 50.
 
 `<html>` 根节点，以他为起点开始解析，最后形成一个dom树。
 
-![alt text](/home/tommy/tCode/record/blog/img/dom.gif)
+![alt text](/img/dom.gif)
 
 类似于上面这种结构。
 

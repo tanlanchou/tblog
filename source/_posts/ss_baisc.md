@@ -234,11 +234,11 @@ https://www.zhihu.com/question/546709238
 
 **组件生命周期**
 
-![alt text](D:\tCode\tblog\source\img\2023-07-11-155309.png)
+![alt text](\img\2023-07-11-155309.png)
 
 **和组件相关的 page 生命周期**
 
-![alt text](D:\tCode\tblog\source\img\2023-07-11-155339.png)
+![alt text](\img\2023-07-11-155339.png)
 
 [behaviors](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/behaviors.html)
 
