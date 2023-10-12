@@ -57,6 +57,7 @@ tags:
 
 ### 04. uniapp & nestjs
 
+- [微信公众号网页踩坑？](/tblog/2023/09/01/%5Bwechat%5Dwechat_website/)
 - [uni-app过文档](/tblog/2023/07/18/uniapp_base/)
 - [uni-app调试](/tblog/2023/07/18/uniapp_tiaoshi/)
 - [uni-app 引导图和广告](/tblog/2023/07/18/uniapp_guird/)
@@ -66,6 +67,7 @@ tags:
 
 ### 05. web基础和基础css
 
+- [flex 属性详解](/tblog/2023/09/01/%5BQ101%5DFlex_attr/)
 - [图片懒加载4种方案](/tblog/2023/07/06/web_img_lazy_loading/)
 - [浏览器解析过程](/tblog/2023/06/15/browser_parsing/)
 - [graphgl](/tblog/2023/06/15/graphql/)
@@ -97,6 +99,7 @@ tags:
 ### 08. 杂项
 
 - [为什么 npm install 需要 sudo](/tblog/2023/08/27/sudo_npm_install/)
+- [windows docker 安装遇到的坑](/tblog/2023/08/29/wsl_can_not_boot/)
 
 ### 08. 做点题
 
