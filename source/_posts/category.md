@@ -39,6 +39,7 @@ tags:
 
 ### 03. javascript最基础
 
+- [Q101 this 函数指向问题](/tblog/2023/09/02/%5BQ102%5Djavascript_this_link/)
 - [箭头函数有prototype吗？为什么？](/tblog/2023/08/20/%5BQ001%5DArrowFunctionvsFunction/)
 - [浏览器事件流](/tblog/2023/07/09/browser_event/)
 - [浏览器复制](/tblog/2023/07/08/clipboard/)
