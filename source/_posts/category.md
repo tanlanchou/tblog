@@ -12,7 +12,7 @@ tags:
 
 - [npmjs库 t_valid_type](https://www.npmjs.com/package/t_valid_type)
 
-### 01. Vue3
+###  Vue3
 
 - [vue3 createVNode & render](/tblog/2023/08/27/vue3_plugin/)
 - [setup源码](/tblog/2023/07/31/vue3_setup/)
@@ -24,7 +24,7 @@ tags:
 - [reactive源码](/tblog/2023/06/29/vue3_reactive/)
 - [keep-alive源码](/tblog/2023/06/29/vue3_keep_alive/)
 
-### 02. Vue对比
+### Vue对比
 
 1. [Vue lifecycle 实现](/tblog/2023/06/20/vue_lifecycle/)
 2. [beforeCreate, created vs setup](/tblog/2023/06/20/vue_setup_created_before_created/)
@@ -37,7 +37,7 @@ tags:
 9. [actived vs onActivated](/tblog/2023/07/02/vue_active/)
 10. [deactivated vs onDeactivated](/tblog/2023/07/02/vue_deactivated/)
 
-### 03. javascript最基础
+### javascript最基础
 
 - [Q101 this 函数指向问题](/tblog/2023/09/02/%5BQ102%5Djavascript_this_link/)
 - [箭头函数有prototype吗？为什么？](/tblog/2023/08/20/%5BQ001%5DArrowFunctionvsFunction/)
@@ -56,7 +56,7 @@ tags:
 - [为什么要用 void 0 代替 undefined](/tblog/2023/07/03/undefined_void_0/)
 - [Array](/tblog/2023/07/12/es6_array/)
 
-### 04. uniapp & nestjs
+### uniapp & nestjs
 
 - [微信公众号网页踩坑？](/tblog/2023/09/01/%5Bwechat%5Dwechat_website/)
 - [uni-app过文档](/tblog/2023/07/18/uniapp_base/)

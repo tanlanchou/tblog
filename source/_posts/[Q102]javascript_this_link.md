@@ -1,10 +1,10 @@
 ---
 title: javascript this 指向
-date: 2023-09-02 21:00:01
+date: 2023-09-03 21:00:01
 tags: 
-    - flex
-    - html
-    - css
+    - javascript
+    - this
+    
 description: 明确 this 指向, this 在各种环境下是如何运作的.
 ---
 
@@ -153,7 +153,7 @@ window this.h_v: 8
 
 里面 this 指向上层.
 
-### object
+### 06. object
 
 ```js
 const i = {
@@ -183,3 +183,12 @@ i.getB1();
 undefined
 ```
 
+### 07. 简单总结.
+
+this 你用 function 大都指向 window.
+
+除非你使用 object 或者 使用 apply, new 之类的方式改变 this 指向.
+
+但是如果你改变指向的下层, 你继续使用function 他还是会指向 window.
+
+这个使用使用箭头函数, 指向上层.
