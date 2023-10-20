@@ -57,15 +57,15 @@
         const infoText = `浏览器名称: ${browserName}<br>浏览器版本: ${browserVersion}`;
         browserInfoElement.innerHTML = infoText;
 
-        navigator.storage.estimate().then(function (estimate) {
-            const usedSpaceInMB = estimate.usage / 1024;
-            const totalSpaceInMB = estimate.quota / 1024 / 1024;
-            const infoText = `
-                <p>当前已使用 ${usedSpaceInMB}MB</p>
-                <p>总空间大小 ${totalSpaceInMB}GB</p>
-            `;
-            document.getElementById('indexDBInfo').innerHTML = infoText;
-        });
+        // navigator.storage.estimate().then(function (estimate) {
+        //     const usedSpaceInMB = estimate.usage / 1024;
+        //     const totalSpaceInMB = estimate.quota / 1024 / 1024;
+        //     const infoText = `
+        //         <p>当前已使用 ${usedSpaceInMB}MB</p>
+        //         <p>总空间大小 ${totalSpaceInMB}GB</p>
+        //     `;
+        //     document.getElementById('indexDBInfo').innerHTML = infoText;
+        // });
 
         let _databaseList = [];
         let _curDataBase = '';
