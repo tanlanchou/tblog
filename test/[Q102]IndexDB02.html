@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function openIndexDB(databaseName, version, params) {
+        if (!databaseName || databaseName == "") {
+          alert("请选择数据库");
+          return;
+        }
+
+        if (typeof version !== "number" || version < 1) {
+          alert("请输入正确的版本号");
+          return;
+        }
+
+        if (!params) params = {};
+
+        console.log("尝试打开数据库: " + databaseName);
+        const dbOpenRequest = window.indexedDB.open(databaseName, version);
+
+        dbOpenRequest.onerror = function (event) {
+          console.log(`触发onerror:${databaseName}`);
+          if (params.onerror && typeof params.onerror === "function") {
+            params.onerror(event);
+          }
+        };
+
+        dbOpenRequest.onblocked = function (event) {
+          console.log(`触发onblocked:${databaseName}`);
+          if (params.onblocked && typeof params.onblocked === "function") {
+            params.onblocked(event);
+          }
+        };
+
+        dbOpenRequest.onsuccess = function (event) {
+          console.log(`成功打开数据库:${databaseName}`);
+          if (params.onsuccess && typeof params.onsuccess === "function") {
+            params.onsuccess(event);
+          }
+        };
+
+        dbOpenRequest.onupgradeneeded = function (event) {
+          console.log(`数据库升级中, 触发onupgradeneeded事件`);
+          if (
+            params.onupgradeneeded &&
+            typeof params.onupgradeneeded === "function"
+          ) {
+            params.onupgradeneeded(event);
+          }
+        };
+      }
+
+      function userAdd() {
+        openIndexDB("test01", 1, {
+          onsuccess: function (event) {},
+          onupgradeneeded: function (event) {
+            const db = event.target.result;
+            const objectStore = db.createObjectStore("user", {
+              keyPath: "id",
+              autoIncrement: true,
+            });
+
+            objectStore.add({ name: "tommy", age: "18", sex: 1 });
+            objectStore.add({ name: "tommy1", age: "19", sex: 0 });
+            objectStore.add({ name: "tommy2", age: "20", sex: 1 });
+
+            db.close();
+          },
+        });
+      }
+
+      function userDelete() {
+        openIndexDB("test01", 1, {
+          onsuccess: function (event) {
+            const db = event.target.result;
+            debugger;
+            // const versionChange = db.setVersion(2);
+            // versionChange.onsuccess = function () {
+            //   db.deleteObjectStore("user");
+            //   db.close();
+            // };
+          },
+          onupgradeneeded: function (event) {},
+        });
+      }
+
+      userDelete();
+    </script>
+  </body>
+</html>

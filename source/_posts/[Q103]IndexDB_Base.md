@@ -43,7 +43,7 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/StorageManager/estimate
 
 测试的时候需要注意
 
-### 04. 基本流程和概念
+### 04. 文档
 
 首先推荐看文档
 
@@ -54,6 +54,8 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/IndexedDB_API
 https://www.ruanyifeng.com/blog/2018/07/indexeddb.html
 
 弄懂, 简单使用是没问题了.
+
+### 05. Indexdb & IDBFactory
 
 https://developer.mozilla.org/zh-CN/docs/Web/API/IDBFactory
 
@@ -103,6 +105,16 @@ addEventListener("blocked", (event) => {});
 
 
 ### 05. IDBFactory
+
+https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase
+
+IDBDatabase 就是当你使用 open 数据库之后的返回值。
+
+```js
+onsuccess = function(event) {
+    db = event.target.result
+}
+```
 
 
 
