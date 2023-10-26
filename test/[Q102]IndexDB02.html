@@ -78,18 +78,95 @@
         openIndexDB("test01", 1, {
           onsuccess: function (event) {
             const db = event.target.result;
-            debugger;
-            // const versionChange = db.setVersion(2);
-            // versionChange.onsuccess = function () {
-            //   db.deleteObjectStore("user");
-            //   db.close();
-            // };
+            db.transaction();
           },
           onupgradeneeded: function (event) {},
         });
       }
 
-      userDelete();
+      function userActionGetAll() {
+        openIndexDB("test01", 1, {
+          onsuccess: function (event) {
+            const db = event.target.result;
+            const transaction = db.transaction("user", "readonly");
+            const objectStore = transaction.objectStore(`user`);
+            const results = objectStore.getAll();
+            results.onsuccess = function (event) {
+              const r = event.target.result;
+              if (r && r.length > 0) {
+                r.forEach((item) => console.log(item.name));
+              }
+            };
+          },
+          onupgradeneeded: function (event) {},
+        });
+      }
+
+      function userActionReadonlyAdd() {
+        openIndexDB("test01", 1, {
+          onsuccess: function (event) {
+            const db = event.target.result;
+            const transaction = db.transaction("user", "readonly");
+            const objectStore = transaction.objectStore(`user`);
+
+            const data = { name: "tommy3", age: "18", sex: 1 };
+            objectStore.add(data);
+            db.close();
+          },
+          onupgradeneeded: function (event) {},
+        });
+      }
+
+      function userActionReadWriteGetAll() {
+        openIndexDB("test01", 1, {
+          onsuccess: function (event) {
+            const db = event.target.result;
+            const transaction = db.transaction("user", "readwrite");
+            const objectStore = transaction.objectStore(`user`);
+            const results = objectStore.getAll();
+            results.onsuccess = function (event) {
+              const r = event.target.result;
+              if (r && r.length > 0) {
+                r.forEach((item) => console.log(item.name));
+              }
+            };
+          },
+          onupgradeneeded: function (event) {},
+        });
+
+        openIndexDB("test01", 1, {
+          onsuccess: function (event) {
+            const db = event.target.result;
+            const transaction = db.transaction("user", "readwrite");
+            const objectStore = transaction.objectStore(`user`);
+
+            const data = { name: "tommy3", age: "18", sex: 1 };
+            objectStore.add(data);
+            db.close();
+          },
+          onupgradeneeded: function (event) {},
+        });
+      }
+
+      function userActionVersionChangeGetAll() {
+        openIndexDB("test01", 1, {
+          onsuccess: function (event) {
+            const db = event.target.result;
+            const transaction = db.transaction("user", "versionchange");
+            const objectStore = transaction.objectStore(`user`);
+            const results = objectStore.getAll();
+            results.onsuccess = function (event) {
+              const r = event.target.result;
+              if (r && r.length > 0) {
+                r.forEach((item) => console.log(item.name));
+              }
+            };
+          },
+          onupgradeneeded: function (event) {},
+        });
+      }
+
+      userActionVersionChangeGetAll();
     </script>
   </body>
 </html>

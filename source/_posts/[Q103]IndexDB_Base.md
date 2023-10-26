@@ -116,7 +116,131 @@ onsuccess = function(event) {
 }
 ```
 
+他可以做什么？
 
+首先获取这个数据库的基本信息
 
+1. name 数据库名称
+2. version 数据库版本
+3. objectStoreNames 表名称合集
 
+其次，也就是最主要的
+
+1. close()
+2. createObjectStore()
+3. deleteObjectStore()
+4. transaction()
+
+这里主要说前三个，第四个后面继续看。
+
+`close` 就是关闭数据库链接。在适当的时候关闭数据库，避免阻塞，内存过高等问题
+
+`createObjectStore` 创建表
+
+https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/createObjectStore
+
+```js
+createObjectStore(name)
+createObjectStore(name, options)
+```
+
+创建一下试一试
+
+```js
+const db = event.target.result;
+const objectStore = db.createObjectStore("user", {
+	keyPath: "id",
+	autoIncrement: true,
+});
+
+objectStore.add({ name: "tommy", age: "18", sex: 1 });
+objectStore.add({ name: "tommy1", age: "19", sex: 0 });
+objectStore.add({ name: "tommy2", age: "20", sex: 1 });
+
+db.close();
+```
+
+需要注意的是，建议 `autoIncrement` 设置，不然你需要自己设置 `id`.
+
+其次，`createObjectStore` 只能在 `upgradeneeded` 阶段使用，不然会报错的.
+
+这样就创建了一个表，并且添加了3条数据。
+
+`deleteObjectStore` 删除表
+
+最开始有点懵，因为删除也不能直接在 `onsuccess`, 会报错，如果想要在 `upgradeneeded` 使用，难道我不更改版本就不能删除吗？
+
+问了AI之后，给了一个方案
+
+```js
+// 打开数据库并获取数据库连接
+var request = indexedDB.open("myDatabase", 1);
+
+request.onsuccess = function(event) {
+    var db = event.target.result;
+
+    // 执行版本更改事务
+    var versionChange = db.setVersion(2); // 使用setVersion来创建版本更改事务
+
+    versionChange.onsuccess = function() {
+        // 在版本更改事务中删除 Object Store
+        if (db.objectStoreNames.contains("myObjectStore")) {
+            db.deleteObjectStore("myObjectStore");
+            console.log("Object Store 'myObjectStore' deleted.");
+        } else {
+            console.log("Object Store 'myObjectStore' not found.");
+        }
+
+        versionChange = versionChange.transaction;
+        versionChange.oncomplete = function() {
+            console.log("Object Store deleted successfully.");
+        };
+
+        versionChange.onerror = function() {
+            console.error("Error deleting Object Store: " + versionChange.error);
+        };
+    };
+};
+```
+
+但是我在 MDN 中搜索的时候，没有发现这个方法，于是 google 了一下这不是标准方法。
+
+https://stackoverflow.com/questions/9521689/getting-a-setversion-is-not-a-function-error-when-using-indexeddb
+
+MDN 官方例子当中确实也是版本变更的时候才删除 https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/deleteObjectStore
+
+### 06. IDBFactory transaction
+
+事务，他可以做什么？
+
+https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/transaction
+
+```js
+transaction(storeNames)
+transaction(storeNames, mode)
+transaction(storeNames, mode, options)
+```
+
+`mode`
+
+1. `readonly`
+2. `readwrite`
+3. `versionchange`
+
+模式3种，1,2 是打开事务以后， 读写还是只读，这里需要说一下，理论上 `readwrite` 可以全覆盖 `readonly`. 但是别一直使用 `readwrite`
+
+> 一次只能打开一个读写事务，它会锁定数据库，防止其他事务同时访问。
+> 当有读写事务处于活动状态时，只读事务将被阻塞，直到读写事务完成。
+
+不管是性能上，还是阻塞上，如果只需要读取，都应该选取 `readonly`.
+
+`versionchange` 是我看文档不明白的一个点，为什么需要这个模式？ 而且写测试代码没用
+
+> 这种类型的事务允许读取、修改和删除数据。也能够创建和删除Stores（数据表）和索引。这种类型的事务会在一个upgradeneeded事件被触发的时候自动创建，不能够手动创建。
+
+versionchange 可以执行数据库结构的升级、创建新的对象仓库、添加索引、执行数据迁移等操作
+
+ok，上代码测试一下。
+
+Uncaught DOMException: Failed to execute 'add' on 'IDBObjectStore': The transaction is read-only.
 
