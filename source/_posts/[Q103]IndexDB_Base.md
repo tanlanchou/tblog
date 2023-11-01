@@ -242,5 +242,58 @@ versionchange 可以执行数据库结构的升级、创建新的对象仓库、
 
 ok，上代码测试一下。
 
+
+
+首先是 `readonly`
+
+```javascript
+const db = event.target.result;
+const transaction = db.transaction("user", "readonly");
+const objectStore = transaction.objectStore(`user`);
+const results = objectStore.getAll();
+results.onsuccess = function (event) {
+    const r = event.target.result;
+    if (r && r.length > 0) {
+      r.forEach((item) => console.log(item.name));
+    }
+};
+```
+
+这是正常的, 在只读情况尝试了一下 `add`, 直接报错
+
+> Uncaught DOMException: Failed to execute 'add' on 'IDBObjectStore': The transaction is read-only.
+
+
+
+另外一个模式, `readwrite`
+
+```javascript
+const db = event.target.result;
+const transaction = db.transaction("user", "readwrite");
+const objectStore = transaction.objectStore(`user`);
+
+const data = { name: "tommy3", age: "18", sex: 1 };
+objectStore.add(data);
+db.close();
+```
+
+
+
+同样的代码, 如果用在读写上. ok.
+
+[IDBObjectStore - Web APIs | MDN (mozilla.org)](https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore)
+
+这里包含了其他还能做的操作, 你使用事务, 最终还是要落在这上面.
+
+
+
+需要注意的是 `readwrite` 其实也是可以读的, 但是建议分开, 原因刚才说清楚了.
+
+
+
+
+
+
+
 Uncaught DOMException: Failed to execute 'add' on 'IDBObjectStore': The transaction is read-only.
 
