@@ -218,7 +218,7 @@ MDN 官方例子当中确实也是版本变更的时候才删除 https://develop
 
 也就是说如果其他页面触发升级, 那么这个页面也会收到通知.
 
-### 06. IDBFactory transaction
+### 06. IDBDatabase: transaction() method
 
 事务，他可以做什么？
 
@@ -350,5 +350,42 @@ onupgradeneeded: function (event) {
 
 当执行了这个代码以后, 老版本的数据库就无法访问了.
 
+### 07. IDBTransaction
 
+也就是 `trans1`
 
+```js
+const trans1 = db.transaction("foo", "readwrite");
+```
+
+有5个属性
+
+1. `db IDBDatabase` 对象的引用
+2. `durability` 定义了事务的持久化行为，即事务对数据库状态的持久性影响（但是是只读的，其实我不知道有什么用）
+3. `error` 如果事务在执行过程中遇到错误，`error` 属性会返回一个表示该错误的 `DOMError` 对象。
+4. `mode` 你创建事务的是 `mode`
+5. `objectStoreNames` 包含此事务中所有对象仓库名称的数组。
+
+3个方法
+
+1. abort() 就是直接中断事务， 然后回滚，然后会触发 `abort` 事件
+2. commit() 提交事务
+3. objectStore() 返回 `IDBObjectStore` 对象
+
+commit 是我比较疑惑的一个点，因为之前我从来没有使用 commit 但是依然可以正常提交
+
+```js
+const db = event.target.result;
+const transaction = db.transaction("user", "readwrite");
+const objectStore = transaction.objectStore(`user`);
+
+const data = { name: "tommy3", age: "18", sex: 1 };
+objectStore.add(data);
+db.close();
+```
+
+我可以不停的添加，但是我并没有写 `transaction.commit()`， 
+
+> Note that commit() doesn't normally have to be called — a transaction will automatically commit when all outstanding requests have been satisfied and no new requests have been made. commit() can be used to start the commit process without waiting for events from outstanding requests to be dispatched.
+
+没必要显式调用。

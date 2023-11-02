@@ -120,21 +120,21 @@
     }
 
     function userActionReadWriteGetAll() {
-      openIndexDB("test01", 1, {
-        onsuccess: function (event) {
-          const db = event.target.result;
-          const transaction = db.transaction("user", "readwrite");
-          const objectStore = transaction.objectStore(`user`);
-          const results = objectStore.getAll();
-          results.onsuccess = function (event) {
-            const r = event.target.result;
-            if (r && r.length > 0) {
-              r.forEach((item) => console.log(item.name));
-            }
-          };
-        },
-        onupgradeneeded: function (event) { },
-      });
+      // openIndexDB("test01", 1, {
+      //   onsuccess: function (event) {
+      //     const db = event.target.result;
+      //     const transaction = db.transaction("user", "readwrite");
+      //     const objectStore = transaction.objectStore(`user`);
+      //     const results = objectStore.getAll();
+      //     results.onsuccess = function (event) {
+      //       const r = event.target.result;
+      //       if (r && r.length > 0) {
+      //         r.forEach((item) => console.log(item.name));
+      //       }
+      //     };
+      //   },
+      //   onupgradeneeded: function (event) { },
+      // });
 
       openIndexDB("test01", 1, {
         onsuccess: function (event) {
@@ -250,7 +250,9 @@
     //userActionVersionChange();
     // userVersionTwoUserGetAll();
     // userVersionTwoRoleGetAll();
-    userVersionOneGetAll();
+    //userVersionOneGetAll();
+    //userActionReadonlyAdd();
+    userActionReadWriteGetAll(); 
   </script>
 </body>
 
