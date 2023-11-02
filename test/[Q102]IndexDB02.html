@@ -175,29 +175,82 @@
           db.close();
         },
         onupgradeneeded: function (event) {
+          const db = event.target.result;
+          const transaction = event.currentTarget.transaction;
+          const roleObjectStore = db.createObjectStore("role", { keyPath: "id", autoIncrement: true, });
+          roleObjectStore.add({ "name": "admin", createTime: "2023-11-11" });
+          roleObjectStore.add({ "name": "teacher", createTime: "2023-11-11" });
+          roleObjectStore.add({ "name": "student", createTime: "2023-11-11" });
 
-          const olddb = event.oldVersionConnection;
-          const newdb = event.newVersionConnection;
-
-          const newObjectStore = newdb.createObjectStore("user", { keyPath: "id" });
-          
-          event.target.transaction
-          //olddb.createObjectStore('user').
-
-          const transaction = db.transaction("user", "versionchange");
-          const objectStore = transaction.objectStore(`user`);
-          const results = objectStore.getAll();
-          results.onsuccess = function (event) {
-            const r = event.target.result;
-            if (r && r.length > 0) {
-              r.forEach((item) => console.log(item.name));
+          const myStore = transaction.objectStore("user");
+          myStore.openCursor().onsuccess = (event) => {
+            const cursor = event.target.result;
+            if (cursor) {
+              const updateData = cursor.value;
+              updateData.phone = `0000000` + updateData.id;
+              cursor.update(updateData).onsuccess = () => {
+                console.log(`${updateData.name}更新了数据`);
+              }
+              cursor.continue();
+            } else {
+              console.log("Entries all displayed.");
             }
-          };
+          }
         },
       });
     }
 
-    userActionReadonlyAdd();
+    function userVersionOneGetAll() {
+      openIndexDB("test01", 1, {
+        onsuccess: function (event) {
+          const db = event.target.result;
+          const transaction = db.transaction("user", "readonly");
+          const objectStore = transaction.objectStore(`user`);
+          const results = objectStore.getAll();
+          results.onsuccess = function (event) {
+            const r = event.target.result;
+            r.forEach(item => console.log(item));
+          }
+        }
+      })
+    }
+
+    function userVersionTwoUserGetAll() {
+      openIndexDB("test01", 2, {
+        onsuccess: function (event) {
+          const db = event.target.result;
+          const transaction = db.transaction("user", "readonly");
+          const objectStore = transaction.objectStore(`user`);
+          const results = objectStore.getAll();
+          results.onsuccess = function (event) {
+            const r = event.target.result;
+            r.forEach(item => console.log(item));
+          }
+        }
+      })
+    }
+
+    function userVersionTwoRoleGetAll() {
+      openIndexDB("test01", 2, {
+        onsuccess: function (event) {
+          const db = event.target.result;
+          const transaction = db.transaction("role", "readonly");
+          const objectStore = transaction.objectStore(`role`);
+          const results = objectStore.getAll();
+          results.onsuccess = function (event) {
+            const r = event.target.result;
+            r.forEach(item => console.log(item));
+          }
+        }
+      })
+    }
+
+    //userAdd();
+    //userVersionOneGetAll();
+    //userActionVersionChange();
+    // userVersionTwoUserGetAll();
+    // userVersionTwoRoleGetAll();
+    userVersionOneGetAll();
   </script>
 </body>
 

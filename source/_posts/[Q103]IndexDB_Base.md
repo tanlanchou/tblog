@@ -130,6 +130,7 @@ onsuccess = function(event) {
 2. createObjectStore()
 3. deleteObjectStore()
 4. transaction()
+5. versionchange
 
 这里主要说前三个，第四个后面继续看。
 
@@ -208,6 +209,14 @@ request.onsuccess = function(event) {
 https://stackoverflow.com/questions/9521689/getting-a-setversion-is-not-a-function-error-when-using-indexeddb
 
 MDN 官方例子当中确实也是版本变更的时候才删除 https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/deleteObjectStore
+
+
+
+`versionchange`
+
+> The event is fired when a database structure change (upgradeneeded event send on an IDBOpenDBRequest or IDBFactory.deleteDatabase) was requested elsewhere (most probably in another window/tab on the same computer). versionchange
+
+也就是说如果其他页面触发升级, 那么这个页面也会收到通知.
 
 ### 06. IDBFactory transaction
 
@@ -291,9 +300,55 @@ db.close();
 
 
 
+`versionchange` 
+
+> Allows any operation to be performed, including ones that delete and create object stores and indexes. Transactions of this mode cannot run concurrently with other transactions. Transactions in this mode are known as "upgrade transactions."
+>
+> 允许执行任何操作，包括删除和创建对象存储和索引的操作。此模式的事务不能与其他事务并发运行。此模式的事务称为“升级事务”。
+>
+> There is also another type of transactions: . It can do anything, but you can’t generate it manually.versionchange A transaction can be automatically created by IndexedDB while opening the database for the handler. After creating the transaction, it is necessary to add an item to the store as follows:
+>
+> 还有另一种类型的交易：。它可以做任何事情，但你不能手动生成它。versionchange
+>
+> 在为处理程序打开数据库时，IndexedDB可以自动创建事务。创建事务后，需要向存储中添加一个项目，如下所示：
 
 
 
+也就是说在触发数据库升级的时候, 自动触发这个事务.
 
-Uncaught DOMException: Failed to execute 'add' on 'IDBObjectStore': The transaction is read-only.
+我最开始有一个误解， 就是不同版本的数据库, 意味着本地有多个数据库, 你可以访问 **version: 1**, 也可以访问 **version:2**
+
+所以之前找了很久关于数据库迁移的问题, 后来明白了其实只能访问最新版本, 也不存在迁移数据这种做法(除非你是迁移 ObjectStore).
+
+下面是我写的一个列子
+
+```javascript
+onupgradeneeded: function (event) {
+  const db = event.target.result;
+  const transaction = event.currentTarget.transaction;
+  const roleObjectStore = db.createObjectStore("role", { keyPath: "id", autoIncrement: true, });
+  roleObjectStore.add({ "name": "admin", createTime: "2023-11-11" });
+  roleObjectStore.add({ "name": "teacher", createTime: "2023-11-11" });
+  roleObjectStore.add({ "name": "student", createTime: "2023-11-11" });
+
+  const myStore = transaction.objectStore("user");
+  myStore.openCursor().onsuccess = (event) => {
+    const cursor = event.target.result;
+    if (cursor) {
+      const updateData = cursor.value;
+      updateData.phone = `0000000` + updateData.id;
+      cursor.update(updateData).onsuccess = () => {
+        console.log(`${updateData.name}更新了数据`);
+      }
+      cursor.continue();
+    } else {
+      console.log("Entries all displayed.");
+    }
+  }
+}
+```
+
+当执行了这个代码以后, 老版本的数据库就无法访问了.
+
+
 
