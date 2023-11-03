@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>成天乱写 - 代码和生活</title><meta name="author" content="tommy"><meta name="copyright" content="tommy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="乱写东西的地方，讲讲代码和生活">
+<meta property="og:type" content="website">
+<meta property="og:title" content="成天乱写">
+<meta property="og:url" content="https://tanlanchou.github.io/tblog/page/3/index.html">
+<meta property="og:site_name" content="成天乱写">
+<meta property="og:description" content="乱写东西的地方，讲讲代码和生活">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:author" content="tommy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/tblog/img/favicon.png"><link rel="canonical" href="https://tanlanchou.github.io/tblog/page/3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/tblog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/tblog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '成天乱写',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-11-03 13:44:20'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/tblog/archives/"><div class="headline">Articles</div><div class="length-num">76</div></a><a href="/tblog/tags/"><div class="headline">Tags</div><div class="length-num">103</div></a><a href="/tblog/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header"><nav id="nav"><span id="blog-info"><a href="/tblog/" title="成天乱写"><span class="site-name">成天乱写</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">成天乱写</h1></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/tblog/2023/07/09/browser_event/" title="浏览器事件流">浏览器事件流</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-07-09T04:16:01.000Z" title="Created 2023-07-09 12:16:01">2023-07-09</time></span></div><div class="content">01. dom 事件级别
+DOM 0级事件处理，DOM 2级事件处理和DOM 3级事件处理
+
+DOM 0 
+
+用于处理基本的用户交互，如鼠标点击、键盘输入和表单提交等。一些常见的第一级事件包括click、keydown、submit等。
+
+DOM 2
+
+例如，mouseenter和mouseleave事件在第二级事件中引入，用于检测鼠标进入和离开元素的区域, addEventListener
+
+DOM 3
+
+UI事件，当用户与页面上的元素交互时触发，如：load、scroll焦点事件，当元素获得或失去焦点时触发，如：blur、focus鼠标事件，当用户通过鼠标在页面执行操作时触发如：dblclick、mouseup滚轮事件，当使用鼠标滚轮或类似设备时触发，如：mousewheel文本事件，当在文档中输入文本时触发，如：textInput键盘事件，当用户通过键盘在页面上执行操作时触发，如：keydown、keypress合成事件，当为IME（输入法编辑器）输入字符时触发，如：compositionstart变动事件，当底层DOM结构发生变化时触发，如：DOMsubtreeModified ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/tblog/2023/07/08/clipboard/" title="浏览器复制">浏览器复制</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-07-08T05:36:01.000Z" title="Created 2023-07-08 13:36:01">2023-07-08</time></span></div><div class="content">实现原理 Clipboard Api
+https://developer.mozilla.org/zh-CN/docs/Web/API/Clipboard_API
+1navigator.clipboard.readText().then(clipText =&gt; document.querySelector(&quot;.editor&quot;).innerText += clipText);
+
+以前的做法是 document.execCommand
+https://developer.mozilla.org/zh-CN/docs/Web/API/Document/execCommand
+1bool = document.execCommand(aCommandName, aShowDefaultUI, aValueArgument)
+
+现在已经废弃了，就看你是否要兼容老浏览器。
+这里是组件的 clipboard-copy 的源码
+https://github.com/feross/clipboard-copy/blob/master/index.js
+1234567891011 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/tblog/2023/07/08/%5BQ017%5DHow_does_css_achieve_a_fixed_300px_on_the_left_and_an_daptive_layout_on_the_right/" title="css 如何实现左侧固定 300px，右侧自适应的布局">css 如何实现左侧固定 300px，右侧自适应的布局</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-07-08T03:26:01.000Z" title="Created 2023-07-08 11:26:01">2023-07-08</time></span></div><div class="content">01. flex主要利用 flex 特性, 如果只有一个 flex: 1 撑满
+https://codesandbox.io/s/frosty-haze-wqmm8l
+12345678910111213141516171819202122232425262728293031323334&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset=&quot;UTF-8&quot;&gt;    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;    &lt;title&gt;Document&lt;/title&gt;    &lt;style&gt;        .main &#123;            display: flex;        &#125;        .one &#123;            hei ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/tblog/2023/07/08/nextTick/" title="Vue3 nextTick">Vue3 nextTick</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-07-07T17:36:01.000Z" title="Created 2023-07-08 01:36:01">2023-07-08</time></span></div><div class="content">01. 什么是 nextTick首先要知道什么是 nextTick
+
+等待下一次 DOM 更新刷新的工具方法。
+
+1function nextTick(callback?: () =&gt; void): Promise&lt;void&gt;
+
+这里说了语法和定义，下面这个例子会会说明，为什么需要 nextTick
+12345678910111213141516171819202122&lt;script setup&gt;import &#123; ref, nextTick &#125; from &#x27;vue&#x27;const count = ref(0)async function increment() &#123;    count.value++    // DOM 还未更新    console.log(document.getElementById(&#x27;counter&#x27;).textContent) // 0    await nextTick()    // DOM 此时已经更新    console.log(document.getEl ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/tblog/2023/07/08/Vue3_queue/" title="vue3 任务调度源码解析">vue3 任务调度源码解析</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-07-07T17:30:01.000Z" title="Created 2023-07-08 01:30:01">2023-07-08</time></span></div><div class="content">01. queueJob首先需要知道这个接口的定义，他就是任务调度的 job 定义
+12345678910111213141516171819202122232425262728export interface SchedulerJob extends Function &#123;  id?: number //唯一ID  pre?: boolean //是否是预处理  active?: boolean //是否激活  computed?: boolean //是否是计算任务    /**    * 表示是否允许该效果自行递归触发    * 当由调度程序管理时。    *    * 默认情况下，作业无法自行触发，因为某些内置方法调用，    * 例如 Array.prototype.push 实际上也执行读取（#1740）    * 可能导致令人困惑的无限循环。    * 允许的情况是组件更新函数和监视回调。    * 组件更新函数可能会更新子组件 props，进而更新子组件 props    * 触发刷新：“预”监视回调，该回调会改变父级的状态    * 依赖于（#1801）。 监 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/tblog/2023/07/07/web_fetch/" title="fetch 简单介绍">fetch 简单介绍</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-07-07T04:27:01.000Z" title="Created 2023-07-07 12:27:01">2023-07-07</time></span></div><div class="content">01. 什么是 fetchhttps://developer.mozilla.org/zh-CN/docs/Web/API/fetch
+https://www.ruanyifeng.com/blog/2020/12/fetch-tutorial.html
+
+fetch()是 XMLHttpRequest 的升级版，用于在 JavaScript 脚本里面发出 HTTP 请求。浏览器原生提供这个对象
+
+https://caniuse.com/?search=fetch 现代浏览器都支持.
+
+（1）fetch()使用 Promise，不使用回调函数，因此大大简化了写法，写起来更简洁。
+（2）fetch()采用模块化设计，API 分散在多个对象上（Response 对象、Request 对象、Headers 对象），更合理一些；相比之下，XMLHttpRequest 的 API 设计并不是很好，输入、输出、状态都在同一个接口管理，容易写出非常混乱的代码。
+（3）fetch()通过数据流（Stream 对象）处理数据，可以分块读取，有利于提高网站性能表现，减少内存占用，对于请求大文件或者网速慢的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/tblog/2023/07/06/web_img_lazy_loading/" title="图片懒加载方案">图片懒加载方案</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-07-06T08:00:01.000Z" title="Created 2023-07-06 16:00:01">2023-07-06</time></span></div><div class="content">虽然这里只说图片懒加载，还是得知道什么是懒加载
+
+延迟加载（懒加载）是一种将资源标识为非阻塞（非关键）资源并仅在需要时加载它们的策略。这是一种缩短关键渲染路径长度的方法，可以缩短页面加载时间。
+
+如果只局限到图片这一个点上，就是延后加载非必须的图片。
+1&lt;img src=`` /&gt;
+
+01. 位置计算 + 滚动事件 (Scroll) + DataSet API就是说，我知道图片位置，我能监听滚动事件，当图片位置和滚动事件重合的时候，获取图片的 data-src, 渲染图片.
+有些网站方案细节不一样，比如提前多少距离加载。
+这种方案有点儿类似于移动端分页，划到某些位置自动加载下面的。
+在这个思路之下，写了一点代码 方案一 Demo
+url 可以换，这个方案最大的问题是什么？
+这里还可以有什么优化的点？比如 ImgClass 完成以后需要删除监听。其他就是优化判断是否在里面。
+02. 方案2 getBoundingClientRect
+getBoundingClientRect 是一个 DOM 元素的方法，它返回一个包含该元素位置和尺寸信息的 DOMRect 对象。DOMRec ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/tblog/2023/07/06/Vue3_Suspense/" title="vue3 defineAsyncComponent &amp; Suspense 用法以及源码">vue3 defineAsyncComponent &amp; Suspense 用法以及源码</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-07-06T05:22:01.000Z" title="Created 2023-07-06 13:22:01">2023-07-06</time></span></div><div class="content">01. defineAsyncComponent 定义和使用1234567891011121314151617181920function defineAsyncComponent(  source: AsyncComponentLoader | AsyncComponentOptions): Componenttype AsyncComponentLoader = () =&gt; Promise&lt;Component&gt;interface AsyncComponentOptions &#123;  loader: AsyncComponentLoader  loadingComponent?: Component  errorComponent?: Component  delay?: number  timeout?: number  suspensible?: boolean  onError?: (    error: Error,    retry: () =&gt; void,    fail: () =&gt; void,    attempts: number ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/tblog/2023/07/03/ts_type_interface/" title="type 和 interface 区别">type 和 interface 区别</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-07-03T14:53:51.000Z" title="Created 2023-07-03 22:53:51">2023-07-03</time></span></div><div class="content">1. 继承interface 可以通过 implements 实现继承，然而 type 理论上不能继承。
+1234567891011interface Animal &#123;    name: String;    sex: Number;    readonly id: String;&#125;interface Speak &#123;    say(to: number): String;&#125;interface Person extends Animal, Speak &#123; &#125;
+
+class 就可以继承 interface 取实现方法.
+type 想要继承，可以通过交叉类型可以实现
+1234567891011type Animal1 &#123;    name: String;    sex: Number;    readonly id: String;&#125;type Speak1 &#123;    say(to: number): String;&#125;type Person1 = Animal1 &amp; Speak1;
+
+也 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info"><a class="article-title" href="/tblog/2023/07/03/ts_baseTypescript/" title="typescript 基础点">typescript 基础点</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-07-03T14:51:51.000Z" title="Created 2023-07-03 22:51:51">2023-07-03</time></span></div><div class="content">01. 类型Number, Tuple, String, Enum, Any, Void, Null, Undefined, Never, Object, Boolean, Symbol
+需要说一说的只是 Tuple, Never, Void
+Tuple
+
+Tuple 元组类型允许表示一个已知元素数量和类型的数组当访问一个越界的元素，会使用联合类型替代
+
+let x:[string, number] &#x3D; [“1”, 1];
+x[3] &#x3D; “1”; &#x2F;&#x2F;联合类型替 [String | Number]
+Never &amp; Void
+Never 表示没有任何返回值Void Null || undefined
+02. 变量声明const let var 作用域和ES6相同，别用var就行了。readonly const 一个是修饰符，一个声明变量readonly 主要用于接口，类，并且可以不用在声明的时候初始化，第一次赋值后不能再赋值const 必须初始化的时候赋值。
+03. interface和 C# java 差不多，用于类定义，Object定义 ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/tblog/page/2/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/tblog/">1</a><a class="page-number" href="/tblog/page/2/#content-inner">2</a><span class="page-number current">3</span><a class="page-number" href="/tblog/page/4/#content-inner">4</a><span class="space">&hellip;</span><a class="page-number" href="/tblog/page/8/#content-inner">8</a><a class="extend next" rel="next" href="/tblog/page/4/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/tblog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">tommy</div><div class="author-info__description">乱写东西的地方，讲讲代码和生活</div></div><div class="card-info-data site-data is-center"><a href="/tblog/archives/"><div class="headline">Articles</div><div class="length-num">76</div></a><a href="/tblog/tags/"><div class="headline">Tags</div><div class="length-num">103</div></a><a href="/tblog/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2023/11/02/%5BQ103%5DIndexDB_Base/" title="IndexDB API">IndexDB API</a><time datetime="2023-11-02T13:21:21.000Z" title="Created 2023-11-02 21:21:21">2023-11-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2023/09/03/%5BQ102%5Djavascript_this_link/" title="javascript this 指向">javascript this 指向</a><time datetime="2023-09-03T13:00:01.000Z" title="Created 2023-09-03 21:00:01">2023-09-03</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/tblog/2023/09/01/%5Bwechat%5Dwechat_website/" title="微信公众号网页踩坑？">微信公众号网页踩坑？</a><time datetime="2023-09-01T13:00:01.000Z" title="Created 2023-09-01 21:00:01">2023-09-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2023/09/01/%5BQ101%5DFlex_attr/" title="flex 属性详解">flex 属性详解</a><time datetime="2023-09-01T13:00:01.000Z" title="Created 2023-09-01 21:00:01">2023-09-01</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/tblog/2023/08/29/wsl_can_not_boot/" title="windows docker 安装遇到的坑">windows docker 安装遇到的坑</a><time datetime="2023-08-29T08:00:01.000Z" title="Created 2023-08-29 16:00:01">2023-08-29</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tblog/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/" style="font-size: 1.1em; color: #999">公众号</a> <a href="/tblog/tags/ref/" style="font-size: 1.1em; color: #999">ref</a> <a href="/tblog/tags/onErrorCaptured/" style="font-size: 1.1em; color: #999">onErrorCaptured</a> <a href="/tblog/tags/deactivated/" style="font-size: 1.1em; color: #999">deactivated</a> <a href="/tblog/tags/Vue3/" style="font-size: 1.1em; color: #999">Vue3</a> <a href="/tblog/tags/keep-alive/" style="font-size: 1.18em; color: #999ca1">keep-alive</a> <a href="/tblog/tags/linux/" style="font-size: 1.1em; color: #999">linux</a> <a href="/tblog/tags/%E6%87%92%E5%8A%A0%E8%BD%BD/" style="font-size: 1.1em; color: #999">懒加载</a> <a href="/tblog/tags/updated/" style="font-size: 1.1em; color: #999">updated</a> <a href="/tblog/tags/vue2/" style="font-size: 1.34em; color: #99a3b0">vue2</a> <a href="/tblog/tags/javascript/" style="font-size: 1.5em; color: #99a9bf">javascript</a> <a href="/tblog/tags/web/" style="font-size: 1.42em; color: #99a6b7">web</a> <a href="/tblog/tags/%E9%87%8D%E7%BB%98/" style="font-size: 1.1em; color: #999">重绘</a> <a href="/tblog/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" style="font-size: 1.1em; color: #999">源码解析</a> <a href="/tblog/tags/%E5%89%AA%E5%88%87%E6%9D%BF/" style="font-size: 1.1em; color: #999">剪切板</a> <a href="/tblog/tags/app/" style="font-size: 1.1em; color: #999">app</a> <a href="/tblog/tags/guid/" style="font-size: 1.1em; color: #999">guid</a> <a href="/tblog/tags/%E6%B7%B1%E6%8B%B7%E8%B4%9D/" style="font-size: 1.1em; color: #999">深拷贝</a> <a href="/tblog/tags/toString-call/" style="font-size: 1.1em; color: #999">toString.call</a> <a href="/tblog/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 1.18em; color: #999ca1">微信小程序</a> <a href="/tblog/tags/docker/" style="font-size: 1.1em; color: #999">docker</a> <a href="/tblog/tags/flex/" style="font-size: 1.18em; color: #999ca1">flex</a> <a href="/tblog/tags/css/" style="font-size: 1.26em; color: #999fa8">css</a> <a href="/tblog/tags/bfc/" style="font-size: 1.1em; color: #999">bfc</a> <a href="/tblog/tags/createVNode/" style="font-size: 1.1em; color: #999">createVNode</a> <a href="/tblog/tags/windows/" style="font-size: 1.1em; color: #999">windows</a> <a href="/tblog/tags/destroyed/" style="font-size: 1.1em; color: #999">destroyed</a> <a href="/tblog/tags/ifc/" style="font-size: 1.1em; color: #999">ifc</a> <a href="/tblog/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AD%98%E5%82%A8/" style="font-size: 1.1em; color: #999">浏览器存储</a> <a href="/tblog/tags/wather/" style="font-size: 1.1em; color: #999">wather</a> <a href="/tblog/tags/instanceof/" style="font-size: 1.1em; color: #999">instanceof</a> <a href="/tblog/tags/%E6%96%B9%E6%A1%88/" style="font-size: 1.1em; color: #999">方案</a> <a href="/tblog/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/" style="font-size: 1.1em; color: #999">进制转换</a> <a href="/tblog/tags/errorCaptured/" style="font-size: 1.1em; color: #999">errorCaptured</a> <a href="/tblog/tags/transform/" style="font-size: 1.1em; color: #999">transform</a> <a href="/tblog/tags/lazyloading/" style="font-size: 1.1em; color: #999">lazyloading</a> <a href="/tblog/tags/Object-is/" style="font-size: 1.1em; color: #999">Object.is</a> <a href="/tblog/tags/%E7%9B%AE%E5%BD%95/" style="font-size: 1.1em; color: #999">目录</a> <a href="/tblog/tags/uniapp/" style="font-size: 1.26em; color: #999fa8">uniapp</a> <a href="/tblog/tags/defer/" style="font-size: 1.1em; color: #999">defer</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/tblog/archives/2023/11/"><span class="card-archive-list-date">November 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/tblog/archives/2023/09/"><span class="card-archive-list-date">September 2023</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/tblog/archives/2023/08/"><span class="card-archive-list-date">August 2023</span><span class="card-archive-list-count">5</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/tblog/archives/2023/07/"><span class="card-archive-list-date">July 2023</span><span class="card-archive-list-count">42</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/tblog/archives/2023/06/"><span class="card-archive-list-date">June 2023</span><span class="card-archive-list-count">24</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/tblog/archives/2023/01/"><span class="card-archive-list-date">January 2023</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>Info</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">Article :</div><div class="item-count">76</div></div><div class="webinfo-item"><div class="item-name">UV :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">PV :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">Last Update :</div><div class="item-count" id="last-push-date" data-lastPushDate="2023-11-03T05:44:19.657Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By tommy</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/tblog/js/utils.js"></script><script src="/tblog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

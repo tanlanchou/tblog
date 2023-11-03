@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>深拷贝方法优缺点总结 | 成天乱写</title><meta name="author" content="tommy"><meta name="copyright" content="tommy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="JSON.stringify(obj)， _.cloneDeep，自己写深度遍历，structuredClone">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深拷贝方法优缺点总结">
+<meta property="og:url" content="https://tanlanchou.github.io/tblog/2023/07/03/deepClone/index.html">
+<meta property="og:site_name" content="成天乱写">
+<meta property="og:description" content="JSON.stringify(obj)， _.cloneDeep，自己写深度遍历，structuredClone">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-07-03T13:36:01.000Z">
+<meta property="article:modified_time" content="2023-08-25T01:31:47.650Z">
+<meta property="article:author" content="tommy">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="深拷贝">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/tblog/img/favicon.png"><link rel="canonical" href="https://tanlanchou.github.io/tblog/2023/07/03/deepClone/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/tblog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/tblog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '深拷贝方法优缺点总结',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-08-25 09:31:47'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/tblog/archives/"><div class="headline">Articles</div><div class="length-num">76</div></a><a href="/tblog/tags/"><div class="headline">Tags</div><div class="length-num">103</div></a><a href="/tblog/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/tblog/" title="成天乱写"><span class="site-name">成天乱写</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">深拷贝方法优缺点总结</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-07-03T13:36:01.000Z" title="Created 2023-07-03 21:36:01">2023-07-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-08-25T01:31:47.650Z" title="Updated 2023-08-25 09:31:47">2023-08-25</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="深拷贝方法优缺点总结"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="深度拷贝"><a href="#深度拷贝" class="headerlink" title="深度拷贝"></a>深度拷贝</h1><p>一般来说，如果需要深度拷贝，网上会推荐三种方式。</p>
+<ol>
+<li>JSON.stringify(obj)</li>
+<li>_.cloneDeep(value)</li>
+<li>自己写深度遍历</li>
+</ol>
+<h3 id="JSON-stringify"><a href="#JSON-stringify" class="headerlink" title="JSON.stringify"></a>JSON.stringify</h3><blockquote>
+<p>首先，将要被序列化的对象（称为目标对象）传递给函数。JSON.stringify()<br>JSON.stringify()函数检查目标对象的数据类型。 如果目标对象是一个简单类型（例如字符串、数字、布尔值、null、undefined），则它会直接返回该值的JSON表示。<br>如果目标对象是一个数组，则会递归地调用自身，对每个数组元素进行序列化，并将结果拼接成一个JSON数组。JSON.stringify()<br>如果目标对象是一个对象，则会递归地调用自身，对每个对象属性进行序列化，并将结果拼接成一个JSON对象。JSON.stringify()<br>在序列化对象属性时，会跳过属性值为函数或undefined的属性，并在其他情况下将属性值转换为JSON格式的字符串。JSON.stringify()<br>最后，返回一个JSON格式的字符串表示整个目标对象。JSON.stringify()</p>
+<p>需要注意的是，在某些情况下，会跳过一些属性。 例如，当对象包含循环引用时，会将这些引用跳过，以避免无限递归。 此外，对于某些不支持的数据类型（例如日期对象），可能会将它们转换为null或空字符串。</p>
+</blockquote>
+<p>他的主要问题其实不是问题，主要是错误的应用方式，他本身就是为了 json &#x3D;&gt; string.</p>
+<p>所以当你使用他的时候</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj))</span><br></pre></td></tr></table></figure>
+
+<p>会发现以下问题</p>
+<ol>
+<li>Date() 他直接给你 toString() 了。</li>
+<li>他不支持函数对象</li>
+<li>他不支持 Map,Set,Error,RegExp，Symbol 等等.</li>
+<li>不支持循环引用</li>
+</ol>
+<p>不支持循环引用的问题 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">    <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">b</span>: <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line">obj.<span class="property">b</span> = obj;</span><br></pre></td></tr></table></figure>
+
+<p>这个时候就会报错。</p>
+<h3 id="clonedeep"><a href="#clonedeep" class="headerlink" title="_.clonedeep"></a>_.clonedeep</h3><p>clonedeep 没有任何问题，问题是需要引入 <code>lodash</code>.</p>
+<p>简单看了一下他的源码</p>
+<p><strong>.internal&#x2F;baseClone.js</strong></p>
+<p>大概是这个递归的思路来的</p>
+<h3 id="自己写一个-deepClone"><a href="#自己写一个-deepClone" class="headerlink" title="自己写一个 deepClone"></a>自己写一个 deepClone</h3><p>本质上就是一个递归，我写一个伪代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> argsTag = <span class="string">&#x27;[object Arguments]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> arrayTag = <span class="string">&#x27;[object Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> boolTag = <span class="string">&#x27;[object Boolean]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> dateTag = <span class="string">&#x27;[object Date]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> errorTag = <span class="string">&#x27;[object Error]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> mapTag = <span class="string">&#x27;[object Map]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> numberTag = <span class="string">&#x27;[object Number]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> objectTag = <span class="string">&#x27;[object Object]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> regexpTag = <span class="string">&#x27;[object RegExp]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> setTag = <span class="string">&#x27;[object Set]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> stringTag = <span class="string">&#x27;[object String]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> symbolTag = <span class="string">&#x27;[object Symbol]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> weakMapTag = <span class="string">&#x27;[object WeakMap]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> arrayBufferTag = <span class="string">&#x27;[object ArrayBuffer]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> dataViewTag = <span class="string">&#x27;[object DataView]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> float32Tag = <span class="string">&#x27;[object Float32Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> float64Tag = <span class="string">&#x27;[object Float64Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> int8Tag = <span class="string">&#x27;[object Int8Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> int16Tag = <span class="string">&#x27;[object Int16Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> int32Tag = <span class="string">&#x27;[object Int32Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> uint8Tag = <span class="string">&#x27;[object Uint8Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> uint8ClampedTag = <span class="string">&#x27;[object Uint8ClampedArray]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> uint16Tag = <span class="string">&#x27;[object Uint16Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> uint32Tag = <span class="string">&#x27;[object Uint32Array]&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">deepClone</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断类型，如果 typeof 不是 object，直接返回</span></span><br><span class="line">    <span class="comment">//判断类型</span></span><br><span class="line">    <span class="comment">//你需要把每一个类型列出来单独处理，如同上图的tag</span></span><br><span class="line">    <span class="comment">//基础类型 new String(), new Date() 之类的，使用取出原始值，来创建新的对象，并且赋值</span></span><br><span class="line">    <span class="comment">//如果是Array, Map, Set ... 之类的的集合，字典，数组，遍历循环递归。</span></span><br><span class="line">    <span class="comment">//最后给出一个结果</span></span><br><span class="line">    <span class="comment">//return reuslt</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="新方式，structuredClone"><a href="#新方式，structuredClone" class="headerlink" title="新方式，structuredClone"></a>新方式，structuredClone</h3><p>解决了大部分问题。</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/structuredClone">https://developer.mozilla.org/en-US/docs/Web/API/structuredClone</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> calendarEvent = &#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="string">&quot;Builder.io Conf&quot;</span>,</span><br><span class="line">  <span class="attr">date</span>: <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">123</span>),</span><br><span class="line">  <span class="attr">attendees</span>: [<span class="string">&quot;Steve&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> copied = <span class="title function_">structuredClone</span>(calendarEvent)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>克隆无限嵌套的对象和数组<br>克隆循环引用<br>克隆各种 JavaScript 类型，例如 、 、 等等DateSetMapErrorRegExpArrayBufferBlobFileImageData<br>传输任何可转移对象</p>
+</blockquote>
+<p>但是他也有问题</p>
+<p>首先他无法克隆 <code>function</code></p>
+<blockquote>
+<p>Uncaught DOMException: Failed to execute ‘structuredClone’ on ‘Window’: function() { console.log(1) } could not be cloned.</p>
+</blockquote>
+<p>而且在某些情况下他会直接跳过 <code>function</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123; </span><br><span class="line">  foo = <span class="string">&#x27;bar&#x27;</span> </span><br><span class="line">  <span class="title function_">myMethod</span>(<span class="params"></span>) &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">foo</span>) &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> myClass = <span class="keyword">new</span> <span class="title class_">MyClass</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> cloned = <span class="title function_">structuredClone</span>(myClass)</span><br><span class="line">cloned.<span class="property">myMethod</span> === <span class="literal">undefined</span>; <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>这个例子当中，还有另一个问题</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cloned <span class="keyword">instanceof</span> <span class="title class_">MyClass</span> <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<p>也就是说他不会随着原型链像上查找，只是遍历属性。</p>
+<p>还会存在一个问题，就是 <code>getter &amp; setter</code>. 他会跳过，你把他理解为 fn 就行了。</p>
+<p>也就是说，这个单纯的是给你深度克隆数据的方法，如果你要克隆一个类，那是不行的。</p>
+<p><a target="_blank" rel="noopener" href="https://caniuse.com/?search=structuredClone">https://caniuse.com/?search=structuredClone</a></p>
+<p>浏览器支持情况, nodejs中至少我目前的 v16.18 是不支持的。</p>
+<h3 id="深拷贝的应用场景"><a href="#深拷贝的应用场景" class="headerlink" title="深拷贝的应用场景"></a>深拷贝的应用场景</h3><p>其实深拷贝还是特殊场景的特殊应用，随意使用可能导致问题。</p>
+<p>因为持续的遍历需要考虑有多深的问题，还需要考虑是否要遍历prototype问题，还需要解决一些数据就是有问题的情况。</p>
+<p>所以还是要剧情情况具体分析。</p>
+<h3 id="如何浅拷贝"><a href="#如何浅拷贝" class="headerlink" title="如何浅拷贝"></a>如何浅拷贝</h3><p>都说道这里了，那么如何浅拷贝</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o = &#123;...x&#125;</span><br><span class="line"><span class="keyword">let</span> o = x</span><br><span class="line"><span class="keyword">let</span> o = <span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123;&#125;, x);</span><br><span class="line"><span class="keyword">let</span> o = <span class="title class_">Object</span>.<span class="title function_">create</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>等等..</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://tanlanchou.github.io/tblog">tommy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://tanlanchou.github.io/tblog/2023/07/03/deepClone/">https://tanlanchou.github.io/tblog/2023/07/03/deepClone/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tblog/tags/web/">web</a><a class="post-meta__tags" href="/tblog/tags/javascript/">javascript</a><a class="post-meta__tags" href="/tblog/tags/%E6%B7%B1%E6%8B%B7%E8%B4%9D/">深拷贝</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/tblog/2023/07/03/eventLoop/" title="浏览器事件循环"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">浏览器事件循环</div></div></a></div><div class="next-post pull-right"><a href="/tblog/2023/07/03/closures_and_scopes/" title="必包和作用域"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">必包和作用域</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/tblog/2023/08/20/%5BQ001%5DArrowFunctionvsFunction/" title="箭头函数有prototype吗？为什么？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-20</div><div class="title">箭头函数有prototype吗？为什么？</div></div></a></div><div><a href="/tblog/2023/06/15/async&defer/" title="async &amp; defer"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-15</div><div class="title">async &amp; defer</div></div></a></div><div><a href="/tblog/2023/07/03/baseEs6/" title="es6 更新总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-03</div><div class="title">es6 更新总结</div></div></a></div><div><a href="/tblog/2023/07/03/async_code/" title="javascript 异步编程有哪些方式？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-03</div><div class="title">javascript 异步编程有哪些方式？</div></div></a></div><div><a href="/tblog/2023/07/09/browser_event/" title="浏览器事件流"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-09</div><div class="title">浏览器事件流</div></div></a></div><div><a href="/tblog/2023/06/15/browser_parsing/" title="浏览器解析过程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-15</div><div class="title">浏览器解析过程</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/tblog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">tommy</div><div class="author-info__description">乱写东西的地方，讲讲代码和生活</div></div><div class="card-info-data site-data is-center"><a href="/tblog/archives/"><div class="headline">Articles</div><div class="length-num">76</div></a><a href="/tblog/tags/"><div class="headline">Tags</div><div class="length-num">103</div></a><a href="/tblog/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E6%8B%B7%E8%B4%9D"><span class="toc-number">1.</span> <span class="toc-text">深度拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JSON-stringify"><span class="toc-number">1.0.1.</span> <span class="toc-text">JSON.stringify</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#clonedeep"><span class="toc-number">1.0.2.</span> <span class="toc-text">_.clonedeep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%B7%B1%E5%86%99%E4%B8%80%E4%B8%AA-deepClone"><span class="toc-number">1.0.3.</span> <span class="toc-text">自己写一个 deepClone</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E6%96%B9%E5%BC%8F%EF%BC%8CstructuredClone"><span class="toc-number">1.0.4.</span> <span class="toc-text">新方式，structuredClone</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.0.5.</span> <span class="toc-text">深拷贝的应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-number">1.0.6.</span> <span class="toc-text">如何浅拷贝</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2023/11/02/%5BQ103%5DIndexDB_Base/" title="IndexDB API">IndexDB API</a><time datetime="2023-11-02T13:21:21.000Z" title="Created 2023-11-02 21:21:21">2023-11-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2023/09/03/%5BQ102%5Djavascript_this_link/" title="javascript this 指向">javascript this 指向</a><time datetime="2023-09-03T13:00:01.000Z" title="Created 2023-09-03 21:00:01">2023-09-03</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/tblog/2023/09/01/%5Bwechat%5Dwechat_website/" title="微信公众号网页踩坑？">微信公众号网页踩坑？</a><time datetime="2023-09-01T13:00:01.000Z" title="Created 2023-09-01 21:00:01">2023-09-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2023/09/01/%5BQ101%5DFlex_attr/" title="flex 属性详解">flex 属性详解</a><time datetime="2023-09-01T13:00:01.000Z" title="Created 2023-09-01 21:00:01">2023-09-01</time></div></div><div class="aside-list-item"><div class="content"><a class="title" href="/tblog/2023/08/29/wsl_can_not_boot/" title="windows docker 安装遇到的坑">windows docker 安装遇到的坑</a><time datetime="2023-08-29T08:00:01.000Z" title="Created 2023-08-29 16:00:01">2023-08-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By tommy</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/tblog/js/utils.js"></script><script src="/tblog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
