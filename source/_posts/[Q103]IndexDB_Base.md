@@ -1,4 +1,11 @@
-
+---
+title: IndexDB API
+date: 2023-11-02 21:21:21
+tags: 
+    - javascript
+    - indexDB
+    - 浏览器存储
+---
 
 ### 01. 什么是IndexDB?
 
@@ -389,3 +396,37 @@ db.close();
 > Note that commit() doesn't normally have to be called — a transaction will automatically commit when all outstanding requests have been satisfied and no new requests have been made. commit() can be used to start the commit process without waiting for events from outstanding requests to be dispatched.
 
 没必要显式调用。
+
+**三个事件**
+
+1. `abort` 事务报错和取消的时候触发
+2. `complete` 事务完成之后触发
+3. `error`
+
+### 08. IDBObjectStore
+
+操作数据的核心接口, 包含一堆属性和方法
+
+https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore
+
+这个没什么好说的, 其实你挨个试一试就知道怎么用了. 
+
+唯一值得一说的是游标. 确实在大量数据遍历的时候, 还是建议使用一下.
+
+```js
+openCursor()
+openCursor(query)
+openCursor(query, direction)
+```
+
+这里是具体游标的返回, 可以直接编辑或者删除, 详情看下面的链接
+
+https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor
+
+### 09. 总结
+
+其实到这里, 基本使用就应该没有问题. 该知道的方法就都该知道了.
+
+剩下就是灵活应用的问题了.
+
+自己写一个应用吧
