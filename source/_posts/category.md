@@ -39,6 +39,7 @@ tags:
 
 ### javascript最基础
 
+- [href打开本地软件](/tblog/2023/12/01/javascript/url_open_software/)
 - [Q102 indexDB API](/tblog/2023/11/02/%5BQ103%5DIndexDB_Base/)
 - [Q101 this 函数指向问题](/tblog/2023/09/02/%5BQ102%5Djavascript_this_link/)
 - [箭头函数有prototype吗？为什么？](/tblog/2023/08/20/%5BQ001%5DArrowFunctionvsFunction/)
