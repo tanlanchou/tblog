@@ -83,6 +83,7 @@ tags:
 
 ### 杂项
 
+- [前端 docker 项目如何动态加载环境变量](/tblog/2023/12/07/zaxiang/front_docker_env/)
 - [为什么 npm install 需要 sudo](/tblog/2023/08/27/sudo_npm_install/)
 - [windows docker 安装遇到的坑](/tblog/2023/08/29/wsl_can_not_boot/)
 
