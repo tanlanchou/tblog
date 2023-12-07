@@ -88,5 +88,5 @@ tags:
 
 ### 做点题
 
-- [102 javascript this 如何确定]()
+- [001](/tblog/2023/12/07/shuati/001_bind/)
 - [css 如何实现左侧固定 300px，右侧自适应的布局](/tblog/2023/07/08/%5BQ017%5DHow_does_css_achieve_a_fixed_300px_on_the_left_and_an_daptive_layout_on_the_right/)
