@@ -58,17 +58,7 @@ tags:
 - [为什么要用 void 0 代替 undefined](/tblog/2023/07/03/undefined_void_0/)
 - [Array](/tblog/2023/07/12/es6_array/)
 
-### uniapp & nestjs
-
-- [微信公众号网页踩坑？](/tblog/2023/09/01/%5Bwechat%5Dwechat_website/)
-- [uni-app过文档](/tblog/2023/07/18/uniapp_base/)
-- [uni-app调试](/tblog/2023/07/18/uniapp_tiaoshi/)
-- [uni-app 引导图和广告](/tblog/2023/07/18/uniapp_guird/)
-- [nestjs 登录和任务](/tblog/2023/07/23/uniapp_nest_login_list/)
-- [微信小程序入门](/tblog/2023/07/13/ss_baisc/)
-- [一个简单的todoList](/tblog/2023/07/14/ss_simple_todo/)
-
-### 05. web基础和基础css
+### web基础和基础css
 
 - [flex 属性详解](/tblog/2023/09/01/%5BQ101%5DFlex_attr/)
 - [图片懒加载4种方案](/tblog/2023/07/06/web_img_lazy_loading/)
@@ -80,31 +70,23 @@ tags:
 - [IFC 布局模型](/tblog/2023/07/03/IFC/)
 - [重绘和回流的基本概念](/tblog/2023/07/03/repaint_reflow/)
 
-### 06. typescript...
+### electron
 
-1. [typescript 类型有哪些？](/tblog/2023/06/15/typescript_type/)
-2. [type 和 interface 区别](/tblog/2023/06/15/type_interface/)
-3. [ConstructSignature 错误](/tblog/2023/07/03/constructSignatureError/)
-4. [装饰器(js & ts)](/tblog/2023/07/03/ts_decorator/)
-5. [infer](/tblog/2023/07/03/ts_Infer/)
-6. [mixin](/tblog/2023/07/03/ts_mixin/)
-7. [三斜杠指令](tblog/2023/07/03/ts_triple-slash-directives/)
-8. [泛型](/tblog/2023/07/03/ts_Generics/)
-9. [typescript 基础点](/tblog/2023/07/03/ts_baseTypescript/)
+- [electron url启动和打包](/tblog/2023/12/07/electron/electron_caiken_01/)
 
-### 07. vue2.x源码
+### vue2.x源码
 
 - [extend](/tblog/2023/08/19/Vue_extends/)
 - [watcher](/tblog/2023/06/27/vue2_watch/)
 - [dep](/tblog/2023/06/27/vue2_Dep/)
 - [vue2 extend](/tblog/2023/08/19/Vue_extends/)
 
-### 08. 杂项
+### 杂项
 
 - [为什么 npm install 需要 sudo](/tblog/2023/08/27/sudo_npm_install/)
 - [windows docker 安装遇到的坑](/tblog/2023/08/29/wsl_can_not_boot/)
 
-### 08. 做点题
+### 做点题
 
 - [102 javascript this 如何确定]()
 - [css 如何实现左侧固定 300px，右侧自适应的布局](/tblog/2023/07/08/%5BQ017%5DHow_does_css_achieve_a_fixed_300px_on_the_left_and_an_daptive_layout_on_the_right/)
