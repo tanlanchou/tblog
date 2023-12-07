@@ -8,9 +8,10 @@ tags:
 
 # 文章目录
 
-### 00. me
+### 自己写的
 
-- [npmjs库 t_valid_type](https://www.npmjs.com/package/t_valid_type)
+- [npmjs库 t_valid_type](https://github.com/tanlanchou/which-typed-array)
+- [indexDB本地图书馆](https://github.com/tanlanchou/indexdb_book_store)
 
 ###  Vue3
 
