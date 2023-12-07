@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>前端 docker 项目如何动态加载环境变量 | 成天乱写</title><meta name="author" content="tommy"><meta name="copyright" content="tommy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="首先我们需要明白一个前提, 前端打包出来的东西是 html, css, js, 字体, 图片…… 他是没有能力访问服务器的环境变量的. 所以如果要动态使用环境变量, 我大概想了一想, 有3种方式.  nginx 插件有能力访问环境变量 node 环境 shell  第一种办法思来想去太麻烦了, 首先Nginx配置一直是让我脑壳疼的东西. 还有就是有些链接和配置是没有转发的, 现在又需要转发太麻烦了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端 docker 项目如何动态加载环境变量">
+<meta property="og:url" content="https://tanlanchou.github.io/tblog/2023/12/07/zaxiang/front_docker_env/index.html">
+<meta property="og:site_name" content="成天乱写">
+<meta property="og:description" content="首先我们需要明白一个前提, 前端打包出来的东西是 html, css, js, 字体, 图片…… 他是没有能力访问服务器的环境变量的. 所以如果要动态使用环境变量, 我大概想了一想, 有3种方式.  nginx 插件有能力访问环境变量 node 环境 shell  第一种办法思来想去太麻烦了, 首先Nginx配置一直是让我脑壳疼的东西. 还有就是有些链接和配置是没有转发的, 现在又需要转发太麻烦了">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-12-07T06:25:00.000Z">
+<meta property="article:modified_time" content="2023-12-07T06:31:55.817Z">
+<meta property="article:author" content="tommy">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="shell">
+<meta property="article:tag" content="nginx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/tblog/img/favicon.png"><link rel="canonical" href="https://tanlanchou.github.io/tblog/2023/12/07/zaxiang/front_docker_env/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/tblog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/tblog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '前端 docker 项目如何动态加载环境变量',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-12-07 14:31:55'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/tblog/archives/"><div class="headline">Articles</div><div class="length-num">80</div></a><a href="/tblog/tags/"><div class="headline">Tags</div><div class="length-num">107</div></a><a href="/tblog/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/tblog/" title="成天乱写"><span class="site-name">成天乱写</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">前端 docker 项目如何动态加载环境变量</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-12-07T06:25:00.000Z" title="Created 2023-12-07 14:25:00">2023-12-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-12-07T06:31:55.817Z" title="Updated 2023-12-07 14:31:55">2023-12-07</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="前端 docker 项目如何动态加载环境变量"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>首先我们需要明白一个前提, 前端打包出来的东西是 html, css, js, 字体, 图片……</p>
+<p>他是没有能力访问服务器的环境变量的. 所以如果要动态使用环境变量, 我大概想了一想, 有3种方式.</p>
+<ol>
+<li>nginx 插件有能力访问环境变量</li>
+<li>node 环境</li>
+<li>shell</li>
+</ol>
+<p>第一种办法思来想去太麻烦了, 首先Nginx配置一直是让我脑壳疼的东西. 还有就是有些链接和配置是没有转发的, 现在又需要转发太麻烦了.</p>
+<p>第二种被否了, 因为如果包含node环境, 包太大, 而且启动的时候build 太慢.</p>
+<p>所以我选择了第三种</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拷贝 update.env.sh 到容器</span></span><br><span class="line"><span class="keyword">COPY</span><span class="language-bash"> update.env.sh /usr/share/nginx/update.env.sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置 update.env.sh 可执行权限</span></span><br><span class="line"><span class="keyword">RUN</span><span class="language-bash"> <span class="built_in">chmod</span> +x /usr/share/nginx/update.env.sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动 Nginx</span></span><br><span class="line"><span class="keyword">CMD</span><span class="language-bash"> [<span class="string">&quot;/bin/bash&quot;</span>, <span class="string">&quot;-c&quot;</span>, <span class="string">&quot;/usr/share/nginx/update.env.sh &amp;&amp; nginx -g &#x27;daemon off;&#x27;&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>然后 <strong>shell</strong> 脚本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">sed -i &quot;s|proxy_pass http://.*:.*;|proxy_pass &quot;$VUE_APP_MODEL_BASE_URL&quot;/;|g&quot; /etc/nginx/conf.d/default.conf</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">找包含指定内容的文件</span></span><br><span class="line">file_path=$(grep -rl &#x27;location.protocol.indexOf(&quot;s&quot;)&lt;0?&#x27; /usr/share/nginx/html)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查是否找到一个文件</span></span><br><span class="line">if [ -z &quot;$file_path&quot; ]; then</span><br><span class="line">  echo &quot;未找到符合条件的文件。&quot;</span><br><span class="line">  exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查是否找到多个文件</span></span><br><span class="line">file_count=$(echo &quot;$file_path&quot; | wc -l)</span><br><span class="line">if [ &quot;$file_count&quot; -gt 1 ]; then</span><br><span class="line">  echo &quot;找到多个符合条件的文件，请检查。&quot;</span><br><span class="line">  exit 1</span><br><span class="line">fi</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">替换文件内容</span></span><br><span class="line">sed -i &#x27;s|Nr=window.location.protocol.indexOf(&quot;s&quot;)&lt;0?&quot;[^&quot;]*&quot;:&quot;[^&quot;]*&quot;|Nr=window.location.protocol.indexOf(&quot;s&quot;)&lt;0?&quot;&#x27;$VUE_APP_NOVNC_BASE_URL&#x27;&quot;:&quot;&#x27;$VUE_APP_NOVNC_BASE_URLS&#x27;&quot;|&#x27; &quot;$file_path&quot;</span><br><span class="line"></span><br><span class="line">echo &quot;替换完成。&quot;</span><br></pre></td></tr></table></figure>
+
+<p>解决问题.</p>
+<p>这个方法本来也很麻烦的, 得益于 chatgpt, 写这种脚本简直不要太轻松.</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://tanlanchou.github.io/tblog">tommy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://tanlanchou.github.io/tblog/2023/12/07/zaxiang/front_docker_env/">https://tanlanchou.github.io/tblog/2023/12/07/zaxiang/front_docker_env/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tblog/tags/javascript/">javascript</a><a class="post-meta__tags" href="/tblog/tags/docker/">docker</a><a class="post-meta__tags" href="/tblog/tags/shell/">shell</a><a class="post-meta__tags" href="/tblog/tags/nginx/">nginx</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/tblog/2023/12/07/shuati/001_bind/" title="自己实现一个 bind"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">自己实现一个 bind</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/tblog/2023/08/20/%5BQ001%5DArrowFunctionvsFunction/" title="箭头函数有prototype吗？为什么？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-08-20</div><div class="title">箭头函数有prototype吗？为什么？</div></div></a></div><div><a href="/tblog/2023/06/15/async&defer/" title="async &amp; defer"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-15</div><div class="title">async &amp; defer</div></div></a></div><div><a href="/tblog/2023/07/03/baseEs6/" title="es6 更新总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-03</div><div class="title">es6 更新总结</div></div></a></div><div><a href="/tblog/2023/07/03/async_code/" title="javascript 异步编程有哪些方式？"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-03</div><div class="title">javascript 异步编程有哪些方式？</div></div></a></div><div><a href="/tblog/2023/07/09/browser_event/" title="浏览器事件流"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-09</div><div class="title">浏览器事件流</div></div></a></div><div><a href="/tblog/2023/06/15/browser_parsing/" title="浏览器解析过程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-06-15</div><div class="title">浏览器解析过程</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/tblog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">tommy</div><div class="author-info__description">乱写东西的地方，讲讲代码和生活</div></div><div class="card-info-data site-data is-center"><a href="/tblog/archives/"><div class="headline">Articles</div><div class="length-num">80</div></a><a href="/tblog/tags/"><div class="headline">Tags</div><div class="length-num">107</div></a><a href="/tblog/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2023/12/07/zaxiang/front_docker_env/" title="前端 docker 项目如何动态加载环境变量">前端 docker 项目如何动态加载环境变量</a><time datetime="2023-12-07T06:25:00.000Z" title="Created 2023-12-07 14:25:00">2023-12-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2023/12/07/shuati/001_bind/" title="自己实现一个 bind">自己实现一个 bind</a><time datetime="2023-12-07T06:14:00.000Z" title="Created 2023-12-07 14:14:00">2023-12-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2023/12/07/electron/electron_caiken_01/" title="electron url启动, 注册表, 打包">electron url启动, 注册表, 打包</a><time datetime="2023-12-07T03:35:00.000Z" title="Created 2023-12-07 11:35:00">2023-12-07</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2023/12/01/javascript/url_open_software/" title="url 通过协议启动应用程序">url 通过协议启动应用程序</a><time datetime="2023-12-01T03:12:00.000Z" title="Created 2023-12-01 11:12:00">2023-12-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2023/11/02/%5BQ103%5DIndexDB_Base/" title="IndexDB API">IndexDB API</a><time datetime="2023-11-02T13:21:21.000Z" title="Created 2023-11-02 21:21:21">2023-11-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By tommy</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/tblog/js/utils.js"></script><script src="/tblog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
