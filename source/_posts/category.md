@@ -10,7 +10,7 @@ tags:
 
 ### 自己写的
 
-- [npmjs库 t_valid_type](https://github.com/tanlanchou/which-typed-array)
+- [npmjs库 t_valid_type](https://www.npmjs.com/package/t_valid_type)
 - [indexDB本地图书馆](https://github.com/tanlanchou/indexdb_book_store)
 
 ###  Vue3
@@ -61,6 +61,7 @@ tags:
 
 ### web基础和基础css
 
+- [浏览器缓存大赏](/tblog/2023/12/14/browser/cache/)
 - [flex 属性详解](/tblog/2023/09/01/%5BQ101%5DFlex_attr/)
 - [图片懒加载4种方案](/tblog/2023/07/06/web_img_lazy_loading/)
 - [浏览器解析过程](/tblog/2023/06/15/browser_parsing/)
