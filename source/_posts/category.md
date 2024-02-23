@@ -13,6 +13,16 @@ tags:
 - [npmjs库 t_valid_type](https://www.npmjs.com/package/t_valid_type)
 - [indexDB本地图书馆](https://github.com/tanlanchou/indexdb_book_store)
 
+### 杂项
+
+- [前端埋点](/tblog/2024/02/23/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9/)
+- [rss 数据对比](/tblog/2024/02/23/rss%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94/)
+- [nestjs mailer](/tblog/2024/02/23/nestjs-modules-mailer/)
+- [前端 docker 项目如何动态加载环境变量](/tblog/2023/12/07/zaxiang/front_docker_env/)
+- [为什么 npm install 需要 sudo](/tblog/2023/08/27/sudo_npm_install/)
+- [windows docker 安装遇到的坑](/tblog/2023/08/29/wsl_can_not_boot/)
+
+
 ###  Vue3
 
 - [vue3 createVNode & render](/tblog/2023/08/27/vue3_plugin/)
@@ -83,11 +93,6 @@ tags:
 - [dep](/tblog/2023/06/27/vue2_Dep/)
 - [vue2 extend](/tblog/2023/08/19/Vue_extends/)
 
-### 杂项
-
-- [前端 docker 项目如何动态加载环境变量](/tblog/2023/12/07/zaxiang/front_docker_env/)
-- [为什么 npm install 需要 sudo](/tblog/2023/08/27/sudo_npm_install/)
-- [windows docker 安装遇到的坑](/tblog/2023/08/29/wsl_can_not_boot/)
 
 ### 做点题
 
