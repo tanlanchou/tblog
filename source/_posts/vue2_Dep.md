@@ -22,7 +22,7 @@ export default class Dep {
   subs: Array<DepTarget | null>
   //pending subs cleanup
   //一个标志位，用来标识是否有订阅者需要被清除。
-  _pending = false
+  _pending = false 
 
   //构造函数，用来初始化 id 和 subs。
   constructor() {

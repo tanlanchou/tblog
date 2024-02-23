@@ -100,7 +100,9 @@ ignore:
 ## Themes: https://hexo.io/themes/
 ## butterfly https://github.com/jerryc127/hexo-theme-butterfly
 ## delicate
-theme: butterfly
+theme: cactus
+theme_config:
+  colorscheme: light
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
@@ -108,3 +110,13 @@ deploy:
   type: git
   repo: git@github.com:tanlanchou/tblog.git
   branch: view
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
