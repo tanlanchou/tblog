@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>微信小程序入门 | 成天乱写</title><meta name="author" content="tommy"><meta name="copyright" content="tommy"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="小程序入门。 真入门小程序 开发文档 ，工具下载地址 最好还是跟着他的工具来。  全局配置 app.json，sitemap js，wxml，wxss，json。他主要的四个文件。 wxs文档WXML 语法参考 [小程序框架 &#x2F;视图层 &#x2F;WXML]https:&#x2F;&#x2F;developers.weixin.qq.com&#x2F;miniprogram&#x2F;dev&#x2F;framework&#x2F;view&#x2F;wx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序入门">
+<meta property="og:url" content="https://tanlanchou.github.io/tblog/2023/07/13/ss_baisc/index.html">
+<meta property="og:site_name" content="成天乱写">
+<meta property="og:description" content="小程序入门。 真入门小程序 开发文档 ，工具下载地址 最好还是跟着他的工具来。  全局配置 app.json，sitemap js，wxml，wxss，json。他主要的四个文件。 wxs文档WXML 语法参考 [小程序框架 &#x2F;视图层 &#x2F;WXML]https:&#x2F;&#x2F;developers.weixin.qq.com&#x2F;miniprogram&#x2F;dev&#x2F;framework&#x2F;view&#x2F;wx">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png">
+<meta property="article:published_time" content="2023-07-13T05:40:51.000Z">
+<meta property="article:modified_time" content="2023-10-27T01:34:14.724Z">
+<meta property="article:author" content="tommy">
+<meta property="article:tag" content="微信小程序">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png"><link rel="shortcut icon" href="/tblog/img/favicon.png"><link rel="canonical" href="https://tanlanchou.github.io/tblog/2023/07/13/ss_baisc/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/tblog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/tblog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Error',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '微信小程序入门',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-10-27 09:34:14'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/tblog/archives/"><div class="headline">Articles</div><div class="length-num">84</div></a><a href="/tblog/tags/"><div class="headline">Tags</div><div class="length-num">114</div></a><a href="/tblog/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><hr class="custom-hr"/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/tblog/" title="成天乱写"><span class="site-name">成天乱写</span></a></span><div id="menus"><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">微信小程序入门</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-07-13T05:40:51.000Z" title="Created 2023-07-13 13:40:51">2023-07-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-10-27T01:34:14.724Z" title="Updated 2023-10-27 09:34:14">2023-10-27</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="微信小程序入门"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>小程序入门。</p>
+<h3 id="真入门"><a href="#真入门" class="headerlink" title="真入门"></a>真入门</h3><p>小程序 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/quickstart/">开发文档</a> ，<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html">工具下载地址</a></p>
+<p>最好还是跟着他的工具来。</p>
+<p><img src="/tblog/%5Cimg%5C2023-07-10-164309.png" alt="alt text"></p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html">全局配置 app.json</a>，<br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/sitemap.html">sitemap</a></p>
+<p>js，wxml，wxss，json。他主要的四个文件。</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxs/">wxs文档</a><br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxml/">WXML 语法参考 </a><br>[小程序框架 &#x2F;视图层 &#x2F;WXML]<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/">https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/</a>)</p>
+<p>很疑惑, 有点类似于 Vue 模版语法，但是介绍的又很不全。</p>
+<p>比如我想写一个标题，h1. 试了下似乎没有效果。</p>
+<p>在看文档的过程中 </p>
+<blockquote>
+<p>往往写 HTML 的时候，经常会用到的标签是 div, p, span，开发者在写一个页面的时候可以根据这些基础的标签组合出不一样的组件，例如日历、弹窗等等。换个思路，既然大家都需要这些组件，为什么我们不能把这些常用的组件包装起来，大大提高我们的开发效率。</p>
+</blockquote>
+<p>不知道我是否可以理解为，他们这些都作为组件提供？后面试了一试大概是这样。</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxs/">https://developers.weixin.qq.com/miniprogram/dev/reference/wxs/</a></p>
+<p>脚本介绍也不是很全，查询了一下，他其实只支持es5，能写es6，因为用 babel  转了。</p>
+<p>最开始看的时候，我连他是否支持 settimeout 都不知道。</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/config.html">配置</a></p>
+<ul>
+<li>全局配置 小程序根目录下的 app.json 文件用来对微信小程序进行全局配置，决定页面文件的路径、窗口表现、设置网络超时时间、设置多 tab 等。</li>
+<li>页面配置 每一个小程序页面也可以使用同名 .json 文件来对本页面的窗口表现进行配置，页面中配置项会覆盖 app.json 的 window 中相同的配置项。</li>
+<li>sitemap 配置</li>
+</ul>
+<p>sitemap 配置类似于以前网页seo用的东西</p>
+<h3 id="02-双向绑定？"><a href="#02-双向绑定？" class="headerlink" title="02. 双向绑定？"></a>02. 双向绑定？</h3><p>在介绍里面说了一个东西, <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/MINA.html">介绍</a></p>
+<blockquote>
+<p>框架的核心是一个响应的数据绑定系统，可以让数据与视图非常简单地保持同步。当做数据修改的时候，只需要在逻辑层修改数据，视图层就会做相应的更新。</p>
+</blockquote>
+<p>这里我就开始好奇了，他的分层是直接从 webview &#x3D;&gt; (逻辑层，视图层)？ 还是中间还有一层？是原生就实现了？</p>
+<p>也就是说 <strong>微信小程序是如何实现双向绑定的?</strong></p>
+<p>我查了半天也没有查到小程序框架源码在哪里，有分析的也是逆向出来的, 这个也太麻烦了。</p>
+<h3 id="03-场景值"><a href="#03-场景值" class="headerlink" title="03. 场景值"></a>03. 场景值</h3><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/scene-list.html">https://developers.weixin.qq.com/miniprogram/dev/reference/scene-list.html</a></p>
+<p>在页面中你能拿到的东西</p>
+<blockquote>
+<p>场景值用来描述用户进入小程序的路径</p>
+</blockquote>
+<h3 id="04-逻辑层"><a href="#04-逻辑层" class="headerlink" title="04. 逻辑层"></a>04. 逻辑层</h3><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/">https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/</a></p>
+<p>微信代码分为视图层和逻辑层。</p>
+<blockquote>
+<p>逻辑层将数据进行处理后发送给视图层，同时接受视图层的事件反馈。</p>
+<p>开发者写的所有代码最终将会打包成一份 JavaScript 文件，并在小程序启动的时候运行，直到小程序销毁。这一行为类似 ServiceWorker，所以逻辑层也称之为 App Service。</p>
+</blockquote>
+<p>他这里讲了很多关于生命周期上的东西。</p>
+<p><img src="/tblog/%5Cimg%5Cpage-lifecycle.2e646c86.png" alt="alt text"></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/">api</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html">app 钩子</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html">page 钩子</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/route.html">路由</a></li>
+</ul>
+<h3 id="05-视图层-View"><a href="#05-视图层-View" class="headerlink" title="05. 视图层 View"></a>05. 视图层 View</h3><blockquote>
+<p>框架的视图层由 WXML 与 WXSS 编写，由组件来进行展示。<br>将逻辑层的数据反映成视图，同时将视图层的事件发送给逻辑层。<br>WXML(WeiXin Markup language) 用于描述页面的结构。<br>WXS(WeiXin Script) 是小程序的一套脚本语言，结合 WXML，可以构建出页面的结构。<br>WXSS(WeiXin Style Sheet) 用于描述页面的样式。<br>组件(Component)是视图的基本组成单元。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxml/">WXML基本语法</a><br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxss.html">WXSS基本语法</a><br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxs/">WXS基本语法</a></p>
+<p><strong>WXSS</strong> 中提到了一个概念，是做移动端开发必须要知道的。</p>
+<blockquote>
+<p>rpx（responsive pixel）: 可以根据屏幕宽度进行自适应。规定屏幕宽为750rpx。如在 iPhone6 上，屏幕宽度为375px，共有750个物理像素，则750rpx &#x3D; 375px &#x3D; 750物理像素，1rpx &#x3D; 0.5px &#x3D; 1物理像素。</p>
+</blockquote>
+<p>我比较少参与移动端开发，对于这个的理解就是。</p>
+<p>屏幕的大小以及分辨率，不同设备是完全不一样的。屏幕大像素小，屏幕小像素大，都可能造成极端情况。所以这个是需要做自适应处理的。</p>
+<p>但是平板和手机，或者说电脑端差异过大，简单的使用百分比自适应可能不能达到理想的效果，还是需要更特殊的处理。</p>
+<p>比如不同分辨率下的完全不同的样式，b站在平板就推出了完全不同的客户端来解决问题。</p>
+<p>当然 微信小程序可能使用场景大都在手机端，是否要考虑折叠屏也是一个问题。</p>
+<p>其他的和css差不多，导入，内联，class之类，只是希望他优先级还有一些其他东西差异不要太大。</p>
+<p><strong>wxs</strong> 就是行内脚本</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;wxs <span class="variable language_">module</span>=<span class="string">&quot;m1&quot;</span>&gt;</span><br><span class="line"><span class="keyword">var</span> msg = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">message</span> = msg;</span><br><span class="line">&lt;/wxs&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">view</span>&gt;</span> &#123;&#123;m1.message&#125;&#125; <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html">事件系统</a></p>
+<p>说了一大堆，其实说了5件事</p>
+<ol>
+<li>bindtap 绑定方法</li>
+<li>bindtap 可以动态绑定方法 </li>
+<li>事件循环和浏览器类似，可以支持冒泡和捕获(我没有测试有没有自身那个阶段，应该有吧。。)</li>
+<li>支持事件类型，以及事件中有哪些参数，参数具体作用。</li>
+<li>dataset，mark(数据冒泡，这个获取父节点)</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/">组件</a></p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/resizable.html">响应显示区域变化</a></p>
+<p>这里提到了旋转这个概念，这个是需要考虑的，并且提供 Media Query 这个解决方案来解决自适应问题，就是css中 <code>@media</code>. 以及屏幕旋转的钩子事件。</p>
+<p>手机中的屏幕大小问题，我想了一下存在3个方面</p>
+<ol>
+<li>屏幕旋转</li>
+<li>双屏切换，比如折叠机。</li>
+<li>小窗显示(这个要看微信是否支持)</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/frameset.html">分栏模式</a></p>
+<p>这里完全不懂，需要测试，当然前期可以完全不管，我大概知道他什么意思。类似于手机直的时候，一种显示，旋转以后另一种显示模式。只是这种是在代码层面，然而为什么在他的描述中似乎只要设置就可以了。</p>
+<h3 id="06-运行时环境"><a href="#06-运行时环境" class="headerlink" title="06. 运行时环境"></a>06. 运行时环境</h3><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/runtime/env.html">运行时环境</a><br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/runtime/js-support.html">JavaScript 支持情况</a><br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/runtime/operating-mechanism.html">小程序运行机制</a></p>
+<p>这里说说了几点</p>
+<ol>
+<li>运行时究竟在什么环境下运行代码</li>
+<li>javascript 可能有哪些问题，比如说 promise 时序问题，以及某些可能不能使用的语法</li>
+<li>什么是冷启动，什么是热启动，以及小程序销毁的机制</li>
+</ol>
+<h3 id="07-Skyline-渲染引擎"><a href="#07-Skyline-渲染引擎" class="headerlink" title="07. Skyline 渲染引擎"></a>07. Skyline 渲染引擎</h3><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/546709238">https://www.zhihu.com/question/546709238</a></p>
+<p>这个可以后面看，主要告诉你使用这个引擎以后对于组件，wxss支持。</p>
+<p>详情可以看一下这个知乎回答</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/546709238">如何评价微信小程序新渲染引擎skyline?</a></p>
+<blockquote>
+<p>小程序基于 Webview 的渲染架构</p>
+<p>优点:<br>大量复用 Web 基建，包括 DOM 、CSS 等。</p>
+<p>缺点是：<br>内存占用大：每个 Page() 实例对应一个独立的 Webview （相当于 MPA），那么用户打开的每个小程序都对应 n+1 个 Webview。<br>渲染初始化流水线长：需要加载一个 page-frame.html ，该 page-frame.html 包含所在 bundle 的所有 app + page + component 的渲染函数、样式、WXS，甚至可能会达到 MB 级别。<br>原生组件融合困难：通过所谓 “同层渲染” 的 hack 手段尝试解决原生组件的渲染融合问题，但 bug 巨多，稳定性差。<br>无法在页面之间共享元素：都是不同的渲染实例了，那当然共享元素就做不了。<br>页面跳转呆板：半屏渲染不好做，导航动画比较死板。<br>jsbridge 传递数据效率低。</p>
+</blockquote>
+<blockquote>
+<p>Skyline<br>好处是：</p>
+<p>节约内存占用。<br>flutter 渲染流水线比较精简和可控，可以很好解决局部渲染、原生组件融合等问题。<br>可以在页面间共享显示元素。<br>可以灵活控制页面导航行为和动画。<br>context 之间可以通过结构化克隆交换数据，性能比 jsbridge 高。<br>缺点是：</p>
+<p>需要自己实现 CSS 子集，兼容性较差。<br>flutter 控件与 Webview 控件的行为差异。<br>框架失控风险：<br>微信小程序框架本来就是补丁之上打补丁，不成体系且 BUG 巨多。<br>现在又新增一个渲染上下文和渲染层，侵入业务代码和 BUG 膨胀是不可避免的。<br>微信能否保证在新旧架构下各功能的兼容性和体验？个人表示怀疑。很有可能开发者不得不同时使用 Webview &#x2F; Skyline ，并且同时应对来自两种架构的 BUG 。</p>
+</blockquote>
+<p>并且介绍了支持哪些组件，哪些css。</p>
+<p>以及 Skyline 一些新特性，自定义路由，Worklet 动画，手势，共享元素动画。</p>
+<h3 id="08-自定义组件"><a href="#08-自定义组件" class="headerlink" title="08. 自定义组件"></a>08. 自定义组件</h3><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html">组件基础</a></p>
+<p>包含了怎么写组件，数据如何绑定，solt，样式隔离，如何引入外部样式，如何引入外部样式，虚化组件…</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/events.html">组件间通信与事件</a></p>
+<p>讲了组件如何通过事件触发和page的通信，应该也能和父组件的通信，如何获取组件实例</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/lifetimes.html">组件生命周期</a></p>
+<p>这里需要知道，<code>lifetimes</code> 是组件生命周期，<code>pageLifetimes</code> 是页面生命周期</p>
+<p><strong>组件生命周期</strong></p>
+<p><img src="/tblog/%5Cimg%5C2023-07-11-155309.png" alt="alt text"></p>
+<p><strong>和组件相关的 page 生命周期</strong></p>
+<p><img src="/tblog/%5Cimg%5C2023-07-11-155339.png" alt="alt text"></p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/behaviors.html">behaviors</a></p>
+<p>其实就是 mixins, 算是一种继承的方法</p>
+<blockquote>
+<p>my-behavior 结构为：<br>属性：myBehaviorProperty<br>数据字段：myBehaviorData<br>方法：myBehaviorMethod<br>生命周期函数：attached、created、ready</p>
+</blockquote>
+<p>覆盖规则和Vue没区别，只是有 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/form.html#wx-form-field">内置behavior</a></p>
+<p>其实他还是没给源码… </p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/relations.html">relations</a></p>
+<blockquote>
+<p>定义和使用组件间关系</p>
+</blockquote>
+<p>这个不建议使用，强关联了.. 除非真的是强关联。</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/observer.html">数据监听器</a> 当 this.setData 以后触发 observers</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/pure-data.html">纯数据字段</a> 提供一种不能被渲染只是用于 flag 之类的数据。</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/generics.html">抽象组件</a> 看得我头疼。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>文档我没有完全看完，后续还有插件，域名管理(只能向审核过的域名发起请求)，worker，存储，文件系统，消息推送等等，不过先了解这些暂时不影响我进行我的第一次开发了。</p>
+<p>扫完整个文档，给我一种感觉，不舒服。</p>
+<p>整个文档没有建议的开发方式，这个ok，但是要给源码啊。。。</p>
+<p>不知道你大概实现，你怎么玩的，怎么去好好开发呢？</p>
+<p>而且文档例子不够多，只能自己查资料，自己试，完全是体力活。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="https://tanlanchou.github.io/tblog">tommy</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="https://tanlanchou.github.io/tblog/2023/07/13/ss_baisc/">https://tanlanchou.github.io/tblog/2023/07/13/ss_baisc/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tblog/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/tblog/2023/07/14/ss_simple_todo/" title="简单的todoList"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Previous</div><div class="prev_info">简单的todoList</div></div></a></div><div class="next-post pull-right"><a href="/tblog/2023/07/12/es6_array/" title="Javascript Array"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">Next</div><div class="next_info">Javascript Array</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/tblog/2023/07/14/ss_simple_todo/" title="简单的todoList"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-07-14</div><div class="title">简单的todoList</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/tblog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">tommy</div><div class="author-info__description">乱写东西的地方，讲讲代码和生活</div></div><div class="card-info-data site-data is-center"><a href="/tblog/archives/"><div class="headline">Articles</div><div class="length-num">84</div></a><a href="/tblog/tags/"><div class="headline">Tags</div><div class="length-num">114</div></a><a href="/tblog/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9C%9F%E5%85%A5%E9%97%A8"><span class="toc-number">1.</span> <span class="toc-text">真入门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#02-%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">02. 双向绑定？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#03-%E5%9C%BA%E6%99%AF%E5%80%BC"><span class="toc-number">3.</span> <span class="toc-text">03. 场景值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#04-%E9%80%BB%E8%BE%91%E5%B1%82"><span class="toc-number">4.</span> <span class="toc-text">04. 逻辑层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#05-%E8%A7%86%E5%9B%BE%E5%B1%82-View"><span class="toc-number">5.</span> <span class="toc-text">05. 视图层 View</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#06-%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83"><span class="toc-number">6.</span> <span class="toc-text">06. 运行时环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#07-Skyline-%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E"><span class="toc-number">7.</span> <span class="toc-text">07. Skyline 渲染引擎</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#08-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6"><span class="toc-number">8.</span> <span class="toc-text">08. 自定义组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">9.</span> <span class="toc-text">总结</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2024/02/23/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9/" title="前端埋点">前端埋点</a><time datetime="2024-02-23T06:49:37.000Z" title="Created 2024-02-23 14:49:37">2024-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2024/02/23/rss%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94/" title="rss数据对比">rss数据对比</a><time datetime="2024-02-23T06:48:52.000Z" title="Created 2024-02-23 14:48:52">2024-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2024/02/23/nestjs-modules-mailer/" title="nestjs modules mailer">nestjs modules mailer</a><time datetime="2024-02-23T06:45:22.000Z" title="Created 2024-02-23 14:45:22">2024-02-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2023/12/14/browser/cache/" title="浏览器缓存大赏.">浏览器缓存大赏.</a><time datetime="2023-12-14T06:35:00.000Z" title="Created 2023-12-14 14:35:00">2023-12-14</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/tblog/2023/12/07/zaxiang/front_docker_env/" title="前端 docker 项目如何动态加载环境变量">前端 docker 项目如何动态加载环境变量</a><time datetime="2023-12-07T06:25:00.000Z" title="Created 2023-12-07 14:25:00">2023-12-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By tommy</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/tblog/js/utils.js"></script><script src="/tblog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
