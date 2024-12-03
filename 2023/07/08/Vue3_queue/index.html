@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="vue3 任务调度源码解析" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    vue3 任务调度源码解析
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.5k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：5分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-queueJob"><span class="post-toc-text">01. queueJob</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-queueFlush"><span class="post-toc-text">02. queueFlush</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-flushJobs"><span class="post-toc-text">03. flushJobs</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-flushPostFlushCbs"><span class="post-toc-text">04. flushPostFlushCbs</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-%E6%80%BB%E7%BB%93%E3%80%82"><span class="post-toc-text">05. 总结。</span></a></li></ol>
+            
+        
+        <h3 id="01-queueJob"><a href="#01-queueJob" class="headerlink" title="01. queueJob"></a>01. queueJob</h3><p>首先需要知道这个接口的定义，他就是任务调度的 <strong>job</strong> 定义</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> <span class="title class_">SchedulerJob</span> <span class="keyword">extends</span> <span class="title class_">Function</span> &#123;</span><br><span class="line">  id?: <span class="built_in">number</span> <span class="comment">//唯一ID</span></span><br><span class="line">  pre?: <span class="built_in">boolean</span> <span class="comment">//是否是预处理</span></span><br><span class="line">  active?: <span class="built_in">boolean</span> <span class="comment">//是否激活</span></span><br><span class="line">  computed?: <span class="built_in">boolean</span> <span class="comment">//是否是计算任务</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 表示是否允许该效果自行递归触发</span></span><br><span class="line"><span class="comment">    * 当由调度程序管理时。</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * 默认情况下，作业无法自行触发，因为某些内置方法调用，</span></span><br><span class="line"><span class="comment">    * 例如 Array.prototype.push 实际上也执行读取（#1740）</span></span><br><span class="line"><span class="comment">    * 可能导致令人困惑的无限循环。</span></span><br><span class="line"><span class="comment">    * 允许的情况是组件更新函数和监视回调。</span></span><br><span class="line"><span class="comment">    * 组件更新函数可能会更新子组件 props，进而更新子组件 props</span></span><br><span class="line"><span class="comment">    * 触发刷新：“预”监视回调，该回调会改变父级的状态</span></span><br><span class="line"><span class="comment">    * 依赖于（#1801）。 监视回调不会跟踪其依赖项，因此如果</span></span><br><span class="line"><span class="comment">    * 再次触发自身，这可能是故意的，并且是用户的</span></span><br><span class="line"><span class="comment">    * 负责执行递归状态突变，最终</span></span><br><span class="line"><span class="comment">    * 稳定（#1727）。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  allowRecurse?: <span class="built_in">boolean</span></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 设置组件渲染效果时由renderer.ts附加</span></span><br><span class="line"><span class="comment">    * 用于在报告最大递归更新时获取组件信息。</span></span><br><span class="line"><span class="comment">    * 仅限开发人员。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  ownerInstance?: <span class="title class_">ComponentInternalInstance</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后下面是入口, 传入一个 <code>job</code>, 并且 <code>push</code> 进入队列。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">queueJob</span>(<span class="params">job: SchedulerJob</span>) &#123;</span><br><span class="line">  <span class="comment">// 重复数据删除搜索使用 Array.includes() 的 startIndex 参数</span></span><br><span class="line">  <span class="comment">// 默认情况下，搜索索引包括当前正在运行的作业</span></span><br><span class="line">  <span class="comment">// 所以它不能再次递归地触发自身。</span></span><br><span class="line">  <span class="comment">// 如果作业是 watch() 回调，则搜索将从 +1 索引开始</span></span><br><span class="line">  <span class="comment">// 允许它递归地触发自身 - 用户有责任</span></span><br><span class="line">  <span class="comment">// 确保它不会陷入无限循环。</span></span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    !queue.<span class="property">length</span> ||</span><br><span class="line">    !queue.<span class="title function_">includes</span>(</span><br><span class="line">      job,</span><br><span class="line">      isFlushing &amp;&amp; job.<span class="property">allowRecurse</span> ? flushIndex + <span class="number">1</span> : flushIndex</span><br><span class="line">    )</span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="keyword">if</span> (job.<span class="property">id</span> == <span class="literal">null</span>) &#123;</span><br><span class="line">      queue.<span class="title function_">push</span>(job)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      queue.<span class="title function_">splice</span>(<span class="title function_">findInsertionIndex</span>(job.<span class="property">id</span>), <span class="number">0</span>, job)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">queueFlush</span>()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>const queue: SchedulerJob[] = []</code> 这是一个 <code>SchedulerJob</code> 数组.</p>
+<p><code>job.id = instance.uid</code> 也就是 <code>Vue</code> 实例的唯一ID</p>
+<h3 id="02-queueFlush"><a href="#02-queueFlush" class="headerlink" title="02. queueFlush"></a>02. queueFlush</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">queueFlush</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!isFlushing &amp;&amp; !isFlushPending) &#123;</span><br><span class="line">    isFlushPending = <span class="literal">true</span></span><br><span class="line">    currentFlushPromise = resolvedPromise.<span class="title function_">then</span>(flushJobs)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里有两个变量</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> isFlushing = <span class="literal">false</span> <span class="comment">//是否有更新循环正在执行</span></span><br><span class="line"><span class="keyword">let</span> isFlushPending = <span class="literal">false</span> <span class="comment">//是否有等待中的更新循环</span></span><br></pre></td></tr></table></figure>
+
+<p>这两个标志位主要是为了保证，一次性只执行一个更新循环，当没有循环.</p>
+<p>设置 <code>isFlushPending = true</code>，然后设置微任务</p>
+<p>到这里我们其实已经可以知道他的大概调度流程.</p>
+<p>当触发更新，调用 <code>queueJob =&gt; 如果没有重复 =&gt; queue.push =&gt; queueFlush =&gt; 如果没有执行 =&gt; 加入微任务(flushJobs)</code></p>
+<p>这样一个流程说明了什么？</p>
+<p>首先 <code>queueJob</code> 需要去重，<code>include</code>, 位置判断是基于是否允许递归调用。</p>
+<p>也就是说，如果你</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="number">1000</span>;i++) &#123;</span><br><span class="line">    count.<span class="property">value</span>++</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>根本不会增加队列中 <code>job</code>, 他始终保证了只有一个。</p>
+<p>第二个点就是微任务, 我之前写了一个文章，<a href="/tblog/2023/07/03/eventLoop/">浏览器事件循环总结</a>。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> resolvedPromise = <span class="comment">/*#__PURE__*/</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>() <span class="keyword">as</span> <span class="title class_">Promise</span>&lt;<span class="built_in">any</span>&gt;</span><br><span class="line">resolvedPromise.<span class="title function_">then</span>(flushJobs)</span><br></pre></td></tr></table></figure>
+
+<p>这里就是把 <code>flushJobs</code> 当做微任务来执行，也就是说，需要主线程的代码执行完毕以后，再执行。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">isFlushPending = <span class="literal">true</span></span><br><span class="line">currentFlushPromise = resolvedPromise.<span class="title function_">then</span>(flushJobs)</span><br></pre></td></tr></table></figure>
+<p>当这个代码执行，就是一次更新循环，js主线程执行完毕以后，开始执行队列，flushJobs，这个就是所谓的操作合并。</p>
+<p>这里明白了这两个点，其实就已经大概明白了事件调度。</p>
+<h3 id="03-flushJobs"><a href="#03-flushJobs" class="headerlink" title="03. flushJobs"></a>03. flushJobs</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">flushJobs</span>(<span class="params">seen?: CountMap</span>) &#123;</span><br><span class="line">  isFlushPending = <span class="literal">false</span></span><br><span class="line">  isFlushing = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">    seen = seen || <span class="keyword">new</span> <span class="title class_">Map</span>()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 在刷新之前对队列进行排序。</span></span><br><span class="line">   <span class="comment">// 这确保了：</span></span><br><span class="line">   <span class="comment">// 1. 组件从父级更新到子级。 （因为父母总是</span></span><br><span class="line">   <span class="comment">// 在子进程之前创建，因此它的渲染效果会更小</span></span><br><span class="line">   <span class="comment">// 优先级编号）</span></span><br><span class="line">   <span class="comment">// 2. 如果在父组件更新期间卸载了组件，</span></span><br><span class="line">   <span class="comment">// 可以跳过它的更新。</span></span><br><span class="line">  queue.<span class="title function_">sort</span>(comparator)</span><br><span class="line"></span><br><span class="line">   <span class="comment">// checkRecursiveUpdate 的条件使用必须由以下确定</span></span><br><span class="line">   <span class="comment">// try ... catch 块，因为 Rollup 默认情况下会取消对 treeshaking 的优化</span></span><br><span class="line">   <span class="comment">// 在 try-catch 中。 这可以使所有警告代码保持不变。 虽然</span></span><br><span class="line">   <span class="comment">// 他们最终会被像 terser 这样的缩小器动摇，一些缩小器</span></span><br><span class="line">   <span class="comment">// 将无法做到这一点（例如 https://github.com/evanw/esbuild/issues/1610）</span></span><br><span class="line">  <span class="keyword">const</span> check = __DEV__</span><br><span class="line">    ? <span class="function">(<span class="params">job: SchedulerJob</span>) =&gt;</span> <span class="title function_">checkRecursiveUpdates</span>(seen!, job)</span><br><span class="line">    : <span class="variable constant_">NOOP</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (flushIndex = <span class="number">0</span>; flushIndex &lt; queue.<span class="property">length</span>; flushIndex++) &#123;</span><br><span class="line">      <span class="keyword">const</span> job = queue[flushIndex]</span><br><span class="line">      <span class="keyword">if</span> (job &amp;&amp; job.<span class="property">active</span> !== <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (__DEV__ &amp;&amp; <span class="title function_">check</span>(job)) &#123;</span><br><span class="line">          <span class="keyword">continue</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// console.log(`running:`, job.id)</span></span><br><span class="line">        <span class="title function_">callWithErrorHandling</span>(job, <span class="literal">null</span>, <span class="title class_">ErrorCodes</span>.<span class="property">SCHEDULER</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    flushIndex = <span class="number">0</span></span><br><span class="line">    queue.<span class="property">length</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="title function_">flushPostFlushCbs</span>(seen)</span><br><span class="line"></span><br><span class="line">    isFlushing = <span class="literal">false</span></span><br><span class="line">    currentFlushPromise = <span class="literal">null</span></span><br><span class="line">    <span class="comment">// 一些 postFlushCb 排队作业！</span></span><br><span class="line">    <span class="comment">// 继续冲洗直到排空。</span></span><br><span class="line">    <span class="keyword">if</span> (queue.<span class="property">length</span> || pendingPostFlushCbs.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="title function_">flushJobs</span>(seen)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其实这里在注释里面已经说的很明确了，在这里可以开始讲一讲关于 <code>isFlushing &amp; isFlushPending</code>.</p>
+<p><code>isFlushPending = true</code> 表示，<code>flushJobs</code> 加入微任务以后 &#x3D;&gt; 开始执行这一个区间, 其他为 false.<br><code>isFlushing = true</code> 表示 <code>flushJobs</code> 正在执行的区间</p>
+<p>还有一个需要注意的点 <code>queue.sort(comparator)</code>, 为什么需要排序，以及 <code>id</code> 的意义，在注释中都解释了</p>
+<p>然后遍历队列，全部执行。</p>
+<p>然后执行回调 <code>flushPostFlushCbs</code></p>
+<p>然后开始继续执行 <code>flushJobs(seen)</code>，因为在执行之前的 <code>queue</code> 的时候，可能也有需要插入队列。</p>
+<h3 id="04-flushPostFlushCbs"><a href="#04-flushPostFlushCbs" class="headerlink" title="04. flushPostFlushCbs"></a>04. flushPostFlushCbs</h3><p>简单说就是执行回调函数</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">flushPostFlushCbs</span>(<span class="params">seen?: CountMap</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (pendingPostFlushCbs.<span class="property">length</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> deduped = [...<span class="keyword">new</span> <span class="title class_">Set</span>(pendingPostFlushCbs)]</span><br><span class="line">    pendingPostFlushCbs.<span class="property">length</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// #1947 already has active queue, nested flushPostFlushCbs call</span></span><br><span class="line">    <span class="keyword">if</span> (activePostFlushCbs) &#123;</span><br><span class="line">      activePostFlushCbs.<span class="title function_">push</span>(...deduped)</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    activePostFlushCbs = deduped</span><br><span class="line">    <span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">      seen = seen || <span class="keyword">new</span> <span class="title class_">Map</span>()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    activePostFlushCbs.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> <span class="title function_">getId</span>(a) - <span class="title function_">getId</span>(b))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (</span><br><span class="line">      postFlushIndex = <span class="number">0</span>;</span><br><span class="line">      postFlushIndex &lt; activePostFlushCbs.<span class="property">length</span>;</span><br><span class="line">      postFlushIndex++</span><br><span class="line">    ) &#123;</span><br><span class="line">      <span class="keyword">if</span> (</span><br><span class="line">        __DEV__ &amp;&amp;</span><br><span class="line">        <span class="title function_">checkRecursiveUpdates</span>(seen!, activePostFlushCbs[postFlushIndex])</span><br><span class="line">      ) &#123;</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">      &#125;</span><br><span class="line">      activePostFlushCbs[postFlushIndex]()</span><br><span class="line">    &#125;</span><br><span class="line">    activePostFlushCbs = <span class="literal">null</span></span><br><span class="line">    postFlushIndex = <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这些回调函数是在 <code>pendingPostFlushCbs</code> 当中, 他可能是 <code>queuePostRenderEffect</code> 加入的, <code>queuePostRenderEffect</code> 是各种生命周期函数加入的。</p>
+<h3 id="05-总结。"><a href="#05-总结。" class="headerlink" title="05. 总结。"></a>05. 总结。</h3><p>这里解释了 Vue3.x 调度的大概流程，我之所以想看这个，是因为我在看 <code>nextTick</code> 源码, 不看这个无法完全理解 <code>nextTick</code>.</p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-08</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/vue3/'>
+                            vue3
+                        </a>
+                    
+                        <a href='/tblog/tags/%E5%89%8D%E7%AB%AF/'>
+                            前端
+                        </a>
+                    
+                        <a href='/tblog/tags/%E6%BA%90%E7%A0%81/'>
+                            源码
+                        </a>
+                    
+                        <a href='/tblog/tags/queue/'>
+                            queue
+                        </a>
+                    
+                        <a href='/tblog/tags/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/'>
+                            任务调度
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/07/08/nextTick/'>Vue3 nextTick</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/07/07/web_fetch/">fetch 简单介绍</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

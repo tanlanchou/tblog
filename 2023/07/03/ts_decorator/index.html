@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="装饰器(js &amp; ts)" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    装饰器(js &amp; ts)
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：2.2k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：9分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-js%E7%89%88%E6%9C%AC"><span class="post-toc-text">01. js版本</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-typescript-decorators"><span class="post-toc-text">02. typescript decorators</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA"><span class="post-toc-text">03. 执行时机</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E7%B1%BB%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="post-toc-text">04. 类装饰器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-%E5%B1%9E%E6%80%A7%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="post-toc-text">05. 属性装饰器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#06-%E6%96%B9%E6%B3%95%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="post-toc-text">06. 方法装饰器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#07-%E8%AE%BF%E9%97%AE%E5%99%A8%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="post-toc-text">07. 访问器装饰器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#08-%E5%8F%82%E6%95%B0%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="post-toc-text">08. 参数装饰器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#09-%E4%BE%8B%E5%AD%90"><span class="post-toc-text">09. 例子</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-link"><span class="post-toc-text">11. link</span></a></li></ol>
+            
+        
+        <h3 id="01-js版本"><a href="#01-js版本" class="headerlink" title="01. js版本"></a>01. js版本</h3><p>之前在看 typescript decorators 的时候想起 js 其实也有 decorators, 于是翻了一下阮一峰的 es6 教程。<br>在自己测试的时候，发现不光是编辑器提示错误，并且在浏览器中也不支持，通过nodejs尝试，也不行。</p>
+<p>于是查了一下</p>
+<p><a target="_blank" rel="noopener" href="https://caniuse.com/decorators">https://caniuse.com/decorators</a></p>
+<p>并不支持，想要使用特性</p>
+<ol>
+<li>react</li>
+<li>typescript</li>
+<li>babel</li>
+</ol>
+<p>Es6原生语法</p>
+<p><a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/decorator">https://es6.ruanyifeng.com/#docs/decorator</a></p>
+<h3 id="02-typescript-decorators"><a href="#02-typescript-decorators" class="headerlink" title="02. typescript decorators"></a>02. typescript decorators</h3><p>不管是 C#，java 或者 ag，nest.js 只要你使用过对这个东西就不会陌生。</p>
+<blockquote>
+<p>随着TypeScript和ES6里引入了类，在一些场景下我们需要额外的特性来支持标注或修改类及其成员。 装饰器（Decorators）为我们在类的声明及成员上通过元编程语法添加标注提供了一种方式。 Javascript里的装饰器目前处在 建议征集的第二阶段，但在TypeScript里已做为一项实验性特性予以支持。<br>注意  装饰器是一项实验性特性，在未来的版本中可能会发生改变。<br>若要启用实验性的装饰器特性，你必须在命令行或tsconfig.json里启用experimentalDecorators编译器选项：</p>
+</blockquote>
+<p>要使用这个你需要</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata</span><br><span class="line"></span><br><span class="line">or</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    &quot;compilerOptions&quot;: &#123;</span><br><span class="line">        &quot;target&quot;: &quot;ES5&quot;,</span><br><span class="line">        &quot;experimentalDecorators&quot;: true,</span><br><span class="line">        &quot;emitDecoratorMetadata&quot;: true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>文档中介绍了这几种装饰器</p>
+<ol>
+<li>类装饰器</li>
+<li>方法装饰器</li>
+<li>访问器装饰器</li>
+<li>属性装饰器</li>
+<li>参数装饰器</li>
+</ol>
+<p>也就是主要用途是给类，function，以及里面的属性，参数，访问器服务。</p>
+<p>基本语法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function decoratorA(target) &#123;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function decoratorB(value:boolean) &#123;</span><br><span class="line">	return function(target, key, desc) &#123;</span><br><span class="line">		....</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>区别主要在于是否传参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@decoratorA</span><br><span class="line">@decoratorB(false)</span><br></pre></td></tr></table></figure>
+
+<p>每个装饰器用在不同的对象上参数是不一样的。</p>
+<p>这样就是一个最简单的装饰器</p>
+<h3 id="03-执行时机"><a href="#03-执行时机" class="headerlink" title="03. 执行时机"></a>03. 执行时机</h3><p>我们需要知道什么时候执行装饰器</p>
+<blockquote>
+<p>装饰器只在解释执行时应用一次</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">function log(value: string): any &#123;</span><br><span class="line">  console.log(`log function $&#123;value&#125;`);</span><br><span class="line">  return function () &#123;</span><br><span class="line">    //省略参数，因为我不需要</span><br><span class="line">    console.log(`log return function $&#123;value&#125;`);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@log(&quot;类&quot;)</span><br><span class="line">class testLog &#123;</span><br><span class="line">  @log(&quot;属性&quot;)</span><br><span class="line">  B: number;</span><br><span class="line"></span><br><span class="line">  @log(&quot;静态属性&quot;)</span><br><span class="line">  static C: number;</span><br><span class="line"></span><br><span class="line">  @log(&quot;方法&quot;)</span><br><span class="line">  A() &#123;&#125;</span><br><span class="line"></span><br><span class="line">  @log(&quot;静态方法&quot;)</span><br><span class="line">  static D() &#123;&#125;</span><br><span class="line"></span><br><span class="line">  F(@log(&quot;参数&quot;) i: number) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  @log(&quot;访问器&quot;)</span><br><span class="line">  set X(arg) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>返回信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">log function 属性</span><br><span class="line">return function 属性</span><br><span class="line">index.js:66 log function 方法</span><br><span class="line">return function 方法</span><br><span class="line">index.js:66 log function 参数</span><br><span class="line">return function 参数</span><br><span class="line">index.js:66 log function 访问器</span><br><span class="line">return function 访问器</span><br><span class="line">index.js:66 log function 静态属性</span><br><span class="line">return function 静态属性</span><br><span class="line">index.js:66 log function 静态方法</span><br><span class="line">return function 静态方法</span><br><span class="line">index.js:66 log function 类</span><br><span class="line">return function 类</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>属性 &gt; 方法 &gt; 参数 &gt; 访问器 &gt; 静态属性 &gt; 静态方法 &gt; 类</p>
+</blockquote>
+<p>然后就是相同装饰器，比如一个类有两个装饰器的情况下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">@log(&quot;类&quot;)</span><br><span class="line">@log(&quot;类1&quot;)</span><br><span class="line">class testLog &#123;</span><br><span class="line">  @log(&quot;属性&quot;)</span><br><span class="line">  @log(&quot;属性1&quot;)</span><br><span class="line">  B: number;</span><br><span class="line"></span><br><span class="line">  @log(&quot;静态属性&quot;)</span><br><span class="line">  @log(&quot;静态属性1&quot;)</span><br><span class="line">  static C: number;</span><br><span class="line"></span><br><span class="line">  @log(&quot;方法&quot;)</span><br><span class="line">  @log(&quot;方法1&quot;)</span><br><span class="line">  A() &#123;&#125;</span><br><span class="line"></span><br><span class="line">  @log(&quot;静态方法&quot;)</span><br><span class="line">  @log(&quot;静态方法1&quot;)</span><br><span class="line">  static D() &#123;&#125;</span><br><span class="line"></span><br><span class="line">  F(@log(&quot;参数&quot;) i: number, @log(&quot;参数1&quot;) y: number) &#123;&#125;</span><br><span class="line"></span><br><span class="line">  @log(&quot;访问器&quot;)</span><br><span class="line">  @log(&quot;访问器1&quot;)</span><br><span class="line">  set X(arg) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">log function 属性</span><br><span class="line">index.js:66 log function 属性1</span><br><span class="line">return function 属性1</span><br><span class="line">return function 属性</span><br><span class="line">index.js:66 log function 方法</span><br><span class="line">index.js:66 log function 方法1</span><br><span class="line">return function 方法1</span><br><span class="line">return function 方法</span><br><span class="line">index.js:66 log function 参数</span><br><span class="line">index.js:66 log function 参数1</span><br><span class="line">return function 参数1</span><br><span class="line">return function 参数</span><br><span class="line">index.js:66 log function 访问器</span><br><span class="line">index.js:66 log function 访问器1</span><br><span class="line">return function 访问器1</span><br><span class="line">return function 访问器</span><br><span class="line">index.js:66 log function 静态属性</span><br><span class="line">index.js:66 log function 静态属性1</span><br><span class="line">return function 静态属性1</span><br><span class="line">return function 静态属性</span><br><span class="line">index.js:66 log function 静态方法</span><br><span class="line">index.js:66 log function 静态方法1</span><br><span class="line">return function 静态方法1</span><br><span class="line">return function 静态方法</span><br><span class="line">index.js:66 log function 类</span><br><span class="line">index.js:66 log function 类1</span><br><span class="line">return function 类1</span><br><span class="line">return function 类</span><br></pre></td></tr></table></figure>
+
+<p>也就是说先放先执行构造函数，后面装饰器的后执行构造函数，但是先执行回调。<br>总的来说，就是后放先执行。</p>
+<h3 id="04-类装饰器"><a href="#04-类装饰器" class="headerlink" title="04. 类装饰器"></a>04. 类装饰器</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">type ClassDecorator = &lt;TFunction extends Function&gt;</span><br><span class="line">(target: TFunction) =&gt; TFunction | void;</span><br></pre></td></tr></table></figure>
+
+<p>可以做什么？</p>
+<blockquote>
+<p>如果类装饰器返回了一个值，她将会被用来代替原有的类构造器的声明。<br>因此，类装饰器适合用于继承一个现有类并添加一些属性和方法。<br>例如我们可以添加一个toString方法给所有的类来覆盖它原有的toString方法。<br>也就是说其实只能对构造函数进行重载，当然也够用了</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function classDecorator&lt;T extends &#123; new (...args: any[]) &#125;&gt;(constructor: T) &#123;</span><br><span class="line">  return class extends constructor &#123;</span><br><span class="line">    title = &quot;classDecorator title&quot;;</span><br><span class="line">	toString() &#123;</span><br><span class="line">		...</span><br><span class="line">	&#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的装饰器 classDecorator 重载了类的构造函数，并且新建属性 title， 重载了 <code>toString()</code> 输出。</p>
+<h3 id="05-属性装饰器"><a href="#05-属性装饰器" class="headerlink" title="05. 属性装饰器"></a>05. 属性装饰器</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type PropertyDecorator = (target: Object, propertyKey: string | symbol) =&gt; void;</span><br></pre></td></tr></table></figure>
+
+<p>@<strong>参数</strong></p>
+<ol>
+<li>target 目标</li>
+<li>propertyKey 属性名</li>
+</ol>
+<p>@<strong>可以做什么</strong></p>
+<blockquote>
+<p>监控变化<br>重写属性<br>收集信息<br>标记验证</p>
+</blockquote>
+<p>等等，比如说实现一个 readonly</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function myReadonly(target: Object, key: string) &#123;</span><br><span class="line">  Reflect.defineProperty(target, key, &#123;</span><br><span class="line">    set(v) &#123;</span><br><span class="line">      if (this.key === undefined) &#123;</span><br><span class="line">        this.key = v;</span><br><span class="line">      &#125; else &#123;</span><br><span class="line">        throw new Error(`$&#123;key&#125; is readonly`);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class C &#123;</span><br><span class="line">  @myReadonly</span><br><span class="line">  foo: string = &quot;a&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let myC = new C();</span><br><span class="line">myC.foo = &quot;aaaaaaa&quot;;</span><br><span class="line">console.log(myC.foo);</span><br></pre></td></tr></table></figure>
+
+<h3 id="06-方法装饰器"><a href="#06-方法装饰器" class="headerlink" title="06. 方法装饰器"></a>06. 方法装饰器</h3><p>@<strong>参数</strong></p>
+<ol>
+<li>target: 对于静态成员来说是类的构造器，对于实例成员来说是类的原型链。</li>
+<li>propertyKey: 属性的名称。</li>
+<li>descriptor: {<br> value<br> writable<br> enumerable<br> configurable<br>}</li>
+</ol>
+<p>@<strong>返回</strong></p>
+<ol>
+<li>如果返回了值，它会被用于替代属性的描述器。</li>
+</ol>
+<p>@<strong>场景</strong></p>
+<p>几乎可以适用任何场景，你甚至可以重写方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">descriptor.value === Function</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">function logger(target: any, propertyKey: string, descriptor: PropertyDescriptor) &#123;</span><br><span class="line">  const original = descriptor.value;</span><br><span class="line"></span><br><span class="line">  descriptor.value = function (...args) &#123;</span><br><span class="line">    console.log(&#x27;params: &#x27;, ...args);</span><br><span class="line">    const result = original.call(this, ...args);</span><br><span class="line">    console.log(&#x27;result: &#x27;, result);</span><br><span class="line">    return result;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class C &#123;</span><br><span class="line">  @logger</span><br><span class="line">  add(x: number, y:number ) &#123;</span><br><span class="line">    return x + y;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const c = new C();</span><br><span class="line">c.add(1, 2);</span><br></pre></td></tr></table></figure>
+
+<h3 id="07-访问器装饰器"><a href="#07-访问器装饰器" class="headerlink" title="07. 访问器装饰器"></a>07. 访问器装饰器</h3><p>@<strong>参数</strong></p>
+<ol>
+<li>target</li>
+<li>propertyKey</li>
+<li>descriptor {<br> get<br> set<br> enumerable<br> configurable<br>}</li>
+</ol>
+<p>需要注意的是，不管是给 <code>get</code> or <code>set</code> 添加访问器，添加一个就相当于都添加了</p>
+<p>@<strong>返回</strong> 忽略</p>
+<p>@<strong>场景</strong></p>
+<p>其实和方法差不多，重写，加日志等等，只要你想得到。</p>
+<h3 id="08-参数装饰器"><a href="#08-参数装饰器" class="headerlink" title="08. 参数装饰器"></a>08. 参数装饰器</h3><p>@<strong>参数</strong></p>
+<ol>
+<li>target: 对于静态成员来说是类的构造器，对于实例成员来说是类的原型链。</li>
+<li>propertyKey: 属性的名称(注意是方法的名称，而不是参数的名称)。</li>
+<li>parameterIndex: 参数在方法中所处的位置的下标。</li>
+</ol>
+<p>@<strong>返回</strong> </p>
+<p>忽略</p>
+<p>@<strong>场景</strong></p>
+<p>验证，验证方式，日志等等。</p>
+<h3 id="09-例子"><a href="#09-例子" class="headerlink" title="09. 例子"></a>09. 例子</h3><p>如果我需要写一个类的参数的装饰器。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">// 1. 属性 &gt; 方法 &gt; 参数 &gt; 访问器 &gt; 静态属性 &gt; 静态方法 &gt; 类</span><br><span class="line">// 2. 装饰器只在解释执行时应用一次</span><br><span class="line">// 3. 所以需要在方法或者类装饰器解析的时候，重载为必包，先验证参数，后调用</span><br><span class="line">// 4. 需要有变量保存验证的函数</span><br><span class="line">// 5. 需要工厂方法，或者抽象类去写清楚各种不同的验证</span><br><span class="line"></span><br><span class="line">//验证类型</span><br><span class="line">type Validator = (x: any) =&gt; boolean;</span><br><span class="line"></span><br><span class="line">//验证方法集合</span><br><span class="line">let validatorMap = new Map&lt;string, Validator&gt;();</span><br><span class="line"></span><br><span class="line">//属性验证装饰器工厂</span><br><span class="line">function validatorFactiory(vaildator: Validator) &#123;</span><br><span class="line">  return function (target, key, index) &#123;</span><br><span class="line">    let keyStr = key as string;</span><br><span class="line">    let t = validatorMap[keyStr] ?? [];</span><br><span class="line">    t[index] = vaildator;</span><br><span class="line">    validatorMap.set(key, t);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//暂时不需要参数</span><br><span class="line">//</span><br><span class="line">function valid(target: any, key: string, descriptor: PropertyDescriptor) &#123;</span><br><span class="line"></span><br><span class="line">  //保存原有方法</span><br><span class="line">  const original = descriptor.value;</span><br><span class="line"></span><br><span class="line">  descriptor.value = function (...args) &#123;</span><br><span class="line"></span><br><span class="line">    //验证参数</span><br><span class="line">    for (let i in args) &#123;</span><br><span class="line">      let validtors = validatorMap.get(key);</span><br><span class="line">      if (validtors !== undefined) &#123;</span><br><span class="line">        for (let i = 0; i &lt; validtors.length; i++) &#123;</span><br><span class="line">          if(!validtors[i](args[i])) &#123;</span><br><span class="line">            throw new Error(`$&#123;key&#125; 值为 $&#123;args[i]&#125;, 验证失败`);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    original.call(this, &#123; ...args &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">const validString = validatorFactiory((v: any) =&gt; &#123;</span><br><span class="line">  return typeof v === &quot;string&quot;;</span><br><span class="line">&#125;);</span><br><span class="line">const validNumber = validatorFactiory((v: any) =&gt; &#123;</span><br><span class="line">  return Number.isInteger(v);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">class C &#123;</span><br><span class="line">  @valid</span><br><span class="line">  a(@validString a) &#123;</span><br><span class="line">    return a;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let myC = new C();</span><br><span class="line">myC.a(1);</span><br></pre></td></tr></table></figure>
+
+<p>这里就写了一个简单的装饰器，不仅如此，比如我要写一个解析 request body的装饰器，也可以这样写。</p>
+<h3 id="11-link"><a href="#11-link" class="headerlink" title="11. link"></a>11. link</h3><p><a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/decorator">阮一峰 es6 装饰器</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.tslang.cn/docs/handbook/decorators.html">typescript 中文文档 装饰器</a></p>
+<p><a target="_blank" rel="noopener" href="https://jkchao.github.io/typescript-book-chinese/tips/metadata.html#%E5%9F%BA%E7%A1%80">Reflect Metadata typescript</a></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/58057916/what-does-t-extends-new-args-any-constructort-mean-in-typescr">What does &lt;T extends { new(…args: any[]): {} }&gt;(constructor:T) mean in typescript?</a></p>
+<p>[TypeScript 中的 Decorator &amp; 元数据反射：从小白到专家（部分 I）(<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/20297283">https://zhuanlan.zhihu.com/p/20297283</a>)</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/45165224/what-is-reflect-decorate-in-js-code-transpiled-from-ts">What is <code>Reflect.decorate</code> in JS code transpiled from TS?</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-decorators">tc39 Decorators</a></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/37694322/typescript-ts1241-unable-to-resolve-signature-of-method-decorator-when-called-a">typescript TS1241: Unable to resolve signature of method decorator when called as an expression</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/rbuckton/reflect-metadata">reflect-metadata</a></p>
+<p><a target="_blank" rel="noopener" href="https://jkchao.github.io/typescript-book-chinese/tips/metadata.html#%E5%9F%BA%E7%A1%80">Reflect Metadata</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20679872">什么是元数据？为何需要元数据?</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2007/03/metadata.html">元数据,阮一峰</a></p>
+<p><a target="_blank" rel="noopener" href="https://mirone.me/zh-hans/a-complete-guide-to-typescript-decorator/">TypeScript装饰器完全指南</a></p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-03</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/javascript/'>
+                            javascript
+                        </a>
+                    
+                        <a href='/tblog/tags/typescript/'>
+                            typescript
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/07/03/ts_Infer/'>infer</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/07/03/constructSignatureError/">ConstructSignature 错误</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

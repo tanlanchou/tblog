@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="url 通过协议启动应用程序" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    url 通过协议启动应用程序
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：702</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：2分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#01-url-%E5%A6%82%E4%BD%95%E5%85%B3%E8%81%94%E5%88%B0%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="post-toc-text">01. url 如何关联到应用程序?</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#02-%E5%8D%8F%E8%AE%AE%E6%80%8E%E4%B9%88%E6%9D%A5%E7%9A%84"><span class="post-toc-text">02. 协议怎么来的?</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#03-html-%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E5%8D%8F%E8%AE%AE%E6%98%AF%E5%90%A6%E6%89%93%E5%BC%80"><span class="post-toc-text">03. html 如何知道协议是否打开?</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E6%80%BB%E7%BB%93"><span class="post-toc-text">04. 总结</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <h1 id="01-url-如何关联到应用程序"><a href="#01-url-如何关联到应用程序" class="headerlink" title="01. url 如何关联到应用程序?"></a>01. url 如何关联到应用程序?</h1><p>做过html肯定都知道下面这段代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;mailto:xxx@xxx.com&quot;</span>&gt;</span>发送邮件<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>通过<code>href</code>属性，我们可以指定一个url，当用户点击这个链接的时候，浏览器就会打开一个新的浏览器窗口，并且打开一个新的邮件客户端，并将邮件地址填入其中。</p>
+<p>那么，url 如何关联到应用程序呢？</p>
+<h1 id="02-协议怎么来的"><a href="#02-协议怎么来的" class="headerlink" title="02. 协议怎么来的?"></a>02. 协议怎么来的?</h1><p>这里需要区分5个不同的平台, 也就是 windows, mac, linux, android, ios</p>
+<ol>
+<li>windows 在注册表中注册你的自定义 URL 协议，指定应用程序的处理器</li>
+<li>mac 在应用程序的 Info.plist 文件中注册自定义 URL 协议，指定应用程序的处理器</li>
+<li>linux 通过注册 MIME 类型和关联它们的处理程序来实现</li>
+<li>android AndroidManifest.xml 文件, 注册 <intent-filter></li>
+<li>ios 同样Info.plist</li>
+</ol>
+<p>也就是说,你的程序在安装的时候,需要注册一个协议,然后在程序中指定这个协议,当用户点击这个协议的时候,就会打开你的程序.</p>
+<h1 id="03-html-如何知道协议是否打开"><a href="#03-html-如何知道协议是否打开" class="headerlink" title="03. html 如何知道协议是否打开?"></a>03. html 如何知道协议是否打开?</h1><p>无法知道, 至少没有一个通用的接口</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;mailto:xxx@xxx.com&quot;</span>&gt;</span>发送邮件<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>是没有返回值的, 网上查询有一个方案.</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ismailhabib/custom-protocol-detection">https://github.com/ismailhabib/custom-protocol-detection</a></p>
+<p>他的方案其实是通过 hack 方式.</p>
+<blockquote>
+<p>Firefox: try to open the handler in a hidden iframe and catch exception if the custom protocol is not available.</p>
+<p>Chrome: using window onBlur to detect whether the focus is stolen from the browser. When the focus is stolen, it assumes that the custom protocol launches external app and therefore it exists.</p>
+<p>IEs and Edge in Win 8&#x2F;Win 10: the cleanest solution. IEs and Edge in Windows 8 and Windows 10 does provide an API to check the existence of custom protocol handlers.</p>
+<p>Other IEs: various different implementation. Worth to notice that even the same IE version might have a different behavior (I suspect due to different commit number). It means that for these IEs, the implementation is the least reliable.</p>
+</blockquote>
+<p>他代码最近更新的也是5年前的. 而且更新的是 package.json.</p>
+<p>但是我测试了国内使用的大部分浏览器的最新版本, 居然是可用的(包括最新版本chrome). 并不像我查询的其他文章说不可用.</p>
+<p>还能说使用风险还是很大.</p>
+<p>我也看了百度盘的方案, 方案就是协议里传参数, 都和服务器进行通信.</p>
+<p>其实百度盘页面点下载, 打开F12 其实就知道了.</p>
+<h3 id="04-总结"><a href="#04-总结" class="headerlink" title="04. 总结"></a>04. 总结</h3><p>最优情况还是使用百度的方案, 最稳定, 有就一定有, 不怕浏览器兼容性问题.</p>
+<p>前提是需要软件是你自己的, 如果不是你自己的, 就只能看别人是否实现这一套或者你加一个启动器..</p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-12-01</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/web/'>
+                            web
+                        </a>
+                    
+                        <a href='/tblog/tags/javascript/'>
+                            javascript
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/12/07/electron/electron_caiken_01/'>electron url启动, 注册表, 打包</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/11/02/%5BQ103%5DIndexDB_Base/">IndexDB API</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

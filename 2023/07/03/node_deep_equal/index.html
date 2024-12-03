@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="看 node-deep-equal" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    看 node-deep-equal
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：978</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：4分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E5%85%B3%E4%BA%8E-Error-%E7%9A%84%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD%E7%9A%84%E9%97%AE%E9%A2%98"><span class="post-toc-text">01. 关于 Error 的条件判断的问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-channel%E7%9A%84%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98"><span class="post-toc-text">02. channel的使用问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E5%8C%85%E5%90%AB%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%88%A4%E6%96%AD"><span class="post-toc-text">03. 包含基本类型的判断</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#link"><span class="post-toc-text">link</span></a></li></ol>
+            
+        
+        <p><a target="_blank" rel="noopener" href="https://github.com/inspect-js/node-deep-equal">inspect-js&#x2F;node-deep-equal</a></p>
+<p>这个库很有意思，因为他需要做深层次的对比，所以所有的 javascript 类型都囊括了，应该如何判断和对比</p>
+<p>它的核心方法 <code>internalDeepEqual</code>, 传入(A,B,Opt,Channel)</p>
+<p>A,B 是需要对比的对象， Opt用来区分 Object.is or &#x3D;&#x3D;&#x3D;, Channel 一个字典</p>
+<ol>
+<li>Object.is or &#x3D;&#x3D;&#x3D; 判断 A，B是否相等，相等 retrun true.</li>
+<li>判断 A，B是否是基础类型，并且 typeof 的值是否一致，他这里处理了 new Number(1), new String(“1”) 这些情况，只是判断类型是否一致，如果不一致， return false</li>
+<li>A,B 有一个可能是 undefined， null 或者 两边都不是 typeof A !&#x3D;&#x3D; object 的情况下，直接通过 Object.is or &#x3D;&#x3D;&#x3D; 来对比</li>
+<li>上面3中情况直接处理了基础类型，非object的情况下</li>
+<li>将 A，B加入字典，并且做判断</li>
+<li>进入 objEquiv(A, B, opts, channel); 进行 Object 的对比。</li>
+</ol>
+<p><strong>objEquiv</strong></p>
+<ol>
+<li>typeof 返回值对比</li>
+<li>Object.prototype.toString(A or B) 对比</li>
+<li>isArguments 类型判断 </li>
+<li>isArray 类型判断 return false</li>
+<li>instanceof Error 类型判断 return false</li>
+<li>如果都是Error对象，对比 name 和 message return false </li>
+<li>isRegex 类型判断 return false </li>
+<li>对比 Regex.source &amp; Regex.prototype.flags return false</li>
+<li>isDate 类型判断 return false</li>
+<li>对比 Date.prototype.getTime return false</li>
+<li>Object.getPrototypeOf 对比原型链 return false</li>
+<li>whichTypedArray 判断 return false</li>
+<li>isBuffer 类型判断 return false</li>
+<li>判断 Buffer length 或者 循环判断两个buffer内容 return true or false</li>
+<li>isArrayBuffer 类型判断 return false</li>
+<li>判断 ArrayBuffer 长度是否一致 return false</li>
+<li>return typeof Uint8Array &#x3D;&#x3D;&#x3D; “function” &amp;&amp; internalDeepEqual(new Uint8Array(a), new Uint8Array(b), opts, channel)</li>
+<li>isSharedArrayBuffer 类型判断 和 isArrayBuffer 过程一样</li>
+<li>objectKeys</li>
+<li>判断长度</li>
+<li>整理顺序 sort</li>
+<li>循环判断</li>
+<li>whichCollection  判断是否是 set,map,WeakMap,WeakSet 集合类型判断</li>
+<li>类型判断</li>
+<li>循环递归判断 Set,Map 内容，return true or false</li>
+<li>return true;</li>
+</ol>
+<h3 id="01-关于-Error-的条件判断的问题"><a href="#01-关于-Error-的条件判断的问题" class="headerlink" title="01. 关于 Error 的条件判断的问题"></a>01. 关于 Error 的条件判断的问题</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var aIsError = a instanceof Error;</span><br><span class="line">var bIsError = b instanceof Error;</span><br><span class="line">if (aIsError !== bIsError) &#123;</span><br><span class="line">  return false;</span><br><span class="line">&#125;</span><br><span class="line">if (aIsError || bIsError) &#123;</span><br><span class="line">  if (a.name !== b.name || a.message !== b.message) &#123;</span><br><span class="line">    return false;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;&#x2F;1. A other B other<br>&#x2F;&#x2F;2. A Error B other<br>&#x2F;&#x2F;3. A other B Error<br>&#x2F;&#x2F;4. A Error B Error</p>
+<p>2,3 的情况不存在，因为直接返回 false,在之前的代码中也直接返回 false<br>1, 如果都是 other 会直接跳过<br>4, 如果 Error name &amp; message 一致，也就是不会返回 false.</p>
+<p>为什么还需要继续进行判断，比如 isRegex, 以及之后的代码，而不是直接 return true.</p>
+<p>因为后续并没有继续针对 <code>Error</code> 对象来进行判断的了，也就是说始始终会执行到最后一步, return true</p>
+<p>根据 <code>javascript Error</code> 文档 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/web/javascript/reference/global_objects/error">Error</a></p>
+<p>虽然 Error 本身还是有很多属性，但是其实值的判断的，name &amp; message &amp; stack</p>
+<blockquote>
+<p>Error.prototype.stack Non-standard<br>A non-standard property for a stack trace.</p>
+</blockquote>
+<p>所以 name &amp; message 相等的话，应该可以确定是同一种错误。</p>
+<h3 id="02-channel的使用问题"><a href="#02-channel的使用问题" class="headerlink" title="02. channel的使用问题"></a>02. channel的使用问题</h3><p><code>side-channel</code> 是 WeakMap || Map || Object 的一种封装，根据传入参数的不一致，选择不同的字典。</p>
+<p>看一段代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">var hasActual = channel.has(actual);</span><br><span class="line">  var hasExpected = channel.has(expected);</span><br><span class="line">  var sentinel;</span><br><span class="line">  if (hasActual &amp;&amp; hasExpected) &#123;</span><br><span class="line">    if (channel.get(actual) === channel.get(expected)) &#123;</span><br><span class="line">      return true;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    sentinel = &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  if (!hasActual) &#123;</span><br><span class="line">    channel.set(actual, sentinel);</span><br><span class="line">  &#125;</span><br><span class="line">  if (!hasExpected) &#123;</span><br><span class="line">    channel.set(expected, sentinel);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // eslint-disable-next-line no-use-before-define</span><br><span class="line">  return objEquiv(actual, expected, opts, channel);</span><br></pre></td></tr></table></figure>
+
+<p>根据代码， channel 只实例化过一次，如果一个对象，出现完全相同的 Key，那么就会出问题。</p>
+<h3 id="03-包含基本类型的判断"><a href="#03-包含基本类型的判断" class="headerlink" title="03. 包含基本类型的判断"></a>03. 包含基本类型的判断</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let o1 = new Number(1);</span><br><span class="line">let o2 = new Number(2);</span><br></pre></td></tr></table></figure>
+
+<p>对于这个包来说是返回true的，因为没有针对这个的处理。</p>
+<p>但是 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let o1 = new String(`one`) </span><br><span class="line">let o2 = new String(`two`)</span><br></pre></td></tr></table></figure>
+
+<p>却可以，那是因为，其中有一个判断</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Object.keys(o1)</span><br></pre></td></tr></table></figure>
+
+<p>然后进行对比。</p>
+<p>所以按照这个逻辑，new boolean 也是无法判断的。</p>
+<p>其他的基础类型，因为不能 new, 所以没有问题</p>
+<h3 id="link"><a href="#link" class="headerlink" title="link"></a>link</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/web/javascript/reference/global_objects/error">Error</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ljharb/side-channel">side-channel</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/deep-equal">deep-equal</a></li>
+</ol>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-03</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/javascript/'>
+                            javascript
+                        </a>
+                    
+                        <a href='/tblog/tags/%E7%9C%8B%E6%BA%90%E7%A0%81/'>
+                            看源码
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/07/03/async_code/'>javascript 异步编程有哪些方式？</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/07/02/vue_errorCaptured_onErrorCaptured/">Vue errorCaptured vs onErrorCaptured</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="es6 更新总结" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    es6 更新总结
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：3.4k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：14分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#001-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="post-toc-text">001. 字符串</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E6%95%B0%E5%80%BC"><span class="post-toc-text">02. 数值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E5%87%BD%E6%95%B0-function"><span class="post-toc-text">03. 函数 function</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E6%95%B0%E7%BB%84"><span class="post-toc-text">04. 数组</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-Object"><span class="post-toc-text">05. Object</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#06-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="post-toc-text">06. 运算符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#07-Symbol"><span class="post-toc-text">07. Symbol</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#08-set-map"><span class="post-toc-text">08. set map</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#09-proxy"><span class="post-toc-text">09. proxy</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-Reflect"><span class="post-toc-text">10. Reflect</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-Promise"><span class="post-toc-text">11. Promise</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-Generator"><span class="post-toc-text">12. Generator</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#link"><span class="post-toc-text">link</span></a></li></ol>
+            
+        
+        <ol>
+<li>字符串</li>
+<li>数值</li>
+<li>函数</li>
+<li>数组</li>
+<li>对象(object)</li>
+<li>运算符</li>
+<li>Symbol</li>
+<li>Set&amp;Map</li>
+<li>Proxy</li>
+<li>Reflect</li>
+<li>Promise</li>
+<li>Iterator</li>
+<li>Generator</li>
+<li>async</li>
+<li>Class</li>
+<li>Module</li>
+</ol>
+<h3 id="001-字符串"><a href="#001-字符串" class="headerlink" title="001. 字符串"></a>001. 字符串</h3><ol>
+<li>字符的 Unicode 表示法 ‘\u0061’ or ‘\uD842\uDFB7’</li>
+<li>支持 Iterator 遍历</li>
+<li>模板字符串 <code>$&#123;name&#125;</code></li>
+<li>标签模板 alert<code>welcome to $&#123;name&#125; house</code></li>
+</ol>
+<p>function alert() {<br>    console.log(arguments[0]);<br>    console.log(arguments[1]);<br>}</p>
+<p>&#x2F;&#x2F; Array [‘welcome to’, ‘home’]<br>&#x2F;&#x2F; name </p>
+<p>传参方式需要注意</p>
+<ol start="5">
+<li>String.fromCodePoint() 用于从 Unicode 码点返回对应字符，但是这个方法不能识别码点大于0xFFFF的字符。</li>
+<li>String.raw<code>\a</code> &#x3D; <code>\\a</code> 转义，用于模板转义，已经转义还是要再转</li>
+<li>String.codePointAt() 码点在U+10000到U+10FFFF之间的字符 ‘𠮷’.length &#x3D;&#x3D;&#x3D; 2, 所以这个其实是需要处理的。</li>
+<li>String.repeat “abc”.repeat(2);</li>
+<li>padStart,patEnd 补全，</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.padStart(10, &#x27;1234567891011&#x27;) &quot;123456789a&quot;</span><br><span class="line">a.padStart(10, &#x27;12&#x27;) &quot;121212121a&quot;</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>trimLeft, trimEnd</li>
+<li>matchAll</li>
+<li>replaceAll 不用写正则了 replace(&#x2F;a&#x2F;g, ‘_’), 第二个参数可以有一些特殊字符来匹配，你会正则也可以无视</li>
+<li>at()方法接受一个整数作为参数，返回参数指定位置的字符，支持负索引（即倒数的位置）</li>
+</ol>
+<h3 id="02-数值"><a href="#02-数值" class="headerlink" title="02. 数值"></a>02. 数值</h3><ol>
+<li>表示二进制 0b || 0B</li>
+<li>表示八进制 0o || 0O</li>
+<li>数值分割 1000000 可以使用下划线来分割 1_000_000</li>
+<li>Number.isFinite() <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/infinity/18702999?fr=aladdin">https://baike.baidu.com/item/infinity/18702999?fr=aladdin</a> 正无穷和负无穷，javascript <code>1.7976931348623157e+308</code> 超过正负值</li>
+<li>Number.isNaN() 是数值类型但是非数字。 Number.isNaN(“a” * 2) &#x3D;&#x3D;&#x3D; true</li>
+<li>Number.isInteger() 是否值整数, 正负都为 true</li>
+<li>parseInt &amp; parseFloat 从 window移植到 Number 下</li>
+<li>Number.EPSILON 二进制的问题就不复述了，主要是可以检测两个数字</li>
+<li>Number.MAX_SAFE_INTEGER </li>
+<li>Number.MIN_SAFE_INTEGER</li>
+<li>Number.isSafeInteger() 9,10,11 都是围绕着是否超过精度估算范围是否是安全数字</li>
+<li>BigInt 后缀必须 + n， 比如3n, 细节没看，但是不能有小数点。</li>
+</ol>
+<p>需要精确计算数字我用的比较少，需要的时候再学习吧。</p>
+<h3 id="03-函数-function"><a href="#03-函数-function" class="headerlink" title="03. 函数 function"></a>03. 函数 function</h3><ol>
+<li>默认参数 function(x, y&#x3D;1) … ,需要注意的是这里有一个独立的作用域，并且每次执行都会计算</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let x = 99</span><br><span class="line">function a(p = x + 1)</span><br><span class="line">a() // 100</span><br><span class="line">x = 100</span><br><span class="line">a() // 101</span><br></pre></td></tr></table></figure>
+
+<p>内部的作用域可以做很多事情</p>
+<ol start="2">
+<li>function.length 返回参数个数 默认值和默认值后面的参数都不认。</li>
+<li>name, 返回 function name</li>
+<li>&#x3D;&gt; 函数，主要注意 this 的引用。</li>
+<li>rest 类似扩展运算符 function(…values) a { &#x2F;&#x2F;values数组 }</li>
+</ol>
+<h3 id="04-数组"><a href="#04-数组" class="headerlink" title="04. 数组"></a>04. 数组</h3><ol>
+<li>…</li>
+<li>Array.from 类数组转换为数组</li>
+<li>Array.of() 创建数组</li>
+<li>Array.copyWith(target(需要复制的位置), start(开始复制位置), end(停止复制的位置))</li>
+<li>find()，findIndex()，findLast()，findLastIndex() </li>
+<li>fill</li>
+<li>entries()，keys() 和 values()</li>
+<li>includes()</li>
+<li>flat()，flatMap() 多维数组转一维</li>
+<li>at() 支持负索引</li>
+</ol>
+<h3 id="05-Object"><a href="#05-Object" class="headerlink" title="05. Object"></a>05. Object</h3><ol>
+<li>支持简写，也就是</li>
+</ol>
+<p>var o &#x3D; 1<br>var b &#x3D; { o, a() {} }</p>
+<ol start="2">
+<li>可以使用变量作为 Object Key</li>
+<li>Object.getOwnPropertyDescriptor 获取属性描述，就是可写，可读，值，之类的值</li>
+<li>for…in &#x2F;&#x2F;enumerable无效</li>
+<li>Object.keys(obj) &#x2F;&#x2F;enumerable无效</li>
+<li>Object.getOwnPropertyNames(obj) &#x2F;&#x2F;enumerable无效</li>
+<li>Object.getOwnPropertySymbols(obj) &#x2F;&#x2F;enumerable无效</li>
+<li>Reflect.ownKeys(obj) &#x2F;&#x2F;enumerable无效</li>
+<li>AggregateError 合并多个错误 <code>AggregateError(errors[, message])</code></li>
+<li>Object.is 基本等于 &#x3D;&#x3D;&#x3D; ，差别在 Object.is(NaN, NaN) &#x3D;&#x3D; true, +0 -0对比为false</li>
+<li>Object.assign 就是合并object, 需要注意的 Object.assign是浅拷贝，并且同名属性是替换，不是合并</li>
+<li>Object.getOwnPropertyDescriptors() </li>
+<li><strong>proto</strong> 用来读取或设置当前对象的原型对象. </li>
+<li>Object.setPrototypeOf</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function setPrototypeOf(target, proto) &#123;</span><br><span class="line">	target.__proto__ = proto;</span><br><span class="line">	return target</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="15">
+<li>Object.setPrototypeOf</li>
+</ol>
+<p>获取和设置 <strong>proto</strong> , 建议不要直接使用 Object.set or Object.get 方式，<strong>proto</strong> 直接使用的方式兼容性不太好，因为说不定可能取消。</p>
+<ol start="16">
+<li>Object.keys()，Object.values()，Object.entries() enumerable &#x3D; true 就意味着可以遍历。</li>
+<li>Object.fromEntrise 将键值对转换为object，map转object</li>
+<li>Object.hasOwn, 和Object.hasOwnProperty 类似。</li>
+</ol>
+<h3 id="06-运算符"><a href="#06-运算符" class="headerlink" title="06. 运算符"></a>06. 运算符</h3><ol>
+<li>**  有点像位运算， 平方</li>
+<li>? message.user.name 如果需要判断，需要判断3次， message?.user?.name</li>
+</ol>
+<p>有几点需要注意</p>
+<blockquote>
+<p>一. 短路，本质上，?.运算符相当于一种短路机制 ，只要不满足条件，就不再往下执行。<br>二. 别用括号，因为短路的原因</p>
+</blockquote>
+<ol start="3">
+<li>?? 判断 null || undefined , 但是不判断0, false之类的</li>
+<li>x ||&#x3D; y, x &amp;&amp;&#x3D; y, x ??&#x3D; y.</li>
+</ol>
+<h3 id="07-Symbol"><a href="#07-Symbol" class="headerlink" title="07. Symbol"></a>07. Symbol</h3><p>唯一不会重复的值，是一种基础类型，所以也不能 <code>new</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let a = Symbol()</span><br><span class="line">let b = Symbol()</span><br><span class="line">a === b false</span><br></pre></td></tr></table></figure>
+
+<p>可以有 description，Symbol(‘a’), <code>toString</code> or <code>Symbol.description</code></p>
+<p>如果以 <code>Symbol</code> 作为方法或者属性的 <code>key</code>, 普通方法是无法遍历的</p>
+<p>比如 <code>for...in</code>, <code>Object.keys</code>, <code>for of</code>, <code>Object.getOwnPropertyName</code>, <code>JSON.stringfly</code> 之类的。</p>
+<p>只能从 Object.getOwnPropertySymbol(), Reflect.ownKeys 可以获取。</p>
+<p>他还有一些内置的值，主要是 Object 或者 Class 用于指向一个内部方法。</p>
+<ol>
+<li>Symbol.hasInstance 可以重写 instanceof</li>
+<li>Symbol.isConcatSpreadable </li>
+<li>Symbol.species 改变衍生对象 instanceof 指向</li>
+<li>Symbol.replace</li>
+<li>Symbol.search</li>
+<li>Symbol.split</li>
+<li>Symbol.iterator</li>
+<li>Symbol.toPrimitive</li>
+<li>Symbol.toStringTag</li>
+<li>Symbol.unscopables</li>
+<li>Symbol.toPrimitive &#x2F;&#x2F;指向一个方法。该对象被转为原始类型的值时，会调用这个方法，返回该对象对应的原始类型值</li>
+<li>Symbol.toStringTag</li>
+</ol>
+<h3 id="08-set-map"><a href="#08-set-map" class="headerlink" title="08. set map"></a>08. set map</h3><p>Set, 本身是一个构造函数，初始化一个Set数据结构，可以传入数组或者支持iterable接口的数据.<br>本身是一个集合，内部不能有重复值</p>
+<ul>
+<li>add</li>
+<li>size</li>
+<li>delete</li>
+<li>get</li>
+<li>has</li>
+<li>clear</li>
+</ul>
+<p>遍历</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set.prototype[Symbol.iterator] === Set.prototype.values</span><br></pre></td></tr></table></figure>
+<p>所以 <code>for of</code> ok, 还可以使用 <code>forEach, set.keys(), set.values, set.entries</code> 去遍历<br>使用 Set 主要使用他去重的功能来进行操作。</p>
+<p>WeakSet 和 Set 类似，但是他方法少了。</p>
+<ul>
+<li>add</li>
+<li>delete</li>
+<li>has</li>
+</ul>
+<p>区别主要在于 WeakSet 只能存对象，并且是一个弱引用。<br>弱引用需要先知道回收的机制，简单是就是如果一个对象还被引用，就不会回收，比如必包中的变量。<br>那么存放在 WeakSet 当中的对象无需考虑在里面，不计入在引用当中。<br>所以可以用来存放一些临时对象，也不用去管他的释放。</p>
+<p>Map</p>
+<p>Map和Object类似，都是属于Hash结构，就是键值对。</p>
+<blockquote>
+<p>事实上，不仅仅是数组，任何具有 Iterator 接口、且每个成员都是一个双元素的数组的数据结构（详见《Iterator》一章）都可以当作Map构造函数的参数</p>
+</blockquote>
+<p>所以 Map的创建可以 add 和可以构造函数传入</p>
+<blockquote>
+<p>terator 接口、且每个成员都是一个双元素的数组的数据结构</p>
+</blockquote>
+<p>Map 后面的值会覆盖前面的，Key相同的话，只要两个值严格相等，Map 将其视为一个键, 比如 +0 和 -0, 但是NaN虽然 NaN &#x3D;&#x3D;&#x3D; NaN &#x3D;&#x3D; false， 但是也视为相同健。</p>
+<p>map的顺序就是插入的顺序，并且没有提供排序的方法。</p>
+<ul>
+<li>set</li>
+<li>size</li>
+<li>get</li>
+<li>delete</li>
+<li>clear</li>
+<li>…</li>
+</ul>
+<p>遍历， 本身支持 Iterator, 所以 <code>Map.keys(), Map.values(), Map.entries </code> 以及本身的 <code>Map.forEach</code> 都可以，也可以直接 <code>for of</code>.</p>
+<p>整体看下来，在不看底层代码的情况下，Map优势不明显。<br>只能说多了一层封装。</p>
+<p><strong>WeakMap</strong>.</p>
+<ul>
+<li>set</li>
+<li>delete</li>
+<li>has</li>
+<li>get</li>
+</ul>
+<p>WeakMap 也是弱引用，不过只值 key 是弱引用，并且key 只能对对象。<br>作用和 WeakSet 一样，只是结构不同<br>他们两都不能遍历，因为弱引用导致对象随时可能消失，在遍历的时候，会导致错误。<br>保存以后去验证一个对象是否还存在，是否还有引用。</p>
+<p><strong>WeakRef</strong></p>
+<p>WeakSet 和 WeakMap 都是在创建, add, set(key) 的时候才是弱引用。<br>WeakRef 可以把他包装一下，变成一个弱引用。</p>
+<p>在做弱引用的测试的时候，我产生了极大的疑惑，后来还 <code>chrome</code> 核心测试成功</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let john = &#123; name: &quot;John&quot; &#125;;</span><br><span class="line">let weakMap = new WeakMap();</span><br><span class="line">weakMap.set(john, &quot;...&quot;);</span><br><span class="line">john = null; </span><br><span class="line"></span><br><span class="line">weakMap //无属性</span><br></pre></td></tr></table></figure>
+
+<p>但是在 firefox 下不是这样的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">john = null</span><br><span class="line">weakMap依然保持引用。</span><br></pre></td></tr></table></figure>
+
+<h3 id="09-proxy"><a href="#09-proxy" class="headerlink" title="09. proxy"></a>09. proxy</h3><p><strong>Proxy</strong> 代理，可以理解为把原有对象包裹在里面，访问真实的对象需要先经过这个代理。</p>
+<ol>
+<li>get(target, propKey, receiver)：拦截对象属性的读取，比如proxy.foo和proxy[‘foo’]。</li>
+<li>set(target, propKey, value, receiver)：拦截对象属性的设置，比如proxy.foo &#x3D; v或proxy[‘foo’] &#x3D; v，返回一个布尔值。</li>
+<li>has(target, propKey)：拦截propKey in proxy的操作，返回一个布尔值。</li>
+<li>deleteProperty(target, propKey)：拦截delete proxy[propKey]的操作，返回一个布尔值。</li>
+<li>ownKeys(target)：拦截Object.getOwnPropertyNames(proxy)、Object.getOwnPropertySymbols(proxy)、Object.keys(proxy)、for…in循环，返回一个数组。该方法返回目标对象所有自身的属性的属性名，而Object.keys()的返回结果仅包括目标对象自身的可遍历属性。</li>
+<li>getOwnPropertyDescriptor(target, propKey)：拦截Object.getOwnPropertyDescriptor(proxy, propKey)，返回属性的描述对象。</li>
+<li>defineProperty(target, propKey, propDesc)：拦截Object.defineProperty(proxy, propKey, propDesc）、Object.defineProperties(proxy, propDescs)，返回一个布尔值。</li>
+<li>preventExtensions(target)：拦截Object.preventExtensions(proxy)，返回一个布尔值。</li>
+<li>getPrototypeOf(target)：拦截Object.getPrototypeOf(proxy)，返回一个对象。</li>
+<li>isExtensible(target)：拦截Object.isExtensible(proxy)，返回一个布尔值。</li>
+<li>setPrototypeOf(target, proto)：拦截Object.setPrototypeOf(proxy, proto)，返回一个布尔值。如果目标对象是函数，那么还有两种额外操作可以拦截。</li>
+<li>apply(target, object, args)：拦截 Proxy 实例作为函数调用的操作，比如proxy(…args)、proxy.call(object, …args)、proxy.apply(…)。</li>
+<li>construct(target, args)：拦截 Proxy 实例作为构造函数调用的操作，比如new proxy(…args)。</li>
+</ol>
+<p><strong>Proxy</strong> 可以拦截以上操作, 可以做很多事情。</p>
+<p>比如 Es6 没有提供 Set 数据结构, 我们要实现一个数组添加不能有重复</p>
+<ol>
+<li>通过 Class 重写一个对象。</li>
+<li>或者通过统一的 handler，去代理一个 Array对象去实现特性</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var proxy = new Proxy(arr, &#123;</span><br><span class="line">    set: function(target, propkey, value, receiver) &#123;</span><br><span class="line">        if(!target.includes(value)) &#123;</span><br><span class="line">            return Reflect.set(target, propkey, value, receiver);    </span><br><span class="line">        &#125;</span><br><span class="line">		return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>比如 Array.push 是无法链式 [].push(1).push(2), Proxy get 就可以实现，还可以防止调用内部方法，形成私有变量。</p>
+<p>Proxy 需要有几点注意的。</p>
+<ol>
+<li>receiver 这个参数如果在继承，原型链, <strong>proto</strong> 赋值以后，是指向当前Object，不一定是指向你在绑定 proxy 时候的 Object.</li>
+<li>this 指向和 receiver 有相同的问题，最好不要以 this.xx 可能会出现问题。</li>
+</ol>
+<h3 id="10-Reflect"><a href="#10-Reflect" class="headerlink" title="10. Reflect"></a>10. Reflect</h3><blockquote>
+<ol>
+<li>将Object对象的一些明显属于语言内部的方法（比如Object.defineProperty），放到Reflect对象上。现阶段，某些方法同时在Object和Reflect对象上部署，未来的新方法将只部署在Reflect对象上。也就是说，从Reflect对象上可以拿到语言内部的方法。</li>
+<li>修改某些Object方法的返回结果，让其变得更合理。比如，Object.defineProperty(obj, name, desc)在无法定义属性时，会抛出一个错误，而Reflect.defineProperty(obj, name, desc)则会返回false</li>
+<li>让Object操作都变成函数行为。某些Object操作是命令式，比如name in obj和delete obj[name]，而Reflect.has(obj, name)和Reflect.deleteProperty(obj, name)让它们变成了函数行为。</li>
+<li>Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法。这就让Proxy对象可以方便地调用对应的Reflect方法，完成默认行为，作为修改行为的基础。也就是说，不管Proxy怎么修改默认行为，你总可以在Reflect上获取默认行为。</li>
+</ol>
+</blockquote>
+<h3 id="11-Promise"><a href="#11-Promise" class="headerlink" title="11. Promise"></a>11. Promise</h3><p>promise 如果只是说语法的话，其实挺简单的。<br>首先需要明确的是 Promise 是语法糖，你通过JS可以自己写一个出来。<br>3种状态，pendding, fulfilled, rejected<br>当你调用一个 promise，就已经在 pendding 状态下。<br>then(fulfilled, rejected), 处理其他两种状态。<br>这就是最基本的语法。</p>
+<p>链式调用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promise.then(result =&gt; deep(result)).then(tree =&gt; todo)</span><br></pre></td></tr></table></figure>
+<p>其实就是包装前一个 promise 结果返回一个新的 promise</p>
+<p>.catch </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">promise.then(fulfilled, rejected)</span><br></pre></td></tr></table></figure>
+
+<p>.finally </p>
+<p>.all 全部成功才算成功fulfilled<br>.race 只要有一个成功状态就是fulfilled<br>.allSettled 全部返回就算成功，不管里面状态<br>.any 只要有一个是 fulfilled，全部rejected rejected</p>
+<h3 id="12-Generator"><a href="#12-Generator" class="headerlink" title="12. Generator"></a>12. Generator</h3><p>语法就是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function* a() &#123;</span><br><span class="line">	yield 1</span><br><span class="line">	yield 2</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>会返回一个 iterator 对象，可以进行遍历，或者自己调用 next<br>next 对象包含 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; value: any, done: boolean &#125;</span><br></pre></td></tr></table></figure>
+
+<p>done 表示是否完结</p>
+<p>Generator 的一个特性就是，阻止代码运行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function* a() &#123;</span><br><span class="line">	yield b();</span><br><span class="line">	yield c();</span><br><span class="line">	yield d();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var o = a(); //不执行，只是传参</span><br><span class="line">o.next(); //执行b()</span><br><span class="line">o.next(); //执行c()</span><br><span class="line">o.next(); //执行d()</span><br></pre></td></tr></table></figure>
+
+<p>还有一个例子说明返回和参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function a(s) &#123;</span><br><span class="line">    console.log(&quot;a&quot;);</span><br><span class="line">    return &quot;ar&quot; + s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function b(s) &#123;</span><br><span class="line">    console.log(&quot;b&quot;);</span><br><span class="line">    return &quot;br&quot; + s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function c(s) &#123;</span><br><span class="line">    console.log(&quot;c&quot;);</span><br><span class="line">    return &quot;cr&quot; + s;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function* g(s) &#123;</span><br><span class="line">    let av = yield a(s);</span><br><span class="line">    let bv = yield b(av);</span><br><span class="line">    let cv = yield c(bv);</span><br><span class="line">    return cv</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个说明了传参和返回值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var o = g(&quot;haha&quot;) //s = haha</span><br><span class="line">o.next() //不用传参</span><br><span class="line">o.next(&quot;h&quot;) //av = h</span><br><span class="line">o.next(&quot;hh&quot;) //bv = hh</span><br></pre></td></tr></table></figure>
+
+<p>Generator.throw 可以在外部抛出错误，Generator 内部捕获错误<br>Generator.return 可以直接将 iterable 指针指向最后一个<br>yield* 表达式可以调用另外的表达式或者方法<br>this 可以在 prototype 中设置，但是不能在 function 中使用 this, 也不能 new</p>
+<p><code>yield</code> 最牛逼的地方在于可以暂停，因此他可以有非常多扫操作</p>
+<ol>
+<li>状态机</li>
+<li>异步操作同步进行</li>
+<li>以iterable接口输出</li>
+<li>当作一种数据结构</li>
+<li>流程管理之类的事情</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function get(url) &#123; ... &#125; //异步获取数据 promise</span><br><span class="line"></span><br><span class="line">function* a(urls) &#123;</span><br><span class="line">	for(let i=0; i&lt;urls.length;i++) &#123;</span><br><span class="line">		let result = yield get(url);</span><br><span class="line">		console.log(result);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个result 可以做挺多事情的，实现了一个看起来同步的操作。</p>
+<h3 id="link"><a href="#link" class="headerlink" title="link"></a>link</h3><p><a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/number">https://es6.ruanyifeng.com/#docs/number</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/467585782">https://zhuanlan.zhihu.com/p/467585782</a></p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-03</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/web/'>
+                            web
+                        </a>
+                    
+                        <a href='/tblog/tags/javascript/'>
+                            javascript
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/07/03/closures_and_scopes/'>必包和作用域</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/07/03/async_code/">javascript 异步编程有哪些方式？</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

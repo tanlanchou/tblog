@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="深拷贝方法优缺点总结" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    深拷贝方法优缺点总结
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.2k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：5分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E6%B7%B1%E5%BA%A6%E6%8B%B7%E8%B4%9D"><span class="post-toc-text">深度拷贝</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#JSON-stringify"><span class="post-toc-text">JSON.stringify</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#clonedeep"><span class="post-toc-text">_.clonedeep</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E8%87%AA%E5%B7%B1%E5%86%99%E4%B8%80%E4%B8%AA-deepClone"><span class="post-toc-text">自己写一个 deepClone</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%96%B0%E6%96%B9%E5%BC%8F%EF%BC%8CstructuredClone"><span class="post-toc-text">新方式，structuredClone</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="post-toc-text">深拷贝的应用场景</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%A6%82%E4%BD%95%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="post-toc-text">如何浅拷贝</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <h1 id="深度拷贝"><a href="#深度拷贝" class="headerlink" title="深度拷贝"></a>深度拷贝</h1><p>一般来说，如果需要深度拷贝，网上会推荐三种方式。</p>
+<ol>
+<li>JSON.stringify(obj)</li>
+<li>_.cloneDeep(value)</li>
+<li>自己写深度遍历</li>
+</ol>
+<h3 id="JSON-stringify"><a href="#JSON-stringify" class="headerlink" title="JSON.stringify"></a>JSON.stringify</h3><blockquote>
+<p>首先，将要被序列化的对象（称为目标对象）传递给函数。JSON.stringify()<br>JSON.stringify()函数检查目标对象的数据类型。 如果目标对象是一个简单类型（例如字符串、数字、布尔值、null、undefined），则它会直接返回该值的JSON表示。<br>如果目标对象是一个数组，则会递归地调用自身，对每个数组元素进行序列化，并将结果拼接成一个JSON数组。JSON.stringify()<br>如果目标对象是一个对象，则会递归地调用自身，对每个对象属性进行序列化，并将结果拼接成一个JSON对象。JSON.stringify()<br>在序列化对象属性时，会跳过属性值为函数或undefined的属性，并在其他情况下将属性值转换为JSON格式的字符串。JSON.stringify()<br>最后，返回一个JSON格式的字符串表示整个目标对象。JSON.stringify()</p>
+<p>需要注意的是，在某些情况下，会跳过一些属性。 例如，当对象包含循环引用时，会将这些引用跳过，以避免无限递归。 此外，对于某些不支持的数据类型（例如日期对象），可能会将它们转换为null或空字符串。</p>
+</blockquote>
+<p>他的主要问题其实不是问题，主要是错误的应用方式，他本身就是为了 json &#x3D;&gt; string.</p>
+<p>所以当你使用他的时候</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj))</span><br></pre></td></tr></table></figure>
+
+<p>会发现以下问题</p>
+<ol>
+<li>Date() 他直接给你 toString() 了。</li>
+<li>他不支持函数对象</li>
+<li>他不支持 Map,Set,Error,RegExp，Symbol 等等.</li>
+<li>不支持循环引用</li>
+</ol>
+<p>不支持循环引用的问题 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123;</span><br><span class="line">    <span class="attr">a</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">b</span>: <span class="literal">null</span></span><br><span class="line">&#125;</span><br><span class="line">obj.<span class="property">b</span> = obj;</span><br></pre></td></tr></table></figure>
+
+<p>这个时候就会报错。</p>
+<h3 id="clonedeep"><a href="#clonedeep" class="headerlink" title="_.clonedeep"></a>_.clonedeep</h3><p>clonedeep 没有任何问题，问题是需要引入 <code>lodash</code>.</p>
+<p>简单看了一下他的源码</p>
+<p><strong>.internal&#x2F;baseClone.js</strong></p>
+<p>大概是这个递归的思路来的</p>
+<h3 id="自己写一个-deepClone"><a href="#自己写一个-deepClone" class="headerlink" title="自己写一个 deepClone"></a>自己写一个 deepClone</h3><p>本质上就是一个递归，我写一个伪代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> argsTag = <span class="string">&#x27;[object Arguments]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> arrayTag = <span class="string">&#x27;[object Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> boolTag = <span class="string">&#x27;[object Boolean]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> dateTag = <span class="string">&#x27;[object Date]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> errorTag = <span class="string">&#x27;[object Error]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> mapTag = <span class="string">&#x27;[object Map]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> numberTag = <span class="string">&#x27;[object Number]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> objectTag = <span class="string">&#x27;[object Object]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> regexpTag = <span class="string">&#x27;[object RegExp]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> setTag = <span class="string">&#x27;[object Set]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> stringTag = <span class="string">&#x27;[object String]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> symbolTag = <span class="string">&#x27;[object Symbol]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> weakMapTag = <span class="string">&#x27;[object WeakMap]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> arrayBufferTag = <span class="string">&#x27;[object ArrayBuffer]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> dataViewTag = <span class="string">&#x27;[object DataView]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> float32Tag = <span class="string">&#x27;[object Float32Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> float64Tag = <span class="string">&#x27;[object Float64Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> int8Tag = <span class="string">&#x27;[object Int8Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> int16Tag = <span class="string">&#x27;[object Int16Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> int32Tag = <span class="string">&#x27;[object Int32Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> uint8Tag = <span class="string">&#x27;[object Uint8Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> uint8ClampedTag = <span class="string">&#x27;[object Uint8ClampedArray]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> uint16Tag = <span class="string">&#x27;[object Uint16Array]&#x27;</span></span><br><span class="line"><span class="keyword">const</span> uint32Tag = <span class="string">&#x27;[object Uint32Array]&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">deepClone</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断类型，如果 typeof 不是 object，直接返回</span></span><br><span class="line">    <span class="comment">//判断类型</span></span><br><span class="line">    <span class="comment">//你需要把每一个类型列出来单独处理，如同上图的tag</span></span><br><span class="line">    <span class="comment">//基础类型 new String(), new Date() 之类的，使用取出原始值，来创建新的对象，并且赋值</span></span><br><span class="line">    <span class="comment">//如果是Array, Map, Set ... 之类的的集合，字典，数组，遍历循环递归。</span></span><br><span class="line">    <span class="comment">//最后给出一个结果</span></span><br><span class="line">    <span class="comment">//return reuslt</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="新方式，structuredClone"><a href="#新方式，structuredClone" class="headerlink" title="新方式，structuredClone"></a>新方式，structuredClone</h3><p>解决了大部分问题。</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/structuredClone">https://developer.mozilla.org/en-US/docs/Web/API/structuredClone</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> calendarEvent = &#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="string">&quot;Builder.io Conf&quot;</span>,</span><br><span class="line">  <span class="attr">date</span>: <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="number">123</span>),</span><br><span class="line">  <span class="attr">attendees</span>: [<span class="string">&quot;Steve&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> copied = <span class="title function_">structuredClone</span>(calendarEvent)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>克隆无限嵌套的对象和数组<br>克隆循环引用<br>克隆各种 JavaScript 类型，例如 、 、 等等DateSetMapErrorRegExpArrayBufferBlobFileImageData<br>传输任何可转移对象</p>
+</blockquote>
+<p>但是他也有问题</p>
+<p>首先他无法克隆 <code>function</code></p>
+<blockquote>
+<p>Uncaught DOMException: Failed to execute ‘structuredClone’ on ‘Window’: function() { console.log(1) } could not be cloned.</p>
+</blockquote>
+<p>而且在某些情况下他会直接跳过 <code>function</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyClass</span> &#123; </span><br><span class="line">  foo = <span class="string">&#x27;bar&#x27;</span> </span><br><span class="line">  <span class="title function_">myMethod</span>(<span class="params"></span>) &#123; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">foo</span>) &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> myClass = <span class="keyword">new</span> <span class="title class_">MyClass</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> cloned = <span class="title function_">structuredClone</span>(myClass)</span><br><span class="line">cloned.<span class="property">myMethod</span> === <span class="literal">undefined</span>; <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>这个例子当中，还有另一个问题</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cloned <span class="keyword">instanceof</span> <span class="title class_">MyClass</span> <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+
+<p>也就是说他不会随着原型链像上查找，只是遍历属性。</p>
+<p>还会存在一个问题，就是 <code>getter &amp; setter</code>. 他会跳过，你把他理解为 fn 就行了。</p>
+<p>也就是说，这个单纯的是给你深度克隆数据的方法，如果你要克隆一个类，那是不行的。</p>
+<p><a target="_blank" rel="noopener" href="https://caniuse.com/?search=structuredClone">https://caniuse.com/?search=structuredClone</a></p>
+<p>浏览器支持情况, nodejs中至少我目前的 v16.18 是不支持的。</p>
+<h3 id="深拷贝的应用场景"><a href="#深拷贝的应用场景" class="headerlink" title="深拷贝的应用场景"></a>深拷贝的应用场景</h3><p>其实深拷贝还是特殊场景的特殊应用，随意使用可能导致问题。</p>
+<p>因为持续的遍历需要考虑有多深的问题，还需要考虑是否要遍历prototype问题，还需要解决一些数据就是有问题的情况。</p>
+<p>所以还是要剧情情况具体分析。</p>
+<h3 id="如何浅拷贝"><a href="#如何浅拷贝" class="headerlink" title="如何浅拷贝"></a>如何浅拷贝</h3><p>都说道这里了，那么如何浅拷贝</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o = &#123;...x&#125;</span><br><span class="line"><span class="keyword">let</span> o = x</span><br><span class="line"><span class="keyword">let</span> o = <span class="title class_">Object</span>.<span class="title function_">assign</span>(&#123;&#125;, x);</span><br><span class="line"><span class="keyword">let</span> o = <span class="title class_">Object</span>.<span class="title function_">create</span>(x)</span><br></pre></td></tr></table></figure>
+
+<p>等等..</p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-03</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/web/'>
+                            web
+                        </a>
+                    
+                        <a href='/tblog/tags/javascript/'>
+                            javascript
+                        </a>
+                    
+                        <a href='/tblog/tags/%E6%B7%B1%E6%8B%B7%E8%B4%9D/'>
+                            深拷贝
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/07/03/eventLoop/'>浏览器事件循环</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/07/03/closures_and_scopes/">必包和作用域</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

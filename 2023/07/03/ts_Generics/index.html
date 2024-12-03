@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="泛型" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    泛型
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：2.2k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：10分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-Generics-%E6%B3%9B%E5%9E%8B"><span class="post-toc-text">01. Generics 泛型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E7%BA%A6%E6%9D%9F"><span class="post-toc-text">02. 约束</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-keyof"><span class="post-toc-text">03. keyof</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-typeof-amp-ReturnType"><span class="post-toc-text">04. typeof &amp; ReturnType</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-Indexed-Access-Types-%E7%B4%A2%E5%BC%95%E8%AE%BF%E9%97%AE%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">05. Indexed Access Types 索引访问类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#06-%E6%9D%A1%E4%BB%B6%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">06. 条件类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#07-Mapped-Types-%E6%98%A0%E5%B0%84%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">07. Mapped Types 映射类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#08-Exclude-amp-Extract"><span class="post-toc-text">08. Exclude &amp; Extract</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#09-Omit-amp-Pick"><span class="post-toc-text">09. Omit &amp; Pick</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-Partial"><span class="post-toc-text">10. Partial</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-Record"><span class="post-toc-text">11. Record</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-%E6%80%BB%E7%BB%93"><span class="post-toc-text">12. 总结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-link"><span class="post-toc-text">13. link</span></a></li></ol>
+            
+        
+        <p>官网这一章从最开始的泛型基本语法讲起，然后通过 keyof， typeof，ReturonType 等方式来类型，更方便的创建类型，只是后面玩的太花了，我确实想不到这么多玩法有什么应用类型，可能后续 typescript 用的多了以后再来复习吧。</p>
+<h3 id="01-Generics-泛型"><a href="#01-Generics-泛型" class="headerlink" title="01. Generics 泛型"></a>01. Generics 泛型</h3><p>泛型最基础的就是 function or class 的形变，主要用于相同逻辑，相同的接口的抽象。</p>
+<hr>
+<blockquote>
+<p>在像 C# 和 Java 这样的语言中，可以使用泛型来创建可重用的组件，一个组件可以支持多种类型的数据。 这样用户就可以以自己的数据类型来使用组件。</p>
+</blockquote>
+<p>语法很简单，就是增加一个任意类型的 <code>T</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function log&lt;T&gt;(arg:T) ****:T &#123; return arg &#125;</span><br><span class="line">class log&lt;T extends Ilogs&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>引入一个泛型，在声明的时候可以传入对应想要的类型。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">log&lt;string&gt;(&quot;&quot;);</span><br><span class="line">new log&lt;testLog&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>这个字是什么不重要，主要是表达这个泛型的意思</p>
+<ol>
+<li>T &#x3D; Type</li>
+<li>K &#x3D; Key</li>
+<li>V &#x3D; Value</li>
+<li>E &#x3D; Element</li>
+</ol>
+<p>理论上你用 <code>B</code> 也可以，重要的是他的意义，你需要传递什么，用什么为基础来重用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">function log&lt;T&gt;(arg: T):T &#123; return arg &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>他的核心就在于传递类型，以及你需要 <code>function</code> 里面写什么代码进行复用。</p>
+<p>这就是最基础的语法，后续可以有很多变种，这种是最基础的用法</p>
+<p>interface, type 都可以使用泛型。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type a&lt;T&gt; = T &amp; string;</span><br><span class="line">interface ITree&lt;T&gt; &#123;</span><br><span class="line">    value: Object</span><br><span class="line">    parent:T</span><br><span class="line">    child: T[]</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<p>那么就可以和泛型类进行联动</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class tree&lt;T&gt; extends ITree&lt;T&gt; &#123;</span><br><span class="line">    root: T;</span><br><span class="line">    constructor() &#123;&#125;</span><br><span class="line">    create: function(tree: T[]) &#123;</span><br><span class="line">        /...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;  </span><br></pre></td></tr></table></figure>
+
+<p>创建一个跟树相关的泛型类，<code>ITree</code> 就可以一个基础泛型树型接口。</p>
+<h3 id="02-约束"><a href="#02-约束" class="headerlink" title="02. 约束"></a>02. 约束</h3><p>从开头到现在，泛型是一个任意类型，自然可以增加约束。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function A&lt;T extends ITree&gt;(arg: T): void &#123;</span><br><span class="line">    //...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里的 extends 你其实可以理解为一种继承，但是只能引用继承到的接口或者类型，换一种说法就是一种约束。</p>
+<p>好处就是，可以从任意类型到指定一个范围，比如刚才约束为 <code>ITree</code> 的例子，就可以确定 <code>arg</code> 类型一定包含 <code>ITree</code> 的接口，于是可以调用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function A&lt;T extends string&gt;(arg: T) &#123;</span><br><span class="line">    return arg.length;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="03-keyof"><a href="#03-keyof" class="headerlink" title="03. keyof"></a>03. keyof</h3><p>其实上代码最好理解这个东西的用法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">interface User &#123;</span><br><span class="line">    name: string,</span><br><span class="line">    age: number,</span><br><span class="line">    sex: number</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type K1 = keyof User;</span><br></pre></td></tr></table></figure>
+<p>这个 <code>keyof User</code> 其实相当于 <code>type K1 = name | age | sex</code>, 并且值是 <code>key</code> 的值。</p>
+<p>他有什么用呢？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let user: User = &#123; ... &#125;;</span><br><span class="line">function getUserItem&lt;T extends keyof User&gt;(arg: T) &#123;</span><br><span class="line">    return user[arg];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function getUserItem(arg) &#123;</span><br><span class="line">    if(arg === &quot;name&quot; || arg === &quot;age&quot; || arg === &quot;sex&quot;) return user[arg];</span><br><span class="line">    else return ...]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这两个就是差别。</p>
+<h3 id="04-typeof-amp-ReturnType"><a href="#04-typeof-amp-ReturnType" class="headerlink" title="04. typeof &amp; ReturnType"></a>04. typeof &amp; ReturnType</h3><p>一般来说 <code>typeof</code> 就是返回原始类型的, 但是在 typescript 里有不一样的用处</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let O = &#123;</span><br><span class="line">  a: 1,</span><br><span class="line">  b: 2,</span><br><span class="line">  c: 3,</span><br><span class="line">&#125;;</span><br><span class="line">type A3 = typeof O; // &#123; a:1, b:2, c:3 &#125;</span><br><span class="line">type A4 = typeof O[&quot;a&quot;]; //string</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，如果是基础类型，直接返回。</p>
+<p>如果是复杂类型，直接返回类型本身</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">F</span>(<span class="params"></span>):<span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">F1</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;tommy&quot;</span>,</span><br><span class="line">        <span class="attr">age</span>: <span class="string">&quot;99&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">T3</span> = <span class="keyword">typeof</span> F;</span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">T4</span> = <span class="keyword">typeof</span> <span class="variable constant_">F1</span>;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/play#code/GYVwdgxgLglg9mABAMQBQEoBcBnKAnGMAc0QG8AoRKxPAUyhDyQCJmBucgX3PNElgQoAjBjKVqdBkzHVZiMAEMAtrUyJmUOEqUBPZgBpxcxAqKr1ATgvMjibt3JQdAB1qIAKgGZEAXkRPXOGAUDgC3dwAWX38XWiDhNiA">Playground Link</a></p>
+<p>那么如果需要获取返回值的类型如何解决？</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">F</span>(<span class="params"></span>):<span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">F1</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&quot;tommy&quot;</span>,</span><br><span class="line">        <span class="attr">age</span>: <span class="string">&quot;99&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">T5</span> = <span class="title class_">ReturnType</span>&lt;<span class="keyword">typeof</span> F&gt;;</span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">T6</span> = <span class="title class_">ReturnType</span>&lt;<span class="keyword">typeof</span> <span class="variable constant_">F1</span>&gt;;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/play?ssl=13&ssc=33&pln=12&pc=32#code/GYVwdgxgLglg9mABAMQBQEoBcBnKAnGMAc0QG8AoRKxPAUyhDyQCJmBucgX3PNElgQoAjBjKVqdBkzHVZiMAEMAtrUyJmUOEqUBPZgBpxcxAqKr1ATgvMjibjyg6ADrUQAVAKyIAvIgBK9Ixgbs60ADyOLnDAKAB8HJGubgBsPv6BTCEuEaHRwvFAA">Playground Link</a></p>
+<h3 id="05-Indexed-Access-Types-索引访问类型"><a href="#05-Indexed-Access-Types-索引访问类型" class="headerlink" title="05. Indexed Access Types 索引访问类型"></a>05. Indexed Access Types 索引访问类型</h3><figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">ttype <span class="title class_">Person</span> = &#123; <span class="attr">age</span>: <span class="built_in">number</span>; <span class="attr">name</span>: <span class="built_in">string</span>; <span class="attr">alive</span>: <span class="built_in">boolean</span> &#125;;</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Age</span> = <span class="title class_">Person</span>[<span class="string">&quot;age&quot;</span>];</span><br><span class="line"><span class="comment">//   ^?</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// ---cut---</span></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">I1</span> = <span class="title class_">Person</span>[<span class="string">&quot;age&quot;</span> | <span class="string">&quot;name&quot;</span>];</span><br><span class="line"><span class="comment">//   ^?</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">I2</span> = <span class="title class_">Person</span>[keyof <span class="title class_">Person</span>];</span><br><span class="line"><span class="comment">//   ^?</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">AliveOrName</span> = <span class="string">&quot;alive&quot;</span> | <span class="string">&quot;name&quot;</span>;</span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">I3</span> = <span class="title class_">Person</span>[<span class="title class_">AliveOrName</span>];</span><br><span class="line"><span class="comment">//   ^?</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title class_">MyArray</span> = [</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">&quot;Alice&quot;</span>, <span class="attr">age</span>: <span class="number">15</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">&quot;Bob&quot;</span>, <span class="attr">age</span>: <span class="number">23</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">name</span>: <span class="string">&quot;Eve&quot;</span>, <span class="attr">age</span>: <span class="number">38</span> &#125;,</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Person</span> = <span class="keyword">typeof</span> <span class="title class_">MyArray</span>[<span class="built_in">number</span>];</span><br><span class="line"><span class="comment">//   ^?</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Age</span> = <span class="keyword">typeof</span> <span class="title class_">MyArray</span>[<span class="built_in">number</span>][<span class="string">&quot;age&quot;</span>];</span><br><span class="line"><span class="comment">//   ^?</span></span><br><span class="line"><span class="comment">// Or</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Age2</span> = <span class="title class_">Person</span>[<span class="string">&quot;age&quot;</span>];</span><br><span class="line"><span class="comment">//   ^?</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> key = <span class="string">&quot;age&quot;</span>;</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Age</span> = <span class="title class_">Person</span>[key];</span><br><span class="line"><span class="comment">//   ^?</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/play#code/C4TwDgpgBAChBOBnA9gOygXigbygQwHMIAuKVAVwFsAjBAbjL0pKkWHgEtUCG8AbDgDcW1ZMj4Q86AL50AUKEhQAgkUywEKVAG0ARIQi6AuvID0pqJYB6Afjn3zUALQuAxuWAunC8NACSAIzqcEhoega6UAA+ULqoTIYmco7Wdj5KfgBMwZphANYQIMgAZhqhqEkpULb2itDKAsIA8vAAcgnq+o2G0bHxzLrydVB+AMw55doNQhAt7cyVFqn2rmhsUACyIMrw8Hgg6tpylrj9LLrTroYANPhEpAEArFDS18c4jMykugBCyNS6W4GUiZcavd6nBLfACiwkBdxYowAHC83kl0tAQlp1HUSpttrt9toKDQEItLNU7MNVNAsLjSlsdnsQMSqLR4EZwkRjGYlpTkhYWhiVERslgsWF9NzycthQUDlgpYYhr4RbSylptPKZZSgA">Playground Link</a></p>
+<p>根据索引访问 <code>type</code></p>
+<h3 id="06-条件类型"><a href="#06-条件类型" class="headerlink" title="06. 条件类型"></a>06. 条件类型</h3><p>有意思的 <code>extends</code> 用法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">class a extends b &#123; &#125;</span><br><span class="line">class a&lt;T extends b&gt; &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然而这里却是一个判断</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">  <span class="title function_">live</span>(): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">Dog</span> <span class="keyword">extends</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">  <span class="title function_">woof</span>(): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Example1</span> = <span class="title class_">Dog</span> <span class="keyword">extends</span> <span class="title class_">Animal</span> ? <span class="built_in">number</span> : <span class="built_in">string</span>;</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Example2</span> = <span class="title class_">RegExp</span> <span class="keyword">extends</span> <span class="title class_">Animal</span> ? <span class="built_in">number</span> : <span class="built_in">string</span>;</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/play#code/JYOwLgpgTgZghgYwgAgIImAWzgG2QbwChlkdgA3CACgEoAuZcge2ABMBuQgX0NElkQoAIkwDmyCAA9IIVgGc0GbHiIkA7kyYxaDZm049CYAJ4AHFAFFJcTKZwQAjMgC8yEeKkz5irLmQB+ZBAAV0wAI2hkBjkwKFBRTgB6RJJkAD1-QiMzS2tbewAmF2QAJQhRK1MJaQhZBXRfPECQ8Mjo2PiklJIMoA">Playground Link</a></p>
+<p>判断继承自哪里</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SomeType extends OtherType ? TrueType : FalseType;</span><br></pre></td></tr></table></figure>
+
+<h3 id="07-Mapped-Types-映射类型"><a href="#07-Mapped-Types-映射类型" class="headerlink" title="07. Mapped Types 映射类型"></a>07. Mapped Types 映射类型</h3><p>这里又引入和很多概念</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type OptionsFlags&lt;Type&gt; = &#123;</span><br><span class="line">  [Property in keyof Type]: boolean;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><code>Property</code> 是属性，这里写做 <code>Property</code>, 使用 ABCDEFG，或者其他单词都可以。</p>
+<p><code>in</code> 表示 <code>Property</code> 在 <code>keyof Type</code> 里</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">type FeatureFlags = &#123;</span><br><span class="line">  darkMode: () =&gt; void;</span><br><span class="line">  newUserProfile: () =&gt; void;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line">type FeatureOptions = OptionsFlags&lt;FeatureFlags&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>那么根据官方的例子，<code>[Property in keyof FeatureFlags]</code>, 也就是说 <code>FeatureFlags = darkMode | newUserProfile</code></p>
+<p>这就是映射，将 <code>FeatureFlags</code> 映射到一个新类型。</p>
+<p><strong>映射修饰符</strong></p>
+<blockquote>
+<p>可以通过以 或 为前缀来删除或添加这些修饰符。如果您不添加前缀，则假定。-++</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="title class_">CreateMutable</span>&lt;<span class="title class_">Type</span>&gt; = &#123;</span><br><span class="line">  -<span class="keyword">readonly</span> [<span class="title class_">Property</span> <span class="keyword">in</span> keyof <span class="title class_">Type</span>]: <span class="title class_">Type</span>[<span class="title class_">Property</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">CreateMutable1</span>&lt;<span class="title class_">Type</span>&gt; = &#123;</span><br><span class="line">  +<span class="keyword">readonly</span> [P <span class="keyword">in</span> keyof <span class="title class_">Type</span>]: P;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">LockedAccount</span> = &#123;</span><br><span class="line">  <span class="keyword">readonly</span> <span class="attr">id</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">name</span>: <span class="built_in">string</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">T10</span> = <span class="title class_">CreateMutable1</span>&lt;<span class="title class_">LockedAccount</span>&gt;;</span><br><span class="line"><span class="keyword">type</span> <span class="variable constant_">T11</span> = <span class="title class_">CreateMutable</span>&lt;<span class="title class_">LockedAccount</span>&gt;;</span><br></pre></td></tr></table></figure>
+
+<p>这样 <code>+-</code> 会导致不一样的结果。</p>
+<p><code>T11</code> 会取消所有的 <code>readonly</code></p>
+<p><code>T10</code> 所有都会增加 <code>readonly</code></p>
+<p>作用于修饰符，那么所有修饰符都会受到这个符号限制</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7031450398959337486">TypeScript 中的修饰符</a></p>
+<p><strong>Key Remapping via as</strong></p>
+<p>用 as 重新映射 key</p>
+<blockquote>
+<p>In TypeScript 4.1 and onwards</p>
+</blockquote>
+<p>as 其实是一种断言。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let A: any = 18</span><br><span class="line">let B = A as string;</span><br><span class="line"></span><br><span class="line">let C:number = 18;</span><br><span class="line">let D:string = D as unknow as string;</span><br><span class="line"></span><br><span class="line">let F:string | number = 18;</span><br><span class="line">let E:string = F as string;</span><br></pre></td></tr></table></figure>
+
+<p>在类型中的应用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">type Getters&lt;T&gt; = &#123;</span><br><span class="line">  [P in keyof T as `get$&#123;Capitalize&lt;string &amp; P&gt;&#125;`]: () =&gt; T[P]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Person &#123;</span><br><span class="line">  name: string;</span><br><span class="line">  age: number;</span><br><span class="line">  location: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type LazyPerson = Getters&lt;Person&gt;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="08-Exclude-amp-Extract"><a href="#08-Exclude-amp-Extract" class="headerlink" title="08. Exclude &amp; Extract"></a>08. Exclude &amp; Extract</h3><p>Exclude</p>
+<blockquote>
+<p>type Exclude&lt;T, U&gt; &#x3D; T extends U ? never : T</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">type Fruits = &quot;apple&quot; | &quot;banana&quot; | &#x27;peach&#x27; | &#x27;orange&#x27;;</span><br><span class="line">type DislikeFruits = &quot;apple&quot; | &quot;banana&quot;;</span><br><span class="line">type FloveFruits = Exclude&lt;Fruits, DislikeFruits&gt; // 等效于 type FloveFruits = &quot;peach&quot; | &quot;orange&quot;</span><br><span class="line"></span><br><span class="line">// 实际上 Exclude 进行的比较</span><br><span class="line">type FloveFruits =</span><br><span class="line">  | (&quot;apple&quot; extends &quot;apple&quot; | &quot;banana&quot; ? never : &quot;apple&quot;)</span><br><span class="line">  | (&quot;banana&quot; extends &quot;apple&quot; | &quot;banana&quot; ? never : &quot;banana&quot;)</span><br><span class="line">  | (&quot;peach&quot; extends &quot;apple&quot; | &quot;banana&quot; ? never : &quot;peach&quot;)</span><br><span class="line">  | (&quot;orange&quot; extends &quot;apple&quot; | &quot;banana&quot; ? never : &quot;orange&quot;)</span><br><span class="line">// 所以最后的结果</span><br><span class="line">type FloveFruits = &quot;peach&quot; | &quot;orange&quot;</span><br></pre></td></tr></table></figure>
+
+<p>例子来源 <a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/2/generics.html">typescript 之 Exclude 和 Extract</a></p>
+<p>例子说明了 <code>Exclude</code> 每个字段和整个DislikeFruits 判断继承，如果 true : never : <code>Exclude</code> 字段.</p>
+<p><code>Extract</code> 恰好和 <code>Exclude</code> 相反</p>
+<blockquote>
+<p>type Extract&lt;T, U&gt; &#x3D; T extends U ? T : never</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type Fruits = &quot;apple&quot; | &quot;banana&quot;  | &#x27;peach&#x27; | &#x27;orange&#x27;;</span><br><span class="line">type DislikeFruits = &quot;apple&quot; | &quot;banana&quot;;</span><br><span class="line">type FloveFruits = Extract&lt;Fruits, DislikeFruits&gt; // 等效于 type FloveFruits = &quot;apple&quot; | &quot;banana&quot;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是现在不管是 <code>Exclude</code> 还是 <code>Extract</code> 都是使用联合类型作为参数，如果对象或者接口，就是整个 <code>extends</code>.</p>
+<h3 id="09-Omit-amp-Pick"><a href="#09-Omit-amp-Pick" class="headerlink" title="09. Omit &amp; Pick"></a>09. Omit &amp; Pick</h3><blockquote>
+<p>type Pick&lt;T, K extends keyof T&gt; &#x3D; {<br>    [key in k]: T[key]<br>}</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">interface TState &#123;</span><br><span class="line">	name: string;</span><br><span class="line">	age: number;</span><br><span class="line">	like: string[];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">type T28 = Pick&lt;TState, &quot;name&quot; | &quot;age&quot;&gt;;</span><br><span class="line"></span><br><span class="line">//结果</span><br><span class="line">type T28 = &#123;</span><br><span class="line">    name: string;</span><br><span class="line">    age: number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>type Omit&lt;T, K extends keyof any&gt; &#x3D; Pick&lt;T, Exclude&lt;keyof T, K&gt;&gt;; </p>
+</blockquote>
+<p>利用 <code>Pick</code> 来创建 Omit, Omit 是排除。</p>
+<p>两者互为补充，如果排除少量的 Key 使用 Omit, 排除大量的使用 <code>Pick</code></p>
+<h3 id="10-Partial"><a href="#10-Partial" class="headerlink" title="10. Partial"></a>10. Partial</h3><blockquote>
+<p>Partial 的作用就是将某个类型里的属性全部变为可选项 </p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type Partial&lt;T&gt; = &#123;</span><br><span class="line">    [P in keyof T]?: T[P];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="11-Record"><a href="#11-Record" class="headerlink" title="11. Record"></a>11. Record</h3><blockquote>
+<p>Record&lt;K extends keyof any, T&gt; 的作用是将 K 中所有的属性的值转化为 T 类型。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type Record&lt;K extends keyof any, T&gt; = &#123;</span><br><span class="line">    [P in K]: T;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="12-总结"><a href="#12-总结" class="headerlink" title="12. 总结"></a>12. 总结</h3><ol>
+<li>泛型</li>
+<li>约束: extends 来限制 T 的类型或者范围</li>
+<li>keyof: 获取类型的所有Key</li>
+<li>typeof &amp; ReturnType 通过 typeof 返回全部对象类型，ReturnType和type配合获取返回值的类型</li>
+<li>Indexed Access Types 通过索引获取type</li>
+<li>条件类型 通过类似三元表达式的方式 a extends T ? “string” : “number”</li>
+<li>Mapped Types: Property 关键字，in，+- 修饰符</li>
+<li>Exclude &amp; Extract: Exclude&lt;T, U&gt; T extends U ? never : T; T &#x3D; T的每一项，Extract 返回值相反</li>
+<li>Omit &amp; Pick Pick选择，Omit排除</li>
+<li>Partial 所有都类型转换为 ?</li>
+<li>Record 所有类型转换为 T</li>
+</ol>
+<p>泛型的基础概念是什么，传入动态类型，让代码可以最高程度的复用，为了帮助复用造就了这么多方法。</p>
+<h3 id="13-link"><a href="#13-link" class="headerlink" title="13. link"></a>13. link</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/2/types-from-types.html">Creating Types from Types</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/2/generics.html">泛型</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.51cto.com/article/711374.html">TS typeof 操作符原来有这五种用途！</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904184894980104#heading-15">一文读懂 TypeScript 泛型及应用（ 7.8K字）</a></li>
+<li><a target="_blank" rel="noopener" href="https://bobbyhadz.com/blog/typescript-conversion-of-type-to-type-may-be-mistake">Conversion of type ‘X’ to type ‘Y’ may be a mistake in TS</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/pfourfire/article/details/125301619">TypeScript - 理清Omit与Exclude的关系与区别</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_28992047/article/details/106879772">学习TypeScript 之 Pick与泛型约束</a></li>
+</ol>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-03</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/typescript/'>
+                            typescript
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/07/03/ts_baseTypescript/'>typescript 基础点</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/07/03/ts_triple-slash-directives/">三斜杠指令</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

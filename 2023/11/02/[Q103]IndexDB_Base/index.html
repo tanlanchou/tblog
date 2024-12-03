@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="IndexDB API" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    IndexDB API
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：3k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：12分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E4%BB%80%E4%B9%88%E6%98%AFIndexDB"><span class="post-toc-text">01. 什么是IndexDB?</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%94%AF%E6%8C%81%E9%97%AE%E9%A2%98"><span class="post-toc-text">02. 浏览器支持问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E5%A4%A7%E5%B0%8F"><span class="post-toc-text">03. 大小</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E6%96%87%E6%A1%A3"><span class="post-toc-text">04. 文档</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-Indexdb-amp-IDBFactory"><span class="post-toc-text">05. Indexdb &amp; IDBFactory</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-IDBFactory"><span class="post-toc-text">05. IDBFactory</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#06-IDBDatabase-transaction-method"><span class="post-toc-text">06. IDBDatabase: transaction() method</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#07-IDBTransaction"><span class="post-toc-text">07. IDBTransaction</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#08-IDBObjectStore"><span class="post-toc-text">08. IDBObjectStore</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#09-%E6%80%BB%E7%BB%93"><span class="post-toc-text">09. 总结</span></a></li></ol>
+            
+        
+        <h3 id="01-什么是IndexDB"><a href="#01-什么是IndexDB" class="headerlink" title="01. 什么是IndexDB?"></a>01. 什么是IndexDB?</h3><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/IndexedDB_API">https://developer.mozilla.org/zh-CN/docs/Web/API/IndexedDB_API</a></p>
+<blockquote>
+<p>IndexedDB 是一个事务型数据库系统，类似于基于 SQL 的 RDBMS。然而，不像 RDBMS 使用固定列表，IndexedDB 是一个基于 JavaScript 的面向对象数据库。IndexedDB 允许你存储和检索用键索引的对象；可以存储结构化克隆算法支持的任何对象。你只需要指定数据库模式，打开与数据库的连接，然后检索和更新一系列事务。</p>
+</blockquote>
+<p>其实没得选, 如果要在浏览器存储大量东西,你只能选 IndexDB.</p>
+<p>他可以异步, 支持事务, 有索引, 可以跨域. 而且是 NoSql.</p>
+<p>还有就是他数据是结构化的, 说人话就是, 他理论上没有限制, 你可以存任何东西.</p>
+<h3 id="02-浏览器支持问题"><a href="#02-浏览器支持问题" class="headerlink" title="02. 浏览器支持问题"></a>02. 浏览器支持问题</h3><p><a target="_blank" rel="noopener" href="https://caniuse.com/?search=indexdb">https://caniuse.com/?search=indexdb</a></p>
+<p>理论上只要你不兼容 IE, 问题都不大, 如果要兼容IE, 需要考虑 IndexDB不同版本的写法兼容性问题</p>
+<h3 id="03-大小"><a href="#03-大小" class="headerlink" title="03. 大小"></a>03. 大小</h3><p>不同浏览器大小不同, 但是也不好测试.</p>
+<p>因为你需要看每个浏览器自己的公告, 并且你也不知道随着更新是否会有调整, 每个版本都可能不太一样.</p>
+<p>查了半天也没有谁去做了一个统计.</p>
+<p>也可以通过下面代码进行检测.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">navigator.<span class="property">storage</span>.<span class="title function_">estimate</span>().<span class="title function_">then</span>(<span class="keyword">function</span> (<span class="params">estimate</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> usedSpaceInMB = estimate.<span class="property">usage</span> / <span class="number">1024</span>;</span><br><span class="line">    <span class="keyword">const</span> totalSpaceInMB = estimate.<span class="property">quota</span> / <span class="number">1024</span>;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>只是这个代码也有问题</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/StorageManager/estimate">https://developer.mozilla.org/zh-CN/docs/Web/API/StorageManager/estimate</a></p>
+<blockquote>
+<p>安全上下文: 此项功能仅在一些支持的浏览器的安全上下文（HTTPS）中可用。</p>
+</blockquote>
+<p>测试的时候需要注意</p>
+<h3 id="04-文档"><a href="#04-文档" class="headerlink" title="04. 文档"></a>04. 文档</h3><p>首先推荐看文档</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/IndexedDB_API">https://developer.mozilla.org/zh-CN/docs/Web/API/IndexedDB_API</a></p>
+<p>这个比较复杂, 简单使用看阮一峰的也行</p>
+<p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2018/07/indexeddb.html">https://www.ruanyifeng.com/blog/2018/07/indexeddb.html</a></p>
+<p>弄懂, 简单使用是没问题了.</p>
+<h3 id="05-Indexdb-amp-IDBFactory"><a href="#05-Indexdb-amp-IDBFactory" class="headerlink" title="05. Indexdb &amp; IDBFactory"></a>05. Indexdb &amp; IDBFactory</h3><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/IDBFactory">https://developer.mozilla.org/zh-CN/docs/Web/API/IDBFactory</a></p>
+<p>IDBFactory 对象表示 IndexedDB 工厂。 它提供打开和关闭数据库的方法。</p>
+<p>也就是 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="property">indexedDB</span>.<span class="title function_">open</span>(name, version)</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">indexedDB</span>.<span class="title function_">deleteDatabase</span>(name)</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是, 如果 <code>open</code> 的时候, 数据库不存在, 会自动创建.</p>
+<p><code>open</code> 和 <code>deleteDatabase</code> 都会返回 <code>IDBOpenDBRequest</code></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/IDBOpenDBRequest">https://developer.mozilla.org/en-US/docs/Web/API/IDBOpenDBRequest</a></p>
+<p><code>IDBOpenDBRequest</code> 需要注意下面4个事件.</p>
+<ol>
+<li><code>blocked</code> <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/IDBOpenDBRequest">https://developer.mozilla.org/en-US/docs/Web/API/IDBOpenDBRequest</a></li>
+<li><code>upgradeneeded</code> <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/IDBOpenDBRequest/upgradeneeded_event">https://developer.mozilla.org/en-US/docs/Web/API/IDBOpenDBRequest/upgradeneeded_event</a></li>
+<li><code>error</code> <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest/error_event">https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest/error_event</a></li>
+<li><code>success</code> <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest/success_event">https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest/success_event</a></li>
+</ol>
+<p><code>blocked</code></p>
+<blockquote>
+<p>当一个网页或应用程序尝试打开一个已经被其他网页或应用程序打开并正在执行写入事务的数据库时，会触发 blocked 事件。</p>
+</blockquote>
+<p>所以这个事件的应用场景就需要考虑了, 我目前要写的场景是不需要这个事件的.</p>
+<p>如果有这个多网页使用 indexDB 的情况, 就需要考虑了.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">addEventListener</span>(<span class="string">&quot;blocked&quot;</span>, <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>upgradeneeded</code></p>
+<blockquote>
+<p>The upgradeneeded event is fired when an attempt was made to open a database with a version number higher than its current version. </p>
+</blockquote>
+<p>字面意思, 在尝试用一个更高版本版本号打开数据库的时候, 就会触发这个事件.</p>
+<p>其实还有一个情况, 就是首次打开的时候.</p>
+<h3 id="05-IDBFactory"><a href="#05-IDBFactory" class="headerlink" title="05. IDBFactory"></a>05. IDBFactory</h3><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase">https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase</a></p>
+<p>IDBDatabase 就是当你使用 open 数据库之后的返回值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">onsuccess = <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">    db = event.<span class="property">target</span>.<span class="property">result</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>他可以做什么？</p>
+<p>首先获取这个数据库的基本信息</p>
+<ol>
+<li>name 数据库名称</li>
+<li>version 数据库版本</li>
+<li>objectStoreNames 表名称合集</li>
+</ol>
+<p>其次，也就是最主要的</p>
+<ol>
+<li>close()</li>
+<li>createObjectStore()</li>
+<li>deleteObjectStore()</li>
+<li>transaction()</li>
+<li>versionchange</li>
+</ol>
+<p>这里主要说前三个，第四个后面继续看。</p>
+<p><code>close</code> 就是关闭数据库链接。在适当的时候关闭数据库，避免阻塞，内存过高等问题</p>
+<p><code>createObjectStore</code> 创建表</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/createObjectStore">https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/createObjectStore</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">createObjectStore</span>(name)</span><br><span class="line"><span class="title function_">createObjectStore</span>(name, options)</span><br></pre></td></tr></table></figure>
+
+<p>创建一下试一试</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> db = event.<span class="property">target</span>.<span class="property">result</span>;</span><br><span class="line"><span class="keyword">const</span> objectStore = db.<span class="title function_">createObjectStore</span>(<span class="string">&quot;user&quot;</span>, &#123;</span><br><span class="line">	<span class="attr">keyPath</span>: <span class="string">&quot;id&quot;</span>,</span><br><span class="line">	<span class="attr">autoIncrement</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">objectStore.<span class="title function_">add</span>(&#123; <span class="attr">name</span>: <span class="string">&quot;tommy&quot;</span>, <span class="attr">age</span>: <span class="string">&quot;18&quot;</span>, <span class="attr">sex</span>: <span class="number">1</span> &#125;);</span><br><span class="line">objectStore.<span class="title function_">add</span>(&#123; <span class="attr">name</span>: <span class="string">&quot;tommy1&quot;</span>, <span class="attr">age</span>: <span class="string">&quot;19&quot;</span>, <span class="attr">sex</span>: <span class="number">0</span> &#125;);</span><br><span class="line">objectStore.<span class="title function_">add</span>(&#123; <span class="attr">name</span>: <span class="string">&quot;tommy2&quot;</span>, <span class="attr">age</span>: <span class="string">&quot;20&quot;</span>, <span class="attr">sex</span>: <span class="number">1</span> &#125;);</span><br><span class="line"></span><br><span class="line">db.<span class="title function_">close</span>();</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，建议 <code>autoIncrement</code> 设置，不然你需要自己设置 <code>id</code>.</p>
+<p>其次，<code>createObjectStore</code> 只能在 <code>upgradeneeded</code> 阶段使用，不然会报错的.</p>
+<p>这样就创建了一个表，并且添加了3条数据。</p>
+<p><code>deleteObjectStore</code> 删除表</p>
+<p>最开始有点懵，因为删除也不能直接在 <code>onsuccess</code>, 会报错，如果想要在 <code>upgradeneeded</code> 使用，难道我不更改版本就不能删除吗？</p>
+<p>问了AI之后，给了一个方案</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 打开数据库并获取数据库连接</span></span><br><span class="line"><span class="keyword">var</span> request = indexedDB.<span class="title function_">open</span>(<span class="string">&quot;myDatabase&quot;</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">request.<span class="property">onsuccess</span> = <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> db = event.<span class="property">target</span>.<span class="property">result</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 执行版本更改事务</span></span><br><span class="line">    <span class="keyword">var</span> versionChange = db.<span class="title function_">setVersion</span>(<span class="number">2</span>); <span class="comment">// 使用setVersion来创建版本更改事务</span></span><br><span class="line"></span><br><span class="line">    versionChange.<span class="property">onsuccess</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="comment">// 在版本更改事务中删除 Object Store</span></span><br><span class="line">        <span class="keyword">if</span> (db.<span class="property">objectStoreNames</span>.<span class="title function_">contains</span>(<span class="string">&quot;myObjectStore&quot;</span>)) &#123;</span><br><span class="line">            db.<span class="title function_">deleteObjectStore</span>(<span class="string">&quot;myObjectStore&quot;</span>);</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Object Store &#x27;myObjectStore&#x27; deleted.&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Object Store &#x27;myObjectStore&#x27; not found.&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        versionChange = versionChange.<span class="property">transaction</span>;</span><br><span class="line">        versionChange.<span class="property">oncomplete</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Object Store deleted successfully.&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        versionChange.<span class="property">onerror</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&quot;Error deleting Object Store: &quot;</span> + versionChange.<span class="property">error</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>但是我在 MDN 中搜索的时候，没有发现这个方法，于是 google 了一下这不是标准方法。</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/9521689/getting-a-setversion-is-not-a-function-error-when-using-indexeddb">https://stackoverflow.com/questions/9521689/getting-a-setversion-is-not-a-function-error-when-using-indexeddb</a></p>
+<p>MDN 官方例子当中确实也是版本变更的时候才删除 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/deleteObjectStore">https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/deleteObjectStore</a></p>
+<p><code>versionchange</code></p>
+<blockquote>
+<p>The event is fired when a database structure change (upgradeneeded event send on an IDBOpenDBRequest or IDBFactory.deleteDatabase) was requested elsewhere (most probably in another window&#x2F;tab on the same computer). versionchange</p>
+</blockquote>
+<p>也就是说如果其他页面触发升级, 那么这个页面也会收到通知.</p>
+<h3 id="06-IDBDatabase-transaction-method"><a href="#06-IDBDatabase-transaction-method" class="headerlink" title="06. IDBDatabase: transaction() method"></a>06. IDBDatabase: transaction() method</h3><p>事务，他可以做什么？</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/transaction">https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/transaction</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">transaction</span>(storeNames)</span><br><span class="line"><span class="title function_">transaction</span>(storeNames, mode)</span><br><span class="line"><span class="title function_">transaction</span>(storeNames, mode, options)</span><br></pre></td></tr></table></figure>
+
+<p><code>mode</code></p>
+<ol>
+<li><code>readonly</code></li>
+<li><code>readwrite</code></li>
+<li><code>versionchange</code></li>
+</ol>
+<p>模式3种，1,2 是打开事务以后， 读写还是只读，这里需要说一下，理论上 <code>readwrite</code> 可以全覆盖 <code>readonly</code>. 但是别一直使用 <code>readwrite</code></p>
+<blockquote>
+<p>一次只能打开一个读写事务，它会锁定数据库，防止其他事务同时访问。<br>当有读写事务处于活动状态时，只读事务将被阻塞，直到读写事务完成。</p>
+</blockquote>
+<p>不管是性能上，还是阻塞上，如果只需要读取，都应该选取 <code>readonly</code>.</p>
+<p><code>versionchange</code> 是我看文档不明白的一个点，为什么需要这个模式？ 而且写测试代码没用</p>
+<blockquote>
+<p>这种类型的事务允许读取、修改和删除数据。也能够创建和删除Stores（数据表）和索引。这种类型的事务会在一个upgradeneeded事件被触发的时候自动创建，不能够手动创建。</p>
+</blockquote>
+<p>versionchange 可以执行数据库结构的升级、创建新的对象仓库、添加索引、执行数据迁移等操作</p>
+<p>ok，上代码测试一下。</p>
+<p>首先是 <code>readonly</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> db = event.<span class="property">target</span>.<span class="property">result</span>;</span><br><span class="line"><span class="keyword">const</span> transaction = db.<span class="title function_">transaction</span>(<span class="string">&quot;user&quot;</span>, <span class="string">&quot;readonly&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> objectStore = transaction.<span class="title function_">objectStore</span>(<span class="string">`user`</span>);</span><br><span class="line"><span class="keyword">const</span> results = objectStore.<span class="title function_">getAll</span>();</span><br><span class="line">results.<span class="property">onsuccess</span> = <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> r = event.<span class="property">target</span>.<span class="property">result</span>;</span><br><span class="line">    <span class="keyword">if</span> (r &amp;&amp; r.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      r.<span class="title function_">forEach</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(item.<span class="property">name</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这是正常的, 在只读情况尝试了一下 <code>add</code>, 直接报错</p>
+<blockquote>
+<p>Uncaught DOMException: Failed to execute ‘add’ on ‘IDBObjectStore’: The transaction is read-only.</p>
+</blockquote>
+<p>另外一个模式, <code>readwrite</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> db = event.<span class="property">target</span>.<span class="property">result</span>;</span><br><span class="line"><span class="keyword">const</span> transaction = db.<span class="title function_">transaction</span>(<span class="string">&quot;user&quot;</span>, <span class="string">&quot;readwrite&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> objectStore = transaction.<span class="title function_">objectStore</span>(<span class="string">`user`</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> data = &#123; <span class="attr">name</span>: <span class="string">&quot;tommy3&quot;</span>, <span class="attr">age</span>: <span class="string">&quot;18&quot;</span>, <span class="attr">sex</span>: <span class="number">1</span> &#125;;</span><br><span class="line">objectStore.<span class="title function_">add</span>(data);</span><br><span class="line">db.<span class="title function_">close</span>();</span><br></pre></td></tr></table></figure>
+
+
+
+<p>同样的代码, 如果用在读写上. ok.</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore">IDBObjectStore - Web APIs | MDN (mozilla.org)</a></p>
+<p>这里包含了其他还能做的操作, 你使用事务, 最终还是要落在这上面.</p>
+<p>需要注意的是 <code>readwrite</code> 其实也是可以读的, 但是建议分开, 原因刚才说清楚了.</p>
+<p><code>versionchange</code> </p>
+<blockquote>
+<p>Allows any operation to be performed, including ones that delete and create object stores and indexes. Transactions of this mode cannot run concurrently with other transactions. Transactions in this mode are known as “upgrade transactions.”</p>
+<p>允许执行任何操作，包括删除和创建对象存储和索引的操作。此模式的事务不能与其他事务并发运行。此模式的事务称为“升级事务”。</p>
+<p>There is also another type of transactions: . It can do anything, but you can’t generate it manually.versionchange A transaction can be automatically created by IndexedDB while opening the database for the handler. After creating the transaction, it is necessary to add an item to the store as follows:</p>
+<p>还有另一种类型的交易：。它可以做任何事情，但你不能手动生成它。versionchange</p>
+<p>在为处理程序打开数据库时，IndexedDB可以自动创建事务。创建事务后，需要向存储中添加一个项目，如下所示：</p>
+</blockquote>
+<p>也就是说在触发数据库升级的时候, 自动触发这个事务.</p>
+<p>我最开始有一个误解， 就是不同版本的数据库, 意味着本地有多个数据库, 你可以访问 <strong>version: 1</strong>, 也可以访问 <strong>version:2</strong></p>
+<p>所以之前找了很久关于数据库迁移的问题, 后来明白了其实只能访问最新版本, 也不存在迁移数据这种做法(除非你是迁移 ObjectStore).</p>
+<p>下面是我写的一个列子</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">onupgradeneeded</span>: <span class="keyword">function</span> (<span class="params">event</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> db = event.<span class="property">target</span>.<span class="property">result</span>;</span><br><span class="line">  <span class="keyword">const</span> transaction = event.<span class="property">currentTarget</span>.<span class="property">transaction</span>;</span><br><span class="line">  <span class="keyword">const</span> roleObjectStore = db.<span class="title function_">createObjectStore</span>(<span class="string">&quot;role&quot;</span>, &#123; <span class="attr">keyPath</span>: <span class="string">&quot;id&quot;</span>, <span class="attr">autoIncrement</span>: <span class="literal">true</span>, &#125;);</span><br><span class="line">  roleObjectStore.<span class="title function_">add</span>(&#123; <span class="string">&quot;name&quot;</span>: <span class="string">&quot;admin&quot;</span>, <span class="attr">createTime</span>: <span class="string">&quot;2023-11-11&quot;</span> &#125;);</span><br><span class="line">  roleObjectStore.<span class="title function_">add</span>(&#123; <span class="string">&quot;name&quot;</span>: <span class="string">&quot;teacher&quot;</span>, <span class="attr">createTime</span>: <span class="string">&quot;2023-11-11&quot;</span> &#125;);</span><br><span class="line">  roleObjectStore.<span class="title function_">add</span>(&#123; <span class="string">&quot;name&quot;</span>: <span class="string">&quot;student&quot;</span>, <span class="attr">createTime</span>: <span class="string">&quot;2023-11-11&quot;</span> &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> myStore = transaction.<span class="title function_">objectStore</span>(<span class="string">&quot;user&quot;</span>);</span><br><span class="line">  myStore.<span class="title function_">openCursor</span>().<span class="property">onsuccess</span> = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> cursor = event.<span class="property">target</span>.<span class="property">result</span>;</span><br><span class="line">    <span class="keyword">if</span> (cursor) &#123;</span><br><span class="line">      <span class="keyword">const</span> updateData = cursor.<span class="property">value</span>;</span><br><span class="line">      updateData.<span class="property">phone</span> = <span class="string">`0000000`</span> + updateData.<span class="property">id</span>;</span><br><span class="line">      cursor.<span class="title function_">update</span>(updateData).<span class="property">onsuccess</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`<span class="subst">$&#123;updateData.name&#125;</span>更新了数据`</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      cursor.<span class="title function_">continue</span>();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Entries all displayed.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当执行了这个代码以后, 老版本的数据库就无法访问了.</p>
+<h3 id="07-IDBTransaction"><a href="#07-IDBTransaction" class="headerlink" title="07. IDBTransaction"></a>07. IDBTransaction</h3><p>也就是 <code>trans1</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> trans1 = db.<span class="title function_">transaction</span>(<span class="string">&quot;foo&quot;</span>, <span class="string">&quot;readwrite&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>有5个属性</p>
+<ol>
+<li><code>db IDBDatabase</code> 对象的引用</li>
+<li><code>durability</code> 定义了事务的持久化行为，即事务对数据库状态的持久性影响（但是是只读的，其实我不知道有什么用）</li>
+<li><code>error</code> 如果事务在执行过程中遇到错误，<code>error</code> 属性会返回一个表示该错误的 <code>DOMError</code> 对象。</li>
+<li><code>mode</code> 你创建事务的是 <code>mode</code></li>
+<li><code>objectStoreNames</code> 包含此事务中所有对象仓库名称的数组。</li>
+</ol>
+<p>3个方法</p>
+<ol>
+<li>abort() 就是直接中断事务， 然后回滚，然后会触发 <code>abort</code> 事件</li>
+<li>commit() 提交事务</li>
+<li>objectStore() 返回 <code>IDBObjectStore</code> 对象</li>
+</ol>
+<p>commit 是我比较疑惑的一个点，因为之前我从来没有使用 commit 但是依然可以正常提交</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> db = event.<span class="property">target</span>.<span class="property">result</span>;</span><br><span class="line"><span class="keyword">const</span> transaction = db.<span class="title function_">transaction</span>(<span class="string">&quot;user&quot;</span>, <span class="string">&quot;readwrite&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> objectStore = transaction.<span class="title function_">objectStore</span>(<span class="string">`user`</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> data = &#123; <span class="attr">name</span>: <span class="string">&quot;tommy3&quot;</span>, <span class="attr">age</span>: <span class="string">&quot;18&quot;</span>, <span class="attr">sex</span>: <span class="number">1</span> &#125;;</span><br><span class="line">objectStore.<span class="title function_">add</span>(data);</span><br><span class="line">db.<span class="title function_">close</span>();</span><br></pre></td></tr></table></figure>
+
+<p>我可以不停的添加，但是我并没有写 <code>transaction.commit()</code>， </p>
+<blockquote>
+<p>Note that commit() doesn’t normally have to be called — a transaction will automatically commit when all outstanding requests have been satisfied and no new requests have been made. commit() can be used to start the commit process without waiting for events from outstanding requests to be dispatched.</p>
+</blockquote>
+<p>没必要显式调用。</p>
+<p><strong>三个事件</strong></p>
+<ol>
+<li><code>abort</code> 事务报错和取消的时候触发</li>
+<li><code>complete</code> 事务完成之后触发</li>
+<li><code>error</code></li>
+</ol>
+<h3 id="08-IDBObjectStore"><a href="#08-IDBObjectStore" class="headerlink" title="08. IDBObjectStore"></a>08. IDBObjectStore</h3><p>操作数据的核心接口, 包含一堆属性和方法</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore">https://developer.mozilla.org/en-US/docs/Web/API/IDBObjectStore</a></p>
+<p>这个没什么好说的, 其实你挨个试一试就知道怎么用了. </p>
+<p>唯一值得一说的是游标. 确实在大量数据遍历的时候, 还是建议使用一下.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">openCursor</span>()</span><br><span class="line"><span class="title function_">openCursor</span>(query)</span><br><span class="line"><span class="title function_">openCursor</span>(query, direction)</span><br></pre></td></tr></table></figure>
+
+<p>这里是具体游标的返回, 可以直接编辑或者删除, 详情看下面的链接</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor">https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor</a></p>
+<h3 id="09-总结"><a href="#09-总结" class="headerlink" title="09. 总结"></a>09. 总结</h3><p>其实到这里, 基本使用就应该没有问题. 该知道的方法就都该知道了.</p>
+<p>剩下就是灵活应用的问题了.</p>
+<p>自己写一个应用吧</p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-11-02</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/javascript/'>
+                            javascript
+                        </a>
+                    
+                        <a href='/tblog/tags/indexDB/'>
+                            indexDB
+                        </a>
+                    
+                        <a href='/tblog/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AD%98%E5%82%A8/'>
+                            浏览器存储
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/12/01/javascript/url_open_software/'>url 通过协议启动应用程序</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/09/03/%5BQ102%5Djavascript_this_link/">javascript this 指向</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

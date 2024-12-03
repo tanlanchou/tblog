@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="浏览器缓存大赏." />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    浏览器缓存大赏.
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.6k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：6分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E5%BC%BA%E5%88%B6%E7%BC%93%E5%AD%98"><span class="post-toc-text">01. 强制缓存</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E7%A0%B4%E5%9D%8F%E7%BC%93%E5%AD%98"><span class="post-toc-text">02. 破坏缓存</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98"><span class="post-toc-text">03. 协商缓存</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E6%88%91%E4%BB%AC%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E8%AE%BE%E7%BD%AE%E7%BC%93%E5%AD%98"><span class="post-toc-text">04. 我们应该怎么设置缓存.</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-Web-Storage"><span class="post-toc-text">05. Web Storage</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#06-indexDB"><span class="post-toc-text">06. indexDB</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#07-service-worker"><span class="post-toc-text">07. service worker</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#08-%E6%80%BB%E7%BB%93"><span class="post-toc-text">08. 总结</span></a></li></ol>
+            
+        
+        <h3 id="01-强制缓存"><a href="#01-强制缓存" class="headerlink" title="01. 强制缓存"></a>01. 强制缓存</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44765930/article/details/129819711">https://blog.csdn.net/weixin_44765930/article/details/129819711</a></p>
+<p>这篇文章详细解释了什么是强制缓存.</p>
+<blockquote>
+<p>Cache-Control</p>
+<p>Cache-Control是HTTP&#x2F;1.1中定义的缓存控制字段，常见的取值如下：<br>public：响应可以被任意缓存（包括客户端和代理服务器）缓存。<br>private：响应只能被客户端缓存，不能被代理服务器缓存。<br>max-age：指定缓存的有效期，单位为秒。<br>no-cache：表示需要协商缓存，浏览器每次都需要向服务器发送请求，确认资源是否有更新。<br>no-store：禁止缓存，每次都需要向服务器发送请求获取最新资源。</p>
+<p>Expires</p>
+<p>Expires是HTTP&#x2F;1.0中定义的缓存控制字段，它表示资源的过期时间，是一个GMT格式的日期字符串。当浏览器发送请求时，会比较当前时间和Expires字段的值，如果当前时间在过期时间之前，就直接从缓存中获取资源。</p>
+</blockquote>
+<p>这里说一下他没说到的点.</p>
+<p>max-age 设置为0, 也表示不缓存.</p>
+<p>强制缓存优先级 &gt; 协商缓存, 但是强制缓存内部也是有优先级的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: max-age=3600</span><br><span class="line">Expires: Wed, 14 Dec 2023 12:00:00 GMT</span><br></pre></td></tr></table></figure>
+
+<p><code>Cache-Control</code> 中的 max-age 指令将优先于 <code>Expires</code></p>
+<p>在向下兼容的这种考虑下, 是需要使用 <code>Expires</code> 的.</p>
+<h3 id="02-破坏缓存"><a href="#02-破坏缓存" class="headerlink" title="02. 破坏缓存"></a>02. 破坏缓存</h3><p>当设置了强制缓存, 但是文件更新了, 怎么办?</p>
+<p>本地测试, <strong>ctrl + f5</strong> 或者直接清理浏览器缓存, <strong>f12</strong> 强制不用缓存</p>
+<p>开发端, 老办法是用版本号</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/path/to/your/resource/style.css?version=123456&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>变化就会强制更新, 现代的框架, vue, react, ag 每次更新其实都是会重新打包, 都有完全不同的hash, 自然也就不存在缓存问题了.</p>
+<h3 id="03-协商缓存"><a href="#03-协商缓存" class="headerlink" title="03. 协商缓存"></a>03. 协商缓存</h3><p>协商缓存的好处在于可以实时获取最新的资源, 降低了服务器压力(没有强制缓存多), 又没有缓存的压力.</p>
+<blockquote>
+<p>Last-Modified: 服务器通过 Last-Modified 头部返回资源的最后修改时间。浏览器在后续请求中可以使用 If-Modified-Since 头部将上一次收到的最后修改时间发送给服务器。服务器根据这个时间判断资源是否有更新。</p>
+<p>ETag 是服务器生成的唯一标识符，用于表示资源的版本。浏览器在后续请求中可以使用 If-None-Match 头部将上一次收到的 ETag 发送给服务器。服务器根据这个标识判断资源是否有更新。</p>
+</blockquote>
+<p>换句话说, 如果服务器资源没有变化, 就发一次请求, 但是这次请求只是做一个对比, 减少了请求的压力.</p>
+<p>如果服务器资源有变化, 就发两次请求, 第一次请求返回304, 第二次请求返回最新资源.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: no-cache</span><br><span class="line">Last-Modified: Wed, 14 Dec 2023 12:00:00 GMT</span><br></pre></td></tr></table></figure>
+<p>根据 Last-Modified 或者 ETag 和服务器做对比</p>
+<h3 id="04-我们应该怎么设置缓存"><a href="#04-我们应该怎么设置缓存" class="headerlink" title="04. 我们应该怎么设置缓存."></a>04. 我们应该怎么设置缓存.</h3><p>这里就要区分 API 还是静态资源.</p>
+<p>API 一般是不缓存的, 因为它是有状态的, 所以每次请求都需要重新获取数据.</p>
+<p>静态资源缓存, 现在也和后端无关, 因为前端是一个独立项目.</p>
+<p>只有某些特殊的资源, 比如 CDN, 一些特殊的固定 css, js 这些资源是由后端主动缓存</p>
+<p>拿 express 举例子</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/42418503/how-do-i-return-304-unmodified-status-with-express-js">https://stackoverflow.com/questions/42418503/how-do-i-return-304-unmodified-status-with-express-js</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">use</span>(<span class="string">&#x27;/static/styles.css&#x27;</span>, <span class="function">(<span class="params">req, res, next</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 设置 Cache-Control 头，表示缓存有效时间为1小时</span></span><br><span class="line">  res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Cache-Control&#x27;</span>, <span class="string">&#x27;max-age=3600&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 设置 Expires 头，表示资源过期时间为当前时间 + 1小时</span></span><br><span class="line">  <span class="keyword">const</span> expires = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">  expires.<span class="title function_">setHours</span>(expires.<span class="title function_">getHours</span>() + <span class="number">1</span>);</span><br><span class="line">  res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Expires&#x27;</span>, expires.<span class="title function_">toUTCString</span>());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>然后每次再检查. 简单的方式是些中间件.</p>
+<p>现在正常大部分情况其实都是现代js框架, 一般都是用 docker 内部就是 nginx 做服务, 那么就需要前端在 ngixn.conf 中设置.</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">location</span> <span class="regexp">~* \.css$</span> &#123;</span><br><span class="line">    <span class="attribute">add_header</span> Cache-Control <span class="string">&quot;max-age=3600&quot;</span>;</span><br><span class="line">    <span class="attribute">add_header</span> Expires <span class="string">&quot;Thu, 01 Jan 1970 00:00:01 GMT&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">if</span> (<span class="variable">$uri</span> <span class="regexp">~* /special\.css)</span> &#123;</span><br><span class="line">        <span class="attribute">add_header</span> Cache-Control <span class="string">&quot;no-store&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>下面是其他人的设置</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">map</span> <span class="variable">$sent_http_content_type</span> <span class="variable">$expires</span> &#123;</span><br><span class="line">    <span class="attribute">default</span>                    <span class="literal">off</span>;</span><br><span class="line">    <span class="comment">#text/html                  epoch; # 不缓存</span></span><br><span class="line">    text/<span class="attribute">css</span>                   <span class="number">30d</span>; <span class="comment"># 缓存30天，长时缓存可以设置为max</span></span><br><span class="line">    application/<span class="attribute">javascript</span>     <span class="number">30d</span>;</span><br><span class="line">    ~image/                    30d;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>来实现这些设置.</p>
+<h3 id="05-Web-Storage"><a href="#05-Web-Storage" class="headerlink" title="05. Web Storage"></a>05. Web Storage</h3><p>这个其实就是 localstorage, sessionstorage 这两种东西.</p>
+<p>可以简单的存一点儿东西, 比如 token, 虽然他比 cookie 大. 但是大的不多, 一般不超过 5M.</p>
+<p>存点关键信息ok, 但是如果要存大量数据, 就不合适了.</p>
+<p>他的好处在于浏览器支持广泛, 设置IE8都支持. 使用和设置简单</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage">https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage</a></p>
+<p>两者区别在于, sessionStorage 浏览器关闭的时候会清除. localStorage 则是永久存储, 除非手动删除.</p>
+<h3 id="06-indexDB"><a href="#06-indexDB" class="headerlink" title="06. indexDB"></a>06. indexDB</h3><p>之前我写过一个 </p>
+<p><a href="https://tanlanchou.github.io/tblog/2023/11/02/%5BQ103%5DIndexDB_Base/">https://tanlanchou.github.io/tblog/2023/11/02/%5BQ103%5DIndexDB_Base/</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/tanlanchou/indexdb_book_store">https://github.com/tanlanchou/indexdb_book_store</a></p>
+<p>现代浏览器基本上都支持了, 兼容性我没有所有都试过, 如果有要么自己封装, 别人封装应该也有.</p>
+<p>好处是大, 根据你硬盘来算的, 基本不用考虑大小.</p>
+<p>但是操作是真的不舒服, 不支持sql. 写个分页真的给我累瘫了..</p>
+<p>总体没什么毛病.</p>
+<h3 id="07-service-worker"><a href="#07-service-worker" class="headerlink" title="07. service worker"></a>07. service worker</h3><blockquote>
+<p>Service Worker 是一个在 Web 应用程序背后运行的脚本，它可以拦截和处理网络请求、管理缓存以及推送通知。Service Worker 被设计为一个独立的线程，与网页主线程分离，因此可以在后台执行任务而不阻塞用户界面。</p>
+<ol>
+<li>不能访问／操作dom</li>
+<li>会自动休眠，不会随浏览器关闭所失效(必须手动卸载)</li>
+<li>离线缓存内容开发者可控</li>
+<li>必须在https或者localhost下使用</li>
+<li>所有的api都基于promise</li>
+</ol>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API">https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API</a></p>
+<p>他可以拦截请求, 并且设置缓存.</p>
+<p>serviceWorker 我了解的比较少, 反正要搞 pwa, 后面学习一下</p>
+<h3 id="08-总结"><a href="#08-总结" class="headerlink" title="08. 总结"></a>08. 总结</h3><p>木有.</p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-12-14</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/browser/'>
+                            browser
+                        </a>
+                    
+                        <a href='/tblog/tags/cache/'>
+                            cache
+                        </a>
+                    
+                        <a href='/tblog/tags/Cache-Control/'>
+                            Cache-Control
+                        </a>
+                    
+                        <a href='/tblog/tags/Expires/'>
+                            Expires
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2024/02/23/nestjs-modules-mailer/'>nestjs modules mailer</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/12/07/zaxiang/mock/">前端请求模拟</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="为什么要用 void 0 代替 undefined" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    为什么要用 void 0 代替 undefined
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：787</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：3分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8-void-0-%E4%BB%A3%E6%9B%BF-undefined"><span class="post-toc-text">为什么要用 void 0 代替 undefined</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E4%BB%80%E4%B9%88%E6%98%AF-globalThis"><span class="post-toc-text">01. 什么是 globalThis?</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-undefined-%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="post-toc-text">02. undefined 是什么？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-undefined-%E6%9C%89%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="post-toc-text">03. undefined 有什么问题？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-void-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="post-toc-text">04. void 关键字</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8-void-0-%E4%BB%A3%E6%9B%BF-undefined"><span class="post-toc-text">05. 为什么要用 void 0 代替 undefined</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <h1 id="为什么要用-void-0-代替-undefined"><a href="#为什么要用-void-0-代替-undefined" class="headerlink" title="为什么要用 void 0 代替 undefined"></a>为什么要用 void 0 代替 undefined</h1><p>在看 Vue3.x 源码的时候，发现关于 undefined 赋值都是使用 Void 0，觉得很奇怪，于是学习了一下。</p>
+<h3 id="01-什么是-globalThis"><a href="#01-什么是-globalThis" class="headerlink" title="01. 什么是 globalThis?"></a>01. 什么是 globalThis?</h3><blockquote>
+<p>globalThis 是一个全局对象，它提供了在任何执行上下文中都可用的标准全局对象的访问方式。在 Web 浏览器中，全局对象可能有多种不同的名称，比如在浏览器窗口中，全局对象通常是 window，而在 Web Worker 中，全局对象是 self。而在 Node.js 中，全局对象是 global。globalThis 提供了一种跨平台的方式来访问全局对象，它可以在任何平台上使用，而不需要考虑全局对象的名称。</p>
+</blockquote>
+<h3 id="02-undefined-是什么？"><a href="#02-undefined-是什么？" class="headerlink" title="02. undefined 是什么？"></a>02. undefined 是什么？</h3><blockquote>
+<p>undefined 是全局对象的属性——即全局作用域的变量。</p>
+</blockquote>
+<p>它的语义表示，未被定义的值，它是一种原始数据类型。</p>
+<blockquote>
+<p>表示 no value（无值）——也无对象也无值</p>
+</blockquote>
+<p>也就是说, undefined 是一种数据类型，我们平时的使用方式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="keyword">var</span> b = <span class="literal">undefined</span>;</span><br></pre></td></tr></table></figure>
+
+<p>就是将 undefined 原始值赋值给变量。</p>
+<p>我们直接调用 <code>undefined</code> 或者不赋值，其实等于</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = globalThis.<span class="property">undefined</span>;</span><br><span class="line"><span class="keyword">var</span> b = globalThis.<span class="property">undefined</span>;</span><br></pre></td></tr></table></figure>
+
+<p>也就是全局对象的属性</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">globalThis.<span class="property">undefined</span> === <span class="literal">undefined</span>;</span><br></pre></td></tr></table></figure>
+
+<p>总结一下就是，<code>undefined</code> 表示一种原始值，直接在 <code>javascript</code> 写 <code>undefined</code> 就是表示 <code>globalThis.undefined</code>, 同时 <code>undefined</code> 也可以作为变量名.</p>
+<h3 id="03-undefined-有什么问题？"><a href="#03-undefined-有什么问题？" class="headerlink" title="03. undefined 有什么问题？"></a>03. undefined 有什么问题？</h3><p>问题就在于 <code>undefined</code> 也可以作为变量名，因为我们平时完全是把 <code>undefined</code> 当作字面量来使用的，拿 <code>null</code> 来说， <code>null</code> 就是字面量</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="literal">null</span> = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>他会直接告诉你</p>
+<blockquote>
+<p>Variable declaration not allowed at this location.ts(1440)</p>
+</blockquote>
+<p>然而 <code>undefined</code> 不会.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="literal">undefined</span> = <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>他娘的是可以通过的…</p>
+<p>所以问题就在这里了，你无法确定 <code>undefined</code> 中是否是 <code>undefined</code> 的原始值, </p>
+<p>它可能是原始对象，可能是局部变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [<span class="literal">undefined</span>, cat = <span class="literal">undefined</span>] = [<span class="string">&#x27;test&#x27;</span>];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">undefined</span>); <span class="comment">//test</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(cat); <span class="comment">//test</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(globalThis.<span class="property">undefined</span>) <span class="comment">//undefined</span></span><br></pre></td></tr></table></figure>
+
+<p>还好它不能直接赋值 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">undefined</span> = <span class="number">0</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">undefined</span>) <span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">let</span> desc = <span class="title class_">Reflect</span>.<span class="title function_">getOwnPropertyDescriptor</span>(globalThis, <span class="string">`undefined`</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(desc) <span class="comment">// &#123;value: undefined, writable: false, enumerable: false, configurable: false&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是也不会报错。</p>
+<h3 id="04-void-关键字"><a href="#04-void-关键字" class="headerlink" title="04. void 关键字"></a>04. void 关键字</h3><blockquote>
+<p>void 是 JavaScript 中的一个关键字，用于执行一个表达式，但不返回任何值。在语法上，它通常被用于在一个链接或按钮的 href 或 onclick 属性中，以避免浏览器在执行链接或按钮操作时跳转到新的页面或刷新当前页面。</p>
+<p>在使用 void 时，可以将其后面跟一个 JavaScript 表达式。该表达式将被执行，但返回值将被忽略，并且 void 运算符的结果将始终是 undefined。</p>
+</blockquote>
+<p>也就是说，不管你右边是什么，返回什么，加 <code>void</code> 就返回 <code>undefined</code> 原始值。</p>
+<h3 id="05-为什么要用-void-0-代替-undefined"><a href="#05-为什么要用-void-0-代替-undefined" class="headerlink" title="05. 为什么要用 void 0 代替 undefined"></a>05. 为什么要用 void 0 代替 undefined</h3><p>基于上面说的，现在就明白了为什么要用 <code>void 0</code> 代替 <code>undefined</code>, 就是因为 <code>undefined</code> 可以是变量名。</p>
+<p>使用 <code>void 0</code> 可以保证是 <code>undefined</code> 原始值。</p>
+<p>另外，使用 <code>globalThis.undefined</code> 也可以获取原始值，只是它要稍微长一点，本质上没区别。</p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-03</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/web/'>
+                            web
+                        </a>
+                    
+                        <a href='/tblog/tags/javascript/'>
+                            javascript
+                        </a>
+                    
+                        <a href='/tblog/tags/undefined/'>
+                            undefined
+                        </a>
+                    
+                        <a href='/tblog/tags/void-0/'>
+                            void 0
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/07/03/BFC/'>BFC 布局模型</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/07/03/js_type_check/">javascript 类型判断方法总结</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

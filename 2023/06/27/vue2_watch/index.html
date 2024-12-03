@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="Vue2.x watcher" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    Vue2.x watcher
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：2.1k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：9分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#vue2-x-watcher"><span class="post-toc-text">vue2.x watcher</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E6%BA%90%E7%A0%81"><span class="post-toc-text">01. 源码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E6%80%BB%E7%BB%93"><span class="post-toc-text">02. 总结</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <h1 id="vue2-x-watcher"><a href="#vue2-x-watcher" class="headerlink" title="vue2.x watcher"></a>vue2.x watcher</h1><h3 id="01-源码"><a href="#01-源码" class="headerlink" title="01. 源码"></a>01. 源码</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Watcher</span> <span class="keyword">implements</span> <span class="title class_">DepTarget</span> &#123;</span><br><span class="line">  vm?: <span class="title class_">Component</span> | <span class="literal">null</span> <span class="comment">//组 //件实例</span></span><br><span class="line">  <span class="attr">expression</span>: <span class="built_in">string</span> <span class="comment">//监视的表达式</span></span><br><span class="line">  <span class="attr">cb</span>: <span class="title class_">Function</span> <span class="comment">//回调函数</span></span><br><span class="line">  <span class="attr">id</span>: <span class="built_in">number</span> <span class="comment">//watch 唯一id</span></span><br><span class="line">  <span class="attr">deep</span>: <span class="built_in">boolean</span> <span class="comment">//是否进行深度监视</span></span><br><span class="line">  <span class="attr">user</span>: <span class="built_in">boolean</span> <span class="comment">//是否是自定义watch</span></span><br><span class="line">  <span class="attr">lazy</span>: <span class="built_in">boolean</span> <span class="comment">//是否懒执行</span></span><br><span class="line">  <span class="attr">sync</span>: <span class="built_in">boolean</span> <span class="comment">//watch 执行是同步还是异步</span></span><br><span class="line">  <span class="attr">dirty</span>: <span class="built_in">boolean</span> <span class="comment">//在 lazy = true 的前提下，值是否要重新计算</span></span><br><span class="line">  <span class="attr">active</span>: <span class="built_in">boolean</span> <span class="comment">//是否处于激活状态</span></span><br><span class="line">  <span class="attr">deps</span>: <span class="title class_">Array</span>&lt;<span class="title class_">Dep</span>&gt; <span class="comment">//依赖列表</span></span><br><span class="line">  <span class="attr">newDeps</span>: <span class="title class_">Array</span>&lt;<span class="title class_">Dep</span>&gt; <span class="comment">//临时依赖列表</span></span><br><span class="line">  <span class="attr">depIds</span>: <span class="title class_">SimpleSet</span> <span class="comment">//依赖的ID集合</span></span><br><span class="line">  <span class="attr">newDepIds</span>: <span class="title class_">SimpleSet</span> <span class="comment">//临时依赖列表ID</span></span><br><span class="line">  before?: <span class="title class_">Function</span> <span class="comment">//更新之前的 hook 函数</span></span><br><span class="line">  onStop?: <span class="title class_">Function</span> <span class="comment">//当前 watch 被停止调用以后的钩子函数</span></span><br><span class="line">  noRecurse?: <span class="built_in">boolean</span> <span class="comment">//是否避免递归监视</span></span><br><span class="line">  <span class="attr">getter</span>: <span class="title class_">Function</span> <span class="comment">//获取当前监视的表达式的值</span></span><br><span class="line">  <span class="attr">value</span>: <span class="built_in">any</span> <span class="comment">//当前值</span></span><br><span class="line">  <span class="attr">post</span>: <span class="built_in">boolean</span> <span class="comment">//是否是后置 watcher（即渲染 watcher）？</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// dev only</span></span><br><span class="line">  onTrack?: (<span class="function">(<span class="params">event: DebuggerEvent</span>) =&gt;</span> <span class="built_in">void</span>) | <span class="literal">undefined</span></span><br><span class="line">  onTrigger?: (<span class="function">(<span class="params">event: DebuggerEvent</span>) =&gt;</span> <span class="built_in">void</span>) | <span class="literal">undefined</span></span><br><span class="line"></span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span></span><br><span class="line"><span class="params">    vm: Component | <span class="literal">null</span>,</span></span><br><span class="line"><span class="params">    expOrFn: <span class="built_in">string</span> | (() =&gt; <span class="built_in">any</span>),</span></span><br><span class="line"><span class="params">    cb: <span class="built_in">Function</span>,</span></span><br><span class="line"><span class="params">    options?: WatcherOptions | <span class="literal">null</span>,</span></span><br><span class="line"><span class="params">    isRenderWatcher?: <span class="built_in">boolean</span> <span class="comment">//可选参数，表示这个 watcher 是否是渲染函数 watcher</span></span></span><br><span class="line"><span class="params">  </span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//调用 recordEffectScope 函数记录 effect scope，其中 activeEffectScope 表示当前的激活的 effect scope。  </span></span><br><span class="line">    <span class="title function_">recordEffectScope</span>(</span><br><span class="line">      <span class="variable language_">this</span>,</span><br><span class="line">      <span class="comment">// if the active effect scope is manually created (not a component scope),</span></span><br><span class="line">      <span class="comment">// prioritize it</span></span><br><span class="line">      activeEffectScope &amp;&amp; !activeEffectScope.<span class="property">_vm</span></span><br><span class="line">        ? activeEffectScope</span><br><span class="line">        : vm</span><br><span class="line">        ? vm.<span class="property">_scope</span></span><br><span class="line">        : <span class="literal">undefined</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="comment">//如果 vm 不为 null，且 isRenderWatcher 为 true，则将 watcher 存储在 vm 的 _watcher 属性中。</span></span><br><span class="line">    <span class="keyword">if</span> ((<span class="variable language_">this</span>.<span class="property">vm</span> = vm) &amp;&amp; isRenderWatcher) &#123;</span><br><span class="line">      vm.<span class="property">_watcher</span> = <span class="variable language_">this</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// options</span></span><br><span class="line">    <span class="keyword">if</span> (options) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">deep</span> = !!options.<span class="property">deep</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">user</span> = !!options.<span class="property">user</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">lazy</span> = !!options.<span class="property">lazy</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">sync</span> = !!options.<span class="property">sync</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">before</span> = options.<span class="property">before</span></span><br><span class="line">      <span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">onTrack</span> = options.<span class="property">onTrack</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">onTrigger</span> = options.<span class="property">onTrigger</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">deep</span> = <span class="variable language_">this</span>.<span class="property">user</span> = <span class="variable language_">this</span>.<span class="property">lazy</span> = <span class="variable language_">this</span>.<span class="property">sync</span> = <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">cb</span> = cb</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">id</span> = ++uid <span class="comment">// uid for batching</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">active</span> = <span class="literal">true</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">post</span> = <span class="literal">false</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">dirty</span> = <span class="variable language_">this</span>.<span class="property">lazy</span> <span class="comment">// for lazy watchers</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">deps</span> = []</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">newDeps</span> = []</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">depIds</span> = <span class="keyword">new</span> <span class="title class_">Set</span>()</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">newDepIds</span> = <span class="keyword">new</span> <span class="title class_">Set</span>()</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">expression</span> = __DEV__ ? expOrFn.<span class="title function_">toString</span>() : <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="comment">// parse expression for getter</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">isFunction</span>(expOrFn)) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">getter</span> = expOrFn</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">getter</span> = <span class="title function_">parsePath</span>(expOrFn)</span><br><span class="line">      <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">getter</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">getter</span> = noop</span><br><span class="line">        __DEV__ &amp;&amp;</span><br><span class="line">          <span class="title function_">warn</span>(</span><br><span class="line">            <span class="string">`Failed watching path: &quot;<span class="subst">$&#123;expOrFn&#125;</span>&quot; `</span> +</span><br><span class="line">              <span class="string">&#x27;Watcher only accepts simple dot-delimited paths. &#x27;</span> +</span><br><span class="line">              <span class="string">&#x27;For full control, use a function instead.&#x27;</span>,</span><br><span class="line">            vm</span><br><span class="line">          )</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">value</span> = <span class="variable language_">this</span>.<span class="property">lazy</span> ? <span class="literal">undefined</span> : <span class="variable language_">this</span>.<span class="title function_">get</span>()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Evaluate the getter, and re-collect dependencies.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">pushTarget</span>(<span class="variable language_">this</span>) <span class="comment">//进栈，表示正在计算watch的值</span></span><br><span class="line">    <span class="keyword">let</span> value</span><br><span class="line">    <span class="keyword">const</span> vm = <span class="variable language_">this</span>.<span class="property">vm</span></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      value = <span class="variable language_">this</span>.<span class="property">getter</span>.<span class="title function_">call</span>(vm, vm) <span class="comment">//获取值</span></span><br><span class="line">    &#125; <span class="keyword">catch</span> (<span class="attr">e</span>: <span class="built_in">any</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">user</span>) &#123;</span><br><span class="line">        <span class="title function_">handleError</span>(e, vm, <span class="string">`getter for watcher &quot;<span class="subst">$&#123;<span class="variable language_">this</span>.expression&#125;</span>&quot;`</span>)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> e</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      <span class="comment">// &quot;touch&quot; every property so they are all tracked as</span></span><br><span class="line">      <span class="comment">// dependencies for deep watching</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">deep</span>) &#123; <span class="comment">//如果要深入监视</span></span><br><span class="line">        <span class="comment">//traverse 函数是用来遍历一个对象或数组的所有子属性，以便在进行“深度观测”（deep watch）时能够将这些子属性全部注册为依赖关系。</span></span><br><span class="line">        <span class="comment">//traverse 函数接收一个 val 参数，代表需要遍历的对象或数组。函数中首先会对 val 进行一些判断，例如如果 val 不是数组或对象，或者是被冻结的对象，或者是一个 VNode，就直接返回，不需要继续遍历。</span></span><br><span class="line">        <span class="comment">//接下来会判断 val 是否是一个响应式对象，如果是，就会将它所关联的依赖的 id 加入到 seen 集合中。这里的 seen 集合是用来去重的，它的作用是保证在遍历一个对象时不会出现循环依赖的情况。 </span></span><br><span class="line">        <span class="comment">//最后，如果 val 是一个数组，就对数组中的每个元素递归调用 _traverse 函数进行遍历；如果是一个对象，就对对象中的每个属性递归调用 _traverse 函数进行遍历。如果 val 是一个 Ref 对象，则遍历它的 value 属性。</span></span><br><span class="line">        <span class="comment">//这个方法的主要作用是遍历一个对象或者数组的所有属性或元素，并且将遍历到的所有属性或元素都收集为响应式依赖，这样当其中任意一个属性或元素发生变化时，Vue 就能够知道这个变化，并且及时通知视图进行更新。</span></span><br><span class="line">        <span class="title function_">traverse</span>(value) </span><br><span class="line">      &#125;</span><br><span class="line">      <span class="title function_">popTarget</span>() <span class="comment">//出栈</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">cleanupDeps</span>() <span class="comment">//清除所有Deps</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> value </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Add a dependency to this directive.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">addDep</span>(<span class="params">dep: Dep</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> id = dep.<span class="property">id</span></span><br><span class="line">    <span class="comment">//如果临时的ID集合没有包含这个ID</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">newDepIds</span>.<span class="title function_">has</span>(id)) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">newDepIds</span>.<span class="title function_">add</span>(id) <span class="comment">//加入</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">newDeps</span>.<span class="title function_">push</span>(dep) <span class="comment">//加入临时依赖的集合</span></span><br><span class="line">      <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">depIds</span>.<span class="title function_">has</span>(id)) &#123; <span class="comment">//如果依赖ID集合里面,没有</span></span><br><span class="line">        dep.<span class="title function_">addSub</span>(<span class="variable language_">this</span>) <span class="comment">//在Dep中加入这个watch</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Clean up for dependency collection.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">cleanupDeps</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//遍历deps，如果没有在 newDepIds ，删除当前这个 watch 实例。</span></span><br><span class="line">    <span class="keyword">let</span> i = <span class="variable language_">this</span>.<span class="property">deps</span>.<span class="property">length</span></span><br><span class="line">    <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">      <span class="keyword">const</span> dep = <span class="variable language_">this</span>.<span class="property">deps</span>[i]</span><br><span class="line">      <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">newDepIds</span>.<span class="title function_">has</span>(dep.<span class="property">id</span>)) &#123;</span><br><span class="line">        dep.<span class="title function_">removeSub</span>(<span class="variable language_">this</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将 newDepIds 和 newDeps 赋值给 depIds 和 deps ，临时列表清空</span></span><br><span class="line">    <span class="keyword">let</span> <span class="attr">tmp</span>: <span class="built_in">any</span> = <span class="variable language_">this</span>.<span class="property">depIds</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">depIds</span> = <span class="variable language_">this</span>.<span class="property">newDepIds</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">newDepIds</span> = tmp</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">newDepIds</span>.<span class="title function_">clear</span>()</span><br><span class="line">    tmp = <span class="variable language_">this</span>.<span class="property">deps</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">deps</span> = <span class="variable language_">this</span>.<span class="property">newDeps</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">newDeps</span> = tmp</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">newDeps</span>.<span class="property">length</span> = <span class="number">0</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Subscriber interface.</span></span><br><span class="line"><span class="comment">   * Will be called when a dependency changes.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">update</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">/* istanbul ignore else */</span></span><br><span class="line">    <span class="comment">//判断lazy 如果是，dirty = true，表示发生了变化，但是还没有重新计算。</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">lazy</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">dirty</span> = <span class="literal">true</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">sync</span>) &#123;</span><br><span class="line">      <span class="comment">//如果 sync = true，同步执行，调用run</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">run</span>()</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">//如果是异步执行，加入队列。</span></span><br><span class="line">      <span class="title function_">queueWatcher</span>(<span class="variable language_">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Scheduler job interface.</span></span><br><span class="line"><span class="comment">   * Will be called by the scheduler.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">run</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断是否是 active</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">active</span>) &#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//调用 get 获取 value</span></span><br><span class="line">      <span class="keyword">const</span> value = <span class="variable language_">this</span>.<span class="title function_">get</span>()</span><br><span class="line">      <span class="keyword">if</span> (</span><br><span class="line">        <span class="comment">//当 新旧 value 不一致</span></span><br><span class="line">        <span class="comment">//当 新值 是object</span></span><br><span class="line">        <span class="comment">//或者深度遍历 deep = true</span></span><br><span class="line">        value !== <span class="variable language_">this</span>.<span class="property">value</span> ||</span><br><span class="line">        <span class="comment">// Deep watchers and watchers on Object/Arrays should fire even</span></span><br><span class="line">        <span class="comment">// when the value is the same, because the value may</span></span><br><span class="line">        <span class="comment">// have mutated.</span></span><br><span class="line">        <span class="title function_">isObject</span>(value) ||</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">deep</span></span><br><span class="line">      ) &#123;</span><br><span class="line">        <span class="comment">// set new value</span></span><br><span class="line">        <span class="keyword">const</span> oldValue = <span class="variable language_">this</span>.<span class="property">value</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">value</span> = value</span><br><span class="line"></span><br><span class="line">        <span class="comment">//这里就是回调，用户自定义因为需要方便调试，所以用这种方法</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">user</span>) &#123;</span><br><span class="line">          <span class="keyword">const</span> info = <span class="string">`callback for watcher &quot;<span class="subst">$&#123;<span class="variable language_">this</span>.expression&#125;</span>&quot;`</span></span><br><span class="line">          <span class="title function_">invokeWithErrorHandling</span>(</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">cb</span>,</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">vm</span>,</span><br><span class="line">            [value, oldValue],</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">vm</span>,</span><br><span class="line">            info</span><br><span class="line">          )</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="variable language_">this</span>.<span class="property">cb</span>.<span class="title function_">call</span>(<span class="variable language_">this</span>.<span class="property">vm</span>, value, oldValue)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Evaluate the value of the watcher.</span></span><br><span class="line"><span class="comment">   * This only gets called for lazy watchers.</span></span><br><span class="line"><span class="comment">   * 评估 watcher 的值。</span></span><br><span class="line"><span class="comment">   * 只有懒惰的 watcher 才会调用这个方法。</span></span><br><span class="line"><span class="comment">   * 这个需要结合刚才的 upadte 来看，如果 this.lazy = true. 那么 dirty = true， 然后执行这个方法</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">evaluate</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">value</span> = <span class="variable language_">this</span>.<span class="title function_">get</span>()</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">dirty</span> = <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Depend on all deps collected by this watcher.</span></span><br><span class="line"><span class="comment">   * 把 deps 全部遍历， depends 全部执行到当前 Dep.target 中</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">depend</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> i = <span class="variable language_">this</span>.<span class="property">deps</span>.<span class="property">length</span></span><br><span class="line">    <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">deps</span>[i].<span class="title function_">depend</span>()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Remove self from all dependencies&#x27; subscriber list.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">teardown</span>(<span class="params"></span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//_isBeingDestroyed，用于标识该实例是否正在被销毁。当这个标记为 true 时，Vue 会停止继续观察数据，并且在一些钩子函数中，可能需要判断这个标记来决定是否执行一些操作，比如避免在组件已经被销毁后还执行一些异步操作，从而避免可能的内存泄漏问题。</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">vm</span> &amp;&amp; !<span class="variable language_">this</span>.<span class="property">vm</span>.<span class="property">_isBeingDestroyed</span>) &#123;</span><br><span class="line">      <span class="title function_">remove</span>(<span class="variable language_">this</span>.<span class="property">vm</span>.<span class="property">_scope</span>.<span class="property">effects</span>, <span class="variable language_">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//是否是激活状态</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">active</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> i = <span class="variable language_">this</span>.<span class="property">deps</span>.<span class="property">length</span></span><br><span class="line">      <span class="keyword">while</span> (i--) &#123;</span><br><span class="line">        <span class="comment">//清除所有引用</span></span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">deps</span>[i].<span class="title function_">removeSub</span>(<span class="variable language_">this</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//设置不激活</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">active</span> = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">//触发钩子</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">onStop</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">onStop</span>()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="02-总结"><a href="#02-总结" class="headerlink" title="02. 总结"></a>02. 总结</h3><p>watch 做了什么？</p>
+<blockquote>
+<p>用于监听一个数据对象的变化，并在变化时执行回调函数。</p>
+<p>在初始化时，watcher 会收集依赖，也就是将当前的 watcher 对象赋值给当前访问的数据对象的 dep 实例，从而建立数据对象和 watcher 的关联关系。当数据对象的值发生变化时，dep 实例会通知所有的 watcher，watcher 会重新执行回调函数。</p>
+<p>在执行回调函数之前，watcher 还会进行一些优化处理，比如判断当前回调函数是否是异步执行的，如果是则将其加入到异步队列中，从而避免连续多次的更新操作，提高性能。同时，watcher 还支持一些高级特性，比如 computed、watchEffect 等。</p>
+</blockquote>
+<p><code>get</code> 方法主作用获取表达式的值，其中包含 Dep.target 进栈和出栈的操作，并且遍历获取的值的所有属性，将其响应式。</p>
+<ol>
+<li>pushTarget</li>
+<li>获取表达式 value</li>
+<li>traverse(value) 追种所有属性，响应式alue</li>
+<li>popTarget() &#x2F;&#x2F;出栈</li>
+<li>this.cleanupDeps() &#x2F;&#x2F;清理</li>
+</ol>
+<p><code>addDep</code> 如果临时ID的集合没有包含这个Dep，那么在临时ID集合以及临时集合中加入，继续判断，如果依赖ID集合(不是临时)没有包含这个ID，那么这个Dep.addSub(this)</p>
+<p><code>update</code> 更新，3种更新</p>
+<ol>
+<li>懒更新 &#x3D;&gt; ditry &#x3D; true</li>
+<li>!!sync &#x3D;&gt; run()</li>
+<li>!sync &#x3D;&gt; 进入队列</li>
+</ol>
+<p><code>evaluate</code> 获取 value 赋值，dirty &#x3D; false。</p>
+<p><code>run</code> 如果是否是 <code>active</code>，获取值，并且调用 callbcak</p>
+<p><code>depend</code> 把 deps 全部遍历， depends 全部执行到当前 Dep.target 中</p>
+<p><code>teardown</code> 清除关于这个 dep 中所有的当前 watcher。</p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-06-27</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/%E6%BA%90%E7%A0%81/'>
+                            源码
+                        </a>
+                    
+                        <a href='/tblog/tags/vue2/'>
+                            vue2
+                        </a>
+                    
+                        <a href='/tblog/tags/wather/'>
+                            wather
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/06/27/vue2_Dep/'>Vue2.x Dep</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/06/26/vue_beforeUpdate/">Vue beforeUpdate</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="vue3 defineAsyncComponent &amp; Suspense 用法以及源码" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    vue3 defineAsyncComponent &amp; Suspense 用法以及源码
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：3.1k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：15分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-defineAsyncComponent-%E5%AE%9A%E4%B9%89%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="post-toc-text">01. defineAsyncComponent 定义和使用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E6%BA%90%E7%A0%81"><span class="post-toc-text">02. 源码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-delay"><span class="post-toc-text">03. delay</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-timeout"><span class="post-toc-text">04. timeout</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-suspensible"><span class="post-toc-text">04 suspensible</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-defineAsyncComponent-%E6%80%BB%E7%BB%93"><span class="post-toc-text">05. defineAsyncComponent 总结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#06-suspense"><span class="post-toc-text">06. suspense</span></a></li></ol>
+            
+        
+        <h3 id="01-defineAsyncComponent-定义和使用"><a href="#01-defineAsyncComponent-定义和使用" class="headerlink" title="01. defineAsyncComponent 定义和使用"></a>01. defineAsyncComponent 定义和使用</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">defineAsyncComponent</span>(<span class="params"></span></span><br><span class="line"><span class="params">  source: AsyncComponentLoader | AsyncComponentOptions</span></span><br><span class="line"><span class="params"></span>): <span class="title class_">Component</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">AsyncComponentLoader</span> = <span class="function">() =&gt;</span> <span class="title class_">Promise</span>&lt;<span class="title class_">Component</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">AsyncComponentOptions</span> &#123;</span><br><span class="line">  <span class="attr">loader</span>: <span class="title class_">AsyncComponentLoader</span></span><br><span class="line">  loadingComponent?: <span class="title class_">Component</span></span><br><span class="line">  errorComponent?: <span class="title class_">Component</span></span><br><span class="line">  delay?: <span class="built_in">number</span></span><br><span class="line">  timeout?: <span class="built_in">number</span></span><br><span class="line">  suspensible?: <span class="built_in">boolean</span></span><br><span class="line">  onError?: <span class="function">(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">    error: <span class="built_in">Error</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">    retry: () =&gt; <span class="built_in">void</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">    fail: () =&gt; <span class="built_in">void</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">    attempts: <span class="built_in">number</span></span></span></span><br><span class="line"><span class="params"><span class="function">  </span>) =&gt;</span> <span class="built_in">any</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有两个参数 <code>AsyncComponentLoader</code> or <code>AsyncComponentOptions</code></p>
+<p>写了一个 type AsyncComponentLoader &#x3D; () &#x3D;&gt; Promise<Component> 参数的</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;app&quot;</span>&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">my-async-component</span>&gt;</span><span class="tag">&lt;/<span class="name">my-async-component</span>&gt;</span></span></span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">const</span> <span class="title class_">MyAsyncComponent</span> = <span class="title class_">Vue</span>.<span class="title function_">defineAsyncComponent</span>(<span class="function">() =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="comment">// 异步加载组件的逻辑</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                <span class="title function_">resolve</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                    <span class="attr">template</span>: <span class="string">&#x27;&lt;div&gt;This is an async component!&lt;/div&gt;&#x27;</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">                &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            &#125;, <span class="number">2000</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">const</span> app = <span class="title class_">Vue</span>.<span class="title function_">createApp</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">components</span>: &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">            <span class="title class_">MyAsyncComponent</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    app.<span class="title function_">mount</span>(<span class="string">&#x27;#app&#x27;</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>既然可以这样写，也可以这样写</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">MyAsyncComponent</span> = <span class="title class_">Vue</span>.<span class="title function_">defineAsyncComponent</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span>  <span class="keyword">import</span>(<span class="string">&#x27;../a.vue&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>另一种就是写一个 <code>options</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title class_">AsyncComponent</span> = <span class="title class_">Vue</span>.<span class="title function_">defineAsyncComponent</span>(&#123;</span><br><span class="line">    <span class="comment">// 使用 AsyncComponentOptions 配置对象</span></span><br><span class="line">    <span class="attr">loader</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                <span class="title function_">resolve</span>(&#123;</span><br><span class="line">                    <span class="attr">template</span>: <span class="string">&#x27;&lt;div&gt;This is an async component!&lt;/div&gt;&#x27;</span></span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;, <span class="number">10000</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">delay</span>: <span class="number">200</span>, <span class="comment">// 可选项，加载延迟</span></span><br><span class="line">    <span class="attr">timeout</span>: <span class="number">3000</span>, <span class="comment">// 可选项，超时时间</span></span><br><span class="line">    <span class="attr">errorComponent</span>: <span class="string">&#x27;div&#x27;</span>, <span class="comment">// 可选项，加载错误时显示的组件或标签</span></span><br><span class="line">    <span class="attr">timeoutComponent</span>: &#123; <span class="comment">// 可选项，加载超时时显示的组件或配置对象</span></span><br><span class="line">        <span class="attr">template</span>: <span class="string">&#x27;&lt;div&gt;Component loading timed out.&lt;/div&gt;&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">suspensible</span>: <span class="literal">true</span> <span class="comment">// 可选项，启用组件的暂停和恢复功能</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="02-源码"><a href="#02-源码" class="headerlink" title="02. 源码"></a>02. 源码</h3><p><strong>packages\runtime-core\src\apiAsyncComponent.ts</strong></p>
+<p>这个代码看得比较纠结，简单说就是</p>
+<ol>
+<li>获取参数</li>
+<li>定义一些局部变量用于跟踪异步加载状态，如 pendingRequest、resolvedComp 和 retries。</li>
+<li>实现 load 函数，用于执行异步加载过程。它会调用 loader 函数，并处理加载过程中的错误和超时。加载成功后，将得到的组件进行处理，并返回 Promise 对象。</li>
+<li>使用 defineComponent 定义一个包裹组件 (AsyncComponentWrapper)，并在 setup 钩子中处理异步加载的逻辑。</li>
+<li>在 setup 钩子中，根据加载状态渲染不同的内容，包括已加载的组件、加载中的组件、错误组件等。</li>
+<li>返回 AsyncComponentWrapper 作为最终的组件选项对象，并使用类型断言 as T 将其转换为泛型参数 T 所指定的类型。</li>
+</ol>
+<p>简单说就是这些，我更关注的，这些参数有什么用。</p>
+<h3 id="03-delay"><a href="#03-delay" class="headerlink" title="03. delay"></a>03. delay</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> delayed = <span class="title function_">ref</span>(!!delay)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (delay) &#123;</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    delayed.<span class="property">value</span> = <span class="literal">false</span></span><br><span class="line">&#125;, delay)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (loaded.<span class="property">value</span> &amp;&amp; resolvedComp) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">createInnerComp</span>(resolvedComp, instance)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (error.<span class="property">value</span> &amp;&amp; errorComponent) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">createVNode</span>(errorComponent, &#123;</span><br><span class="line">        <span class="attr">error</span>: error.<span class="property">value</span></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (loadingComponent &amp;&amp; !delayed.<span class="property">value</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_">createVNode</span>(loadingComponent)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>看到这里，知道这个 <code>delay</code> 有什么用了吧，他只和 <code>loadingComponent</code> 相关。</p>
+<ol>
+<li>判断是否load完成以及解析完成组件</li>
+<li>判断错误信息和错误组件</li>
+<li>loading组件和是否应该loading</li>
+</ol>
+<p>也就是说，<code>delay</code> 是出现 <code>loadingComponent</code> 组件出现的延迟时间</p>
+<h3 id="04-timeout"><a href="#04-timeout" class="headerlink" title="04. timeout"></a>04. timeout</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (timeout != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (!loaded.<span class="property">value</span> &amp;&amp; !error.<span class="property">value</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> err = <span class="keyword">new</span> <span class="title class_">Error</span>(</span><br><span class="line">            <span class="string">`Async component timed out after <span class="subst">$&#123;timeout&#125;</span>ms.`</span></span><br><span class="line">        )</span><br><span class="line">        <span class="title function_">onError</span>(err)</span><br><span class="line">        error.<span class="property">value</span> = err</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, timeout)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个 <code>timeout</code>稍显简陋，就是一个定时任务，并且无法中断 <code>promise</code>, 也就是 <code>load</code>.</p>
+<p>但是，<code>error.value</code> 会触发 <code>render</code> 重新渲染，并且调用，所以会调用 <code>errorComponent</code></p>
+<h3 id="04-suspensible"><a href="#04-suspensible" class="headerlink" title="04 suspensible"></a>04 suspensible</h3><p>是否开启了 <code>suspens</code>.</p>
+<h3 id="05-defineAsyncComponent-总结"><a href="#05-defineAsyncComponent-总结" class="headerlink" title="05. defineAsyncComponent 总结"></a>05. defineAsyncComponent 总结</h3><p>这里基本就知道他是怎么用的了，以及 error，loading 组件加载的原理，以及 setTimeout &amp; delay &amp; suspensible 等参数作用是什么</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (</span><br><span class="line">(__FEATURE_SUSPENSE__ &amp;&amp; suspensible &amp;&amp; instance.<span class="property">suspense</span>) ||</span><br><span class="line">(__SSR__ &amp;&amp; isInSSRComponentSetup)</span><br><span class="line">) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="title function_">load</span>()</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function"><span class="params">comp</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function">() =&gt;</span> <span class="title function_">createInnerComp</span>(comp, instance)</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">onError</span>(err)</span><br><span class="line">    <span class="keyword">return</span> <span class="function">() =&gt;</span></span><br><span class="line">        errorComponent</span><br><span class="line">        ? <span class="title function_">createVNode</span>(errorComponent <span class="keyword">as</span> <span class="title class_">ConcreteComponent</span>, &#123;</span><br><span class="line">            <span class="attr">error</span>: err</span><br><span class="line">            &#125;)</span><br><span class="line">        : <span class="literal">null</span></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="06-suspense"><a href="#06-suspense" class="headerlink" title="06. suspense"></a>06. suspense</h3><p>官方文档 <a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/built-ins/suspense.html">Suspense</a>，其他的简单文档 <a target="_blank" rel="noopener" href="https://medium.com/i-am-mike/vue-3-vue3-%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD-suspense-428e02254030">Vue3 的新功能 — Suspense</a></p>
+<blockquote>
+<p><Suspense> 是一个内置组件，用来在组件树中协调对异步依赖的处理。它让我们可以在组件树上层等待下层的多个嵌套异步依赖项解析完成，并可以在等待时渲染一个加载状态。</p>
+</blockquote>
+<p>这个其实就说的很明确了，刚才说的 defineAsyncComponent 是针对单个组件，Suspense可以对于整个下面的组件都控制。</p>
+<blockquote>
+<p>Suspense 可以等待的异步依赖有两种：</p>
+<ol>
+<li>带有异步 setup() 钩子的组件。这也包含了使用 <script setup> 时有顶层 await 表达式的组件。</li>
+<li>异步组件, definedAsyncComponent, suspensible = true</li>
+</ol>
+</blockquote>
+<p>以及两个插槽和事件</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Suspense</span>&gt;</span><br><span class="line">  &lt;!-- 具有深层异步依赖的组件 --&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Dashboard</span> /&gt;</span></span></span><br><span class="line"></span><br><span class="line">  &lt;!-- 在 #fallback 插槽中显示 “正在加载中” --&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">template</span> #<span class="attr">fallback</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    Loading...</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line">&lt;/<span class="title class_">Suspense</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>default 插槽只能有一个组件，fallback 正在加载。</p>
+<p>事件</p>
+<blockquote>
+<p><Suspense> 组件会触发三个事件：pending、resolve 和 fallback。pending 事件是在进入挂起状态时触发。resolve 事件是在 default 插槽完成获取新内容时触发。fallback 事件则是在 fallback 插槽的内容显示时触发。</p>
+</blockquote>
+<p>error</p>
+<p>onErrorCaptured 在上层捕获</p>
+<p>ok, 做一个简单测试</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">///main</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Suspense</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">template</span> #<span class="attr">default</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">AsyncComponentOne</span> /&gt;</span> </span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">template</span> #<span class="attr">fallback</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">                <span class="tag">&lt;<span class="name">Loading</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">Suspense</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line">  </span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span> <span class="attr">lang</span>=<span class="string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">import</span> &#123; defineAsyncComponent, <span class="title class_">Suspense</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">import</span> <span class="title class_">Loading</span> <span class="keyword">from</span> <span class="string">&#x27;./Loading.vue&#x27;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">const</span> <span class="title class_">AsyncComponentOne</span> = <span class="title function_">defineAsyncComponent</span>(<span class="function">() =&gt;</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">import</span>(<span class="string">&#x27;./OneAsyncComponent.vue&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">///OneAsyncComponent</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span> <span class="attr">lang</span>=<span class="string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">import</span> &#123; defineAsyncComponent &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">import</span> <span class="title class_">ThreeAsyncComponen</span> <span class="keyword">from</span> <span class="string">&#x27;./ThreeAsyncComponent.vue&#x27;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">const</span> asyncLeft = <span class="title function_">defineAsyncComponent</span>(<span class="function">() =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">return</span> <span class="keyword">import</span>(<span class="string">`./TwoAsyncComponent.vue`</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">asyncLeft</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">ThreeAsyncComponen</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span><span class="language-css"></span></span></span><br><span class="line"><span class="language-css"><span class="language-xml"><span class="selector-class">.read-the-docs</span> &#123;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">    <span class="attribute">color</span>: <span class="number">#888</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">///TwoAsyncComponent.vue</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span> <span class="attr">lang</span>=<span class="string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">let</span> dataMsg = <span class="title function_">ref</span>(<span class="keyword">await</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="title function_">resolve</span>(<span class="string">&#x27;&#x27;</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;, <span class="number">5000</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">return</span> (<span class="keyword">new</span> <span class="title class_">Date</span>()).<span class="title function_">getTime</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;))</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Two AsyncComponent &#123;&#123; dataMsg &#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span><span class="language-css"></span></span></span><br><span class="line"><span class="language-css"><span class="language-xml"><span class="selector-class">.read-the-docs</span> &#123;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">    <span class="attribute">color</span>: <span class="number">#888</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">///ThreeAsyncComponen.vue</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span> <span class="attr">lang</span>=<span class="string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">import</span> &#123; ref &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">let</span> dataMsg = <span class="title function_">ref</span>(<span class="keyword">await</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="title function_">resolve</span>(<span class="string">&#x27;&#x27;</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;, <span class="number">10000</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;).<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">return</span> (<span class="keyword">new</span> <span class="title class_">Date</span>()).<span class="title function_">getTime</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;))</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Three AsyncComponent &#123;&#123; dataMsg &#125;&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span><span class="language-css"></span></span></span><br><span class="line"><span class="language-css"><span class="language-xml"><span class="selector-class">.read-the-docs</span> &#123;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">    <span class="attribute">color</span>: <span class="number">#888</span>;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="language-css"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h3 id="07-Suspendse-如何实现的？"><a href="#07-Suspendse-如何实现的？" class="headerlink" title="07. Suspendse 如何实现的？"></a>07. Suspendse 如何实现的？</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Suspense exposes a component-like API, and is treated like a component</span></span><br><span class="line"><span class="comment">// in the compiler, but internally it&#x27;s a special built-in type that hooks</span></span><br><span class="line"><span class="comment">// directly into the renderer.</span></span><br><span class="line"><span class="comment">// Suspense 公开了类似组件的 API，并被视为组件</span></span><br><span class="line"><span class="comment">// 在编译器中，但在内部它是一个特殊的内置类型，可以挂钩</span></span><br><span class="line"><span class="comment">// 直接进入渲染器。</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title class_">SuspenseImpl</span> = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;Suspense&#x27;</span>,</span><br><span class="line">  <span class="comment">// In order to make Suspense tree-shakable, we need to avoid importing it</span></span><br><span class="line">  <span class="comment">// directly in the renderer. The renderer checks for the __isSuspense flag</span></span><br><span class="line">  <span class="comment">// on a vnode&#x27;s type and calls the `process` method, passing in renderer</span></span><br><span class="line">  <span class="comment">// internals.</span></span><br><span class="line">  <span class="comment">// 为了使 Suspense 树可摇动，我们需要避免导入它</span></span><br><span class="line">  <span class="comment">// 直接在渲染器中。 渲染器检查 __isSuspense 标志</span></span><br><span class="line">  <span class="comment">// 在 vnode 的类型上并调用 `process` 方法，传入渲染器</span></span><br><span class="line">  <span class="comment">// 内部结构。</span></span><br><span class="line">  <span class="attr">__isSuspense</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="title function_">process</span>(<span class="params"></span></span><br><span class="line"><span class="params">    n1: VNode | <span class="literal">null</span>,</span></span><br><span class="line"><span class="params">    n2: VNode,</span></span><br><span class="line"><span class="params">    container: RendererElement,</span></span><br><span class="line"><span class="params">    anchor: RendererNode | <span class="literal">null</span>,</span></span><br><span class="line"><span class="params">    parentComponent: ComponentInternalInstance | <span class="literal">null</span>,</span></span><br><span class="line"><span class="params">    parentSuspense: SuspenseBoundary | <span class="literal">null</span>,</span></span><br><span class="line"><span class="params">    isSVG: <span class="built_in">boolean</span>,</span></span><br><span class="line"><span class="params">    slotScopeIds: <span class="built_in">string</span>[] | <span class="literal">null</span>,</span></span><br><span class="line"><span class="params">    optimized: <span class="built_in">boolean</span>,</span></span><br><span class="line"><span class="params">    <span class="comment">// platform-specific impl passed from renderer</span></span></span><br><span class="line"><span class="params">    rendererInternals: RendererInternals</span></span><br><span class="line"><span class="params">  </span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (n1 == <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="title function_">mountSuspense</span>(</span><br><span class="line">        n2,</span><br><span class="line">        container,</span><br><span class="line">        anchor,</span><br><span class="line">        parentComponent,</span><br><span class="line">        parentSuspense,</span><br><span class="line">        isSVG,</span><br><span class="line">        slotScopeIds,</span><br><span class="line">        optimized,</span><br><span class="line">        rendererInternals</span><br><span class="line">      )</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="title function_">patchSuspense</span>(</span><br><span class="line">        n1,</span><br><span class="line">        n2,</span><br><span class="line">        container,</span><br><span class="line">        anchor,</span><br><span class="line">        parentComponent,</span><br><span class="line">        isSVG,</span><br><span class="line">        slotScopeIds,</span><br><span class="line">        optimized,</span><br><span class="line">        rendererInternals</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">hydrate</span>: hydrateSuspense,</span><br><span class="line">  <span class="attr">create</span>: createSuspenseBoundary,</span><br><span class="line">  <span class="attr">normalize</span>: normalizeSuspenseChildren</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 用于 h 和 TSX props 推理的强制公共类型</span></span><br><span class="line"><span class="comment">// Force-casted public typing for h and TSX props inference</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title class_">Suspense</span> = (__FEATURE_SUSPENSE__</span><br><span class="line">  ? <span class="title class_">SuspenseImpl</span></span><br><span class="line">  : <span class="literal">null</span>) <span class="keyword">as</span> <span class="built_in">unknown</span> <span class="keyword">as</span> &#123;</span><br><span class="line">  <span class="attr">__isSuspense</span>: <span class="literal">true</span></span><br><span class="line">  <span class="keyword">new</span> (): &#123;</span><br><span class="line">    <span class="attr">$props</span>: <span class="title class_">VNodeProps</span> &amp; <span class="title class_">SuspenseProps</span></span><br><span class="line">    <span class="attr">$slots</span>: &#123;</span><br><span class="line">      <span class="title function_">default</span>(): <span class="title class_">VNode</span>[]</span><br><span class="line">      <span class="title function_">fallback</span>(): <span class="title class_">VNode</span>[]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>源码注释里面说</p>
+<blockquote>
+<p> 直接在渲染器中。 渲染器检查 __isSuspense 标志<br> 在 vnode 的类型上并调用 <code>process</code> 方法，传入渲染器</p>
+</blockquote>
+<p>但是这里明明是一个 Object, 没有检查，于是我又查了 process 的引用</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (__FEATURE_SUSPENSE__ &amp;&amp; shapeFlag &amp; <span class="title class_">ShapeFlags</span>.<span class="property">SUSPENSE</span>) &#123;</span><br><span class="line">    ;(<span class="keyword">type</span> <span class="keyword">as</span> <span class="keyword">typeof</span> <span class="title class_">SuspenseImpl</span>).<span class="title function_">process</span>(</span><br><span class="line">    n1,</span><br><span class="line">    n2,</span><br><span class="line">    container,</span><br><span class="line">    anchor,</span><br><span class="line">    parentComponent,</span><br><span class="line">    parentSuspense,</span><br><span class="line">    isSVG,</span><br><span class="line">    slotScopeIds,</span><br><span class="line">    optimized,</span><br><span class="line">    internals</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>FEATURE_SUSPENSE</strong> 是指的是开启 suspense 功能.</p>
+<p><strong>mountSuspense</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">mountSuspense</span>(<span class="params"></span></span><br><span class="line"><span class="params">  vnode: VNode,</span></span><br><span class="line"><span class="params">  container: RendererElement,</span></span><br><span class="line"><span class="params">  anchor: RendererNode | <span class="literal">null</span>,</span></span><br><span class="line"><span class="params">  parentComponent: ComponentInternalInstance | <span class="literal">null</span>,</span></span><br><span class="line"><span class="params">  parentSuspense: SuspenseBoundary | <span class="literal">null</span>,</span></span><br><span class="line"><span class="params">  isSVG: <span class="built_in">boolean</span>,</span></span><br><span class="line"><span class="params">  slotScopeIds: <span class="built_in">string</span>[] | <span class="literal">null</span>,</span></span><br><span class="line"><span class="params">  optimized: <span class="built_in">boolean</span>,</span></span><br><span class="line"><span class="params">  rendererInternals: RendererInternals</span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="attr">p</span>: patch,</span><br><span class="line">    <span class="attr">o</span>: &#123; createElement &#125;</span><br><span class="line">  &#125; = rendererInternals</span><br><span class="line">  <span class="keyword">const</span> hiddenContainer = <span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">//这个可以说是核心创建方法, 返回一个 suspense，后面操作的核心</span></span><br><span class="line">  <span class="keyword">const</span> suspense = (vnode.<span class="property">suspense</span> = <span class="title function_">createSuspenseBoundary</span>(</span><br><span class="line">    vnode,</span><br><span class="line">    parentSuspense,</span><br><span class="line">    parentComponent,</span><br><span class="line">    container,</span><br><span class="line">    hiddenContainer,</span><br><span class="line">    anchor,</span><br><span class="line">    isSVG,</span><br><span class="line">    slotScopeIds,</span><br><span class="line">    optimized,</span><br><span class="line">    rendererInternals</span><br><span class="line">  ))</span><br><span class="line"></span><br><span class="line">    <span class="comment">//开始在 off-dom 容器中挂载内容子树</span></span><br><span class="line">  <span class="comment">// start mounting the content subtree in an off-dom container</span></span><br><span class="line">  <span class="title function_">patch</span>(</span><br><span class="line">    <span class="literal">null</span>,</span><br><span class="line">    (suspense.<span class="property">pendingBranch</span> = vnode.<span class="property">ssContent</span>!),</span><br><span class="line">    hiddenContainer,</span><br><span class="line">    <span class="literal">null</span>,</span><br><span class="line">    parentComponent,</span><br><span class="line">    suspense,</span><br><span class="line">    isSVG,</span><br><span class="line">    slotScopeIds</span><br><span class="line">  )</span><br><span class="line">  <span class="comment">// 现在检查我们是否遇到了任何异步依赖</span></span><br><span class="line">  <span class="comment">// now check if we have encountered any async deps</span></span><br><span class="line">  <span class="keyword">if</span> (suspense.<span class="property">deps</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="comment">// has async</span></span><br><span class="line">    <span class="comment">// invoke @fallback event</span></span><br><span class="line">    <span class="title function_">triggerEvent</span>(vnode, <span class="string">&#x27;onPending&#x27;</span>)</span><br><span class="line">    <span class="title function_">triggerEvent</span>(vnode, <span class="string">&#x27;onFallback&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// mount the fallback tree</span></span><br><span class="line">    <span class="title function_">patch</span>(</span><br><span class="line">      <span class="literal">null</span>,</span><br><span class="line">      vnode.<span class="property">ssFallback</span>!,</span><br><span class="line">      container,</span><br><span class="line">      anchor,</span><br><span class="line">      parentComponent,</span><br><span class="line">      <span class="literal">null</span>, <span class="comment">// fallback tree will not have suspense context</span></span><br><span class="line">      isSVG,</span><br><span class="line">      slotScopeIds</span><br><span class="line">    )</span><br><span class="line">    <span class="title function_">setActiveBranch</span>(suspense, vnode.<span class="property">ssFallback</span>!)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// Suspense has no async deps. Just resolve.</span></span><br><span class="line">    suspense.<span class="title function_">resolve</span>(<span class="literal">false</span>, <span class="literal">true</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>createSuspenseBoundary</code></p>
+<blockquote>
+<p>创建 suspense 对象，该对象包含了 <Suspense> 组件的各种属性和方法。<br>resolve 方法用于处理异步组件加载完成后的操作。它会根据加载状态和配置来移动或渲染组件内容，并触发相关的事件和效果。<br>fallback 方法用于处理异步组件加载过程中的回退（fallback）操作。它会根据配置来渲染回退内容，并触发相关的事件。<br>move 方法用于移动异步组件的位置。<br>next 方法用于获取当前活跃分支的下一个节点。<br>registerDep 方法用于注册异步组件的依赖。当异步组件的依赖完成加载时，会触发相应的回调处理。<br>unmount 方法用于卸载 <Suspense> 组件边界及其相关的组件。</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// setup() is async. This component relies on async logic to be resolved</span></span><br><span class="line"><span class="comment">// before proceeding</span></span><br><span class="line"><span class="keyword">if</span> (__FEATURE_SUSPENSE__ &amp;&amp; instance.<span class="property">asyncDep</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这里其实就是 asyncDep，处理 catch + then, 处理参数 setupRenderEffect(asyncResult) 处理钩子</span></span><br><span class="line">    parentSuspense &amp;&amp; parentSuspense.<span class="title function_">registerDep</span>(instance, setupRenderEffect)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Give it a placeholder if this is not hydration</span></span><br><span class="line">    <span class="comment">// TODO handle self-defined fallback</span></span><br><span class="line">    <span class="keyword">if</span> (!initialVNode.<span class="property">el</span>) &#123;</span><br><span class="line">        <span class="keyword">const</span> placeholder = (instance.<span class="property">subTree</span> = <span class="title function_">createVNode</span>(<span class="title class_">Comment</span>))</span><br><span class="line">        <span class="title function_">processCommentNode</span>(<span class="literal">null</span>, placeholder, container!, anchor)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里遇到异步任务不会立刻执行，而是增加 <code>Dep++</code>, 然后预留位置</p>
+<p>会在卸载或者解析完成以后 <code>--</code></p>
+<p>所以这里的 dep 出处在这里</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">registerDep</span>(<span class="params">instance, setupRenderEffect</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> isInPendingSuspense = !!suspense.<span class="property">pendingBranch</span></span><br><span class="line">    <span class="keyword">if</span> (isInPendingSuspense) &#123;</span><br><span class="line">    suspense.<span class="property">deps</span>++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> hydratedEl = instance.<span class="property">vnode</span>.<span class="property">el</span></span><br><span class="line">    instance</span><br><span class="line">    .<span class="property">asyncDep</span>!.<span class="title function_">catch</span>(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">handleError</span>(err, instance, <span class="title class_">ErrorCodes</span>.<span class="property">SETUP_FUNCTION</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    .<span class="title function_">then</span>(<span class="function"><span class="params">asyncSetupResult</span> =&gt;</span> &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<p>事件在 <code>handleError</code>, 触发 <code>onErrorCaptured</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// now check if we have encountered any async deps</span></span><br><span class="line"><span class="keyword">if</span> (suspense.<span class="property">deps</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">  <span class="comment">// has async</span></span><br><span class="line">  <span class="comment">// invoke @fallback event</span></span><br><span class="line">  <span class="title function_">triggerEvent</span>(vnode, <span class="string">&#x27;onPending&#x27;</span>)</span><br><span class="line">  <span class="title function_">triggerEvent</span>(vnode, <span class="string">&#x27;onFallback&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// mount the fallback tree</span></span><br><span class="line">  <span class="title function_">patch</span>(</span><br><span class="line">    <span class="literal">null</span>,</span><br><span class="line">    vnode.<span class="property">ssFallback</span>!,</span><br><span class="line">    container,</span><br><span class="line">    anchor,</span><br><span class="line">    parentComponent,</span><br><span class="line">    <span class="literal">null</span>, <span class="comment">// fallback tree will not have suspense context</span></span><br><span class="line">    isSVG,</span><br><span class="line">    slotScopeIds</span><br><span class="line">  )</span><br><span class="line">  <span class="title function_">setActiveBranch</span>(suspense, vnode.<span class="property">ssFallback</span>!)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// Suspense has no async deps. Just resolve.</span></span><br><span class="line">  suspense.<span class="title function_">resolve</span>(<span class="literal">false</span>, <span class="literal">true</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果有异步任务，挂载 <code>fallback</code>，也就是 <code>loading</code> 之类的, <code>setActiveBranch</code> 是把 <code>vnode.ssFallback</code> 设置为当前的, 然后触发生命周期</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">triggerEvent</span>(vnode, <span class="string">&#x27;onPending&#x27;</span>)</span><br><span class="line"><span class="title function_">triggerEvent</span>(vnode, <span class="string">&#x27;onFallback&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果没有，直接完成。<code>suspense.resolve(false, true)</code>, 也就保证他在所有异步完全执行完成以后执行。</p>
+<p>一旦 <code>asyncDep</code> 执行，就会 -1， 然后 <code>resolve</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">resolve</span>(<span class="params">resume = <span class="literal">false</span>, sync = <span class="literal">false</span></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!resume &amp;&amp; !suspense.<span class="property">pendingBranch</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(</span><br><span class="line">            <span class="string">`suspense.resolve() is called without a pending branch.`</span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (suspense.<span class="property">isUnmounted</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">Error</span>(</span><br><span class="line">            <span class="string">`suspense.resolve() is called on an already unmounted suspense boundary.`</span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">        vnode,</span><br><span class="line">        activeBranch,</span><br><span class="line">        pendingBranch,</span><br><span class="line">        pendingId,</span><br><span class="line">        effects,</span><br><span class="line">        parentComponent,</span><br><span class="line">        container</span><br><span class="line">    &#125; = suspense</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (suspense.<span class="property">isHydrating</span>) &#123;</span><br><span class="line">        suspense.<span class="property">isHydrating</span> = <span class="literal">false</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!resume) &#123;</span><br><span class="line">        <span class="keyword">const</span> delayEnter =</span><br><span class="line">            activeBranch &amp;&amp;</span><br><span class="line">            pendingBranch!.<span class="property">transition</span> &amp;&amp;</span><br><span class="line">            pendingBranch!.<span class="property">transition</span>.<span class="property">mode</span> === <span class="string">&#x27;out-in&#x27;</span></span><br><span class="line">    <span class="keyword">if</span> (delayEnter) &#123;</span><br><span class="line">        activeBranch!.<span class="property">transition</span>!.<span class="property">afterLeave</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (pendingId === suspense.<span class="property">pendingId</span>) &#123;</span><br><span class="line">                <span class="title function_">move</span>(pendingBranch!, container, anchor, <span class="title class_">MoveType</span>.<span class="property">ENTER</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// this is initial anchor on mount</span></span><br><span class="line">    <span class="keyword">let</span> &#123; anchor &#125; = suspense</span><br><span class="line">    <span class="comment">// unmount current active tree</span></span><br><span class="line">    <span class="keyword">if</span> (activeBranch) &#123;</span><br><span class="line">        <span class="comment">// if the fallback tree was mounted, it may have been moved</span></span><br><span class="line">        <span class="comment">// as part of a parent suspense. get the latest anchor for insertion</span></span><br><span class="line">        anchor = <span class="title function_">next</span>(activeBranch)</span><br><span class="line">        <span class="title function_">unmount</span>(activeBranch, parentComponent, suspense, <span class="literal">true</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!delayEnter) &#123;</span><br><span class="line">        <span class="comment">// move content from off-dom container to actual container</span></span><br><span class="line">        <span class="title function_">move</span>(pendingBranch!, container, anchor, <span class="title class_">MoveType</span>.<span class="property">ENTER</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_">setActiveBranch</span>(suspense, pendingBranch!)</span><br><span class="line">    suspense.<span class="property">pendingBranch</span> = <span class="literal">null</span></span><br><span class="line">    suspense.<span class="property">isInFallback</span> = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// flush buffered effects</span></span><br><span class="line">    <span class="comment">// check if there is a pending parent suspense</span></span><br><span class="line">    <span class="keyword">let</span> parent = suspense.<span class="property">parent</span></span><br><span class="line">    <span class="keyword">let</span> hasUnresolvedAncestor = <span class="literal">false</span></span><br><span class="line">    <span class="keyword">while</span> (parent) &#123;</span><br><span class="line">    <span class="keyword">if</span> (parent.<span class="property">pendingBranch</span>) &#123;</span><br><span class="line">        <span class="comment">// found a pending parent suspense, merge buffered post jobs</span></span><br><span class="line">        <span class="comment">// into that parent</span></span><br><span class="line">        parent.<span class="property">effects</span>.<span class="title function_">push</span>(...effects)</span><br><span class="line">        hasUnresolvedAncestor = <span class="literal">true</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    &#125;</span><br><span class="line">    parent = parent.<span class="property">parent</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// no pending parent suspense, flush all jobs</span></span><br><span class="line">    <span class="keyword">if</span> (!hasUnresolvedAncestor) &#123;</span><br><span class="line">    <span class="title function_">queuePostFlushCb</span>(effects)</span><br><span class="line">    &#125;</span><br><span class="line">    suspense.<span class="property">effects</span> = []</span><br><span class="line"></span><br><span class="line">    <span class="comment">// resolve parent suspense if all async deps are resolved</span></span><br><span class="line">    <span class="keyword">if</span> (isSuspensible) &#123;</span><br><span class="line">    <span class="keyword">if</span> (</span><br><span class="line">        parentSuspense &amp;&amp;</span><br><span class="line">        parentSuspense.<span class="property">pendingBranch</span> &amp;&amp;</span><br><span class="line">        parentSuspenseId === parentSuspense.<span class="property">pendingId</span></span><br><span class="line">    ) &#123;</span><br><span class="line">        parentSuspense.<span class="property">deps</span>--</span><br><span class="line">        <span class="keyword">if</span> (parentSuspense.<span class="property">deps</span> === <span class="number">0</span> &amp;&amp; !sync) &#123;</span><br><span class="line">        parentSuspense.<span class="title function_">resolve</span>()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// invoke @resolve event</span></span><br><span class="line">    <span class="title function_">triggerEvent</span>(vnode, <span class="string">&#x27;onResolve&#x27;</span>)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>就是全部创建流程，更新 activeBranch 为 default， 挂载 default， 删除 Fallback, 修改属性为默认值，处理嵌套, 然后触发，</p>
+<h3 id="08-总结"><a href="#08-总结" class="headerlink" title="08. 总结"></a>08. 总结</h3><p>ok, 简单说就是 defineAsyncCom.. 单个， suspense 多个同时处理。</p>
+<p>suspense，有 defalut 和 fallback 两个插槽，可以提供3个钩子，</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">triggerEvent</span>(vnode, <span class="string">&#x27;onPending&#x27;</span>)</span><br><span class="line"><span class="title function_">triggerEvent</span>(vnode, <span class="string">&#x27;onFallback&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在进行异步之前触发，两个钩子可以说同时触发， <code>triggerEvent(vnode, &#39;onResolve&#39;)</code> 在完成以后触发。</p>
+<p>defineAsyncComponent 可以单个进行异步，他就是 definedComponent 封装.</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/api/general.html#defineasynccomponent">defineasynccomponent</a></li>
+<li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/components/async.html">异步组件</a></li>
+<li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/built-ins/suspense.html">Suspense</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/i-am-mike/vue-3-vue3-%E7%9A%84%E6%96%B0%E5%8A%9F%E8%83%BD-suspense-428e02254030">Vue3 的新功能 — Suspense</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/7044880716793905183#heading-9">Vue3 新特性 Teleport Suspense实现原理</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-06</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/vue3/'>
+                            vue3
+                        </a>
+                    
+                        <a href='/tblog/tags/%E5%89%8D%E7%AB%AF/'>
+                            前端
+                        </a>
+                    
+                        <a href='/tblog/tags/defineAsyncComponent/'>
+                            defineAsyncComponent
+                        </a>
+                    
+                        <a href='/tblog/tags/Suspense/'>
+                            Suspense
+                        </a>
+                    
+                        <a href='/tblog/tags/%E6%BA%90%E7%A0%81/'>
+                            源码
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/07/06/web_img_lazy_loading/'>图片懒加载方案</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/07/03/ts_type_interface/">type 和 interface 区别</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="flex 属性详解" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    flex 属性详解
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：2.5k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：10分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-flex-direction"><span class="post-toc-text">01. flex-direction</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-flex-wrap"><span class="post-toc-text">02. flex-wrap</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-flex-flow"><span class="post-toc-text">03. flex-flow</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-justify-content"><span class="post-toc-text">04. justify-content</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-align-items"><span class="post-toc-text">05. align-items</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#06-align-content"><span class="post-toc-text">06. align-content</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#07-%E5%AE%B9%E5%99%A8%E6%80%BB%E7%BB%93"><span class="post-toc-text">07. 容器总结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#08-order"><span class="post-toc-text">08. order</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#09-flex-grow"><span class="post-toc-text">09. flex-grow</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-flex-shrink"><span class="post-toc-text">10. flex-shrink</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-flex-basis"><span class="post-toc-text">11. flex-basis</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-flex"><span class="post-toc-text">12. flex</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-align-self"><span class="post-toc-text">13. align-self</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#14-%E6%80%BB%E7%BB%93"><span class="post-toc-text">14. 总结.</span></a></li></ol>
+            
+        
+        <p>写这个的目的是为了详细解释一下 flex 每个属性的意义和用法, 原因是因为突然发觉我自己对于 flex 细节并不是完全清楚</p>
+<h3 id="01-flex-direction"><a href="#01-flex-direction" class="headerlink" title="01. flex-direction"></a>01. flex-direction</h3><p>flex-direction 决定主轴的方向（即项目的排列方向）</p>
+<p>首先需要注意的是主轴的方向, 默认是水平方向, 即从左到右, 水平方向是主轴, 垂直方向是交叉轴</p>
+<p><img src="/tblog/img/bg2015071004.png" alt="alt text"></p>
+<p>也就是上图中 main axis, 交叉轴是 cross axis.</p>
+<p>两个可以相互交换</p>
+<p>也就是说 main axis 为交叉轴, cross axis 为主轴.</p>
+<p>其中 flex-direction 属性有 4 个取值</p>
+<ul>
+<li>row-reverse </li>
+<li>column-reverse</li>
+<li>row</li>
+<li>column</li>
+</ul>
+<p>默认值是 row, 也就是普通的水平排列, 如果 column 就是垂直排列.</p>
+<p>如果是反转 row-reverse, column-reverse .</p>
+<p>row-reverse 就是从右到左, column-reverse 就是从下到上</p>
+<p>只是需要注意的是 row-reverse 是真的全部从右到左, 整个布局都是右对齐了.</p>
+<p>但是 column-reverse 只是数据从下到上, 对齐方式还是从上到下</p>
+<h3 id="02-flex-wrap"><a href="#02-flex-wrap" class="headerlink" title="02. flex-wrap"></a>02. flex-wrap</h3><p>flex-wrap 决定如果一行排不下, 是否换行.</p>
+<p>flex-wrap 属性有 3 个取值</p>
+<ul>
+<li>nowrap</li>
+<li>wrap-reverse</li>
+<li>wrap</li>
+</ul>
+<p>默认值是 nowrap, 也就是不换行.<br>wrap-reverse 就是从下到上, 也就是从左到右<br>wrap-reverse 换行, 从上到下, 从左到右.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.main</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">flex-direction</span>: row;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: black;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">color</span>:white</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当 <code>flex-warp: nowrap</code> 时, 也就是默认值. 不管我有多少个 <code>box</code>, 都只会在一行显示, 他只会按比例缩小每一个 <code>box</code>.</p>
+<p>如果采用 <code>flex-warp: wrap</code>, 也就是自动换行. 这个时候就会出现换行的情况. 排不下了就自动换.</p>
+<p><code>wrap-reverse</code> 自动换行, 只是第一行在左下方, 也是从左到右.</p>
+<h3 id="03-flex-flow"><a href="#03-flex-flow" class="headerlink" title="03. flex-flow"></a>03. flex-flow</h3><p>这个比较简单</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">flex-flow</span>: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>就是前面两个的结合</p>
+<h3 id="04-justify-content"><a href="#04-justify-content" class="headerlink" title="04. justify-content"></a>04. justify-content</h3><p>justify-content 属性定义了项目在主轴上的对齐方式.</p>
+<p>只是主轴的对齐方式, 这个和 flex-direction 有关.</p>
+<p>justify-content 属性有 6 个取值,</p>
+<ul>
+<li>flex-start</li>
+<li>flex-end</li>
+<li>center</li>
+<li>space-between</li>
+<li>space-around</li>
+<li>space-evenly</li>
+</ul>
+<p>默认值是 flex-start, 也就是从左到右</p>
+<p>flex-end 就是从右到左</p>
+<p>center 就是居中</p>
+<p>space-between 就是两端对齐, 也就是两边留白, 中间对齐</p>
+<p>space-around 就是两边留白, 两边对齐, 中间对齐</p>
+<p>space-evenly 就是两边留白, 两边对齐, 中间对齐</p>
+<p><img src="/tblog/image/image.png" alt="Alt text"></p>
+<h3 id="05-align-items"><a href="#05-align-items" class="headerlink" title="05. align-items"></a>05. align-items</h3><p><code>align-items</code> 属性定义项目在交叉轴上如何对齐。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>flex-start 交叉轴的起点对齐.</p>
+<p>flex-end 交叉轴的终点对齐.</p>
+<p>center 交叉轴的中点对齐.</p>
+<p>baseline 项目的第一行文字的基线对齐.</p>
+<p>stretch 如果项目未设置高度或设为auto, 将占满整个容器的高度.</p>
+</blockquote>
+<p><img src="/tblog/image/image01.png" alt="Alt text"></p>
+<p>这里只是针对交叉轴, 需要明白之前那张图,没有设置高度的情况下, 默认是占满整个容器的高度.</p>
+<p>所以交叉轴就是在这个高度下去浮动.</p>
+<p>这里 baseline 比较特殊, 他是根据文字的基线去对齐.</p>
+<p>这个在需要文字,图片,icon 对齐的时候就有用了.</p>
+<blockquote>
+<p>stretch 如果项目未设置高度或设为auto, 将占满整个容器的高度.</p>
+</blockquote>
+<p><code>stretch</code> 是默认值, 不管你是否设置 <code>align-items</code>, 都会触发.</p>
+<p>也就是说 <code>flex</code> 容器如果设置了高度, 比如 <strong>600px</strong> , <code>flex</code> 容器内容有三行. 那么每个容器都是 <strong>200px</strong> 高度</p>
+<h3 id="06-align-content"><a href="#06-align-content" class="headerlink" title="06. align-content"></a>06. align-content</h3><p>这个其实是我当时的一个疑惑点</p>
+<blockquote>
+<p>align-content属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。</p>
+</blockquote>
+<p>首先什么事多个轴线? 不是有多个主轴或者多个交叉轴. 而是单行的情况, 就认为没有交叉轴,也就是只有主轴.</p>
+<p>所以 <code>align-content</code> 换句话说,就是单行情况下不生效. 至少两行才能生效</p>
+<p>那么 <code>align-items</code> 和 <code>align-content</code> 有什么区别呢?</p>
+<p><code>align-items</code> 是针对单个容器内容在交叉轴的对齐方式.</p>
+<p><code>align-content</code> 的设置对象是所有行.</p>
+<blockquote>
+<p>flex-start：与交叉轴的起点对齐。</p>
+<p>flex-end：与交叉轴的终点对齐。</p>
+<p>center：与交叉轴的中点对齐。</p>
+<p>space-between：与交叉轴两端对齐，轴线之间的间隔平均分布。</p>
+<p>space-around：每根轴线两侧的间隔都相等。所以，轴线之间的间隔比轴线与边框的间隔大一倍。</p>
+<p>stretch（默认值）：轴线占满整个交叉轴。</p>
+</blockquote>
+<p>可以看下这个图</p>
+<p><img src="/tblog/img/image02.png" alt="Alt text"></p>
+<h3 id="07-容器总结"><a href="#07-容器总结" class="headerlink" title="07. 容器总结"></a>07. 容器总结</h3><p>上面的所有属性都是基于容器的</p>
+<ol>
+<li><code>flex-direction</code> 主轴方向</li>
+<li><code>flex-warp</code> 容器是否换行和换行的方式</li>
+<li><code>flex-flow</code> 是上面两个属性的合并</li>
+<li><code>justify-content</code> 主轴对齐方式</li>
+<li><code>align-items</code> 交叉轴对齐方式</li>
+<li><code>align-content</code> 交叉轴多行对齐方式</li>
+</ol>
+<p>上面已经能做很多事情了</p>
+<p>比如我们常用的垂直居中， 就只需要 </p>
+<p><code>justify-content</code> 主轴对齐方式<br><code>align-items</code> 交叉轴对齐方式</p>
+<p>两个对齐就ok了。</p>
+<h3 id="08-order"><a href="#08-order" class="headerlink" title="08. order"></a>08. order</h3><p>这个属性是我之前完全忽略的属性</p>
+<blockquote>
+<p>order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
+</blockquote>
+<p>经过一个简单的测试 </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span> <span class="attr">style</span>=<span class="string">&quot;order:99&quot;</span>&gt;</span>5(order 99)<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span> <span class="attr">style</span>=<span class="string">&quot;order:100&quot;</span>&gt;</span>6(order 100)<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>也就是说 <code>order</code> 排序越小越在前面，但是前提是在有order设置里面。也就是说，如果我将 order 设置为0 或者不设置，那么他们永远是根据dom顺序来。设置 <code>order</code> 只能排后面</p>
+<h3 id="09-flex-grow"><a href="#09-flex-grow" class="headerlink" title="09. flex-grow"></a>09. flex-grow</h3><p>flex-grow 放大比例</p>
+<blockquote>
+<p>flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大。</p>
+</blockquote>
+<p>这个属性是针对剩余空间的，如果空间不足，那么就按照比例分配</p>
+<p>于是我按照这个思路写了一个</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.main</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">flex-direction</span>: row;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">height</span>: <span class="number">800px</span>;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">border</span>:<span class="number">1px</span> solid black</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">        <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">border</span>: <span class="number">1px</span> solid red;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">background-color</span>: black;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">color</span>:white;</span></span><br><span class="line"><span class="language-css">            <span class="attribute">flex-grow</span>: <span class="number">1</span>,</span></span><br><span class="line"><span class="language-css">        &#125;</span></span><br><span class="line"><span class="language-css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span> <span class="attr">style</span>=<span class="string">&quot;flex-grow: 3&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>5<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>6<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>7<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>结果我发现不对， 因为3并没有其他的两倍，但是下面这个链接又是ok的</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-grow">https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-grow</a></p>
+<p>这点我非常疑惑，后续再研究吧。</p>
+<h3 id="10-flex-shrink"><a href="#10-flex-shrink" class="headerlink" title="10. flex-shrink"></a>10. flex-shrink</h3><blockquote>
+<p>flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小。</p>
+</blockquote>
+<p>怎么理解呢？</p>
+<blockquote>
+<p>子元素当父元素宽度不够用时，自己调整自己所占的宽度比，这个flex-shrink设置为1时，表示所有子元素大家同时缩小来适应总宽度。当flex-shrink设置为0时，表示大家都不缩小适应</p>
+</blockquote>
+<p>和 <code>flex-grow</code> 类似, 只是有一个前提, 如果空间不够的话.</p>
+<p>比如</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.main</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">align-items</span>: center;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">display</span>: flex;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">justify-content</span>: center;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">    <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>, .<span class="number">2</span>);</span></span><br><span class="line"><span class="language-css">        <span class="attribute">border</span>: <span class="number">3px</span> solid <span class="number">#00f</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">margin</span>: <span class="number">10px</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">flex-shrink</span>: <span class="number">1</span>;</span></span><br><span class="line"><span class="language-css">        <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="language-css">    &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;main&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span> <span class="attr">style</span>=<span class="string">&quot;flex-shrink:2&quot;</span>&gt;</span>3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>还有就是也出现了, 并没有等比缩小. 这个具体还要后面学习</p>
+<h3 id="11-flex-basis"><a href="#11-flex-basis" class="headerlink" title="11. flex-basis"></a>11. flex-basis</h3><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-basis">https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex-basis</a></p>
+<blockquote>
+<p>CSS 属性 flex-basis 指定了 flex 元素在主轴方向上的初始大小。如果不使用 box-sizing 改变盒模型的话，那么这个属性就决定了 flex 元素的内容盒（content-box）的尺寸。</p>
+<p>它可以设为跟width或height属性一样的值（比如350px），则项目将占据固定空</p>
+</blockquote>
+<h3 id="12-flex"><a href="#12-flex" class="headerlink" title="12. flex"></a>12. flex</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">flex</span>: none | [ &lt;<span class="string">&#x27;flex-grow&#x27;</span>&gt; &lt;<span class="string">&#x27;flex-shrink&#x27;</span>&gt;? || &lt;<span class="string">&#x27;flex-basis&#x27;</span>&gt; ]</span><br></pre></td></tr></table></figure>
+
+<h3 id="13-align-self"><a href="#13-align-self" class="headerlink" title="13. align-self"></a>13. align-self</h3><blockquote>
+<p>align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。</p>
+</blockquote>
+<p>这个没什么好说的, 如果你前面理解了后面也理解了.</p>
+<h3 id="14-总结"><a href="#14-总结" class="headerlink" title="14. 总结."></a>14. 总结.</h3><p>flex 分为主轴和交叉轴, 两者可相互交换, 可以使用 flex-dirction 进行控制.</p>
+<p>flex 默认不换行, 你可以使用 flex-wrap 进行换行控制.</p>
+<p>flex-flow 对上面两个进行组合. flex-flow: flex-direction flex-wrap</p>
+<p>justify-content 控制主轴对齐方式.</p>
+<p>align-items 控制交叉轴对齐方式.</p>
+<p>align-content 控制多根轴线的对齐方式(也就是整体项目, 而不是单独某个box)</p>
+<p>上面就是 flex 项目整体的操作, 接下来是每个容器操作</p>
+<p>order 可以规定容器显示顺序</p>
+<p>flex-grow 可以规定容器放大比例</p>
+<p>flex-shrink 可以规定容器缩小比例</p>
+<p>flex-basis 可以规定容器初始大小</p>
+<p>flex 可以规定容器放大缩小比例和初始大小</p>
+<p>align-self 可以规定容器单独交叉轴对齐方式</p>
+<p>大概得语法就是这样了, 后续我会基于我的疑惑点在学习</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/cblx/p/12272729.htm">https://www.cnblogs.com/cblx/p/12272729.htm</a></p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-09-01</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/css/'>
+                            css
+                        </a>
+                    
+                        <a href='/tblog/tags/flex/'>
+                            flex
+                        </a>
+                    
+                        <a href='/tblog/tags/html/'>
+                            html
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/09/03/%5BQ102%5Djavascript_this_link/'>javascript this 指向</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/09/01/%5Bwechat%5Dwechat_website/">微信公众号网页踩坑？</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

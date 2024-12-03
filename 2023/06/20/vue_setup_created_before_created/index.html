@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="beforeCreate, created vs setup" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    beforeCreate, created vs setup
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：2.3k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：11分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#beforeCreate-created-vs-setup"><span class="post-toc-text">beforeCreate, created vs setup</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-beforeCreate"><span class="post-toc-text">1. beforeCreate</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-beforeCreate-%E8%83%BD%E5%81%9A%E4%BA%9B%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="post-toc-text">2. beforeCreate 能做些什么？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-created"><span class="post-toc-text">3. created</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-created-%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="post-toc-text">4. created 能做什么？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-setup"><span class="post-toc-text">5. setup</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-setup-%E5%87%BD%E6%95%B0%E8%83%BD%E8%AE%BF%E9%97%AE%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="post-toc-text">6. setup 函数能访问什么？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-%E5%B7%AE%E5%88%AB%E3%80%82"><span class="post-toc-text">7. 差别。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-%E6%80%BB%E7%BB%93"><span class="post-toc-text">8. 总结</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <h1 id="beforeCreate-created-vs-setup"><a href="#beforeCreate-created-vs-setup" class="headerlink" title="beforeCreate, created vs setup"></a>beforeCreate, created vs setup</h1><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">beforeCreate -&gt; <span class="title function_">setup</span>()</span><br><span class="line">created -&gt; <span class="title function_">setup</span>()</span><br><span class="line">beforeMount -&gt; onBeforeMount</span><br><span class="line">mounted -&gt; onMounted</span><br><span class="line">beforeUpdate -&gt; onBeforeUpdate</span><br><span class="line">updated -&gt; onUpdated</span><br><span class="line">beforeDestroy -&gt; onBeforeUnmount</span><br><span class="line">destroyed -&gt; onUnmounted</span><br><span class="line">activated -&gt; onActivated</span><br><span class="line">deactivated -&gt; onDeactivated</span><br><span class="line">errorCaptured -&gt; onErrorCaptured</span><br></pre></td></tr></table></figure>
+
+<p>有这么多生命周期，我们一个一个对比。</p>
+<h3 id="1-beforeCreate"><a href="#1-beforeCreate" class="headerlink" title="1. beforeCreate"></a>1. beforeCreate</h3><p>vue2.x 核心代码一直在这个位置 <strong>src\core\instance\init.ts</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">initMixin</span>(<span class="params">Vue: <span class="keyword">typeof</span> Component</span>) &#123;</span><br><span class="line">  <span class="title class_">Vue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">_init</span> = <span class="keyword">function</span> (<span class="params">options?: Record&lt;<span class="built_in">string</span>, <span class="built_in">any</span>&gt;</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="attr">vm</span>: <span class="title class_">Component</span> = <span class="variable language_">this</span></span><br><span class="line">    <span class="comment">// a uid</span></span><br><span class="line">    vm.<span class="property">_uid</span> = uid++</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> startTag, endTag</span><br><span class="line">    <span class="comment">/* istanbul ignore if */</span></span><br><span class="line">    <span class="keyword">if</span> (__DEV__ &amp;&amp; config.<span class="property">performance</span> &amp;&amp; mark) &#123;</span><br><span class="line">      startTag = <span class="string">`vue-perf-start:<span class="subst">$&#123;vm._uid&#125;</span>`</span></span><br><span class="line">      endTag = <span class="string">`vue-perf-end:<span class="subst">$&#123;vm._uid&#125;</span>`</span></span><br><span class="line">      <span class="title function_">mark</span>(startTag)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// a flag to mark this as a Vue instance without having to do instanceof</span></span><br><span class="line">    <span class="comment">// check</span></span><br><span class="line">    vm.<span class="property">_isVue</span> = <span class="literal">true</span></span><br><span class="line">    <span class="comment">// avoid instances from being observed</span></span><br><span class="line">    vm.<span class="property">__v_skip</span> = <span class="literal">true</span></span><br><span class="line">    <span class="comment">// effect scope</span></span><br><span class="line">    vm.<span class="property">_scope</span> = <span class="keyword">new</span> <span class="title class_">EffectScope</span>(<span class="literal">true</span> <span class="comment">/* detached */</span>)</span><br><span class="line">    vm.<span class="property">_scope</span>.<span class="property">_vm</span> = <span class="literal">true</span></span><br><span class="line">    <span class="comment">// merge options</span></span><br><span class="line">    <span class="keyword">if</span> (options &amp;&amp; options.<span class="property">_isComponent</span>) &#123;</span><br><span class="line">      <span class="comment">// optimize internal component instantiation</span></span><br><span class="line">      <span class="comment">// since dynamic options merging is pretty slow, and none of the</span></span><br><span class="line">      <span class="comment">// internal component options needs special treatment.</span></span><br><span class="line">      <span class="title function_">initInternalComponent</span>(vm, options <span class="keyword">as</span> <span class="built_in">any</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      vm.<span class="property">$options</span> = <span class="title function_">mergeOptions</span>(</span><br><span class="line">        <span class="title function_">resolveConstructorOptions</span>(vm.<span class="property">constructor</span> <span class="keyword">as</span> <span class="built_in">any</span>),</span><br><span class="line">        options || &#123;&#125;,</span><br><span class="line">        vm</span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/* istanbul ignore else */</span></span><br><span class="line">    <span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">      <span class="title function_">initProxy</span>(vm)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      vm.<span class="property">_renderProxy</span> = vm</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// expose real self</span></span><br><span class="line">    vm.<span class="property">_self</span> = vm</span><br><span class="line">    <span class="title function_">initLifecycle</span>(vm)</span><br><span class="line">    <span class="title function_">initEvents</span>(vm)</span><br><span class="line">    <span class="title function_">initRender</span>(vm)</span><br><span class="line">    <span class="title function_">callHook</span>(vm, <span class="string">&#x27;beforeCreate&#x27;</span>, <span class="literal">undefined</span>, <span class="literal">false</span> <span class="comment">/* setContext */</span>)</span><br><span class="line">    <span class="title function_">initInjections</span>(vm) <span class="comment">// resolve injections before data/props</span></span><br><span class="line">    <span class="title function_">initState</span>(vm)</span><br><span class="line">    <span class="title function_">initProvide</span>(vm) <span class="comment">// resolve provide after data/props</span></span><br><span class="line">    <span class="title function_">callHook</span>(vm, <span class="string">&#x27;created&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* istanbul ignore if */</span></span><br><span class="line">    <span class="keyword">if</span> (__DEV__ &amp;&amp; config.<span class="property">performance</span> &amp;&amp; mark) &#123;</span><br><span class="line">      vm.<span class="property">_name</span> = <span class="title function_">formatComponentName</span>(vm, <span class="literal">false</span>)</span><br><span class="line">      <span class="title function_">mark</span>(endTag)</span><br><span class="line">      <span class="title function_">measure</span>(<span class="string">`vue <span class="subst">$&#123;vm._name&#125;</span> init`</span>, startTag, endTag)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (vm.<span class="property">$options</span>.<span class="property">el</span>) &#123;</span><br><span class="line">      vm.$mount(vm.<span class="property">$options</span>.<span class="property">el</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里包含了</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">callHook</span>(vm, <span class="string">&#x27;beforeCreate&#x27;</span>, <span class="literal">undefined</span>, <span class="literal">false</span> <span class="comment">/* setContext */</span>)</span><br><span class="line"><span class="title function_">callHook</span>(vm, <span class="string">&#x27;created&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>先看 <code>beforeCreate</code> 做了什么</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// merge options</span></span><br><span class="line"><span class="comment">// 可以简单的理解为2种情况</span></span><br><span class="line"><span class="comment">// 1. 根组件合并，你 new Vue的参数，mixin，api 都合并为一个新的 $options</span></span><br><span class="line"><span class="comment">// 2. 子组件合并，把父组件的 event, props 需要传递的东西合并。</span></span><br><span class="line"><span class="keyword">if</span> (options &amp;&amp; options.<span class="property">_isComponent</span>) &#123;</span><br><span class="line">    <span class="comment">// optimize internal component instantiation</span></span><br><span class="line">    <span class="comment">// since dynamic options merging is pretty slow, and none of the</span></span><br><span class="line">    <span class="comment">// internal component options needs special treatment.</span></span><br><span class="line">    <span class="title function_">initInternalComponent</span>(vm, options <span class="keyword">as</span> <span class="built_in">any</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    vm.<span class="property">$options</span> = <span class="title function_">mergeOptions</span>(</span><br><span class="line">    <span class="title function_">resolveConstructorOptions</span>(vm.<span class="property">constructor</span> <span class="keyword">as</span> <span class="built_in">any</span>),</span><br><span class="line">    options || &#123;&#125;,</span><br><span class="line">    vm</span><br><span class="line">    )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用于初始化组件生命周期的函数。它接受一个组件实例 vm 作为参数，并在该组件实例上设置一些属性和状态。</span></span><br><span class="line"><span class="comment">//总体来说就是初始化当前组件的很多属性</span></span><br><span class="line"><span class="title function_">initLifecycle</span>(vm)</span><br><span class="line"><span class="comment">//事件注册</span></span><br><span class="line"><span class="comment">//把父组件的 _parentListeners 传递给当前组件监听</span></span><br><span class="line"><span class="title function_">initEvents</span>(vm)</span><br><span class="line"><span class="comment">//解析插槽</span></span><br><span class="line"><span class="comment">//绑定createElement 组件实例</span></span><br><span class="line"><span class="comment">//获取 $attrs &amp; $listenters, 并且响应式</span></span><br><span class="line"><span class="title function_">initRender</span>(vm)</span><br></pre></td></tr></table></figure>
+
+<p>也就是说 beforeCreate 之前做了 options,events,lifecycle, render的一些函数。</p>
+<h3 id="2-beforeCreate-能做些什么？"><a href="#2-beforeCreate-能做些什么？" class="headerlink" title="2. beforeCreate 能做些什么？"></a>2. beforeCreate 能做些什么？</h3><p>能做些什么肯定是基于 options,events,lifecycle, render。</p>
+<ol>
+<li>访问组件实例的配置项和属性，也就是合并的 options.</li>
+<li>因为只是加载了属性，事件等等前置的东西，所以可以进行身份验证，初始值，修改属性，加载数据之类的操作</li>
+<li>注册事件监听器 event</li>
+</ol>
+<p>其他的都不能访问。</p>
+<h3 id="3-created"><a href="#3-created" class="headerlink" title="3. created"></a>3. created</h3><p>beforeCreated 在钩子执行完成以后</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//解析vm.$options.inject</span></span><br><span class="line"><span class="comment">//defineReactive 响应式</span></span><br><span class="line"><span class="title function_">initInjections</span>(vm) <span class="comment">// resolve injections before data/props</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//if (opts.props) initProps(vm, opts.props)</span></span><br><span class="line"><span class="comment">//if (opts.methods) initMethods(vm, opts.methods)</span></span><br><span class="line"><span class="comment">//if (opts.data) initData(vm)</span></span><br><span class="line"><span class="comment">//if (opts.computed) initComputed(vm, opts.computed)</span></span><br><span class="line"><span class="comment">//if (opts.watch &amp;&amp; opts.watch !== nativeWatch) initWatch(vm, opts.watch)</span></span><br><span class="line"><span class="comment">//就是把这些解析出来，然后响应式，挂载在vm上</span></span><br><span class="line"><span class="title function_">initState</span>(vm)</span><br><span class="line"></span><br><span class="line"><span class="comment">//解析 resolveProvided(vm)</span></span><br><span class="line"><span class="comment">//响应式 Object.defineProperty</span></span><br><span class="line"><span class="title function_">initProvide</span>(vm) <span class="comment">// resolve provide after data/props</span></span><br></pre></td></tr></table></figure>
+
+<p>也就是在执行 Created 之前，解析出 <code>props, methods, data, computed, watch, inject, provide</code>.</p>
+<p>也就是说，在 Created 之后就可以访问这些数据了。</p>
+<h3 id="4-created-能做什么？"><a href="#4-created-能做什么？" class="headerlink" title="4. created 能做什么？"></a>4. created 能做什么？</h3><ol>
+<li>获取组件数据。</li>
+<li>访问组件的 DOM 元素，组件的模板已经被编译为 DOM 元素，并且可以通过 this.$el 来访问组件的根元素。你可以执行一些需要操作实际 DOM 的任务，例如操作元素属性、添加事件监听器等。</li>
+<li>调用方法。</li>
+</ol>
+<h3 id="5-setup"><a href="#5-setup" class="headerlink" title="5. setup"></a>5. setup</h3><p>在看生命周期钩子之前，还是需要知道大概 Vue3 创建组件的基本流程。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取组件实例</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">instance</span>: <span class="title class_">ComponentInternalInstance</span> =</span><br><span class="line">  compatMountInstance ||</span><br><span class="line">  (initialVNode.<span class="property">component</span> = <span class="title function_">createComponentInstance</span>(</span><br><span class="line">    initialVNode,</span><br><span class="line">    parentComponent,</span><br><span class="line">    parentSuspense</span><br><span class="line">  ))</span><br><span class="line"></span><br><span class="line"><span class="comment">// inject renderer internals for keepAlive</span></span><br><span class="line"><span class="comment">// 将默认的渲染方法，加入到 KeepAliveContext 当然的 render 当中</span></span><br><span class="line"><span class="keyword">if</span> (<span class="title function_">isKeepAlive</span>(initialVNode)) &#123;</span><br><span class="line">  ;(instance.<span class="property">ctx</span> <span class="keyword">as</span> <span class="title class_">KeepAliveContext</span>).<span class="property">renderer</span> = internals</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// resolve props and slots for setup context</span></span><br><span class="line"><span class="comment">// 其实不仅仅是解析，还执行了 setup函数</span></span><br><span class="line"><span class="title function_">setupComponent</span>(instance)</span><br><span class="line"></span><br><span class="line"><span class="comment">// setup() is async. This component relies on async logic to be resolved</span></span><br><span class="line"><span class="comment">// before proceeding</span></span><br><span class="line"><span class="comment">// 处理异步逻辑的情况，需要等待 setup() 函数完成后再继续  </span></span><br><span class="line"><span class="keyword">if</span> (__FEATURE_SUSPENSE__ &amp;&amp; instance.<span class="property">asyncDep</span>) &#123;</span><br><span class="line">  parentSuspense &amp;&amp; parentSuspense.<span class="title function_">registerDep</span>(instance, setupRenderEffect)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Give it a placeholder if this is not hydration</span></span><br><span class="line">  <span class="comment">// TODO handle self-defined fallback</span></span><br><span class="line">  <span class="keyword">if</span> (!initialVNode.<span class="property">el</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> placeholder = (instance.<span class="property">subTree</span> = <span class="title function_">createVNode</span>(<span class="title class_">Comment</span>))</span><br><span class="line">    <span class="title function_">processCommentNode</span>(<span class="literal">null</span>, placeholder, container!, anchor)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//执行组件的渲染效果函数进行渲染</span></span><br><span class="line"><span class="title function_">setupRenderEffect</span>(</span><br><span class="line">  instance,</span><br><span class="line">  initialVNode,</span><br><span class="line">  container,</span><br><span class="line">  anchor,</span><br><span class="line">  parentSuspense,</span><br><span class="line">  isSVG,</span><br><span class="line">  optimized</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>创建一个组件有什么流程？</p>
+<ol>
+<li>获取组件实例</li>
+<li>将默认的渲染方法，加入到 KeepAliveContext 当然的 render 当中</li>
+<li>解析和执行 setup</li>
+<li>处理 setup 异步情况</li>
+<li>渲染</li>
+</ol>
+<p>那我们继续看 <code>setupComponent</code> 函数</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">setupComponent</span>(<span class="params"></span></span><br><span class="line"><span class="params">  instance: ComponentInternalInstance,</span></span><br><span class="line"><span class="params">  isSSR = <span class="literal">false</span></span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line">  isInSSRComponentSetup = isSSR</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> &#123; props, children &#125; = instance.<span class="property">vnode</span></span><br><span class="line">  <span class="keyword">const</span> isStateful = <span class="title function_">isStatefulComponent</span>(instance)</span><br><span class="line">  <span class="comment">//解析props &amp; slots</span></span><br><span class="line">  <span class="title function_">initProps</span>(instance, props, isStateful, isSSR)</span><br><span class="line">  <span class="title function_">initSlots</span>(instance, children)</span><br><span class="line"></span><br><span class="line">  <span class="comment">//如果是有状态组件，执行 setup</span></span><br><span class="line">  <span class="keyword">const</span> setupResult = isStateful</span><br><span class="line">    ? <span class="title function_">setupStatefulComponent</span>(instance, isSSR)</span><br><span class="line">    : <span class="literal">undefined</span></span><br><span class="line">  isInSSRComponentSetup = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">return</span> setupResult</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//执行setup</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">setupStatefulComponent</span>(<span class="params"></span></span><br><span class="line"><span class="params">  instance: ComponentInternalInstance,</span></span><br><span class="line"><span class="params">  isSSR: <span class="built_in">boolean</span></span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="title class_">Component</span> = instance.<span class="property">type</span> <span class="keyword">as</span> <span class="title class_">ComponentOptions</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// 0. create render proxy property access cache</span></span><br><span class="line">  instance.<span class="property">accessCache</span> = <span class="title class_">Object</span>.<span class="title function_">create</span>(<span class="literal">null</span>)</span><br><span class="line">  <span class="comment">// 1. create public instance / render proxy</span></span><br><span class="line">  <span class="comment">// also mark it raw so it&#x27;s never observed</span></span><br><span class="line">  instance.<span class="property">proxy</span> = <span class="title function_">markRaw</span>(<span class="keyword">new</span> <span class="title class_">Proxy</span>(instance.<span class="property">ctx</span>, <span class="title class_">PublicInstanceProxyHandlers</span>))</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 2. call setup()</span></span><br><span class="line">  <span class="keyword">const</span> &#123; setup &#125; = <span class="title class_">Component</span></span><br><span class="line">  <span class="keyword">if</span> (setup) &#123;</span><br><span class="line">    <span class="keyword">const</span> setupContext = (instance.<span class="property">setupContext</span> =</span><br><span class="line">      setup.<span class="property">length</span> &gt; <span class="number">1</span> ? <span class="title function_">createSetupContext</span>(instance) : <span class="literal">null</span>)</span><br><span class="line"></span><br><span class="line">    <span class="title function_">setCurrentInstance</span>(instance)</span><br><span class="line">    <span class="title function_">pauseTracking</span>()</span><br><span class="line">    <span class="keyword">const</span> setupResult = <span class="title function_">callWithErrorHandling</span>(</span><br><span class="line">      setup,</span><br><span class="line">      instance,</span><br><span class="line">      <span class="title class_">ErrorCodes</span>.<span class="property">SETUP_FUNCTION</span>,</span><br><span class="line">      [__DEV__ ? <span class="title function_">shallowReadonly</span>(instance.<span class="property">props</span>) : instance.<span class="property">props</span>, setupContext]</span><br><span class="line">    )</span><br><span class="line">    <span class="title function_">resetTracking</span>()</span><br><span class="line">    <span class="title function_">unsetCurrentInstance</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">isPromise</span>(setupResult)) &#123;</span><br><span class="line">      setupResult.<span class="title function_">then</span>(unsetCurrentInstance, unsetCurrentInstance)</span><br><span class="line">      <span class="keyword">if</span> (isSSR) &#123;</span><br><span class="line">        <span class="comment">// return the promise so server-renderer can wait on it</span></span><br><span class="line">        <span class="keyword">return</span> setupResult</span><br><span class="line">          .<span class="title function_">then</span>(<span class="function">(<span class="params">resolvedResult: <span class="built_in">unknown</span></span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">handleSetupResult</span>(instance, resolvedResult, isSSR)</span><br><span class="line">          &#125;)</span><br><span class="line">          .<span class="title function_">catch</span>(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">handleError</span>(e, instance, <span class="title class_">ErrorCodes</span>.<span class="property">SETUP_FUNCTION</span>)</span><br><span class="line">          &#125;)</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (__FEATURE_SUSPENSE__) &#123;</span><br><span class="line">        <span class="comment">// async setup returned Promise.</span></span><br><span class="line">        <span class="comment">// bail here and wait for re-entry.</span></span><br><span class="line">        instance.<span class="property">asyncDep</span> = setupResult</span><br><span class="line">        <span class="keyword">if</span> (__DEV__ &amp;&amp; !instance.<span class="property">suspense</span>) &#123;</span><br><span class="line">          <span class="keyword">const</span> name = <span class="title class_">Component</span>.<span class="property">name</span> ?? <span class="string">&#x27;Anonymous&#x27;</span></span><br><span class="line">          <span class="title function_">warn</span>(</span><br><span class="line">            <span class="string">`Component &lt;<span class="subst">$&#123;name&#125;</span>&gt;: setup function returned a promise, but no `</span> +</span><br><span class="line">              <span class="string">`&lt;Suspense&gt; boundary was found in the parent component tree. `</span> +</span><br><span class="line">              <span class="string">`A component with async setup() must be nested in a &lt;Suspense&gt; `</span> +</span><br><span class="line">              <span class="string">`in order to be rendered.`</span></span><br><span class="line">          )</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">        <span class="title function_">warn</span>(</span><br><span class="line">          <span class="string">`setup() returned a Promise, but the version of Vue you are using `</span> +</span><br><span class="line">            <span class="string">`does not support it yet.`</span></span><br><span class="line">        )</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="title function_">handleSetupResult</span>(instance, setupResult, isSSR)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_">finishComponentSetup</span>(instance, isSSR)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>简单说就是设置上下文，执行 <code>setup，获取</code> <code>setup</code> 返回值，判断是否异步返回，调用 <code>handleSetupResult</code></p>
+<p>&#96;&#96; 就是判断返回类型，进行不同的处理</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">isFunction</span>(setupResult) <span class="comment">//返回渲染函数</span></span><br><span class="line"><span class="title function_">isObject</span>(setupResult) <span class="comment">//返回绑定对象，绑定到 setupState 当中</span></span><br></pre></td></tr></table></figure>
+
+<p>然后调用 <code>finishComponentSetup</code>， 这里其实主要是处理渲染函数和兼容模式(兼容Vue2.x写法)。</p>
+<p>在这里基本明白了组件创建期间做了什么？</p>
+<ol>
+<li>需要创建组件的地方调用 <code>patch</code></li>
+<li>根据节点类型(shapeFlag &amp; 6 &#x2F;* ShapeFlags.COMPONENT *&#x2F;), 判断需要调用 <code>processComponent。</code></li>
+<li>然后调用 <code>mountComponent</code> 创建节点</li>
+<li>判断是否是 <code>keepAlive，写入</code> <code>keepAlive</code> 专门的 <code>render</code></li>
+<li>执行 <code>setupComponent(instance);</code> 解析和执行 <code>setup</code><br>  5.1 解析 <code>props</code>, <code>slot</code><br>  5.2 设置 <code>setup</code> 执行上下文<br>  5.3 执行 <code>setup</code><br>  5.4 处理返回值<br>  5.5 创建 <code>render</code> 函数</li>
+<li>处理 <code>setup</code> 异步调用情况</li>
+<li>渲染</li>
+</ol>
+<h3 id="6-setup-函数能访问什么？"><a href="#6-setup-函数能访问什么？" class="headerlink" title="6. setup 函数能访问什么？"></a>6. setup 函数能访问什么？</h3><p>这里有几个问题，在刚才看 <strong>vue2.x</strong> 源码的时候，不仅仅有这些东西，</p>
+<p>在 <code>beforeCreate</code> 的时候有 <code>options，initLifecycle，initEvents，initRender</code><br>在 <code>created</code> 的时候可以访问，<code>props, methods, data, computed, watch, inject, provide</code></p>
+<p>这些没有可以理解 <code>methods, data, computed, watch</code>，因为他已经在 <code>setup</code> 函数当中了，那么？其他的呢？</p>
+<p>我们应该如何访问？</p>
+<p>拿 options 来说</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; getCurrentInstance &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> instance = <span class="title function_">getCurrentInstance</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;instance???&#x27;</span>, instance.<span class="property">appContext</span>.<span class="property">config</span>.<span class="property">globalProperties</span>)</span><br></pre></td></tr></table></figure>
+
+<p>initRender 在解析和执行 setup 会初始化。</p>
+<p><code>$attrs</code> 在 <code>createSetupContext</code> 中解析，然后传入 <code>callWithErrorHandling</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> setupContext = (instance.<span class="property">setupContext</span> =</span><br><span class="line">  setup.<span class="property">length</span> &gt; <span class="number">1</span> ? <span class="title function_">createSetupContext</span>(instance) : <span class="literal">null</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">setCurrentInstance</span>(instance)</span><br><span class="line"><span class="title function_">pauseTracking</span>()</span><br><span class="line"><span class="keyword">const</span> setupResult = <span class="title function_">callWithErrorHandling</span>(</span><br><span class="line">  setup,</span><br><span class="line">  instance,</span><br><span class="line">  <span class="title class_">ErrorCodes</span>.<span class="property">SETUP_FUNCTION</span>,</span><br><span class="line">  [__DEV__ ? <span class="title function_">shallowReadonly</span>(instance.<span class="property">props</span>) : instance.<span class="property">props</span>, setupContext]</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p><code>initEvents</code> 主要是解决父节点和子节点的通信（通过事件通信）, </p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;child v-on=<span class="string">`customEvent`</span>&gt;something&lt;/child&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//child</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">triggerEvent</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> payload = <span class="string">&#x27;Hello from child component!&#x27;</span>;</span><br><span class="line">  <span class="title function_">emit</span>(<span class="string">&#x27;customEvent&#x27;</span>, payload);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><code>initEvents</code> &amp; <code>$attrs</code> 的源码都在 <code>createSetupContext</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">attrs</span>: <span class="title class_">Data</span></span><br><span class="line"><span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">  <span class="comment">// We use getters in dev in case libs like test-utils overwrite instance</span></span><br><span class="line">  <span class="comment">// properties (overwrites should not be done in prod)</span></span><br><span class="line">  <span class="keyword">return</span> <span class="title class_">Object</span>.<span class="title function_">freeze</span>(&#123;</span><br><span class="line">    <span class="keyword">get</span> <span class="title function_">attrs</span>() &#123;</span><br><span class="line">      <span class="keyword">return</span> attrs || (attrs = <span class="title function_">createAttrsProxy</span>(instance))</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">get</span> <span class="title function_">slots</span>() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">shallowReadonly</span>(instance.<span class="property">slots</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">get</span> <span class="title function_">emit</span>() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="function">(<span class="params">event: <span class="built_in">string</span>, ...args: <span class="built_in">any</span>[]</span>) =&gt;</span> instance.<span class="title function_">emit</span>(event, ...args)</span><br><span class="line">    &#125;,</span><br><span class="line">    expose</span><br><span class="line">  &#125;)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="keyword">get</span> <span class="title function_">attrs</span>() &#123;</span><br><span class="line">      <span class="keyword">return</span> attrs || (attrs = <span class="title function_">createAttrsProxy</span>(instance))</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">slots</span>: instance.<span class="property">slots</span>,</span><br><span class="line">    <span class="attr">emit</span>: instance.<span class="property">emit</span>,</span><br><span class="line">    expose</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>inject, provide</code> </p>
+<p><strong>packages\runtime-core\src\apiInject.ts</strong></p>
+<p>其实就是 父组件调用 <code>provide</code>, 为当前组件的 <code>provides</code> 属性添加 <code>key value</code>.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> provides = currentInstance.<span class="property">provides</span></span><br><span class="line"><span class="comment">// by default an instance inherits its parent&#x27;s provides object</span></span><br><span class="line"><span class="comment">// but when it needs to provide values of its own, it creates its</span></span><br><span class="line"><span class="comment">// own provides object using parent provides object as prototype.</span></span><br><span class="line"><span class="comment">// this way in `inject` we can simply look up injections from direct</span></span><br><span class="line"><span class="comment">// parent and let the prototype chain do the work.</span></span><br><span class="line"><span class="keyword">const</span> parentProvides =</span><br><span class="line">  currentInstance.<span class="property">parent</span> &amp;&amp; currentInstance.<span class="property">parent</span>.<span class="property">provides</span></span><br><span class="line"><span class="keyword">if</span> (parentProvides === provides) &#123;</span><br><span class="line">  provides = currentInstance.<span class="property">provides</span> = <span class="title class_">Object</span>.<span class="title function_">create</span>(parentProvides)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// TS doesn&#x27;t allow symbol as index type</span></span><br><span class="line">provides[key <span class="keyword">as</span> <span class="built_in">string</span>] = value</span><br></pre></td></tr></table></figure>
+
+<p>创建子组件的时候会调用</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">provides</span>: parent ? parent.<span class="property">provides</span> : <span class="title class_">Object</span>.<span class="title function_">create</span>(appContext.<span class="property">provides</span>),</span><br></pre></td></tr></table></figure>
+
+<p>如果要 <code>inject</code>，就是沿着向上找。</p>
+<h3 id="7-差别。"><a href="#7-差别。" class="headerlink" title="7. 差别。"></a>7. 差别。</h3><p>在我看来，可以理解为没有 <code>beforeCreate</code> 这个生命周期了, 可以理解为 <code>setup = created</code>. 该解析的都解析好了.</p>
+<h3 id="8-总结"><a href="#8-总结" class="headerlink" title="8. 总结"></a>8. 总结</h3><p><code>beforeCreate</code> 可以访问 <code>options, event, render</code> 函数等等。</p>
+<p><code>created</code> 可以访问到 <code>data，method，inject，provide，attrs，listener</code> 等等</p>
+<p><code>setup</code> 等于上面的都能访问.</p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-06-20</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/setup/'>
+                            setup
+                        </a>
+                    
+                        <a href='/tblog/tags/Vue3-x/'>
+                            Vue3.x
+                        </a>
+                    
+                        <a href='/tblog/tags/Vue2-x/'>
+                            Vue2.x
+                        </a>
+                    
+                        <a href='/tblog/tags/beforeCreate/'>
+                            beforeCreate
+                        </a>
+                    
+                        <a href='/tblog/tags/created/'>
+                            created
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/06/20/vue_lifecycle/'>Vue lifecycle 实现</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/06/15/async&defer/">async &amp; defer</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

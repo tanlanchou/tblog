@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="Javascript Array" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    Javascript Array
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：5.6k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：23分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="post-toc-text">1. 构造函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-Array-species"><span class="post-toc-text">2. Array[@@species]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-Array-prototype-unscopables"><span class="post-toc-text">3. Array.prototype[@@unscopables]</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-length"><span class="post-toc-text">4. length</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-Array-prototype-iterator"><span class="post-toc-text">5. Array.prototype@@iterator</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-at"><span class="post-toc-text">6. at</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-concat"><span class="post-toc-text">7. concat</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-copyWithin"><span class="post-toc-text">8. copyWithin</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-Array-prototype-entries"><span class="post-toc-text">9. Array.prototype.entries()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-Array-prototype-every"><span class="post-toc-text">10. Array.prototype.every()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-Array-prototype-fill"><span class="post-toc-text">11. Array.prototype.fill()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#12-Array-prototype-filter"><span class="post-toc-text">12. Array.prototype.filter()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#13-Array-prototype-find-Array-prototype-findIndex-Array-prototype-findLast-Array-prototype-findLastIndex"><span class="post-toc-text">13. Array.prototype.find, Array.prototype.findIndex, Array.prototype.findLast, Array.prototype.findLastIndex</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#14-Array-prototype-flat"><span class="post-toc-text">14. Array.prototype.flat</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#15-Array-prototype-flatMap"><span class="post-toc-text">15. Array.prototype.flatMap</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#16-Array-prototype-forEach"><span class="post-toc-text">16. Array.prototype.forEach</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#17-Array-from"><span class="post-toc-text">17. Array.from()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#18-Array-fromAsync-%E5%AE%9E%E9%AA%8C%E6%80%A7%E8%B4%A8"><span class="post-toc-text">18. Array.fromAsync() 实验性质</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#19-Array-prototype-group-%E5%AE%9E%E9%AA%8C%E6%80%A7%E8%B4%A8"><span class="post-toc-text">19. Array.prototype.group() 实验性质</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#20-Array-prototype-groupToMap-%E5%AE%9E%E9%AA%8C%E6%80%A7%E8%B4%A8"><span class="post-toc-text">20. Array.prototype.groupToMap() 实验性质</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#21-Array-prototype-includes"><span class="post-toc-text">21. Array.prototype.includes()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#22-Array-prototype-indexOf-%EF%BC%8CArray-prototype-lastIndexOf"><span class="post-toc-text">22. Array.prototype.indexOf()，Array.prototype.lastIndexOf()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#23-Array-isArray"><span class="post-toc-text">23. Array.isArray()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#24-Array-prototype-join"><span class="post-toc-text">24. Array.prototype.join()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#25-Array-prototype-keys"><span class="post-toc-text">25. Array.prototype.keys()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#26-Array-prototype-map"><span class="post-toc-text">26. Array.prototype.map()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#27-Array-of"><span class="post-toc-text">27. Array.of</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#28-Array-prototype-pop-Array-prototype-shift-Array-prototype-unshift-%EF%BC%8CArray-prototype-push"><span class="post-toc-text">28. Array.prototype.pop(), Array.prototype.shift(), Array.prototype.unshift()，Array.prototype.push()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#29-Array-prototype-reduce-%EF%BC%8CArray-prototype-reduceRight"><span class="post-toc-text">29. Array.prototype.reduce()，Array.prototype.reduceRight()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#30-Array-prototype-reverse-%EF%BC%8CArray-prototype-toReversed"><span class="post-toc-text">30. Array.prototype.reverse()，Array.prototype.toReversed()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#31-Array-prototype-slice"><span class="post-toc-text">31. Array.prototype.slice()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#32-Array-prototype-some"><span class="post-toc-text">32. Array.prototype.some()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#33-Array-prototype-sort"><span class="post-toc-text">33. Array.prototype.sort()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#34-Array-prototype-toSorted"><span class="post-toc-text">34. Array.prototype.toSorted()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#35-Array-prototype-splice"><span class="post-toc-text">35. Array.prototype.splice()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#36-Array-prototype-toSpliced"><span class="post-toc-text">36. Array.prototype.toSpliced()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#37-Array-prototype-toLocaleString-Array-prototype-toString"><span class="post-toc-text">37. Array.prototype.toLocaleString(), Array.prototype.toString()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#38-Array-prototype-values"><span class="post-toc-text">38. Array.prototype.values()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#39-Array-prototype-with"><span class="post-toc-text">39. Array.prototype.with()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#link"><span class="post-toc-text">link</span></a></li></ol>
+            
+        
+        <p>重新复习一下</p>
+<h3 id="1-构造函数"><a href="#1-构造函数" class="headerlink" title="1. 构造函数"></a>1. 构造函数</h3><blockquote>
+<p>Array() 构造函数用于创建 Array 对象。</p>
+<p>调用 Array() 时可以使用或不使用 new。两者都会创建一个新的 Array 实例。</p>
+</blockquote>
+<p><strong>elementN</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>) <span class="comment">//[1,2,3,4]</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>arrayLength</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; Array(5) //[undefined,undefined,undefined]undefined,undefined</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Array-species"><a href="#2-Array-species" class="headerlink" title="2. Array[@@species]"></a>2. Array[@@species]</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>[<span class="title class_">Symbol</span>.<span class="property">species</span>]</span><br></pre></td></tr></table></figure>
+
+<p><code>Symbol.specie</code> </p>
+<blockquote>
+<p>species 访问器属性允许子类覆盖对象的默认构造函数。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Array1</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Array</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> get [<span class="title class_">Symbol</span>.<span class="property">species</span>]() &#123; <span class="keyword">return</span> <span class="title class_">Array</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = <span class="keyword">new</span> <span class="title class_">Array1</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line"><span class="keyword">const</span> mapped = a.<span class="title function_">map</span>(<span class="function"><span class="params">x</span> =&gt;</span> x * x);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mapped <span class="keyword">instanceof</span> <span class="title class_">Array1</span>);</span><br><span class="line"><span class="comment">// Expected output: false</span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(mapped <span class="keyword">instanceof</span> <span class="title class_">Array</span>);</span><br><span class="line"><span class="comment">// Expected output: true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Array-prototype-unscopables"><a href="#3-Array-prototype-unscopables" class="headerlink" title="3. Array.prototype[@@unscopables]"></a>3. Array.prototype[@@unscopables]</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>[@@unscopables]</span><br></pre></td></tr></table></figure>
+
+<p>其实也就是 <code>Symbol.unscopables</code>, </p>
+<blockquote>
+<p>Symbol.unscopables 属性通常在对象的原型链上定义，用于控制在作用域绑定中应该被忽略的属性。如果一个对象的属性名存在于 Symbol.unscopables 属性中，那么在使用 with 语句时，该属性将被忽略，不会被当作局部变量引入。</p>
+</blockquote>
+<p>也就是定义哪些 with 中无法使用，这个可以忽略，因为 with 是一种问题很大的写法。</p>
+<blockquote>
+<p>可读性和维护性差：with 语句可以引入额外的作用域绑定，从而导致代码的可读性下降。在一个较大的代码块中，难以准确判断变量的来源，增加了代码的维护难度。</p>
+<p>作用域泄漏：with 语句会将对象添加到作用域链的前端，这可能导致意外的变量声明。如果在 with 语句内部使用了未声明的变量，该变量会被添加到全局作用域中，可能引发命名冲突或意外的行为。</p>
+<p>性能问题：with 语句会影响代码的性能。由于引入额外的作用域绑定，JavaScript 引擎在查找变量时需要遍历更长的作用域链，导致代码执行速度变慢。</p>
+<p>不安全的属性访问：使用 with 语句可以直接访问对象的属性，但如果属性不存在，会自动将其认为是全局变量。这种隐式的属性访问会使代码更加脆弱，容易出现错误。</p>
+<p>严格模式不支持：with 语句在严格模式下是被禁止的，如果你的代码要求使用严格模式，就不能使用 with 语句。</p>
+</blockquote>
+<p>所以都别用。</p>
+<h3 id="4-length"><a href="#4-length" class="headerlink" title="4. length"></a>4. length</h3><blockquote>
+<p>length 是 Array 的实例属性，表示该数组中元素的个数。该值是一个无符号 32 位整数，并且其数值总是大于数组最大索引。</p>
+</blockquote>
+<p>一般使用的话，会直接返回数组的长度, 可以判断长度，遍历等操作。</p>
+<p>值得注意的是 length 是可写的，它可以做几件事。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line">arr.<span class="property">length</span> = <span class="number">200</span>; <span class="comment">//[undefined * 200]</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>];</span><br><span class="line">arr1.<span class="property">length</span> = <span class="number">3</span>; <span class="comment">//[1,2,3]</span></span><br></pre></td></tr></table></figure>
+
+<p>写 length 可以做到，裁减 arr，可以创建数组。</p>
+<h3 id="5-Array-prototype-iterator"><a href="#5-Array-prototype-iterator" class="headerlink" title="5. Array.prototype@@iterator"></a>5. Array.prototype<a href="">@@iterator</a></h3><p><code>Symbol.iterator</code> </p>
+<blockquote>
+<p>Symbol.iterator 是 JavaScript 中的一个内置符号（Symbol），它用于定义一个对象的默认迭代器方法。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myObject = &#123;</span><br><span class="line">  <span class="attr">data</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">  [<span class="title class_">Symbol</span>.<span class="property">iterator</span>]() &#123;</span><br><span class="line">    <span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">const</span> data = <span class="variable language_">this</span>.<span class="property">data</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="title function_">next</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (index &lt; data.<span class="property">length</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">value</span>: data[index++],</span><br><span class="line">            <span class="attr">done</span>: <span class="literal">false</span></span><br><span class="line">          &#125;;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">done</span>: <span class="literal">true</span></span><br><span class="line">          &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>就可以支持 <code>for of</code> 循环。</p>
+<h3 id="6-at"><a href="#6-at" class="headerlink" title="6. at"></a>6. at</h3><blockquote>
+<p>at() 方法接收一个整数值并返回该索引对应的元素，允许正数和负数。负整数从数组中的最后一个元素开始倒数。</p>
+</blockquote>
+<p>正常情况下，正整数去使用的话和直接 <code>array[index]</code> 是没有区别的.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line">o[<span class="number">0</span>] <span class="comment">//1;</span></span><br><span class="line">o.<span class="title function_">at</span>(<span class="number">0</span>) <span class="comment">//1;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是有些不一样</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> o = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line">o[o.<span class="property">length</span> - <span class="number">1</span>] <span class="comment">//5;</span></span><br><span class="line">o.<span class="title function_">at</span>(-<span class="number">1</span>) <span class="comment">//5;</span></span><br></pre></td></tr></table></figure>
+
+<p>他会简化操作。</p>
+<h3 id="7-concat"><a href="#7-concat" class="headerlink" title="7. concat"></a>7. concat</h3><blockquote>
+<p>concat() 方法用于合并两个或多个数组。此方法不会更改现有数组，而是返回一个新数组。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="title function_">concat</span>(...item);</span><br></pre></td></tr></table></figure>
+
+<p>就是合并，不会去重，并且是浅拷贝</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> num1 = [[<span class="number">1</span>]];</span><br><span class="line"><span class="keyword">const</span> num2 = [<span class="number">2</span>, [<span class="number">3</span>]];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> numbers = num1.<span class="title function_">concat</span>(num2);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(numbers);</span><br><span class="line"><span class="comment">// [[1], 2, [3]]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改 num1 的第一个元素</span></span><br><span class="line">num1[<span class="number">0</span>].<span class="title function_">push</span>(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(numbers);</span><br><span class="line"><span class="comment">// [[1, 4], 2, [3]]</span></span><br></pre></td></tr></table></figure>
+
+<p>还有就是 <strong>Symbol.isConcatSpreadable</strong></p>
+<blockquote>
+<p>内置的<strong>Symbol.isConcatSpreadable</strong>符号用于配置某对象作为Array.prototype.concat()方法的参数时是否展开其数组元素。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">let</span> arr1 = [<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>]</span><br><span class="line">arr[<span class="title class_">Symbol</span>.<span class="property">isConcatSpreadable</span>] = <span class="literal">false</span>;</span><br><span class="line">arr.<span class="title function_">concat</span>(arr1); <span class="comment">//[[1, 2, 3, 4, 5], 6,7,8]</span></span><br></pre></td></tr></table></figure>
+
+<p>会改变默认行为.</p>
+<p>如果是 Array-like, 就会直接支持 <code>concat</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> obj2 = &#123; <span class="number">0</span>: <span class="number">1</span>, <span class="number">1</span>: <span class="number">2</span>, <span class="number">2</span>: <span class="number">3</span>, <span class="attr">length</span>: <span class="number">3</span>, [<span class="title class_">Symbol</span>.<span class="property">isConcatSpreadable</span>]: <span class="literal">true</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>];</span><br><span class="line">arr.<span class="title function_">concat</span>(obj2) <span class="comment">//[1,2,3,5,6,7,8]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-copyWithin"><a href="#8-copyWithin" class="headerlink" title="8. copyWithin"></a>8. copyWithin</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">copyWithin</span>(target)</span><br><span class="line"><span class="title function_">copyWithin</span>(target, start)</span><br><span class="line"><span class="title function_">copyWithin</span>(target, start, end)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>copyWithin 是数组的一个方法，用于将数组中的一部分元素复制到数组的指定位置。它修改原始数组，不会创建新的数组副本。</p>
+</blockquote>
+<p>简单的方法却有很多东西.</p>
+<ul>
+<li>所有参数都支持负数， 如果 param &lt; 0，则实际是 param + array.length。</li>
+<li>所有参数都会转为整数, 如果不是整数，比如是 <code>abcd</code> 之类的，会被转为 0</li>
+<li>如果 param &lt; -arr.length, 使用 0</li>
+<li>如果 (target or start) &gt;&#x3D; arr.length, 不会拷贝 </li>
+<li>如果 省略end 或者 end &gt;&#x3D; arr.length, 末尾所有元素都被复制。</li>
+<li>如果 如果 end 位于 start 之前，则不会拷贝任何内容。</li>
+<li>end 如果 end 位于 start 之前，则不会拷贝任何内容。</li>
+</ul>
+<p>对于参数来说他实在是太能兼容了，真的不太想用这个方法。</p>
+<h3 id="9-Array-prototype-entries"><a href="#9-Array-prototype-entries" class="headerlink" title="9. Array.prototype.entries()"></a>9. Array.prototype.entries()</h3><blockquote>
+<p>entries() 方法返回一个新的数组迭代器 (en-US)对象，该对象包含数组中每个索引的键&#x2F;值对。</p>
+</blockquote>
+<p>首先需要知道什么是迭代器, 是实现了一个迭代器协议</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%8D%8F%E8%AE%AE">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols#%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%8D%8F%E8%AE%AE</a></p>
+<p>协议是上面那个链接</p>
+<p>需要实现 next 方法，并且返回 IteratorResult接口对象。</p>
+<p>接口包含 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	done: boolean,</span><br><span class="line">	value: string</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>相当于返回一个这样的接口对象。</p>
+<h3 id="10-Array-prototype-every"><a href="#10-Array-prototype-every" class="headerlink" title="10. Array.prototype.every()"></a>10. Array.prototype.every()</h3><blockquote>
+<p>every() 方法测试一个数组内的所有元素是否都能通过指定函数的测试。它返回一个布尔值。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.<span class="title function_">every</span>(callbackFn, arg);</span><br></pre></td></tr></table></figure>
+
+<p>callbackFn 表示回调， arg表示 this 指向，可选。</p>
+<p>every 会遍历所有的数组元素，如果 callbackFn 中返回假值，会立刻停止遍历，并且返回 false.</p>
+<p>唯一需要注意的是，every 不会遍历稀疏数组中的空, 这里是我之前不知道的一个概念</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[1, undefined, 1].every(v =&gt; v === 1) //false</span><br><span class="line">[1, , 1].every(v =&gt; v === 1) //true</span><br></pre></td></tr></table></figure>
+
+<p>[1,,1]是稀疏数组，但是[1, undefined, 1]不是。</p>
+<h3 id="11-Array-prototype-fill"><a href="#11-Array-prototype-fill" class="headerlink" title="11. Array.prototype.fill()"></a>11. Array.prototype.fill()</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fill</span>(value)</span><br><span class="line"><span class="title function_">fill</span>(value, start)</span><br><span class="line"><span class="title function_">fill</span>(value, start, end)</span><br></pre></td></tr></table></figure>
+
+<p>功能很简单，就是填充数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>(<span class="number">5</span>).<span class="title function_">fill</span>(<span class="number">0</span>) <span class="comment">// [0, 0, 0, 0, 0]</span></span><br></pre></td></tr></table></figure>
+
+<p>主要再 start 和 end, 和 copyWithin 一样。</p>
+<ul>
+<li>所有参数，基于零的索引，从此开始填充，转换为整数。</li>
+<li>如果 start 为空，就全部填充， 如果 start 不为空， end为空，那么从start开始填充，直到末尾。</li>
+<li>如果 参数 &lt; -array.length 或 参数 被省略，则使用 0。</li>
+<li>如果 start &gt;&#x3D; array.length</li>
+</ul>
+<p>需要注意的是，不管是 every 还是 fill， end值都不是通过 start 计算，而是独立计算。</p>
+<h3 id="12-Array-prototype-filter"><a href="#12-Array-prototype-filter" class="headerlink" title="12. Array.prototype.filter()"></a>12. Array.prototype.filter()</h3><p>很常用的方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">filter</span>(callbackFn)</span><br><span class="line"><span class="title function_">filter</span>(callbackFn, thisArg)</span><br><span class="line"><span class="title function_">callbackFn</span>(element, index, array)</span><br></pre></td></tr></table></figure>
+
+<p>thisArg 是替换 callbackFn 中 this 指向。</p>
+<p>返回数组，不过是浅拷贝,同样会出现稀疏数组的问题，会跳过。</p>
+<h3 id="13-Array-prototype-find-Array-prototype-findIndex-Array-prototype-findLast-Array-prototype-findLastIndex"><a href="#13-Array-prototype-find-Array-prototype-findIndex-Array-prototype-findLast-Array-prototype-findLastIndex" class="headerlink" title="13. Array.prototype.find, Array.prototype.findIndex, Array.prototype.findLast, Array.prototype.findLastIndex"></a>13. Array.prototype.find, Array.prototype.findIndex, Array.prototype.findLast, Array.prototype.findLastIndex</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">find</span>(callbackFn);</span><br><span class="line"><span class="title function_">find</span>(callbackFn, thisArg);</span><br><span class="line"><span class="title function_">callbackFn</span>(element, index. arr);</span><br></pre></td></tr></table></figure>
+
+<p>find 和之前看过的 every, filter 不一样，是能够访问稀疏数组的，也就是为 undefined.</p>
+<p>find 升序迭代数组。返回true, 返回当前 index 的 item.<br>其他总体类似，只是顺序和返回值差别。</p>
+<h3 id="14-Array-prototype-flat"><a href="#14-Array-prototype-flat" class="headerlink" title="14. Array.prototype.flat"></a>14. Array.prototype.flat</h3><blockquote>
+<p>flat() 方法创建一个新的数组，并根据指定深度递归地将所有子数组元素拼接到新的数组中。</p>
+</blockquote>
+<p>简单说就是，将多维数组简化成更低维度的数组，不一定是一维数组，需要注意的是返回的是浅拷贝。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">flat</span>()</span><br><span class="line"><span class="title function_">flat</span>(depth)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>指定要提取嵌套数组的结构深度，默认值为 1。</p>
+</blockquote>
+<p>东西比较简单，一个简单例子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">//flat</span><br><span class="line">console.log(`---------------flat start---------------`);</span><br><span class="line">const flatTest1 = [1, 2, 3, 4, [5, 6, [7, 8, [9, 10, [11, 12]]]]];</span><br><span class="line">console.log(&quot;empty flatTest1:&quot;, flatTest1.flat());</span><br><span class="line">console.log(`1 flatTest1:`, flatTest1.flat(1));</span><br><span class="line">console.log(`2 flatTest1:`, flatTest1.flat(2));</span><br><span class="line">console.log(`3 flatTest1`, flatTest1.flat(3));</span><br><span class="line">console.log(`4 flatTest1`, flatTest1.flat(4));</span><br><span class="line">console.log(&quot;Infinity flatTest1&quot;, flatTest1.flat(Infinity));</span><br><span class="line"></span><br><span class="line">const flatTest2 = [</span><br><span class="line">1,</span><br><span class="line">2,</span><br><span class="line">,</span><br><span class="line">3,</span><br><span class="line">4,</span><br><span class="line">[5, , 6, [7, , 8, [9, , 10, [11, , 12]]]],</span><br><span class="line">];</span><br><span class="line">console.log(&quot;empty flatTest2:&quot;, flatTest2.flat());</span><br><span class="line">console.log(`1 flatTest2:`, flatTest2.flat(1));</span><br><span class="line">console.log(`2 flatTest2:`, flatTest2.flat(2));</span><br><span class="line">console.log(`3 flatTest2`, flatTest2.flat(3));</span><br><span class="line">console.log(`4 flatTest2`, flatTest2.flat(4));</span><br><span class="line">console.log(&quot;Infinity flatTest2&quot;, flatTest2.flat(Infinity));</span><br><span class="line">console.log(`---------------flat end---------------`);</span><br><span class="line"></span><br><span class="line">index.html:13 ---------------flat start---------------</span><br><span class="line">index.html:15 empty flatTest1: (7) [1, 2, 3, 4, 5, 6, Array(3)]</span><br><span class="line">index.html:16 1 flatTest1: (7) [1, 2, 3, 4, 5, 6, Array(3)]</span><br><span class="line">index.html:17 2 flatTest1: (9) [1, 2, 3, 4, 5, 6, 7, 8, Array(3)]</span><br><span class="line">index.html:18 3 flatTest1 (11) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, Array(2)]</span><br><span class="line">index.html:19 4 flatTest1 (12) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]</span><br><span class="line">index.html:20 Infinity flatTest1 (12) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]</span><br><span class="line">index.html:30 empty flatTest2: (7) [1, 2, 3, 4, 5, 6, Array(4)]</span><br><span class="line">index.html:31 1 flatTest2: (7) [1, 2, 3, 4, 5, 6, Array(4)]</span><br><span class="line">index.html:32 2 flatTest2: (9) [1, 2, 3, 4, 5, 6, 7, 8, Array(4)]</span><br><span class="line">index.html:33 3 flatTest2 (11) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, Array(3)]0: 11: 22: 33: 44: 55: 66: 77: 88: 99: 1010: (3) [11, 空, 12]length: 11[[Prototype]]: Array(0)</span><br><span class="line">index.html:34 4 flatTest2 (12) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]</span><br><span class="line">index.html:35 Infinity flatTest2 (12) [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]</span><br><span class="line">index.html:36 ---------------flat end---------------</span><br></pre></td></tr></table></figure>
+
+<p>我这里测试了多维数组和稀疏数组的情况，基本可以说清楚了。</p>
+<h3 id="15-Array-prototype-flatMap"><a href="#15-Array-prototype-flatMap" class="headerlink" title="15. Array.prototype.flatMap"></a>15. Array.prototype.flatMap</h3><blockquote>
+<p>flatMap() 方法对数组中的每个元素应用给定的回调函数，然后将结果展开一级，返回一个新数组。它等价于在调用 map() 方法后再调用深度为 1 的 flat() 方法（arr.map(…args).flat()），但比分别调用这两个方法稍微更高效一些。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">flatMap</span>(callbackFn)</span><br><span class="line"><span class="title function_">flatMap</span>(callbackFn, thisArg)</span><br></pre></td></tr></table></figure>
+
+<p>简单说就是调用 Array.prototype.map 之后再调用 flat(1);</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//flatMap</span><br><span class="line">console.log(`---------------flatMap start---------------`);</span><br><span class="line">const flatMapest1 = [1, 2, 3, 4, [5, 6, [7, 8, [9, 10, [11, 12]]]]];</span><br><span class="line">console.log(`flatMapest1:`, flatMapest1.flatMap((n) =&gt; &#123;</span><br><span class="line">	console.log(n);</span><br><span class="line">	return n;</span><br><span class="line">&#125;));</span><br><span class="line">console.log(`---------------flatMap end---------------`);</span><br></pre></td></tr></table></figure>
+
+<p>一个很简单的例子，就说明情况了。</p>
+<h3 id="16-Array-prototype-forEach"><a href="#16-Array-prototype-forEach" class="headerlink" title="16. Array.prototype.forEach"></a>16. Array.prototype.forEach</h3><p>常用的一种遍历方式，他有几个细节</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">forEach</span>(callbackFn)</span><br><span class="line"><span class="title function_">forEach</span>(callbackFn, thisArg)</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>它按索引升序地为数组中的每个元素调用一次提供的 callbackFn 函数</li>
+<li>总是返回 undefined</li>
+<li>当调用 forEach() 时，callbackFn 不会访问超出数组初始长度的任何元素。</li>
+<li>已经访问过的索引的更改不会导致 callbackFn 再次调用它们。</li>
+<li>如果 callbackFn 更改了数组中已经存在但尚未访问的元素，则传递给 callbackFn 的值将是在访问该元素时的值。已经被删除的元素不会被访问。</li>
+<li>除了 throw error 不能中断 forEach</li>
+<li>不会访问稀疏数组</li>
+</ol>
+<h3 id="17-Array-from"><a href="#17-Array-from" class="headerlink" title="17. Array.from()"></a>17. Array.from()</h3><blockquote>
+<p>想要转换成数组的类数组或可迭代对象。</p>
+</blockquote>
+<p>这个就是一个数组的静态方法，会返回一个新的数组实例。</p>
+<p>这里需要知道什么是类数组，</p>
+<ul>
+<li>索引：类数组对象使用数字索引来访问元素，就像数组一样。</li>
+<li>长度：类数组对象具有 length 属性，表示它包含的元素数量。</li>
+<li>迭代：类数组对象可以通过 for 循环或其他迭代方法进行遍历，就像遍历数组一样。</li>
+<li>下标访问：类数组对象可以通过索引直接访问元素，例如 obj[0]。</li>
+</ul>
+<p>还有就是可迭代对象，Symbol.iterator。</p>
+<h3 id="18-Array-fromAsync-实验性质"><a href="#18-Array-fromAsync-实验性质" class="headerlink" title="18. Array.fromAsync() 实验性质"></a>18. Array.fromAsync() 实验性质</h3><p>我测试了一下，最新版本的 edge 是不支持的。</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/fromAsync</a></p>
+<p>详情看这个吧，不使用也是可以的，你先拿到在 Array.from.</p>
+<h3 id="19-Array-prototype-group-实验性质"><a href="#19-Array-prototype-group-实验性质" class="headerlink" title="19. Array.prototype.group() 实验性质"></a>19. Array.prototype.group() 实验性质</h3><p>看名字就知道是一种数组的分组方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">group</span>(callbackFn)</span><br><span class="line"><span class="title function_">group</span>(callbackFn, thisArg)</span><br></pre></td></tr></table></figure>
+
+<p>下面是一个例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">myCallback</span>(<span class="params">&#123; quantity &#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> quantity &gt; <span class="number">5</span> ? <span class="string">&quot;ok&quot;</span> : <span class="string">&quot;restock&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> result2 = inventory.<span class="title function_">group</span>(myCallback);</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 结果是：</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">  restock: [</span></span><br><span class="line"><span class="comment">    &#123; name: &quot;asparagus&quot;, type: &quot;vegetables&quot;, quantity: 5 &#125;,</span></span><br><span class="line"><span class="comment">    &#123; name: &quot;bananas&quot;, type: &quot;fruit&quot;, quantity: 0 &#125;,</span></span><br><span class="line"><span class="comment">    &#123; name: &quot;cherries&quot;, type: &quot;fruit&quot;, quantity: 5 &#125;</span></span><br><span class="line"><span class="comment">  ],</span></span><br><span class="line"><span class="comment">  ok: [</span></span><br><span class="line"><span class="comment">    &#123; name: &quot;goat&quot;, type: &quot;meat&quot;, quantity: 23 &#125;,</span></span><br><span class="line"><span class="comment">    &#123; name: &quot;fish&quot;, type: &quot;meat&quot;, quantity: 22 &#125;</span></span><br><span class="line"><span class="comment">  ]</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>可以随意命名分组，在 callbackFn 中进行判断，根据返回值来命名组的名字。</p>
+<p>需要值以的是，命名必须是 String or Symbol, 如果不是会被转为 String</p>
+<h3 id="20-Array-prototype-groupToMap-实验性质"><a href="#20-Array-prototype-groupToMap-实验性质" class="headerlink" title="20. Array.prototype.groupToMap() 实验性质"></a>20. Array.prototype.groupToMap() 实验性质</h3><p>和 19 中， group 一样，只是返回值是一个 Map，那么 key 就灵活了。</p>
+<h3 id="21-Array-prototype-includes"><a href="#21-Array-prototype-includes" class="headerlink" title="21. Array.prototype.includes()"></a>21. Array.prototype.includes()</h3><blockquote>
+<p>includes() 方法用来判断一个数组是否包含一个指定的值，根据情况，如果包含则返回 true，否则返回 false。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">includes</span>(searchElement)</span><br><span class="line"><span class="title function_">includes</span>(searchElement, fromIndex)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>fromIndex 可以支持负数，fromIndex + array.length， </li>
+<li>如果 fromIndex &gt; array.length return false.</li>
+<li>如果 fromIndex &lt; -array.length fromIndex &#x3D; 0</li>
+</ul>
+<h3 id="22-Array-prototype-indexOf-，Array-prototype-lastIndexOf"><a href="#22-Array-prototype-indexOf-，Array-prototype-lastIndexOf" class="headerlink" title="22. Array.prototype.indexOf()，Array.prototype.lastIndexOf()"></a>22. Array.prototype.indexOf()，Array.prototype.lastIndexOf()</h3><p>其实 includes，find， indexOf 类似，只是 indexOf 是返回索引，也就是Index</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">indexOf</span>(searchElement)</span><br><span class="line"><span class="title function_">indexOf</span>(searchElement, fromIndex)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>fromIndex 可以支持负数，fromIndex + array.length， </li>
+<li>如果 fromIndex &gt; array.length return -1.</li>
+<li>如果 fromIndex &lt; -array.length fromIndex &#x3D; 0</li>
+</ul>
+<p>那么lastIndexOf 差别就在于顺序，都知道 indexOf 是第一个出现就返回，那么 indexOf 是升序，lastIndexOf 是降序。</p>
+<h3 id="23-Array-isArray"><a href="#23-Array-isArray" class="headerlink" title="23. Array.isArray()"></a>23. Array.isArray()</h3><h3 id="24-Array-prototype-join"><a href="#24-Array-prototype-join" class="headerlink" title="24. Array.prototype.join()"></a>24. Array.prototype.join()</h3><p>最常用的方法，没什么好讲的。</p>
+<h3 id="25-Array-prototype-keys"><a href="#25-Array-prototype-keys" class="headerlink" title="25. Array.prototype.keys()"></a>25. Array.prototype.keys()</h3><blockquote>
+<p>keys() 方法返回一个新的数组迭代器 (en-US)对象，其中包含数组中每个索引的键。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr = [<span class="string">&quot;a&quot;</span>, , <span class="string">&quot;c&quot;</span>];</span><br><span class="line"><span class="keyword">const</span> sparseKeys = <span class="title class_">Object</span>.<span class="title function_">keys</span>(arr);</span><br><span class="line"><span class="keyword">const</span> denseKeys = [...arr.<span class="title function_">keys</span>()];</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sparseKeys); <span class="comment">// [&#x27;0&#x27;, &#x27;2&#x27;]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(denseKeys); <span class="comment">// [0, 1, 2]</span></span><br></pre></td></tr></table></figure>
+
+<p>差别就在稀疏数组。</p>
+<h3 id="26-Array-prototype-map"><a href="#26-Array-prototype-map" class="headerlink" title="26. Array.prototype.map()"></a>26. Array.prototype.map()</h3><blockquote>
+<p>map() 方法创建一个新数组，这个新数组由原数组中的每个元素都调用一次提供的函数后的返回值组成。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">map</span>(callbackFn)</span><br><span class="line"><span class="title function_">map</span>(callbackFn, thisArg)</span><br><span class="line"><span class="title function_">callbackFn</span>(element, index, arr)</span><br></pre></td></tr></table></figure>
+<p>其实就是根据现有数组，每次遍历调用 callbackFn 返回一个新数组。</p>
+<p>好玩的是</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,,<span class="number">3</span>].<span class="title function_">map</span>(<span class="function"><span class="params">x</span> =&gt;</span> x + <span class="string">&quot;1&quot;</span>) <span class="comment">//[&#x27;11&#x27;, undefined, &#x27;31&#x27;];</span></span><br></pre></td></tr></table></figure>
+
+<p>然而加上输出</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,,<span class="number">3</span>].<span class="title function_">map</span>(<span class="function"><span class="params">x</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(x);</span><br><span class="line">	<span class="keyword">return</span> x + <span class="string">&quot;1&quot;</span>;</span><br><span class="line">&#125;) </span><br><span class="line"></span><br><span class="line"><span class="comment">//1</span></span><br><span class="line"><span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+
+<p>也就是不会遍历到，但是会输出..</p>
+<h3 id="27-Array-of"><a href="#27-Array-of" class="headerlink" title="27. Array.of"></a>27. Array.of</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="title function_">of</span>()</span><br><span class="line"><span class="title class_">Array</span>.<span class="title function_">of</span>(element0)</span><br><span class="line"><span class="title class_">Array</span>.<span class="title function_">of</span>(element0, element1)</span><br><span class="line"><span class="title class_">Array</span>.<span class="title function_">of</span>(element0, element1, <span class="comment">/* … ,*/</span> elementN)</span><br></pre></td></tr></table></figure>
+
+<p>唯一的差别</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>.<span class="title function_">of</span>(<span class="number">7</span>); <span class="comment">// [7]</span></span><br><span class="line"><span class="title class_">Array</span>(<span class="number">7</span>); <span class="comment">// 由 7 个空槽组成的数组</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="28-Array-prototype-pop-Array-prototype-shift-Array-prototype-unshift-，Array-prototype-push"><a href="#28-Array-prototype-pop-Array-prototype-shift-Array-prototype-unshift-，Array-prototype-push" class="headerlink" title="28. Array.prototype.pop(), Array.prototype.shift(), Array.prototype.unshift()，Array.prototype.push()"></a>28. Array.prototype.pop(), Array.prototype.shift(), Array.prototype.unshift()，Array.prototype.push()</h3><p>pop 删除最后一个值，并且返回值。</p>
+<p>push 方法将指定的元素添加到数组的末尾，并返回新的数组长度。</p>
+<p>shift 删除最新的值，并且返回值</p>
+<p>unshift 方法将指定元素添加到数组的开头，并返回数组的新长度。</p>
+<h3 id="29-Array-prototype-reduce-，Array-prototype-reduceRight"><a href="#29-Array-prototype-reduce-，Array-prototype-reduceRight" class="headerlink" title="29. Array.prototype.reduce()，Array.prototype.reduceRight()"></a>29. Array.prototype.reduce()，Array.prototype.reduceRight()</h3><blockquote>
+<p>reduce() 方法对数组中的每个元素按序执行一个提供的 reducer 函数，每一次运行 reducer 会将先前元素的计算结果作为参数传入，最后将其结果汇总为单个返回值。</p>
+</blockquote>
+<p>看了这个描述就应该知道这个方法的主要目的，球和。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">reduce</span>(callbackFn)</span><br><span class="line"><span class="title function_">reduce</span>(callbackFn, initialValue)</span><br><span class="line"><span class="title function_">callbackFn</span>(accumulator,currentValue,currentIndex)</span><br></pre></td></tr></table></figure>
+
+<p>这里有个概念</p>
+<blockquote>
+<p>每一次运行 reducer 会将先前元素的计算结果作为参数传入</p>
+</blockquote>
+<p>那么第一次运行明显没有初始值，所以如果没有传入 initialValue ，索引0,就是初始值。</p>
+<p>如果传入，那么 initalValue 就是初始值。</p>
+<p>还有一个很重要的东西，就是 reduce 如果数组长度是1, 那么不会调用 callbackFn，如果有 initalValue, 数组没有长度，同上。</p>
+<p>reduce 是一个递归函数，因为他会算出上一次的结果，求和对他来说是最简单的工作，他可以做很多事情，因为他会传入上一次的结果，所以你可以不用在外部新建一个参数，就可以直接做很多事情，而不用自己去写一个必包或者方法。</p>
+<p>比如，我要把一个数组里面的奇数和偶数分开。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line"><span class="keyword">let</span> arr1 = [];</span><br><span class="line">array.<span class="title function_">forEach</span>(<span class="function"><span class="params">v</span> =&gt;</span> &#123; v % <span class="number">2</span> === <span class="number">0</span> ? arr.<span class="title function_">push</span>(): <span class="attr">arr1</span>:<span class="title function_">push</span>() &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>如果用 reduce</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>].<span class="title function_">reduce</span>(<span class="function">(<span class="params">a,b,i</span>) =&gt;</span> &#123;</span><br><span class="line">    b % <span class="number">2</span> === <span class="number">0</span> ? a[<span class="number">0</span>].<span class="title function_">push</span>(b) : a[<span class="number">1</span>].<span class="title function_">push</span>(b);</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;, [[],[]])</span><br></pre></td></tr></table></figure>
+
+<p>大概是这个意思。</p>
+<p>reduceRight 就是从右到左。</p>
+<h3 id="30-Array-prototype-reverse-，Array-prototype-toReversed"><a href="#30-Array-prototype-reverse-，Array-prototype-toReversed" class="headerlink" title="30. Array.prototype.reverse()，Array.prototype.toReversed()"></a>30. Array.prototype.reverse()，Array.prototype.toReversed()</h3><p>反转数组，没有其他参数。</p>
+<blockquote>
+<p>reverse() 方法就地反转数组中的元素，并返回同一数组的引用。数组的第一个元素会变成最后一个，数组的最后一个元素变成第一个。换句话说，数组中的元素顺序将被翻转，变为与之前相反的方向。</p>
+</blockquote>
+<p>toReversed 产生新数组，浅拷贝。</p>
+<h3 id="31-Array-prototype-slice"><a href="#31-Array-prototype-slice" class="headerlink" title="31. Array.prototype.slice()"></a>31. Array.prototype.slice()</h3><blockquote>
+<p>slice() 方法返回一个新的数组对象，这一对象是一个由 start 和 end 决定的原数组的浅拷贝（包括 start，不包括 end），其中 start 和 end 代表了数组元素的索引。原始数组不会被改变。</p>
+</blockquote>
+<p>类似于 <code>String.prototype.sub</code>. 截取一段</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">slice</span>()</span><br><span class="line"><span class="title function_">slice</span>(start)</span><br><span class="line"><span class="title function_">slice</span>(start, end)</span><br></pre></td></tr></table></figure>
+
+<p>start &amp; end, 就是开始和结束，结束并不是长度。</p>
+<p>然后 start 和 end 需要跟其他的数组内容一样，</p>
+<ul>
+<li>允许负数，param + array.length</li>
+<li>param &lt; -array.length &#x3D; 0</li>
+<li>start &gt;&#x3D; array.length， 不截取</li>
+<li>end &gt;&#x3D; array.length, 提取到末尾的所有</li>
+<li>end &lt; start, 不提取</li>
+</ul>
+<h3 id="32-Array-prototype-some"><a href="#32-Array-prototype-some" class="headerlink" title="32. Array.prototype.some()"></a>32. Array.prototype.some()</h3><blockquote>
+<p>some() 方法测试数组中是否至少有一个元素通过了由提供的函数实现的测试。如果在数组中找到一个元素使得提供的函数返回 true，则返回 true；否则返回 false。它不会修改数组。</p>
+</blockquote>
+<p>some 只要一个符合条件，就返回 true, 全部 false，才返回 false.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">some</span>(callbackFn)</span><br><span class="line"><span class="title function_">some</span>(callbackFn, thisArg)</span><br></pre></td></tr></table></figure>
+
+<p>some() 不会在空槽上运行它的断言函数, 反正不管空槽，也就是不管稀疏数组。</p>
+<h3 id="33-Array-prototype-sort"><a href="#33-Array-prototype-sort" class="headerlink" title="33. Array.prototype.sort()"></a>33. Array.prototype.sort()</h3><blockquote>
+<p>sort() 方法就地对数组的元素进行排序，并返回对相同数组的引用。默认排序是将元素转换为字符串，然后按照它们的 UTF-16 码元值升序排序。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">sort</span>()</span><br><span class="line"><span class="title function_">sort</span>(compareFn)</span><br></pre></td></tr></table></figure>
+
+<p>这里有2种情况</p>
+<blockquote>
+<p>如果没有提供 compareFn，所有非 undefined 的数组元素都会被转换为字符串，并按照 UTF-16 码元顺序比较字符串进行排序</p>
+</blockquote>
+<p>具体码可以参考这个链接 <a target="_blank" rel="noopener" href="https://www.toolhelper.cn/Encoding/UTF16">https://www.toolhelper.cn/Encoding/UTF16</a></p>
+<p>所有的 undefined 元素都会被排序到数组的末尾，sort() 方法保留空槽。如果源数组是稀疏的，则空槽会被移动到数组的末尾，并始终排在所有 undefined 元素的后面。</p>
+<p>这就是 sort 的逻辑。</p>
+<p>第二种情况，通过 callbackFn 来进行对比</p>
+<blockquote>
+<p>如果提供了 compareFn，所有非 undefined 的数组元素都会按照比较函数的返回值进行排序（所有的 undefined 元素都会被排序到数组的末尾，并且不调用 compareFn）。</p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; 0	a 在 b 后，如 [b, a]</span><br><span class="line">&lt; 0	a 在 b 前，如 [a, b]</span><br><span class="line">=== 0	保持 a 和 b 原来的顺序</span><br></pre></td></tr></table></figure>
+
+<p>ok，在知道了这个条件以后，我们就可以开始排序了, 比如我们需要从低到高排序</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sortArr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">8</span>,<span class="number">0</span>,<span class="number">19</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">7</span>];</span><br><span class="line">sortArr.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> a &gt; b ? <span class="number">1</span> : -<span class="number">1</span>;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(sortArr);</span><br></pre></td></tr></table></figure>
+
+<p>大概是这样。</p>
+<p>在大量且性能要求高的地方需要知道究竟是怎么算的，详情看这里 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000010648740">https://segmentfault.com/a/1190000010648740</a> ，多看看算法和源码。</p>
+<h3 id="34-Array-prototype-toSorted"><a href="#34-Array-prototype-toSorted" class="headerlink" title="34. Array.prototype.toSorted()"></a>34. Array.prototype.toSorted()</h3><blockquote>
+<p>Array 实例的 toSorted() 方法是 sort() 方法的复制方法版本。它返回一个新数组，其元素按升序排列。</p>
+</blockquote>
+<p>需要注意的是，依然是浅拷贝。</p>
+<h3 id="35-Array-prototype-splice"><a href="#35-Array-prototype-splice" class="headerlink" title="35. Array.prototype.splice()"></a>35. Array.prototype.splice()</h3><blockquote>
+<p>splice() 方法通过移除或者替换已存在的元素和&#x2F;或添加新元素就地改变一个数组的内容。</p>
+</blockquote>
+<p>slice 是截取，splice 是移除或者替换</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">splice</span>(start)</span><br><span class="line"><span class="title function_">splice</span>(start, deleteCount)</span><br><span class="line"><span class="title function_">splice</span>(start, deleteCount, item1)</span><br><span class="line"><span class="title function_">splice</span>(start, deleteCount, item1, item2, itemN)</span><br></pre></td></tr></table></figure>
+
+<p>start，遵循之前的其他数组的规则。</p>
+<ul>
+<li>允许负数，param + array.length</li>
+<li>param &lt; -array.length &#x3D; 0</li>
+<li>start &gt;&#x3D; array.length， 不截取</li>
+</ul>
+<p>deleteCount，0 或者不传入就不删除，类似于插入，如果传入，就从start开始计算，deleteCount的几位。</p>
+<p>最后就是替换或者插入多少个, 写几个例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>([<span class="number">1</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">19</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">7</span>]);</span><br><span class="line"><span class="keyword">const</span> spliceArr = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">19</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">7</span>];</span><br><span class="line">spliceArr.<span class="title function_">splice</span>(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`删除`</span>, spliceArr);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> splice1Arr = [<span class="number">1</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">19</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">7</span>];</span><br><span class="line">spliceArr.<span class="title function_">splice</span>(<span class="number">1</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`插入`</span>, spliceArr);</span><br></pre></td></tr></table></figure>
+
+<p>替换就是删除+插入。</p>
+<h3 id="36-Array-prototype-toSpliced"><a href="#36-Array-prototype-toSpliced" class="headerlink" title="36. Array.prototype.toSpliced()"></a>36. Array.prototype.toSpliced()</h3><blockquote>
+<p>Array 实例的 toSpliced() 方法是 splice() 方法的复制版本。它返回一个新数组，并在给定的索引处删除和&#x2F;或替换了一些元素。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">toSpliced</span>(start)</span><br><span class="line"><span class="title function_">toSpliced</span>(start, deleteCount)</span><br><span class="line"><span class="title function_">toSpliced</span>(start, deleteCount, item1)</span><br><span class="line"><span class="title function_">toSpliced</span>(start, deleteCount, item1, item2, itemN)</span><br></pre></td></tr></table></figure>
+
+<p>老规矩，浅拷贝。</p>
+<h3 id="37-Array-prototype-toLocaleString-Array-prototype-toString"><a href="#37-Array-prototype-toLocaleString-Array-prototype-toString" class="headerlink" title="37. Array.prototype.toLocaleString(), Array.prototype.toString()"></a>37. Array.prototype.toLocaleString(), Array.prototype.toString()</h3><blockquote>
+<p>toLocaleString() 方法返回一个字符串，表示数组中的所有元素。每个元素通过调用它们自己的 toLocaleString 方法转换为字符串，并且使用特定于语言环境的字符串（例如逗号“,”）分隔开。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">toLocaleString</span>()</span><br><span class="line"><span class="title function_">toLocaleString</span>(locales)</span><br><span class="line"><span class="title function_">toLocaleString</span>(locales, options)</span><br></pre></td></tr></table></figure>
+
+<p>locales </p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_%E5%8F%82%E6%95%B0">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_%E5%8F%82%E6%95%B0</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903863556767758">https://juejin.cn/post/6844903863556767758</a></p>
+<blockquote>
+<p>BCP 47（Best Current Practice 47）是一个标准，用于表示语言标签，它规定了一种语言标记的格式和结构。BCP 47 最初由IETF（Internet Engineering Task Force）发布，并被广泛用于标识语言、地区和文化相关的信息，如语言代码、地区代码和区域设置等</p>
+</blockquote>
+<p>toString 一样，分别调用每个 item 的 toString().</p>
+<p>还有，两位都认稀疏数组。</p>
+<h3 id="38-Array-prototype-values"><a href="#38-Array-prototype-values" class="headerlink" title="38. Array.prototype.values()"></a>38. Array.prototype.values()</h3><blockquote>
+<p>values() 方法返回一个新的数组迭代器 (en-US)对象，该对象迭代数组中每个元素的值。</p>
+</blockquote>
+<p>之前讲了 Array.prototype.keys, 返回了索引， values 就是返回值</p>
+<h3 id="39-Array-prototype-with"><a href="#39-Array-prototype-with" class="headerlink" title="39. Array.prototype.with()"></a>39. Array.prototype.with()</h3><blockquote>
+<p>Array 实例的 with() 方法是使用方括号表示法修改指定索引值的复制方法版本。它会返回一个新数组，其指定索引处的值会被新值替换。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.<span class="title function_">with</span>(index, value)</span><br></pre></td></tr></table></figure>
+
+<p>其实和 splice 很像，不过 splice 功能更全</p>
+<blockquote>
+<p>with() 方法总会创建一个密集数组。</p>
+</blockquote>
+<h3 id="link"><a href="#link" class="headerlink" title="link"></a>link</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol/isConcatSpreadable">Symbol.isConcatSpreadable</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Iterator">Iterator</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Iteration_protocols">迭代协议</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000010648740">深入浅出 JavaScript 的 Array.prototype.sort 排序算法</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.toolhelper.cn/Encoding/UTF16">UTF-16 编码表</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_%E5%8F%82%E6%95%B0">locales 参数</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903863556767758">locales 参数 BCP 47 语言标记 解析</a></li>
+</ul>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-12</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/web/'>
+                            web
+                        </a>
+                    
+                        <a href='/tblog/tags/javascript/'>
+                            javascript
+                        </a>
+                    
+                        <a href='/tblog/tags/array/'>
+                            array
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/07/13/ss_baisc/'>微信小程序入门</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/07/09/browser_event/">浏览器事件流</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="Vue2.x Dep" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    Vue2.x Dep
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.2k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：5分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#vue2-x-Dep"><span class="post-toc-text">vue2.x Dep</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-Dep"><span class="post-toc-text">01. Dep</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E6%80%BB%E7%BB%93"><span class="post-toc-text">02. 总结</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <h1 id="vue2-x-Dep"><a href="#vue2-x-Dep" class="headerlink" title="vue2.x Dep"></a>vue2.x Dep</h1><h3 id="01-Dep"><a href="#01-Dep" class="headerlink" title="01. Dep"></a>01. Dep</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">class</span> <span class="title class_">Dep</span> &#123;</span><br><span class="line">  <span class="comment">//静态属性 target 用来存放当前正在计算的 Watcher。</span></span><br><span class="line">  <span class="keyword">static</span> target?: <span class="title class_">DepTarget</span> | <span class="literal">null</span></span><br><span class="line">  <span class="comment">//构造函数生成，每个Dep实例的唯一ID</span></span><br><span class="line">  <span class="attr">id</span>: <span class="built_in">number</span></span><br><span class="line">  <span class="comment">//用来存放所有订阅了该 Dep 实例的 Watcher。</span></span><br><span class="line">  <span class="attr">subs</span>: <span class="title class_">Array</span>&lt;<span class="title class_">DepTarget</span> | <span class="literal">null</span>&gt;</span><br><span class="line">  <span class="comment">//pending subs cleanup</span></span><br><span class="line">  <span class="comment">//一个标志位，用来标识是否有订阅者需要被清除。</span></span><br><span class="line">  _pending = <span class="literal">false</span> </span><br><span class="line"></span><br><span class="line">  <span class="comment">//构造函数，用来初始化 id 和 subs。</span></span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">id</span> = uid++</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">subs</span> = []</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//添加订阅者，把 Watcher 添加到 subs 中。</span></span><br><span class="line">  <span class="title function_">addSub</span>(<span class="params">sub: DepTarget</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">subs</span>.<span class="title function_">push</span>(sub)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//移除订阅者，把 Watcher 从 subs 中移除。</span></span><br><span class="line">  <span class="comment">//由于移除订阅者的操作可能会影响到遍历 subs，所以这里采用了标记位的方式，把要移除的 Watcher 标记为 null，然后在下一次 scheduler flush 的时候再进行清除。</span></span><br><span class="line">  <span class="title function_">removeSub</span>(<span class="params">sub: DepTarget</span>) &#123;</span><br><span class="line">    <span class="comment">// #12696 deps with massive amount of subscribers are extremely slow to</span></span><br><span class="line">    <span class="comment">// clean up in Chromium</span></span><br><span class="line">    <span class="comment">// to workaround this, we unset the sub for now, and clear them on</span></span><br><span class="line">    <span class="comment">// next scheduler flush.</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">subs</span>[<span class="variable language_">this</span>.<span class="property">subs</span>.<span class="title function_">indexOf</span>(sub)] = <span class="literal">null</span></span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">_pending</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">_pending</span> = <span class="literal">true</span></span><br><span class="line">      pendingCleanupDeps.<span class="title function_">push</span>(<span class="variable language_">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//收集依赖，把当前的 Watcher 添加到该 Dep 实例的 subs 中。</span></span><br><span class="line">  <span class="comment">//如果有需要调试的信息（如 onTrack 回调函数），则调用该回调函数。</span></span><br><span class="line">  <span class="title function_">depend</span>(<span class="params">info?: DebuggerEventExtraInfo</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="title class_">Dep</span>.<span class="property">target</span>) &#123;</span><br><span class="line">      <span class="title class_">Dep</span>.<span class="property">target</span>.<span class="title function_">addDep</span>(<span class="variable language_">this</span>)</span><br><span class="line">      <span class="keyword">if</span> (__DEV__ &amp;&amp; info &amp;&amp; <span class="title class_">Dep</span>.<span class="property">target</span>.<span class="property">onTrack</span>) &#123;</span><br><span class="line">        <span class="title class_">Dep</span>.<span class="property">target</span>.<span class="title function_">onTrack</span>(&#123;</span><br><span class="line">          <span class="attr">effect</span>: <span class="title class_">Dep</span>.<span class="property">target</span>,</span><br><span class="line">          ...info</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//通知更新，当一个 Dep 实例被更新时，它会遍历 subs 中的所有 Watcher，并依次调用它们的 update 方法进行更新。</span></span><br><span class="line">  <span class="comment">//在这个过程中，如果有需要调试的信息（如 onTrigger 回调函数），则调用该回调函数。</span></span><br><span class="line">  <span class="comment">//如果配置中不是异步模式，则需要对 subs 进行排序以确保它们按正确的顺序触发更新。</span></span><br><span class="line">  <span class="title function_">notify</span>(<span class="params">info?: DebuggerEventExtraInfo</span>) &#123;</span><br><span class="line">    <span class="comment">// stabilize the subscriber list first</span></span><br><span class="line">    <span class="keyword">const</span> subs = <span class="variable language_">this</span>.<span class="property">subs</span>.<span class="title function_">filter</span>(<span class="function"><span class="params">s</span> =&gt;</span> s) <span class="keyword">as</span> <span class="title class_">DepTarget</span>[]</span><br><span class="line">    <span class="keyword">if</span> (__DEV__ &amp;&amp; !config.<span class="property">async</span>) &#123;</span><br><span class="line">      <span class="comment">// subs aren&#x27;t sorted in scheduler if not running async</span></span><br><span class="line">      <span class="comment">// we need to sort them now to make sure they fire in correct</span></span><br><span class="line">      <span class="comment">// order</span></span><br><span class="line">      subs.<span class="title function_">sort</span>(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a.<span class="property">id</span> - b.<span class="property">id</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>, l = subs.<span class="property">length</span>; i &lt; l; i++) &#123;</span><br><span class="line">      <span class="keyword">const</span> sub = subs[i]</span><br><span class="line">      <span class="keyword">if</span> (__DEV__ &amp;&amp; info) &#123;</span><br><span class="line">        sub.<span class="property">onTrigger</span> &amp;&amp;</span><br><span class="line">          sub.<span class="title function_">onTrigger</span>(&#123;</span><br><span class="line">            <span class="attr">effect</span>: subs[i],</span><br><span class="line">            ...info</span><br><span class="line">          &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">      sub.<span class="title function_">update</span>()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>继续看</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="attr">pendingCleanupDeps</span>: <span class="title class_">Dep</span>[] = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="title function_">cleanupDeps</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; pendingCleanupDeps.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">const</span> dep = pendingCleanupDeps[i]</span><br><span class="line">    dep.<span class="property">subs</span> = dep.<span class="property">subs</span>.<span class="title function_">filter</span>(<span class="function"><span class="params">s</span> =&gt;</span> s)</span><br><span class="line">    dep.<span class="property">_pending</span> = <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">  pendingCleanupDeps.<span class="property">length</span> = <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里是配合 <code>removeSub</code>, 过滤调已经被 <code>removeSub</code> 置 <code>null</code> 的 <code>subs</code>, 查询了 <strong>vue2</strong> 源码，主要在 <code>watch</code> &amp; <code>apiWatch</code> 中调用， 这个过会儿再深究</p>
+<p>还有就是 </p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The current target watcher being evaluated.</span></span><br><span class="line"><span class="comment">// This is globally unique because only one watcher</span></span><br><span class="line"><span class="comment">// can be evaluated at a time.</span></span><br><span class="line"><span class="title class_">Dep</span>.<span class="property">target</span> = <span class="literal">null</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">targetStack</span>: <span class="title class_">Array</span>&lt;<span class="title class_">DepTarget</span> | <span class="literal">null</span> | <span class="literal">undefined</span>&gt; = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">pushTarget</span>(<span class="params">target?: DepTarget | <span class="literal">null</span></span>) &#123;</span><br><span class="line">  targetStack.<span class="title function_">push</span>(target)</span><br><span class="line">  <span class="title class_">Dep</span>.<span class="property">target</span> = target</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">popTarget</span>(<span class="params"></span>) &#123;</span><br><span class="line">  targetStack.<span class="title function_">pop</span>()</span><br><span class="line">  <span class="title class_">Dep</span>.<span class="property">target</span> = targetStack[targetStack.<span class="property">length</span> - <span class="number">1</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里初始化 <code>Dep.target = null</code>, 然后给了一个进栈出栈代码，这个看起来简单，其实很重要。</p>
+<p>首先这个是什么？</p>
+<blockquote>
+<p>这段代码实现了一个全局的Watcher调度器。Vue的数据响应式机制会创建一个Watcher对象，Watcher会在数据变化时进行更新。在Vue的内部实现中，Dep（Dependency）对象用来收集Watcher，当数据发生变化时，Dep会通知收集的所有Watcher进行更新。</p>
+<p>当一个Watcher被创建时，它会被设置为全局唯一的Dep.target。当数据变化时，Dep会通过调用Watcher的update方法来通知它进行更新。pushTarget方法将当前Watcher入栈并将Dep.target设置为该Watcher，这样在收集依赖时Dep会将该Watcher加入到其subs数组中。而popTarget方法则将Watcher出栈并恢复Dep.target为上一个Watcher，这样当数据变化时就可以通知到上一个Watcher进行更新。</p>
+</blockquote>
+<p>也就是说，当源码需要更新的时候</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">pushTarget</span>(watcher);</span><br><span class="line"><span class="comment">//操作已经劫持过的值，触发更新</span></span><br><span class="line"><span class="title function_">popTarget</span>(watcher);</span><br></pre></td></tr></table></figure>
+
+<p>另外，<code>targetStack</code> 为什么是一个数组？ 因为 Vue 响应式是可以嵌套的，层层嵌套，所以需要用到这个进栈出栈操作。</p>
+<p>但是有些代码中，<code>pushTarget()</code> , 并没有包含 <code>watch</code>，传入值为 <code>undefined</code>, 是用于区别和判断</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="title class_">Dep</span>.<span class="property">target</span>) &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+<p>真实传入 watch 的方式是，通过 <code>watch.get</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">get</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="title function_">pushTarget</span>(<span class="variable language_">this</span>)</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<p>所以两者还是需要连起来看。</p>
+<h3 id="02-总结"><a href="#02-总结" class="headerlink" title="02. 总结"></a>02. 总结</h3><p><code>Dep</code> 究竟干了什么。</p>
+<p>他是一个桥梁，对象和watch之间的桥梁，每一个对象都应该有一个 Dep, 用于管理关于这个对象的依赖。</p>
+<p>声明一个 Dep 用于管理 数据和Watch之间的依赖。</p>
+<p>并且，也统一通过 Dep.target 来管理整个 Vue watch 的调度。</p>
+<ol>
+<li>addSub 添加watch，用于通知</li>
+<li>removeSub 标记为null，scheduler flush 中清理</li>
+<li>depend 当前 Dep 添加到 Dep.target 当中</li>
+<li>notify 通知所有的 sub</li>
+</ol>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-06-27</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/%E6%BA%90%E7%A0%81/'>
+                            源码
+                        </a>
+                    
+                        <a href='/tblog/tags/Vue2/'>
+                            Vue2
+                        </a>
+                    
+                        <a href='/tblog/tags/Dep/'>
+                            Dep
+                        </a>
+                    
+                        <a href='/tblog/tags/%E5%93%8D%E5%BA%94%E5%BC%8F/'>
+                            响应式
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/06/28/vue_updated_onUpdated/'>Vue updated vs onUpdated</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/06/27/vue2_watch/">Vue2.x watcher</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

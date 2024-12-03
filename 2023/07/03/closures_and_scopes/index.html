@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="必包和作用域" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    必包和作用域
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.7k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：6分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="post-toc-text">1. 什么是作用域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-%E8%AF%8D%E6%B3%95%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="post-toc-text">2. 词法作用域</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-%E5%BF%85%E5%8C%85"><span class="post-toc-text">3. 必包</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-%E6%80%BB%E7%BB%93"><span class="post-toc-text">4. 总结</span></a></li></ol>
+            
+        
+        <h3 id="1-什么是作用域"><a href="#1-什么是作用域" class="headerlink" title="1. 什么是作用域"></a>1. 什么是作用域</h3><blockquote>
+<p>在 JavaScript 中，作用域（Scope）指的是变量和函数在代码中可访问的范围。作用域规定了在代码中定义的变量在何处以及在何时可被访问。</p>
+<p>JavaScript 采用的是词法作用域（Lexical Scope）模型，也称为静态作用域模型。这意味着作用域是在代码编写阶段确定的，而不是在运行时确定的。</p>
+</blockquote>
+<p>JavaScript 中有以下几种类型的作用域：</p>
+<ul>
+<li>全局作用域（Global Scope）：全局作用域是在代码的最外层定义的，它在整个程序中都是可访问的。在全局作用域中定义的变量和函数可以在代码的任何地方被访问。</li>
+<li>函数作用域（Function Scope）：函数作用域是指在函数内部定义的变量和函数只能在函数内部访问，函数外部无法访问这些变量和函数。每次调用函数时，都会创建一个新的函数作用域。</li>
+<li>块级作用域（Block Scope）：在 ES6（ECMAScript 2015）之前，JavaScript 中没有块级作用域。块级作用域是指在代码块（如条件语句、循环语句或使用花括号 {} 包围的代码）中定义的变量仅在该块内部可访问。从 ES6 开始，引入了 let 和 const 关键字，可以在块级作用域中声明变量。</li>
+</ul>
+<p>其实这里还有其他作用域.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">a</span>(<span class="params">x = <span class="number">1</span></span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>x &#x3D; 1 这里也是一个单独的作用域。</p>
+<p><strong>作用域链</strong></p>
+<blockquote>
+<p>作用域链（Scope Chain）是由嵌套的作用域组成的，它决定了变量查找的顺序。当在一个作用域中访问一个变量时，JavaScript 引擎会先在当前作用域查找，如果找不到，则会向上一级作用域继续查找，直到找到该变量或达到全局作用域。如果变量在任何作用域中都找不到，则会引发一个错误。</p>
+</blockquote>
+<p>好了，这里大概了解了作用域的流程。</p>
+<h3 id="2-词法作用域"><a href="#2-词法作用域" class="headerlink" title="2. 词法作用域"></a>2. 词法作用域</h3><blockquote>
+<p>词法（Lexical） 指的是定义某个事物。<br>任何创建文字、表达式或变量的声明都叫词法。<br>词法作用域（Lexical Scope） 是定义表达式并能被访问的区间。<br>一个声明（定义变量、函数等）的词法作用域就是它被定义时所在的作用域。</p>
+</blockquote>
+<p>词法作用域的本质是什么？词法作用域（Lexical Scope） 是定义表达式并能被访问的区间。</p>
+<p>就是定义了程序的访问范围。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> g = <span class="string">&#x27;g&#x27;</span>;</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="keyword">const</span> a1 = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">	<span class="keyword">function</span> <span class="title function_">b</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="keyword">const</span> b1 = <span class="string">&#x27;b&#x27;</span>;</span><br><span class="line">		<span class="keyword">function</span> <span class="title function_">c</span>(<span class="params"></span>) &#123;</span><br><span class="line">			<span class="keyword">const</span> c1 = <span class="string">&#x27;c&#x27;</span>;</span><br><span class="line">			<span class="keyword">function</span> <span class="title function_">d</span>(<span class="params"></span>) &#123;</span><br><span class="line">				<span class="keyword">const</span> d1 = <span class="string">&#x27;d&#x27;</span>;</span><br><span class="line">				<span class="variable language_">console</span>.<span class="title function_">log</span>(e1);</span><br><span class="line">			&#125;</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">function</span> <span class="title function_">e</span>(<span class="params"></span>) &#123;</span><br><span class="line">				<span class="keyword">const</span> e1 = <span class="string">&#x27;e&#x27;</span>;</span><br><span class="line">				<span class="variable language_">console</span>.<span class="title function_">log</span>(d1)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>词法作用域决定了你定义的变量如何访问，比如说 function d 和 function e. </p>
+<p>他们内部的变量定义的词法作用域就在内部，也就是 d1 只在 d 内部有效， e1 只在 e 内部有效。</p>
+<p>所以 d 无法访问 e1, e 无法访问得 d1。</p>
+<p>换言之，只有词法作用域内的代码才可以访问该作用域内部的代码。</p>
+<p>比如 g 在所有方法中都能调用。</p>
+<h3 id="3-必包"><a href="#3-必包" class="headerlink" title="3. 必包"></a>3. 必包</h3><p>词法作用域是必包的前提，我们来看一个必包.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">tommyWords</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="keyword">const</span> name = <span class="string">&#x27;tommy&#x27;</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">words</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;tommy&#125;</span> <span class="subst">$&#123;words&#125;</span>`</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>name 是在 tommyWords 的词法作用域下，也就是说只有返回的匿名函数能访问，形成了一个私有变量。</p>
+<p>这就是必包的一个特性，<strong>私有变量</strong>，原生js并没有这个能力，但是借助必包就有了。</p>
+<p>第二个点就是，<strong>缓存数据</strong>，这一点就需要知道垃圾回收的机制.</p>
+<blockquote>
+<p>JavaScript 中的垃圾回收（Garbage Collection）是一种自动管理内存的机制，它负责检测不再使用的对象，并自动释放它们所占用的内存空间。垃圾回收器会周期性地扫描内存中的对象，并标记哪些对象是可达的（仍然被引用），哪些对象是不可达的（没有引用指向它们）。然后，垃圾回收器会清除不可达对象所占用的内存，以便可以被再次使用。</p>
+<p>引用计数（Reference Counting）：这是一种最简单的垃圾回收算法。它通过在对象上维护一个引用计数器，每当有新的引用指向对象时，计数器加1，当引用失效时，计数器减1。当计数器为0时，表示该对象不再被引用，即为不可达对象，可以被回收。然而，引用计数算法无法解决循环引用的情况，即使对象之间互相引用，但它们与程序的其他部分没有联系，也会被认为是垃圾并被回收。</p>
+<p>标记清除（Mark and Sweep）：这是一种常用的垃圾回收算法，用于解决引用计数算法无法处理的循环引用问题。标记清除算法分为两个阶段：标记阶段和清除阶段。在标记阶段，垃圾回收器会从根对象（全局对象、活动函数的变量等）开始遍历，标记所有可达的对象。在清除阶段，垃圾回收器会扫描整个堆内存，清除未被标记的对象，即不可达对象。被清除的内存空间会被标记为可再分配的，以便将来可以被新的对象使用。</p>
+</blockquote>
+<p>比如说</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="keyword">const</span> a1 = <span class="string">&#x27;a1&#x27;</span>;</span><br><span class="line">	<span class="comment">//todo..</span></span><br><span class="line">	<span class="keyword">return</span> other;</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">a</span>();</span><br></pre></td></tr></table></figure>
+
+<p>那么当 a() 调用完，就没有地方可以引用a1了，也就是无法标记，所以会被清除了，再来看必包。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="keyword">const</span> a1 = <span class="string">&#x27;a1&#x27;</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">function</span>(<span class="params">todo</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> a1 + todo;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> o = <span class="title function_">a</span>()</span><br></pre></td></tr></table></figure>
+
+<p>这样只要o，还有人调用，那么 a1就不会清除，但是如果 o1 不再有人调用，a1还是会被清除。</p>
+<p>如果 o 不是常量，继续赋值 <code>o = a()</code>，那么也会清理。</p>
+<p>所以必包中的变量不是不会被清除，还是看匿名方法是否还有引用。</p>
+<p>但是如果你一致有引用，比如说</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="keyword">let</span> count = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> count++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> c = <span class="title function_">a</span>(); <span class="comment">//1</span></span><br><span class="line">c = <span class="title function_">a</span>(); <span class="comment">//2</span></span><br><span class="line">c = <span class="title function_">a</span>(); <span class="comment">//3</span></span><br><span class="line">c = <span class="title function_">a</span>(); <span class="comment">//4</span></span><br></pre></td></tr></table></figure>
+
+<p>这也是一种缓存。</p>
+<p><strong>拆分变量</strong></p>
+<p>比如说我有一个 request 模块，需要传入 url, callback。如果我需要不停的调用这个方法，那么每次都需要传入这两个参数，使用必包呢？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getDate</span>(<span class="params">url</span>) &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">async</span> <span class="keyword">function</span>(<span class="params">callback</span>) &#123;</span><br><span class="line">		<span class="keyword">const</span> result = <span class="keyword">await</span> <span class="title function_">request</span>(url, callback);</span><br><span class="line">		<span class="title function_">callback</span>(result)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> gDate = <span class="title function_">getDate</span>(...);</span><br><span class="line"><span class="title function_">gDate</span>(<span class="function">(<span class="params">r</span>) =&gt;</span> ...)</span><br><span class="line"><span class="title function_">gDate</span>(<span class="function">(<span class="params">r</span>) =&gt;</span> ...)</span><br><span class="line"><span class="title function_">gDate</span>(<span class="function">(<span class="params">r</span>) =&gt;</span> ...)</span><br></pre></td></tr></table></figure>
+
+<p>这还有其他使用方式，大概是类似的使用方式。</p>
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h3><p>必包提供了私有变量，拆分变量，状态管控，模块化开发，事件回调等等功能。	</p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-03</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/web/'>
+                            web
+                        </a>
+                    
+                        <a href='/tblog/tags/javascript/'>
+                            javascript
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/07/03/deepClone/'>深拷贝方法优缺点总结</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/07/03/baseEs6/">es6 更新总结</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="简单的todoList" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    简单的todoList
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：3.8k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：19分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E7%AE%80%E5%8D%95%E7%89%88%E6%9C%AC"><span class="post-toc-text">01. 简单版本</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E6%9C%AC%E5%9C%B0%E5%8C%96%E5%AD%98%E5%82%A8"><span class="post-toc-text">02. 本地化存储</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E5%88%A0%E9%99%A4%E3%80%82"><span class="post-toc-text">03. 删除。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E6%96%B0%E5%A2%9E%E6%B7%BB%E5%8A%A0%E9%A1%B5%E9%9D%A2"><span class="post-toc-text">04. 新增添加页面</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-%E6%9B%B4%E6%96%B0%E5%88%97%E8%A1%A8%E9%A1%B5%E9%9D%A2"><span class="post-toc-text">05. 更新列表页面</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#06-%E7%BC%96%E8%BE%91"><span class="post-toc-text">06. 编辑</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#07-%E6%8F%90%E9%86%92"><span class="post-toc-text">07. 提醒</span></a></li></ol>
+            
+        
+        <h3 id="01-简单版本"><a href="#01-简单版本" class="headerlink" title="01. 简单版本"></a>01. 简单版本</h3><p><strong>wsml</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;input-container&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">class</span>=<span class="string">&quot;input-text&quot;</span> <span class="attr">bindinput</span>=<span class="string">&quot;inputChange&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;输入任务&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123;inputValue&#125;&#125;&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;add-button&quot;</span> <span class="attr">bindtap</span>=<span class="string">&quot;addTask&quot;</span>&gt;</span>添加<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;task-list&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:for</span>=<span class="string">&quot;&#123;&#123;taskList&#125;&#125;&quot;</span> <span class="attr">wx:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;task-item&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">&quot;task-item-text&quot;</span>&gt;</span>&#123;&#123;item.task&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">&quot;task-item-time&quot;</span>&gt;</span>&#123;&#123;item.time&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>wxss</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.input-container</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.input-text</span> &#123;</span><br><span class="line">  <span class="attribute">display</span>: block;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">10px</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.add-button</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">border</span>: none;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#007AFF</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">  <span class="attribute">justify-content</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.task-list</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">flex-wrap</span>: wrap;</span><br><span class="line">  <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">15px</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.task-item</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#f7f7f7</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.task-item-text</span> &#123;</span><br><span class="line">  <span class="attribute">padding-right</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">2</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">word-break</span>: break-all;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.task-item-time</span> &#123;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#666</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>wxs</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Page</span>(&#123;</span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="attr">inputValue</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">taskList</span>: []</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="attr">inputChange</span>: <span class="keyword">function</span>(<span class="params">e</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      <span class="attr">inputValue</span>: e.<span class="property">detail</span>.<span class="property">value</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="attr">addTask</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> task = &#123;</span><br><span class="line">      <span class="attr">task</span>: <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">inputValue</span>,</span><br><span class="line">      <span class="attr">time</span>: <span class="variable language_">this</span>.<span class="title function_">getRemindTime</span>()</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> newList = <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">taskList</span>.<span class="title function_">concat</span>(task);</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      <span class="attr">taskList</span>: newList,</span><br><span class="line">      <span class="attr">inputValue</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="attr">getRemindTime</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> currentTime = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">    <span class="keyword">var</span> remindTime = <span class="keyword">new</span> <span class="title class_">Date</span>(currentTime.<span class="title function_">getTime</span>() + <span class="number">5</span> * <span class="number">60</span> * <span class="number">1000</span>); <span class="comment">// 5分钟后提醒</span></span><br><span class="line">    <span class="keyword">return</span> remindTime.<span class="title function_">toLocaleTimeString</span>(<span class="string">&#x27;en-US&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>简单解释一下，现在就是一个简单的添加文字，到列表的一个过程。</p>
+<p>现在包含了当前时间和提醒时间，以及文字两个字段。</p>
+<p>效果大概就是下图这样</p>
+<p><img src="/tblog/%5Cimg%5C2023-07-11-211057.png" alt="alt text"></p>
+<h3 id="02-本地化存储"><a href="#02-本地化存储" class="headerlink" title="02. 本地化存储"></a>02. 本地化存储</h3><p>先限制一下输入，小于3个字符，或者多余40个字符，都不允许输入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> txt = <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">inputValue</span>.<span class="title function_">trim</span>();</span><br><span class="line"><span class="keyword">if</span> (txt.<span class="property">length</span> &gt; <span class="number">40</span> || txt.<span class="property">length</span> &lt; <span class="number">3</span>) &#123;</span><br><span class="line">  wx.<span class="title function_">showToast</span>(&#123;</span><br><span class="line">	<span class="attr">title</span>: <span class="string">&#x27;任务长度不正确&#x27;</span>,</span><br><span class="line">	<span class="attr">icon</span>: <span class="string">&#x27;error&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>找到生命周期的页面，发现 onload 这个生命周期最适合</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">onLoad</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">	<span class="comment">// 页面加载时读取本地存储的任务列表数据</span></span><br><span class="line">	wx.<span class="title function_">getStorage</span>(&#123;</span><br><span class="line">	  <span class="attr">key</span>: <span class="string">&#x27;taskList&#x27;</span>,</span><br><span class="line">	  <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">		<span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">		  <span class="attr">taskList</span>: res.<span class="property">data</span></span><br><span class="line">		&#125;);</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>然后在保存的地方加入</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 保存更新后的任务列表数据到本地存储</span></span><br><span class="line">wx.<span class="title function_">setStorage</span>(&#123;</span><br><span class="line">  <span class="attr">key</span>: <span class="string">&#x27;taskList&#x27;</span>,</span><br><span class="line">  <span class="attr">data</span>: newList</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>最后把 key 定义为常亮</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> key = <span class="string">&#x27;taskList&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="03-删除。"><a href="#03-删除。" class="headerlink" title="03. 删除。"></a>03. 删除。</h3><p><img src="/tblog/%5Cimg%5C2023-07-11-211057.png" alt="alt text"></p>
+<p>我想实现卡片式删除，也就是那种左滑删除。那么思路是什么？</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform">https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform-function/translateX">https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform-function/translateX</a></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">10px</span>); <span class="comment">/* 等同于 translate(10px) */</span></span><br></pre></td></tr></table></figure>
+
+<p>右边看不见的地方隐藏菜单, 然后就当捕获到事件，就可以显示菜单。</p>
+<p>在此之前，先修改一下样式，毕竟圆滚滚灰色背景不太舒服。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.task-item</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid gray;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.task-item-text</span> &#123;</span><br><span class="line">  <span class="attribute">padding-right</span>: <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">flex</span>: <span class="number">2</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden; <span class="comment">/* 隐藏溢出内容 */</span></span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis; <span class="comment">/* 使用省略号代表被截断的文本 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里加入了一个白底灰边，然后如果超出文字省略号 **…**， 然后开始创建删除</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;task-item&quot;</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;task-item-container&quot;</span> <span class="attr">data-index</span>=<span class="string">&#x27;&#123;&#123;index&#125;&#125;&#x27;</span> <span class="attr">bindtouchstart</span>=<span class="string">&#x27;touchstart&#x27;</span> <span class="attr">bindtouchmove</span>=<span class="string">&#x27;touchmove&#x27;</span> <span class="attr">bindtouchend</span>=<span class="string">&#x27;touchend&#x27;</span> <span class="attr">style</span>=<span class="string">&quot;transform:translateX(-&#123;&#123;item.distance&#125;&#125;px);&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">&quot;task-item-text&quot;</span>&gt;</span>&#123;&#123;item.task&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">&quot;task-item-time&quot;</span>&gt;</span>&#123;&#123;item.time&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;delete&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里在外面套了一层 task-item-container ，并且加入了事件和 <code>transform:translateX(-&#123;&#123;item.distance&#125;&#125;px);</code> 以及新增一个删除按钮。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.task-item-container</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">2</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">  <span class="attribute">justify-content</span>: space-between;</span><br><span class="line">  <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.delete</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">20px</span> <span class="meta">!important</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">color</span>: gray;</span><br><span class="line">  <span class="attribute">background-color</span>: white;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在事件中加入，设置的代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">touchstart</span>: <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">    <span class="attr">_start</span>: e.<span class="property">changedTouches</span>[<span class="number">0</span>].<span class="property">pageX</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>开始的时候集录起始位置。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">touchmove</span>: <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> d = <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">_start</span> - e.<span class="property">changedTouches</span>[<span class="number">0</span>].<span class="property">pageX</span>;</span><br><span class="line">  <span class="keyword">const</span> newTaskList = <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">taskList</span>;</span><br><span class="line">  d = d &gt; maxX ? maxX : d;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (d &gt; minDistance) &#123;</span><br><span class="line">    newTaskList[e.<span class="property">currentTarget</span>.<span class="property">dataset</span>.<span class="property">index</span>].<span class="property">distance</span> = d;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      <span class="attr">taskList</span>: newTaskList</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    newTaskList[e.<span class="property">currentTarget</span>.<span class="property">dataset</span>.<span class="property">index</span>].<span class="property">distance</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      <span class="attr">taskList</span>: newTaskList</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>移动的过程中，设置最新位置。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">touchend</span>: <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`start1:<span class="subst">$&#123;<span class="variable language_">this</span>.data._start&#125;</span>`</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`pageX:<span class="subst">$&#123;e.changedTouches[<span class="number">0</span>].pageX&#125;</span>`</span>);</span><br><span class="line">  <span class="keyword">let</span> d = <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">_start</span> - e.<span class="property">changedTouches</span>[<span class="number">0</span>].<span class="property">pageX</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> newTaskList = <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">taskList</span>;</span><br><span class="line">  d = d &gt; maxX ? maxX : d;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(d);</span><br><span class="line">  <span class="keyword">if</span> (d &gt; minDistance) &#123;</span><br><span class="line">    newTaskList[e.<span class="property">currentTarget</span>.<span class="property">dataset</span>.<span class="property">index</span>].<span class="property">distance</span> = d;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      <span class="attr">_start</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="attr">taskList</span>: newTaskList</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    newTaskList[e.<span class="property">currentTarget</span>.<span class="property">dataset</span>.<span class="property">index</span>].<span class="property">distance</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      <span class="attr">_start</span>: <span class="number">0</span>,</span><br><span class="line">      <span class="attr">taskList</span>: newTaskList</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>结束代码差不多，只是重置开始位置。</p>
+<p>基本ok以后，需要引入 iconfont. 总得加点图标才好看，我从 iconfont.com 引入，微信小程序无法共享某些css，也就是说每个 page 都是完全单独的样式，就算使用</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@import</span> <span class="string">&#x27;...&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后加入 css</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;delete icon iconfont icon-icon-delete-fill&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>看下效果</p>
+<p><img src="/tblog/%5Cimg%5C2023-07-12-150046.png" alt="alt text"></p>
+<p>过程就是这样，接下来删除, 首先新增一个删除方法。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deleteTaskItem</span>: <span class="keyword">function</span> (<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> index = e.<span class="property">currentTarget</span>.<span class="property">dataset</span>.<span class="property">index</span>;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(index);</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">taskList</span>.<span class="title function_">splice</span>(index, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    wx.<span class="title function_">setStorage</span>(&#123;</span><br><span class="line">      <span class="attr">key</span>: key,</span><br><span class="line">      <span class="attr">data</span>: <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">taskList</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      <span class="attr">taskList</span>: <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">taskList</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">    wx.<span class="title function_">showToast</span>(&#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="string">&#x27;删除失败&#x27;</span>,</span><br><span class="line">      <span class="attr">icon</span>: <span class="string">&#x27;error&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后添加到事件中即可，再加一个提示。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wx.<span class="title function_">showModal</span>(&#123;</span><br><span class="line">  <span class="attr">content</span>: <span class="string">&#x27;确认删除？删除之后不可恢复&#x27;</span>,</span><br><span class="line">  <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (res.<span class="property">confirm</span>) &#123;</span><br><span class="line">      <span class="comment">//...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>ok, 就这样，删除也有了。</p>
+<h3 id="04-新增添加页面"><a href="#04-新增添加页面" class="headerlink" title="04. 新增添加页面"></a>04. 新增添加页面</h3><p>现在只输入了名字这个数据，所以要增加一些数据。</p>
+<ul>
+<li>标题</li>
+<li>添加时间</li>
+<li>提醒时间</li>
+<li>描述</li>
+</ul>
+<p>简单就先用这个，我们需要一个新的页面，并且需要路由以及 <code>form</code>, 以及页面之间如何通信？</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/route.html">页面路由</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/navigator.html">navigator</a></li>
+</ul>
+<blockquote>
+<p>框架以栈的形式维护了当前的所有页面</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;pages&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">  <span class="string">&quot;pages/index/index&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="string">&quot;pages/add/index&quot;</span></span><br><span class="line"><span class="punctuation">]</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+
+<p>首先增加连接，然后根据指南当中在 index 中增加一个链接。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;navigator url=<span class="string">&quot;/pages/add/index&quot;</span>&gt;到添加页面去&lt;/navigator&gt;</span><br></pre></td></tr></table></figure>
+
+<p>然后 <code>form</code> ，这个时候突然想到，其实还可以使用框架，不用全部自己写…, 于是直接用官方的 <code>weui</code> 吧.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;weui-form&quot;</span> <span class="attr">bindsubmit</span>=<span class="string">&quot;formSubmit&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-form__bd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-form__text-area&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cells__title&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">&quot;weui-form__title&quot;</span>&gt;</span>添加任务<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-form__control-area&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cells__group weui-cells__group_form&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cells&quot;</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;title-input&quot;</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell weui-cell_active&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell__hd&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">&quot;weui-label&quot;</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">text</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell__bd&quot;</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;title-input&quot;</span> <span class="attr">class</span>=<span class="string">&quot;weui-input&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;任务标题&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123;title&#125;&#125;&quot;</span> <span class="attr">bindinput</span>=<span class="string">&quot;handleInput&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;curDay&quot;</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell weui-cell_active&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell__hd&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">&quot;weui-label&quot;</span>&gt;</span>创建时间<span class="tag">&lt;/<span class="name">text</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell__bd&quot;</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;curDay&quot;</span> <span class="attr">class</span>=<span class="string">&quot;weui-input&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123;curDay&#125;&#125;&quot;</span> <span class="attr">disabled</span>=<span class="string">&quot;&#123;&#123;true&#125;&#125;&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">picker</span> <span class="attr">mode</span>=<span class="string">&quot;date&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123;taskDay&#125;&#125;&quot;</span> <span class="attr">bindchange</span>=<span class="string">&quot;bindTaskDay&quot;</span> <span class="attr">start</span>=<span class="string">&quot;&#123;&#123;curDay&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell weui-cell_active weui-cell_select&quot;</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell__bd&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-select&quot;</span>&gt;</span>任务日期: &#123;&#123;taskDay&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">picker</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">picker</span> <span class="attr">mode</span>=<span class="string">&quot;time&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123;taskTime&#125;&#125;&quot;</span> <span class="attr">bindchange</span>=<span class="string">&quot;bindTaskTime&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell weui-cell_active weui-cell_select&quot;</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell__bd&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-select&quot;</span>&gt;</span>任务时间: &#123;&#123;taskTime&#125;&#125;<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">picker</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;description-input&quot;</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell weui-cell_active&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell__hd&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">&quot;weui-label&quot;</span>&gt;</span>描述<span class="tag">&lt;/<span class="name">text</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell__bd&quot;</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;description-input&quot;</span> <span class="attr">class</span>=<span class="string">&quot;weui-input&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123;description&#125;&#125;&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入描述（选填）&quot;</span> <span class="attr">bindinput</span>=<span class="string">&quot;handleDescription&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-form__ft weui-bottom-fixed-opr-page__tool&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-form__opr-area&quot;</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;weui-btn weui-btn_primary&quot;</span> <span class="attr">formType</span>=<span class="string">&quot;submit&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>我没有加入表单验证组件，懒得去看其他组件了，生成了一些判断.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> dateHelper = <span class="built_in">require</span>(<span class="string">&#x27;../js/common&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> key = <span class="string">&#x27;taskList&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Page</span>(&#123;</span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">curDay</span>: dateHelper.<span class="title function_">formatDate</span>(<span class="keyword">new</span> <span class="title class_">Date</span>()),</span><br><span class="line">    <span class="attr">taskDay</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">taskTime</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">description</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">map</span>: &#123;&#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">bindTaskDay</span>(<span class="params">&#123;</span></span><br><span class="line"><span class="params">    detail: &#123;</span></span><br><span class="line"><span class="params">      value</span></span><br><span class="line"><span class="params">    &#125;</span></span><br><span class="line"><span class="params">  &#125;</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      <span class="attr">taskDay</span>: value</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">bindTaskTime</span>(<span class="params">&#123;</span></span><br><span class="line"><span class="params">    detail: &#123;</span></span><br><span class="line"><span class="params">      value</span></span><br><span class="line"><span class="params">    &#125;</span></span><br><span class="line"><span class="params">  &#125;</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      <span class="attr">taskTime</span>: value</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="title function_">handleInput</span>(<span class="params">&#123;</span></span><br><span class="line"><span class="params">    detail: &#123;</span></span><br><span class="line"><span class="params">      value</span></span><br><span class="line"><span class="params">    &#125;</span></span><br><span class="line"><span class="params">  &#125;</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      <span class="attr">title</span>: value</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="title function_">handleDescription</span>(<span class="params">&#123;</span></span><br><span class="line"><span class="params">    detail: &#123;</span></span><br><span class="line"><span class="params">      value</span></span><br><span class="line"><span class="params">    &#125;</span></span><br><span class="line"><span class="params">  &#125;</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      <span class="attr">description</span>: value</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="title function_">formSubmit</span>(<span class="params">e</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> result = &#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">title</span>,</span><br><span class="line">      <span class="attr">curDay</span>: <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">curDay</span>,</span><br><span class="line">      <span class="attr">taskDay</span>: <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">taskDay</span>,</span><br><span class="line">      <span class="attr">taskTime</span>: <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">taskTime</span>,</span><br><span class="line">      <span class="attr">description</span>: <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">description</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 校验 title</span></span><br><span class="line">    <span class="keyword">if</span> (!result.<span class="property">title</span> || result.<span class="property">title</span>.<span class="title function_">trim</span>().<span class="property">length</span> &lt; <span class="number">3</span> || result.<span class="property">title</span>.<span class="title function_">trim</span>().<span class="property">length</span> &gt; <span class="number">40</span>) &#123;</span><br><span class="line">      wx.<span class="title function_">showToast</span>(&#123;</span><br><span class="line">        <span class="attr">title</span>: <span class="string">&#x27;标题长度应在3到40个字符之间&#x27;</span>,</span><br><span class="line">        <span class="attr">icon</span>: <span class="string">&#x27;none&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 校验任务日期</span></span><br><span class="line">    <span class="keyword">if</span> (!result.<span class="property">taskDay</span>) &#123;</span><br><span class="line">      wx.<span class="title function_">showToast</span>(&#123;</span><br><span class="line">        <span class="attr">title</span>: <span class="string">&#x27;请填写任务日期&#x27;</span>,</span><br><span class="line">        <span class="attr">icon</span>: <span class="string">&#x27;none&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 校验任务时间</span></span><br><span class="line">    <span class="keyword">if</span> (!result.<span class="property">taskTime</span>) &#123;</span><br><span class="line">      wx.<span class="title function_">showToast</span>(&#123;</span><br><span class="line">        <span class="attr">title</span>: <span class="string">&#x27;请填写任务时间&#x27;</span>,</span><br><span class="line">        <span class="attr">icon</span>: <span class="string">&#x27;none&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 校验描述长度</span></span><br><span class="line">    <span class="keyword">if</span> (result.<span class="property">description</span> &amp;&amp; result.<span class="property">description</span>.<span class="title function_">trim</span>().<span class="property">length</span> &gt; <span class="number">100</span>) &#123;</span><br><span class="line">      wx.<span class="title function_">showToast</span>(&#123;</span><br><span class="line">        <span class="attr">title</span>: <span class="string">&#x27;描述长度不能超过100个字符&#x27;</span>,</span><br><span class="line">        <span class="attr">icon</span>: <span class="string">&#x27;none&#x27;</span></span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> taskList = wx.<span class="title function_">getStorageSync</span>(key);</span><br><span class="line">    <span class="keyword">if</span> (!taskList) taskList = [];</span><br><span class="line">    taskList.<span class="title function_">push</span>(result);</span><br><span class="line"></span><br><span class="line">    wx.<span class="title function_">setStorage</span>(&#123;</span><br><span class="line">      <span class="attr">key</span>: key,</span><br><span class="line">      <span class="attr">data</span>: taskList</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 清空表单数据</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="attr">curDay</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="attr">taskDay</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="attr">taskTime</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="attr">description</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    wx.<span class="title function_">showToast</span>(&#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="string">&#x27;提交成功&#x27;</span>,</span><br><span class="line">      <span class="attr">icon</span>: <span class="string">&#x27;success&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/tblog/%5Cimg%5C2023-07-13-112344.png" alt="alt text"></p>
+<p>看到这里 title 间距过高，日期选择以后时间间距也有问题，修改一下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">&quot;weui-form&quot;</span> <span class="attr">bindsubmit</span>=<span class="string">&quot;formSubmit&quot;</span> <span class="attr">style</span>=<span class="string">&quot;padding-top: 0px;&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">picker</span> <span class="attr">mode</span>=<span class="string">&quot;date&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&#123;&#123;taskDay&#125;&#125;&quot;</span> <span class="attr">bindchange</span>=<span class="string">&quot;bindTaskDay&quot;</span> <span class="attr">start</span>=<span class="string">&quot;&#123;&#123;curDay&#125;&#125;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;taskDay&quot;</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell weui-cell_active&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell__hd&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">text</span> <span class="attr">class</span>=<span class="string">&quot;weui-label&quot;</span>&gt;</span>任务日期<span class="tag">&lt;/<span class="name">text</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell__bd&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">text</span>&gt;</span>&#123;&#123;taskDay&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">picker</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>最后，增加一个跳转在添加成功以后</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wx.<span class="title function_">navigateBack</span>();</span><br></pre></td></tr></table></figure>
+
+<h3 id="05-更新列表页面"><a href="#05-更新列表页面" class="headerlink" title="05. 更新列表页面"></a>05. 更新列表页面</h3><p>当我准备改造的时候，发现 <a target="_blank" rel="noopener" href="https://weui.io/#list">https://weui.io/#list</a> 已经实现了这个功能，我之前还自己写。。</p>
+<p>于是我借助他的样式，改了一下。</p>
+<p><img src="/tblog/%5Cimg%5C2023-07-13-163917.png"></p>
+<p>并且加入了导航</p>
+<p><img src="/tblog/%5Cimg%5C2023-07-13-164021.png"></p>
+<p>为了解决来回切换，列表不刷新的问题，将原本的 <code>onload</code> 改为 <code>onshow</code>.</p>
+<p>基本上开始有点样子了。</p>
+<p>然后将时间，写一个方法，转换为 刚刚，小时前这种模式，不要动不动就是 <strong>2023-09-20</strong> 之类的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">getTimeRemaining</span>(<span class="params">endTime</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> currentTime = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">  <span class="keyword">const</span> targetTime = <span class="keyword">new</span> <span class="title class_">Date</span>(endTime);</span><br><span class="line">  <span class="keyword">const</span> timeDifference = targetTime - currentTime;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (timeDifference &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;已过期&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> oneMinute = <span class="number">60</span> * <span class="number">1000</span>; <span class="comment">// 1分钟的毫秒数</span></span><br><span class="line">  <span class="keyword">const</span> oneHour = oneMinute * <span class="number">60</span>; <span class="comment">// 1小时的毫秒数</span></span><br><span class="line">  <span class="keyword">const</span> oneDay = oneHour * <span class="number">24</span>; <span class="comment">// 1天的毫秒数</span></span><br><span class="line">  <span class="keyword">const</span> oneMonth = oneDay * <span class="number">30.436875</span>; <span class="comment">// 1个月的毫秒数，按平均每月30.436875天计算</span></span><br><span class="line">  <span class="keyword">const</span> oneYear = oneMonth * <span class="number">12</span>; <span class="comment">// 1年的毫秒数</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> years = <span class="title class_">Math</span>.<span class="title function_">floor</span>(timeDifference / oneYear);</span><br><span class="line">  <span class="keyword">const</span> months = <span class="title class_">Math</span>.<span class="title function_">floor</span>((timeDifference % oneYear) / oneMonth);</span><br><span class="line">  <span class="keyword">const</span> days = <span class="title class_">Math</span>.<span class="title function_">floor</span>((timeDifference % oneMonth) / oneDay);</span><br><span class="line">  <span class="keyword">const</span> hours = <span class="title class_">Math</span>.<span class="title function_">floor</span>((timeDifference % oneDay) / oneHour);</span><br><span class="line">  <span class="keyword">const</span> minutes = <span class="title class_">Math</span>.<span class="title function_">floor</span>((timeDifference % oneHour) / oneMinute);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> remainingTime = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (years &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    remainingTime += <span class="string">`<span class="subst">$&#123;years&#125;</span>年 `</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (months &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    remainingTime += <span class="string">`<span class="subst">$&#123;months&#125;</span>个月 `</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (days &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    remainingTime += <span class="string">`<span class="subst">$&#123;days&#125;</span>天 `</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (hours &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    remainingTime += <span class="string">`<span class="subst">$&#123;hours&#125;</span>小时 `</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (minutes &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    remainingTime += <span class="string">`<span class="subst">$&#123;minutes&#125;</span>分钟`</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> remainingTime.<span class="title function_">trim</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个时候，我想到了，既然这么像 Vue，那么是不是有可能性，他也有指令。</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/database/query.html">https://developers.weixin.qq.com/miniprogram/dev/wxcloud/guide/database/query.html</a></p>
+<p>查了一下发现，他似乎没有这样的东西，只能通过原生的指令去解决问题，或者组件使用 slot, 从而实现封装，有点恶心</p>
+<p>然后继续测试发现不能直接在 <code>&#123;&#123;func&#125;&#125;</code> 这样直接使用方法，最后查到了</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39015132/article/details/82767312">https://blog.csdn.net/weixin_39015132/article/details/82767312</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">wxs</span> <span class="attr">module</span>=<span class="string">&quot;filter&quot;</span> <span class="attr">src</span>=<span class="string">&quot;./numberToFixed.wxs&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">wxs</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这个真的沉默了，太别扭了，这边产生了一个疑问，比如同样一个方法，我在 <code>&#123;&#123;&#125;&#125;</code> 和 js 中都需要使用，那是不是要区分 wxs, 果然要区分，因为。</p>
+<blockquote>
+<p>因为 WXS 中不能调用 javascript 中定义的函数或者变量，也不能调用小程序提供的, API，他的运行环境和 javascript 是隔离的。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Umbrella_Um/article/details/107253834">https://blog.csdn.net/Umbrella_Um/article/details/107253834</a> 真的深深的嫌弃</p>
+<p>用 getDate 解决了问题，现在是这样</p>
+<p><img src="/tblog/%5Cimg%5C2023-07-13-233949.png"></p>
+<h3 id="06-编辑"><a href="#06-编辑" class="headerlink" title="06. 编辑"></a>06. 编辑</h3><p>增加编辑按钮，加入跳转事件</p>
+<p>传值的方法 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/bushui/p/11633766.html%EF%BC%8C%E4%B8%8D%E8%BF%87%E4%BE%8B%E5%AD%90%E4%B8%AD%E6%B2%A1%E6%9C%89%E5%91%8A%E8%AF%89%E4%BD%A0%E5%A6%82%E4%BD%95%E6%8E%A5%E6%94%B6%E3%80%82">https://www.cnblogs.com/bushui/p/11633766.html，不过例子中没有告诉你如何接收。</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-cell__ft&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-swiped-btn weui-btn_primary&quot;</span>  <span class="attr">data-index</span>=<span class="string">&#x27;&#123;&#123;index&#125;&#125;&#x27;</span> <span class="attr">aria-role</span>=<span class="string">&quot;button&quot;</span> <span class="attr">bindtap</span>=<span class="string">&quot;editTaskItem&quot;</span> <span class="attr">url</span>=<span class="string">&quot;javascript:&quot;</span>&gt;</span>编辑<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;weui-swiped-btn weui-swiped-btn_warn&quot;</span> <span class="attr">data-index</span>=<span class="string">&#x27;&#123;&#123;index&#125;&#125;&#x27;</span> <span class="attr">aria-role</span>=<span class="string">&quot;button&quot;</span> <span class="attr">bindtap</span>=<span class="string">&quot;deleteTaskItem&quot;</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">editTaskItem</span>(<span class="params">e</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> index = e.<span class="property">currentTarget</span>.<span class="property">dataset</span>.<span class="property">index</span>;</span><br><span class="line">  wx.<span class="title function_">navigateTo</span>(&#123;</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;/pages/add/index?index=&#x27;</span> + index,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 add 增加 onLoad</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">onLoad</span>(<span class="params">option</span>) &#123;</span><br><span class="line">  <span class="keyword">let</span> index = option.<span class="property">index</span>;</span><br><span class="line">  <span class="keyword">if</span> (!!index) &#123;</span><br><span class="line">    index = <span class="title class_">Number</span>.<span class="built_in">parseInt</span>(index);</span><br><span class="line">    wx.<span class="title function_">getStorage</span>(&#123;</span><br><span class="line">      <span class="attr">key</span>: key,</span><br><span class="line">      <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> d = res.<span class="property">data</span>[index];</span><br><span class="line">        <span class="keyword">if</span> (!!d) &#123;</span><br><span class="line">          <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">            <span class="attr">title</span>: d.<span class="property">title</span>,</span><br><span class="line">            <span class="attr">curDay</span>: d.<span class="property">curDay</span>,</span><br><span class="line">            <span class="attr">taskDay</span>: d.<span class="property">taskDay</span>,</span><br><span class="line">            <span class="attr">taskTime</span>: d.<span class="property">taskTime</span>,</span><br><span class="line">            <span class="attr">description</span>: d.<span class="property">description</span>,</span><br><span class="line">            <span class="attr">map</span>: d.<span class="property">map</span>,</span><br><span class="line">            <span class="attr">index</span>: index</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line"><span class="comment">//在添加的位置</span></span><br><span class="line"><span class="keyword">let</span> taskList = wx.<span class="title function_">getStorageSync</span>(key);</span><br><span class="line"><span class="keyword">if</span> (!taskList) taskList = [];</span><br><span class="line"><span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">index</span> === -<span class="number">1</span>) &#123;</span><br><span class="line">  taskList.<span class="title function_">push</span>(result);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  taskList[<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">index</span>] = result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>搞定。</p>
+<h3 id="07-提醒"><a href="#07-提醒" class="headerlink" title="07. 提醒"></a>07. 提醒</h3><p>这里似乎就有麻烦了，因为微信切到后台以后，只驻留5分钟，如果内存紧张，5分钟都没有，所以在微信里写一个</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setInterval</span>(<span class="variable language_">this</span>.<span class="property">timerTask</span>, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>似乎是不科学的，也就是说还是需要一个服务端，数据上传，写一个定时任务，然后和微信关联通知，还需要再打开的时候一次性通知用户。</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/52719661">https://www.zhihu.com/question/52719661</a> 这篇文章说了一个清楚。</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/subscribe-message.html">https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/subscribe-message.html</a></p>
+<p>如果想要长期订阅 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/community/develop/doc/00008a8a7d8310b6bf4975b635a401">https://developers.weixin.qq.com/community/develop/doc/00008a8a7d8310b6bf4975b635a401</a></p>
+<p>todolist 算是民生吗？。</p>
+<p>另外就算需要一个有服务器以及域名，并且支持 https. 或者直接使用微信的云服务。</p>
+<p>这个就后面来了。</p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-14</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/'>
+                            微信小程序
+                        </a>
+                    
+                        <a href='/tblog/tags/todolist/'>
+                            todolist
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/07/18/uniapp_plus/'>uni-app 引用插件</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/07/13/ss_baisc/">微信小程序入门</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

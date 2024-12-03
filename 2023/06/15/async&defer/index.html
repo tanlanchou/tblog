@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="async &amp; defer" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    async &amp; defer
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.6k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：6分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#async-amp-defer"><span class="post-toc-text">async &amp; defer</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="post-toc-text">1. 基础知识</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-async"><span class="post-toc-text">2. async</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-defer"><span class="post-toc-text">3. defer</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <h1 id="async-amp-defer"><a href="#async-amp-defer" class="headerlink" title="async &amp; defer"></a>async &amp; defer</h1><h3 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1. 基础知识"></a>1. 基础知识</h3><p>从之前我学习的浏览器解析过程中我们知道，浏览器顺序解析，遇到javascript，就会阻塞，并且会执行 javascript, 也会阻塞</p>
+<p>我们做一个简单的测试</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;ved=2ahUKEwjBkb65gsX_AhXnQPUHHasODVkQFnoECBYQAQ&amp;url=https%3A%2F%2Fcloud.google.com%2Fcdn%3Fhl%3Dzh-cn&amp;usg=AOvVaw3iWKHtZqUXGJwR-4dEGXk8&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>我加入了一段 google 的连接, :)</p>
+<p>肯定不能访问，所以说，浏览器在超时之前下面的所有代码都没有执行，所以我们一般将 script 放在 </body> 之前。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=&amp;ved=2ahUKEwjBkb65gsX_AhXnQPUHHasODVkQFnoECBYQAQ&amp;url=https%3A%2F%2Fcloud.google.com%2Fcdn%3Fhl%3Dzh-cn&amp;usg=AOvVaw3iWKHtZqUXGJwR-4dEGXk8&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>好处是可以有2点</p>
+<ol>
+<li>预解析器可以提前加载，虽然 script 不是异步的，但是实际就是异步的。</li>
+<li>就算阻塞了，至少前面的代码 css，html 是可以加载的</li>
+</ol>
+<h3 id="2-async"><a href="#2-async" class="headerlink" title="2. async"></a>2. async</h3><ol>
+<li>当 script 元素使用 async 属性时，脚本的加载和执行将是异步的。</li>
+<li>异步加载的脚本不会阻塞 HTML 页面的解析和渲染过程。</li>
+<li>脚本的加载和执行顺序与它们在 HTML 中的顺序无关，哪个脚本先加载完成就先执行。</li>
+<li>异步脚本加载完成后会立即执行，不管 HTML 页面的加载状态。</li>
+<li>如果多个异步脚本相互依赖，执行顺序可能会受到影响。</li>
+</ol>
+<p>看了这个描述，就开始疑惑, 我们知道加载是异步的，这个我可以理解，那么执行为什么是异步的？</p>
+<p>因为在之前的学习当中，主线程解析html，遇到 script 开始加载和执行(交给js引擎)，这个过程中是同步的，并且会停止渲染页面。</p>
+<p>原因是因为 js引擎和渲染线程是互斥的，js中任何操作dom，css的代码，都可能导致回流或者重绘。</p>
+<p>于是我在一段我测试的html中加入了一段代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">&quot;./javascript/test.js&quot;</span> <span class="keyword">async</span>&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> b = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> d = (<span class="keyword">new</span> <span class="title class_">Date</span>()).<span class="title function_">getTime</span>();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="number">200000000</span>;i++) &#123;</span><br><span class="line">     b += i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((<span class="keyword">new</span> <span class="title class_">Date</span>()).<span class="title function_">getTime</span>() - d);</span><br></pre></td></tr></table></figure>
+
+<p>得出了一个结论，加载是异步的，执行是同步的(chatgpt害人啊…)</p>
+<p>因为加载的时候并没有影响其他js的执行，然而加载完成立刻开始执行，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">19999999867108864 test.js:7</span><br><span class="line">6647 test.js:8</span><br></pre></td></tr></table></figure>
+
+<p>中间这6秒并没有执行其他js代码，于是说明了一切。</p>
+<p>再测试一下，是不是先到先得</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">&quot;./javascript/test.js&quot;</span> <span class="keyword">async</span>&gt;&lt;/script&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;./javascript/test1.js&quot;</span> <span class="attr">async</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`-------------test start---------------`</span>)</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> d = (<span class="keyword">new</span> <span class="title class_">Date</span>()).<span class="title function_">getTime</span>();</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="number">200000000</span>;i++) &#123;</span><br><span class="line">     b += i;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>((<span class="keyword">new</span> <span class="title class_">Date</span>()).<span class="title function_">getTime</span>() - d);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`-------------test end---------------`</span>)</span><br></pre></td></tr></table></figure>
+
+<p>复制了一份 <strong>test.js</strong> 代码, 并且新增了输出，但是一直是 <strong>test.js</strong> 先执行, 又给 <strong>test.js</strong> 增加了大量注释，导致他加载速度变慢</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-------------test1 start--------------- test1.js:8 1 </span><br><span class="line">19999999867108864 test1.js:9 1 </span><br><span class="line">6677 test1.js:10 </span><br><span class="line">-------------test1 end--------------- test.js:1 </span><br><span class="line">-------------test start--------------- test.js:7 </span><br><span class="line">19999999867108864 test.js:8 </span><br><span class="line">7001 test.js:9 </span><br><span class="line">-------------test end---------------</span><br></pre></td></tr></table></figure>
+
+<p>也就是说，网速决定一切，加载完成后立刻执行，先到先得，加载异步，执行同步。</p>
+<h3 id="3-defer"><a href="#3-defer" class="headerlink" title="3. defer"></a>3. defer</h3><ul>
+<li>当 <script> 元素使用 defer 属性时，脚本的加载和执行同步。</li>
+<li>延迟加载的脚本不会阻塞 HTML 页面的解析，但会在 HTML 页面解析完毕后按照它们在 HTML 中的顺序依次执行。</li>
+<li>延迟脚本在 DOMContentLoaded 事件触发之前完成加载和执行，即在文档解析期间执行。</li>
+<li>如果多个延迟脚本相互依赖，执行顺序会按照它们在 HTML 中的顺序来执行。</li>
+</ul>
+<blockquote>
+<p>HTML 页面解析完毕后</p>
+</blockquote>
+<p>于是我第一反应是加入一个事件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;DOMContentLoaded&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="comment">// 在这里执行初始化操作和操作 DOM 的代码</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>可惜的是，两个js在这个事件之前已经执行了, 一时半会儿想不出有什么能够测试，于是我在最后的部分加入了输出代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`end`</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果是 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">console.log(`end`);</span><br><span class="line">javascript defer 输出</span><br><span class="line">console.log(`trigger DOMContentLoaded`)</span><br></pre></td></tr></table></figure>
+
+<p>基本确定了是在解析完成以后解析，然后又试了试 <code>async</code>, 会在 <code>DOMContentLoaded</code> 之前触发，顺便测试了一下是否会加载完成之后中断解析，立刻执行。</p>
+<p>于是加入了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;这是一个需要很长时间加载的<span class="variable constant_">HTML</span>页面&lt;/h1&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>下面是一个非常大的文本区域：<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">rows</span>=<span class="string">&quot;100&quot;</span> <span class="attr">cols</span>=<span class="string">&quot;100&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  ...大量文字</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>果然优先执行了 <code>async</code> 的 <strong>js</strong>.</p>
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h3><p>async 和 defer 都是异步加载，async 加载完成之后立刻执行，中断主线程解析。 defer 等待主线程解析完成之后，按顺序解析。</p>
+<p>这就是他们的作用和最大的区别，需要注意的是 <code>&lt;scrip asycn&gt;&lt;/script&gt;</code> 这样是不支持的，需要引入外部脚本.</p>
+<h3 id="4-资料"><a href="#4-资料" class="headerlink" title="4. 资料"></a>4. 资料</h3><p><a target="_blank" rel="noopener" href="https://zh.javascript.info/script-async-defer">脚本：async，defer</a></p>
+<p>defer 属性：</p>
+<p>当 <script> 元素使用 defer 属性时，脚本的加载和执行也是异步的。<br>延迟加载的脚本不会阻塞 HTML 页面的解析，但会在 HTML 页面解析完毕后按照它们在 HTML 中的顺序依次执行。<br>延迟脚本在 DOMContentLoaded 事件触发之前完成加载和执行，即在文档解析期间执行。<br>如果多个延迟脚本相互依赖，执行顺序会按照它们在 HTML 中的顺序来执行。<br>示例：</p>
+<p>html<br>Copy code</p>
+<script src="script1.js" defer></script>
+<script src="script2.js" defer></script>
+<p>区别：</p>
+<p>async 属性表示脚本的加载和执行都是异步的，不会阻塞页面的渲染。脚本加载完成后立即执行，不考虑它们在 HTML 中的顺序，可能会导致脚本之间的依赖关系问题。<br>defer 属性表示脚本的加载是异步的，不会阻塞页面的渲染，但脚本的执行会在 HTML 页面解析完毕后按顺序执行，可以保持脚本之间的依赖关系。</p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-06-15</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/web/'>
+                            web
+                        </a>
+                    
+                        <a href='/tblog/tags/javascript/'>
+                            javascript
+                        </a>
+                    
+                        <a href='/tblog/tags/async/'>
+                            async
+                        </a>
+                    
+                        <a href='/tblog/tags/defer/'>
+                            defer
+                        </a>
+                    
+                        <a href='/tblog/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/'>
+                            浏览器性能优化
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/06/20/vue_setup_created_before_created/'>beforeCreate, created vs setup</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/06/15/typescript_type/">typescript 类型有哪些？</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

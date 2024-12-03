@@ -4,6 +4,29 @@
   
     
     <entry>
+      <title>bitlocker命令行解锁</title>
+      <link href="/tblog/2024/12/02/202412/bitlocker/"/>
+      <url>/tblog/2024/12/02/202412/bitlocker/</url>
+      
+        <content type="html"><![CDATA[<div class=".article-gallery"><p>需求是不用命令行或者不能直接点击右键U盘输入密码</p><p>因为用户不希望点除这个软件以外的东西.</p><p>所以需要在软件内解锁bitlocker</p><p>目前4种办法</p><ol><li>unlocker-bitlocker</li></ol><p>最简单的方案, 直接一个powershell 传参解决</p><p>缺点, 非专业版没有这玩意儿, 操作系统兼容要先想好.</p><p>前提是客户系统支持bitlocker, 并且允许安装, 如果不允许或者系统直接不能安装bitlocker</p><p>是不能使用这个方法的</p><p>而且还需要支持powershell, 并且允许升级</p><p>还有其他类似的方案, 但是前提也都是开启了bitlocker功能</p><p>还有一个版本在里面, 不同版本的unlocker-bitlocker 高兼容低</p><p>但是低版本无法兼容高版本</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Get-BitLockerVolumeInternal</span> : The management information stored on the drive contained an unknown <span class="built_in">type</span>. <span class="keyword">If</span> you are <span class="keyword">using</span> an old version of Windows, try accessing the drive from the latest version. (Exception from HRESULT: 0x8031009B) At C:\Windows\system32\WindowsPowerShell\v1.0\<span class="keyword">Module</span>s\BitLocker\BitLocker.psm1:1198 char:40 + ... umeInternal = Get-BitLockerVolumeInternal -MountPoint $MountPoint[$i] + </span><br></pre></td></tr></table></figure><ol><li>manage-dbe</li></ol><p>两种方案</p><ol><li>命令行输入</li></ol><p><a href="https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-unlock">https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/manage-bde-unlock</a></p><p>也只能命令行输入, 因为 manage-bde -unlock F: -password 不支持 管道输入, 也就是 manage-bde does not support piping passwords</p><ol><li>通过秘钥进行恢复</li></ol><p>需要用户上传秘钥, 证书等等方式</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">manage<span class="literal">-bde</span> <span class="literal">-unlock</span> X: <span class="literal">-RecoveryPassword</span> &lt;恢复秘钥&gt;</span><br><span class="line">manage<span class="literal">-bde</span> <span class="literal">-unlock</span> D: <span class="literal">-RecoveryPassword</span> <span class="number">123456</span><span class="literal">-789012-345678-901234-567890-123456-789012-345678</span></span><br><span class="line"></span><br><span class="line">manage<span class="literal">-bde</span> <span class="literal">-unlock</span> X: <span class="literal">-KeyProtector</span> &lt;密钥文件路径&gt;</span><br><span class="line">manage<span class="literal">-bde</span> <span class="literal">-unlock</span> D: <span class="literal">-KeyProtector</span> F:\mykey.bek</span><br><span class="line"></span><br><span class="line">manage<span class="literal">-bde</span> <span class="literal">-unlock</span> X: <span class="literal">-Cert</span></span><br><span class="line"></span><br><span class="line">manage<span class="literal">-bde</span> <span class="literal">-unlock</span> X:</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>上传后, 通过密码或者其他方式关联秘钥, 然后输入解锁</p><p>可以做, 但是不支持没绑定过的u盘和只知道密码的u盘</p><ol><li>通过windows api 自己写</li><li>第三方 目前没有找到免费且支持命令行解锁的</li></ol></div>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> java </tag>
+            
+            <tag> bitlocker </tag>
+            
+            <tag> bash </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>setInterval 浏览器执行频率</title>
       <link href="/tblog/2024/03/11/javascript/setInterval_browser_execution_frequency/"/>
       <url>/tblog/2024/03/11/javascript/setInterval_browser_execution_frequency/</url>

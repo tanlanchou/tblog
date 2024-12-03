@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="Vue mounted" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    Vue mounted
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.4k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：6分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Vue-mounted"><span class="post-toc-text">Vue mounted</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-Vue2-mounted"><span class="post-toc-text">1. Vue2 mounted</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-vue3-x-mounted"><span class="post-toc-text">2. vue3.x mounted</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-%E6%80%BB%E7%BB%93"><span class="post-toc-text">3. 总结</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <h1 id="Vue-mounted"><a href="#Vue-mounted" class="headerlink" title="Vue mounted"></a>Vue mounted</h1><h3 id="1-Vue2-mounted"><a href="#1-Vue2-mounted" class="headerlink" title="1. Vue2 mounted"></a>1. Vue2 mounted</h3><p>在 <code>beforeMount</code> 之后做了什么？</p>
+<ol>
+<li>创建了 <code>updateComponent</code> 函数，调用 <code>vm._update(vm._render, hydrating);</code></li>
+<li>创建 <code>watcher</code>, 监视<code>vm</code>, 发生变化调用 <code>updateComponent</code>， 在执行之前调用 <code>beforeUpdate</code></li>
+<li>调用 <code>preWatchers</code></li>
+<li>如果创建成功，调用 <code>mounted</code></li>
+</ol>
+<p>在这里，我们必须知道 <strong>Vue2</strong> <code>watcher</code> 是什么?</p>
+<blockquote>
+<p>在 Vue 2.x 中，Watcher 的作用是建立数据的响应式依赖关系并在数据发生变化时更新相关的视图。</p>
+</blockquote>
+<p>也就是说，会根据 vm 属性变化，调用 updateComponent，在 <code>new watcher(...)</code> 的时候，会立刻调用一次。</p>
+<p>按照代码逻辑来说</p>
+<p>new Wather(…) 第一次调用渲染组件, 调用 </p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">updateComponent = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">	vm.<span class="title function_">_update</span>(vm.<span class="title function_">_render</span>(), hydrating)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> <span class="title class_">Watcher</span>(</span><br><span class="line">  vm,</span><br><span class="line">  updateComponent,</span><br><span class="line">  noop,</span><br><span class="line">  watcherOptions,</span><br><span class="line">  <span class="literal">true</span> <span class="comment">/* isRenderWatcher */</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">watcherOptions</span>: <span class="title class_">WatcherOptions</span> = &#123;</span><br><span class="line">	<span class="title function_">before</span>(<span class="params"></span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (vm.<span class="property">_isMounted</span> &amp;&amp; !vm.<span class="property">_isDestroyed</span>) &#123;</span><br><span class="line">			<span class="title function_">callHook</span>(vm, <span class="string">&#x27;beforeUpdate&#x27;</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (vm.<span class="property">$vnode</span> == <span class="literal">null</span>) &#123;</span><br><span class="line">  vm.<span class="property">_isMounted</span> = <span class="literal">true</span></span><br><span class="line">  <span class="title function_">callHook</span>(vm, <span class="string">&#x27;mounted&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>触发完成 <code>updateComponent</code> 然后顺序调用 <code>mounted</code>. 当 <code>vm</code> 触发更新，<code>_isMouted = true</code>，可以触发 <code>beforeUpdate</code>.</p>
+<p>但是实际上，并不是这样，上面是我理解的代码逻辑，但是如果是这样顺序就有问题，而且实际测试不是这样。</p>
+<p>所以要知道 mounted 怎么触发，就需要搞清楚 <code>render</code> 和 <code>update</code> 的详细逻辑</p>
+<p><code>render</code> 方法就是在 <code>renderMixin</code> 当中  </p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Vue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">_render</span> = <span class="keyword">function</span> (<span class="params"></span>): <span class="title class_">VNode</span> &#123; <span class="comment">//...</span></span><br></pre></td></tr></table></figure>
+
+<p>就是调用通过你模板中解析出来的 <code>render</code> 函数, 解析模板为一个 <code>vnode</code>，设置了上下文环境，设置属性</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vm.<span class="property">$vnode</span> = _parentVnode!</span><br><span class="line">vnode.<span class="property">parent</span> = _parentVnode</span><br></pre></td></tr></table></figure>
+
+<p>总之就是返回一个 <code>vnode</code>. 并且设置了 <code>vm</code> &amp; <code>vnode</code> 属性。</p>
+<p>继续来看 _update, 他通过调用 createElm 来创建节点。重点在创建完成以后，他通过一个队列，来调用 <code>vnode.data.hook.insert</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">invokeInsertHook</span>(vnode, insertedVnodeQueue, isInitialPatch)</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">invokeInsertHook</span>(<span class="params">vnode, queue, initial</span>) &#123;</span><br><span class="line">  <span class="comment">// delay insert hooks for component root nodes, invoke them after the</span></span><br><span class="line">  <span class="comment">// element is really inserted</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_">isTrue</span>(initial) &amp;&amp; <span class="title function_">isDef</span>(vnode.<span class="property">parent</span>)) &#123;</span><br><span class="line">    vnode.<span class="property">parent</span>.<span class="property">data</span>.<span class="property">pendingInsert</span> = queue</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; queue.<span class="property">length</span>; ++i) &#123;</span><br><span class="line">      queue[i].<span class="property">data</span>.<span class="property">hook</span>.<span class="title function_">insert</span>(queue[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>initial</code> 是用来判断是否是第一次创建。</p>
+<p>queue 是 insertedVnodeQueue。 insertedVnodeQueue 是已经插入了 <code>Vnode</code> 队列, 可以理解为创建完成 <code>vnode</code>，会 <code>push</code> 到里面.</p>
+<p>然后这个组件所有的组件创建完成以后，就会开始调用这个队列 <code>insertedVnodeQueue，然后调用</code> <code>vnode.data.hook.insert</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">insert</span>(<span class="params">vnode: MountedComponentVNode</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; context, componentInstance &#125; = vnode</span><br><span class="line">  <span class="keyword">if</span> (!componentInstance.<span class="property">_isMounted</span>) &#123;</span><br><span class="line">    componentInstance.<span class="property">_isMounted</span> = <span class="literal">true</span></span><br><span class="line">    <span class="title function_">callHook</span>(componentInstance, <span class="string">&#x27;mounted&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (vnode.<span class="property">data</span>.<span class="property">keepAlive</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (context.<span class="property">_isMounted</span>) &#123;</span><br><span class="line">      <span class="comment">// vue-router#1212</span></span><br><span class="line">      <span class="comment">// During updates, a kept-alive component&#x27;s child components may</span></span><br><span class="line">      <span class="comment">// change, so directly walking the tree here may call activated hooks</span></span><br><span class="line">      <span class="comment">// on incorrect children. Instead we push them into a queue which will</span></span><br><span class="line">      <span class="comment">// be processed after the whole patch process ended.</span></span><br><span class="line">      <span class="title function_">queueActivatedComponent</span>(componentInstance)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="title function_">activateChildComponent</span>(componentInstance, <span class="literal">true</span> <span class="comment">/* direct */</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>当所有的子节点都调用 insert, 然后最后调用根节点</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (vm.<span class="property">$vnode</span> == <span class="literal">null</span>) &#123;</span><br><span class="line">  vm.<span class="property">_isMounted</span> = <span class="literal">true</span></span><br><span class="line">  <span class="title function_">callHook</span>(vm, <span class="string">&#x27;mounted&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> vm</span><br></pre></td></tr></table></figure>
+
+<p>创建，并且渲染完成所有 vnode 以后， 依照次序调用 mounted.</p>
+<p>所以会造成一种结果</p>
+<h3 id="2-vue3-x-mounted"><a href="#2-vue3-x-mounted" class="headerlink" title="2. vue3.x mounted"></a>2. vue3.x mounted</h3><p>我们从前面的文章可以知道，Vue3.x 如何注册和调用生命周期的, 地址在这里 <a href="/tblog/2023/06/20/vue_lifecycle/">Vue lifecycle 实现</a>.</p>
+<p>这里我们需要知道他在哪里调用，并且在调用之前做了什么？</p>
+<p>在 componentUpdateFn 中调用</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; bm, m, parent &#125; = instance <span class="comment">//取出需要的生命周期</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (bm) &#123; <span class="comment">// 如果 beforeMount 钩子存在</span></span><br><span class="line">  <span class="title function_">invokeArrayFns</span>(bm) <span class="comment">// 调用 invokeArrayFns 函数，依次执行 beforeMount 钩子函数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (m) &#123; <span class="comment">// 如果 mounted 钩子存在</span></span><br><span class="line">  <span class="title function_">queuePostRenderEffect</span>(m, parentSuspense) <span class="comment">// 将 mounted 钩子函数添加到 post 钩子队列中</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>queuePostRenderEffect</code> 会调用 <code>queuePostFlushCb</code>，然后向 <code>pendingPostFlushCbs.push(m)</code>.</p>
+<p>然后会在 <code>render</code> 完成以后调用 <code>pendingPostFlushCbs</code>，循环触发事件。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="attr">render</span>: <span class="title class_">RootRenderFunction</span> = <span class="function">(<span class="params">vnode, container, isSVG</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">if</span> (vnode == <span class="literal">null</span>) &#123;</span><br><span class="line">	  <span class="keyword">if</span> (container.<span class="property">_vnode</span>) &#123;</span><br><span class="line">	    <span class="title function_">unmount</span>(container.<span class="property">_vnode</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">true</span>)</span><br><span class="line">	  &#125;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	  <span class="title function_">patch</span>(container.<span class="property">_vnode</span> || <span class="literal">null</span>, vnode, container, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>, isSVG) <span class="comment">//创建</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="title function_">flushPreFlushCbs</span>() <span class="comment">//预事件</span></span><br><span class="line">	<span class="title function_">flushPostFlushCbs</span>() <span class="comment">//调用事件</span></span><br><span class="line">	container.<span class="property">_vnode</span> = vnode</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>patch 就是创建或者更新 vnode 的方法。</p>
+<p>根据上面的代码会得到的结果就是 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">parent vnode beforeMount trigger</span><br><span class="line">	child vnode beforeMount trigger</span><br><span class="line">	child vnode mounted trigger</span><br><span class="line">parent vnode mounted trigger</span><br></pre></td></tr></table></figure>
+
+<p>和 Vue2.x 一样，这就是 <code>onMounted</code> 的调用, 那么继续看 <code>beforeMount</code> 到 <code>Mounted</code> 之间做了什么.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (bm) &#123;</span><br><span class="line">  <span class="title function_">invokeArrayFns</span>(bm)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从 <code>beforeMount</code> 开始, 直接 <code>invokeArrayFns</code> 是直接调用，不存在延迟.</p>
+<p>如果不是 ssr 的话，直接调用 patch 创建组件, 将子树的 el 属性赋值给初始 VNode 的 el 属性</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">patch</span>(</span><br><span class="line">	<span class="literal">null</span>,</span><br><span class="line">	subTree,</span><br><span class="line">	container,</span><br><span class="line">	anchor,</span><br><span class="line">	instance,</span><br><span class="line">	parentSuspense,</span><br><span class="line">	isSVG</span><br><span class="line">)</span><br><span class="line">initialVNode.<span class="property">el</span> = subTree.<span class="property">el</span></span><br></pre></td></tr></table></figure>
+
+<p>如果钩子存在加入队列</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (m) &#123; </span><br><span class="line">  <span class="title function_">queuePostRenderEffect</span>(m, parentSuspense) </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后直接调用 <code>vnode</code> 内部的 <code>mounted hook</code> 和 <strong>Vue2.x</strong> 写法的兼容性</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!isAsyncWrapperVNode &amp;&amp; (vnodeHook = props &amp;&amp; props.<span class="property">onVnodeMounted</span>)) &#123; <span class="comment">// 如果不是异步组件的包装 VNode，并且存在 onVnodeMounted 钩子</span></span><br><span class="line">  <span class="keyword">const</span> scopedInitialVNode = initialVNode</span><br><span class="line">  <span class="title function_">queuePostRenderEffect</span>(</span><br><span class="line">    <span class="function">() =&gt;</span> <span class="title function_">invokeVNodeHook</span>(vnodeHook!, parent, scopedInitialVNode),</span><br><span class="line">    parentSuspense</span><br><span class="line">  ) <span class="comment">// 将 onVnodeMounted 钩子函数添加到 post 钩子队列中</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (</span><br><span class="line">  __COMPAT__ &amp;&amp;</span><br><span class="line">  <span class="title function_">isCompatEnabled</span>(<span class="title class_">DeprecationTypes</span>.<span class="property">INSTANCE_EVENT_HOOKS</span>, instance)</span><br><span class="line">) &#123;</span><br><span class="line">  <span class="title function_">queuePostRenderEffect</span>(</span><br><span class="line">    <span class="function">() =&gt;</span> instance.<span class="title function_">emit</span>(<span class="string">&#x27;hook:mounted&#x27;</span>),</span><br><span class="line">    parentSuspense</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来又处理了 active 事件（这个后面再讲），并且设置 <code>instance.isMounted = true</code>.</p>
+<p>再这个过程中你会发觉，其实就是执行了 <code>patch</code> 创建或者更新了真实 dom，然后触发.</p>
+<p>所以过程，流程就是当刚开始 mount &#x3D;&gt; render &#x3D;&gt; patch &#x3D;&gt; 然后根据 vnode 不停的判断循环，递归，不停的创建真实dom。</p>
+<p>等真实创建完成执行后面的代码</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="attr">render</span>: <span class="title class_">RootRenderFunction</span> = <span class="function">(<span class="params">vnode, container, isSVG</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (vnode == <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (container.<span class="property">_vnode</span>) &#123;</span><br><span class="line">      <span class="title function_">unmount</span>(container.<span class="property">_vnode</span>, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">true</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="title function_">patch</span>(container.<span class="property">_vnode</span> || <span class="literal">null</span>, vnode, container, <span class="literal">null</span>, <span class="literal">null</span>, <span class="literal">null</span>, isSVG)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">flushPreFlushCbs</span>() <span class="comment">//</span></span><br><span class="line">  <span class="title function_">flushPostFlushCbs</span>() <span class="comment">//执行刚才插入的钩子</span></span><br><span class="line">  container.<span class="property">_vnode</span> = vnode</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h3><p>其实创建阶段的生命周期就走到这里了。</p>
+<p>setup &#x3D;&gt; onBeforeMount &#x3D;&gt; onMounted</p>
+<p>beforeCreate &#x3D;&gt; created &#x3D;&gt; beforeMount &#x3D;&gt; mounted</p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-06-26</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/vue3/'>
+                            vue3
+                        </a>
+                    
+                        <a href='/tblog/tags/vue2/'>
+                            vue2
+                        </a>
+                    
+                        <a href='/tblog/tags/typescript/'>
+                            typescript
+                        </a>
+                    
+                        <a href='/tblog/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/'>
+                            生命周期
+                        </a>
+                    
+                        <a href='/tblog/tags/mounted/'>
+                            mounted
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/06/26/vue_beforeUpdate/'>Vue beforeUpdate</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/06/24/vue_beforeMount_onBeforeMount/">Vue beforeMount vs onBeforeMount</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="vue destroyed vs onUnmounted" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    vue destroyed vs onUnmounted
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.4k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：5分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#vue-destroyed-vs-onUnmounted"><span class="post-toc-text">vue destroyed vs onUnmounted</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Vue3-x-onUnmounted"><span class="post-toc-text">Vue3.x onUnmounted</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Vue2-x-destroyed"><span class="post-toc-text">Vue2.x destroyed</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%80%BB%E7%BB%93"><span class="post-toc-text">总结</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <h1 id="vue-destroyed-vs-onUnmounted"><a href="#vue-destroyed-vs-onUnmounted" class="headerlink" title="vue destroyed vs onUnmounted"></a>vue destroyed vs onUnmounted</h1><p>beforeCreate -&gt; setup()<br>created -&gt; setup()<br>beforeMount -&gt; onBeforeMount<br>mounted -&gt; onMounted<br>beforeUpdate -&gt; onBeforeUpdate<br>updated -&gt; onUpdated<br>beforeDestroy -&gt; onBeforeUnmount<br>destroyed -&gt; onUnmounted<br>activated -&gt; onActivated<br>deactivated -&gt; onDeactivated<br>errorCaptured -&gt; onErrorCaptured</p>
+<h3 id="Vue3-x-onUnmounted"><a href="#Vue3-x-onUnmounted" class="headerlink" title="Vue3.x onUnmounted"></a>Vue3.x onUnmounted</h3><p>首先之前就知道了卸载流程怎么触发的</p>
+<p>v-if 的话， <code>proxy set =&gt; trigger =&gt; effect =&gt; effect.scheduler() =&gt; effect.run() =&gt; componentUpdateFn =&gt; patch =&gt; unmount =&gt; 触发 unmountComponent 函数</code> </p>
+<p>那继续看带注释的 <code>unmountComponent</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">unmountComponent</span> = (<span class="params"></span></span><br><span class="line"><span class="params">  instance: ComponentInternalInstance,</span></span><br><span class="line"><span class="params">  parentSuspense: SuspenseBoundary | <span class="literal">null</span>,</span></span><br><span class="line"><span class="params">  doRemove?: <span class="built_in">boolean</span></span></span><br><span class="line"><span class="params"></span>) =&gt; &#123;</span><br><span class="line">  <span class="comment">// 检查组件是否存在热模块替换标识，如果存在则注销热模块替换</span></span><br><span class="line">  <span class="keyword">if</span> (__DEV__ &amp;&amp; instance.<span class="property">type</span>.<span class="property">__hmrId</span>) &#123;</span><br><span class="line">    <span class="title function_">unregisterHMR</span>(instance)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 从组件实例中获取相关属性</span></span><br><span class="line">  <span class="keyword">const</span> &#123; bum, scope, update, subTree, um &#125; = instance</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 触发组件的 beforeUnmount 钩子函数</span></span><br><span class="line">  <span class="keyword">if</span> (bum) &#123;</span><br><span class="line">    <span class="title function_">invokeArrayFns</span>(bum)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果启用了兼容模式，并且该组件启用了实例事件钩子（已废弃）</span></span><br><span class="line">  <span class="comment">// 触发组件的 beforeDestroy 事件</span></span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    __COMPAT__ &amp;&amp;</span><br><span class="line">    <span class="title function_">isCompatEnabled</span>(<span class="title class_">DeprecationTypes</span>.<span class="property">INSTANCE_EVENT_HOOKS</span>, instance)</span><br><span class="line">  ) &#123;</span><br><span class="line">    instance.<span class="title function_">emit</span>(<span class="string">&#x27;hook:beforeDestroy&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 停止组件实例的作用域内的副作用函数的执行</span></span><br><span class="line">  scope.<span class="title function_">stop</span>()</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果组件实例的更新函数存在</span></span><br><span class="line">  <span class="keyword">if</span> (update) &#123;</span><br><span class="line">    <span class="comment">// 将更新函数的 active 属性设为 false，使调度程序不再调用它</span></span><br><span class="line">    update.<span class="property">active</span> = <span class="literal">false</span></span><br><span class="line">    <span class="comment">// 调用 unmount 函数卸载组件的子树</span></span><br><span class="line">    <span class="title function_">unmount</span>(subTree, instance, parentSuspense, doRemove)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 触发组件的 unmounted 钩子函数</span></span><br><span class="line">  <span class="keyword">if</span> (um) &#123;</span><br><span class="line">    <span class="title function_">queuePostRenderEffect</span>(um, parentSuspense)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果启用了兼容模式，并且该组件启用了实例事件钩子（已废弃）</span></span><br><span class="line">  <span class="comment">// 触发组件的 destroyed 事件</span></span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    __COMPAT__ &amp;&amp;</span><br><span class="line">    <span class="title function_">isCompatEnabled</span>(<span class="title class_">DeprecationTypes</span>.<span class="property">INSTANCE_EVENT_HOOKS</span>, instance)</span><br><span class="line">  ) &#123;</span><br><span class="line">    <span class="title function_">queuePostRenderEffect</span>(</span><br><span class="line">      <span class="function">() =&gt;</span> instance.<span class="title function_">emit</span>(<span class="string">&#x27;hook:destroyed&#x27;</span>),</span><br><span class="line">      parentSuspense</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 将组件实例的 isUnmounted 属性设为 true</span></span><br><span class="line">  <span class="title function_">queuePostRenderEffect</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    instance.<span class="property">isUnmounted</span> = <span class="literal">true</span></span><br><span class="line">  &#125;, parentSuspense)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果启用了 SUSPENSE 特性，并且存在父级悬挂点、挂起分支未解决、</span></span><br><span class="line">  <span class="comment">// 组件实例存在异步依赖项、异步依赖项未解决，并且该组件实例的 suspenseId 等于</span></span><br><span class="line">  <span class="comment">// 父级悬挂点的 pendingId，则处理悬挂点的依赖项</span></span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    __FEATURE_SUSPENSE__ &amp;&amp;</span><br><span class="line">    parentSuspense &amp;&amp;</span><br><span class="line">    parentSuspense.<span class="property">pendingBranch</span> &amp;&amp;</span><br><span class="line">    !parentSuspense.<span class="property">isUnmounted</span> &amp;&amp;</span><br><span class="line">    instance.<span class="property">asyncDep</span> &amp;&amp;</span><br><span class="line">    !instance.<span class="property">asyncResolved</span> &amp;&amp;</span><br><span class="line">    instance.<span class="property">suspenseId</span> === parentSuspense.<span class="property">pendingId</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    parentSuspense.<span class="property">deps</span>--</span><br><span class="line">    <span class="keyword">if</span> (parentSuspense.<span class="property">deps</span> === <span class="number">0</span>) &#123;</span><br><span class="line">      parentSuspense.<span class="title function_">resolve</span>()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 如果是开发环境或者启用了生产/开发工具的特性，通知开发工具该组件已被移除</span></span><br><span class="line">  <span class="keyword">if</span> (__DEV__ || __FEATURE_PROD_DEVTOOLS__) &#123;</span><br><span class="line">    <span class="title function_">devtoolsComponentRemoved</span>(instance)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里面注释其实已经说的很清楚</p>
+<ol>
+<li>scope.stop() &#x2F;&#x2F;停止副作用函数</li>
+<li>unmount(subTree, instance, parentSuspense, doRemove) &#x2F;&#x2F; 调用 unmount 函数卸载组件的子树</li>
+<li>instance.isUnmounted &#x3D; true</li>
+</ol>
+<p>主要就这几个，这里有一个概念 EffectScope，在 Vue2.x 中也有类似的概念</p>
+<blockquote>
+<p>EffectScope（效果作用域）是用于管理副作用函数（effects）的工具。它提供了一种将副作用函数组织在一起并控制其执行的机制。</p>
+<p>在 Vue 3 中，组件内部的副作用函数（如 onMounted、onUpdated、onUnmounted 等）被称为“副作用”（effects）。副作用可以是一些具有副作用的操作，例如订阅事件、发送网络请求、操作 DOM 等。</p>
+<p>EffectScope 提供了以下功能：</p>
+<p>创建效果作用域：使用 createScope 函数可以创建一个新的效果作用域。</p>
+<p>开始和停止副作用函数的执行：在组件实例中，通过调用效果作用域的 run 方法可以开始执行副作用函数，调用 stop 方法可以停止执行副作用函数。</p>
+<p>批量执行副作用函数：EffectScope 允许将多个副作用函数分组，然后一次性启动它们的执行，这样可以确保它们按照正确的顺序执行。</p>
+<p>嵌套效果作用域：可以在一个效果作用域内创建另一个效果作用域，形成嵌套结构。嵌套的效果作用域可以独立运行，可以在父作用域停止时自动停止。</p>
+</blockquote>
+<p>大概知道就行了，后面会专门看一看这个，简单理解就是管理组件上的副作用函数。</p>
+<p>unmount 是递归去卸载子树，就是一个一个卸载，ref，KeepAliveContext，unmountComponent，处理SUSPENSE，TELEPORT，Fragment，动态子节点，并且直接删除 vnode。</p>
+<p>还调用了各种钩子函数，这就是大概的卸载节点的过程，当然这里谈的主要是钩子函数，所以可能中间很多点是不会触发的。</p>
+<h3 id="Vue2-x-destroyed"><a href="#Vue2-x-destroyed" class="headerlink" title="Vue2.x destroyed"></a>Vue2.x destroyed</h3><p>之前已经知道了大概触发流程 <code>patch =&gt; removeNodes =&gt; Vue.prototype.$destroy</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">callHook</span>(vm, <span class="string">&#x27;beforeDestroy&#x27;</span>)</span><br><span class="line">vm.<span class="property">_isBeingDestroyed</span> = <span class="literal">true</span></span><br><span class="line"><span class="comment">// remove self from parent</span></span><br><span class="line"><span class="keyword">const</span> parent = vm.<span class="property">$parent</span></span><br><span class="line"><span class="keyword">if</span> (parent &amp;&amp; !parent.<span class="property">_isBeingDestroyed</span> &amp;&amp; !vm.<span class="property">$options</span>.<span class="property">abstract</span>) &#123;</span><br><span class="line">  <span class="title function_">remove</span>(parent.<span class="property">$children</span>, vm)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// teardown scope. this includes both the render watcher and other</span></span><br><span class="line"><span class="comment">// watchers created</span></span><br><span class="line">vm.<span class="property">_scope</span>.<span class="title function_">stop</span>()</span><br><span class="line"><span class="comment">// remove reference from data ob</span></span><br><span class="line"><span class="comment">// frozen object may not have observer.</span></span><br><span class="line"><span class="keyword">if</span> (vm.<span class="property">_data</span>.<span class="property">__ob__</span>) &#123;</span><br><span class="line">  vm.<span class="property">_data</span>.<span class="property">__ob__</span>.<span class="property">vmCount</span>--</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// call the last hook...</span></span><br><span class="line">vm.<span class="property">_isDestroyed</span> = <span class="literal">true</span></span><br><span class="line"><span class="comment">// invoke destroy hooks on current rendered tree</span></span><br><span class="line">vm.<span class="title function_">__patch__</span>(vm.<span class="property">_vnode</span>, <span class="literal">null</span>)</span><br><span class="line"><span class="comment">// fire destroyed hook</span></span><br><span class="line"><span class="title function_">callHook</span>(vm, <span class="string">&#x27;destroyed&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>ok, 不存在什么异步，就直接触发了， 那我们来看他做了什么？</p>
+<p>删除 parent.$childre 关于vm的引用, remove 就是一个单纯的数组方法.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (parent &amp;&amp; !parent.<span class="property">_isBeingDestroyed</span> &amp;&amp; !vm.<span class="property">$options</span>.<span class="property">abstract</span>) &#123;</span><br><span class="line">  <span class="title function_">remove</span>(parent.<span class="property">$children</span>, vm)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>停止 watch, _scope 是 EffectScope， 然后调用 watcher.teardown(), 调用 this.cleanups 清理函数， 如果 scope 在，就遍历清理。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm.<span class="property">_scope</span>.<span class="title function_">stop</span>()</span><br></pre></td></tr></table></figure>
+
+<p>从数据对象的观察者（__ob__）中移除对组件的引用：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (vm.<span class="property">_data</span>.<span class="property">__ob__</span>) &#123;</span><br><span class="line">  vm.<span class="property">_data</span>.<span class="property">__ob__</span>.<span class="property">vmCount</span>--</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>调用 vm.<strong>patch</strong> 方法将当前组件的虚拟节点（_vnode）设置为 null，用于解除组件与虚拟 DOM 的关联</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vm.<span class="title function_">__patch__</span>(vm.<span class="property">_vnode</span>, <span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这里简单介绍了一下 Vue2,3 卸载组件的过程，都是类似的流程，只是方法换了，但是流程没有变。</p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-06-29</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/vue3/'>
+                            vue3
+                        </a>
+                    
+                        <a href='/tblog/tags/vue2/'>
+                            vue2
+                        </a>
+                    
+                        <a href='/tblog/tags/typescript/'>
+                            typescript
+                        </a>
+                    
+                        <a href='/tblog/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/'>
+                            生命周期
+                        </a>
+                    
+                        <a href='/tblog/tags/destroyed/'>
+                            destroyed
+                        </a>
+                    
+                        <a href='/tblog/tags/onUnmounted/'>
+                            onUnmounted
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/06/29/vue3_ref/'>vue3 ref</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/06/28/vue_beforeDestroy_onBeforeUnmount/">vue beforeDestroy vs onBeforeUnmount</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

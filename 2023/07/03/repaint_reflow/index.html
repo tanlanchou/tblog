@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="重绘和回流的基本概念" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/tblog/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/tblog/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/tblog/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/tblog/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/tblog/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/tblog/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/tblog/">首页</a></li>
+            
+        
+            
+                <li><a href="/tblog/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    重绘和回流的基本概念
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：2.3k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：8分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="post-toc-text">01. 基本概念</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AF%B7%E6%B1%82%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="post-toc-text">02. 浏览器请求的基本原理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E9%87%8D%E7%BB%98%E4%BB%A3%E4%BB%B7%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="post-toc-text">03. 重绘代价是什么？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E5%9B%9E%E6%B5%81%E7%9A%84%E4%BB%A3%E4%BB%B7%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="post-toc-text">04. 回流的代价是什么？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-%E4%BC%98%E5%8C%96"><span class="post-toc-text">05. 优化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#05-01-%E5%90%88%E5%B9%B6%E6%93%8D%E4%BD%9C"><span class="post-toc-text">05.01. 合并操作</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#05-2-%E9%81%BF%E5%85%8D%E8%A7%A6%E5%8F%91%E5%90%8C%E6%AD%A5%E5%B8%83%E5%B1%80"><span class="post-toc-text">05.2. 避免触发同步布局</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#05-03-%E5%96%84%E7%94%A8css3%E7%A1%AC%E5%8A%A0%E5%8A%A0%E9%80%9F"><span class="post-toc-text">05.03 善用css3硬加加速</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#05-04-requestAnimationFrame"><span class="post-toc-text">05.04 requestAnimationFrame</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#06-%E6%80%BB%E7%BB%93"><span class="post-toc-text">06. 总结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#07-%E5%BC%95%E7%94%A8"><span class="post-toc-text">07. 引用</span></a></li></ol>
+            
+        
+        <h3 id="01-基本概念"><a href="#01-基本概念" class="headerlink" title="01. 基本概念"></a>01. 基本概念</h3><p>单纯说概念就是 浏览器渲染会解析css，dom对吧，如果你更改背景颜色，dom等等就需要重新渲染对吧，这个就是重绘和回流。</p>
+<p>复杂一点说概念就是</p>
+<blockquote>
+<p>重绘（Repaint）：</p>
+<p>定义：重绘是指当元素的样式发生改变，但不影响其布局的情况下，浏览器重新绘制元素的可视部分。</p>
+<p>过程：浏览器会根据新的样式属性值更新元素的视觉外观，重新绘制元素的背景色、边框、文本等可视效果。<br>影响：重绘操作不会影响页面的布局和几何属性，只是重新绘制元素的外观，所以开销相对较小。</p>
+<p>回流（Reflow）：</p>
+<p>定义：回流是指当页面的布局发生改变，例如元素的尺寸、位置、显示&#x2F;隐藏状态等改变时，浏览器重新计算并应用所有受影响元素的几何属性，然后重新排列页面中的元素。</p>
+<p>过程：浏览器会从页面的根节点开始递归遍历，并计算每个受影响元素的布局属性，例如位置、尺寸、相对关系等。<br>影响：回流操作涉及大量的计算和重新排列，会导致整个页面或部分页面的重建，开销较大，可能会引起页面闪烁和性能下降。</p>
+</blockquote>
+<h3 id="02-浏览器请求的基本原理"><a href="#02-浏览器请求的基本原理" class="headerlink" title="02. 浏览器请求的基本原理"></a>02. 浏览器请求的基本原理</h3><p>在知道什么是重绘和回流以后，如果要搞清楚究竟是怎么回事儿，就需要浏览器大概是怎么做的</p>
+<ol>
+<li>用户在浏览器地址栏中输入要访问的网址（URL），然后按下回车键。</li>
+<li>浏览器会将输入的网址发送给本地的DNS解析器，解析器负责将域名转换为对应的IP地址。</li>
+<li>浏览器使用HTTP或HTTPS协议，通过TCP&#x2F;IP协议与服务器建立网络连接。这个过程包括三次握手，确保客户端与服务器之间的可靠连接。</li>
+<li>浏览器向服务器发送HTTP请求，包括请求的方法（GET、POST等）、请求的资源路径、请求头部等信息。</li>
+<li>服务器接收到浏览器发送的请求后，根据请求的资源路径和其他参数进行处理。服务器可能需要查询数据库、执行业务逻辑等操作，最终生成相应的数据或页面。</li>
+<li>服务器将处理结果封装成HTTP响应，包括响应的状态码、响应头部和响应体等信息。服务器会将响应发送回给浏览器。</li>
+<li>浏览器接收到服务器发送的HTTP响应，开始接收响应数据。</li>
+<li>浏览器对收到的HTTP响应进行解析，提取出响应头部和响应体等信息。</li>
+<li>浏览器开始根据解析得到的响应数据，渲染页面。这个过程包括解析HTML结构、构建DOM树，加载和解析CSS样式，以及执行JavaScript代码。</li>
+<li>浏览器将DOM树和CSS样式结合起来，构建渲染树（Render Tree）。渲染树表示了要显示在页面上的所有可见元素及其样式信息。</li>
+<li>浏览器根据渲染树的信息，计算每个元素在页面上的位置和大小。这个过程被称为布局或回流（reflow）。</li>
+<li>浏览器根据渲染树和布局结果，开始绘制页面的每个元素，将其呈现在屏幕上。</li>
+<li>绘制完成后，浏览器将页面呈现给用户进行查看。用户可以与页面进行交互，执行操作。</li>
+</ol>
+<p>简单说就如下</p>
+<p>url &#x3D;&gt; dns &#x3D;&gt; ip &#x3D;&gt; tcp &#x3D;&gt; http(get,post..) &#x3D;&gt; 获取响应数据(头，数据等) &#x3D;&gt; 解析html &#x3D;&gt; 构建dom树 &#x3D;&gt; css树 &#x3D;&gt; 执行javascript &#x3D;&gt; 结合dom树，css树 身成 render树。 &#x3D;&gt; 渲染出元素位置和大小(回流) &#x3D;&gt; 绘制元素(重绘)</p>
+<p>过程大概就是这样, 这里知道了回流和重绘产生的阶段，但是这里其实没有说一些细节概念，但是和回流和重绘相关。</p>
+<ol>
+<li>浏览器将DOM解析为DOM树，并将树中的节点分割为多个图层（Layer），以便进行后续的渲染优化。</li>
+<li>浏览器对每个图层的节点进行样式计算，确定每个节点的最终样式结果。</li>
+<li>layout, 渲染出元素位置和大小(回流)</li>
+<li>在绘制（Paint）阶段，浏览器将每个节点的绘制命令转化为位图，将节点的内容绘制到图层的位图中</li>
+<li>图层作为纹理上传至GPU</li>
+<li>浏览器将不同图层的位图进行合成（Composite），按照正确的层次顺序叠加在一起，生成最终的屏幕图像</li>
+</ol>
+<p>这就是浏览器渲染的基本流程，为什么要讲这个？为什么要知道图层的概念？</p>
+<p>因为重绘和回流可以控制在图层中，可以限制范围，从而提升性能。</p>
+<h3 id="03-重绘代价是什么？"><a href="#03-重绘代价是什么？" class="headerlink" title="03. 重绘代价是什么？"></a>03. 重绘代价是什么？</h3><p>从之前讲的基本概念我们可以知道重绘的代价是比较小的</p>
+<blockquote>
+<p>浏览器会根据新的样式属性值更新元素的视觉外观，重新绘制元素的背景色、边框、文本等可视效果。<br>影响：重绘操作不会影响页面的布局和几何属性，只是重新绘制元素的外观，所以开销相对较小.</p>
+</blockquote>
+<p>因为它不会改变整体大小，不会导致整体大小重新计算，仅仅改变当前部分，所以代价是比较小的。</p>
+<p>这里涉及到一个问题，就是重绘的范围, 我在查资料的时候，对于重绘的说法都是只影响当前的元素，那么他是否有可能影响到其他元素呢？</p>
+<p>这里是可能触发重绘的操作</p>
+<ul>
+<li>color							</li>
+<li>background								</li>
+<li>outline-color  </li>
+<li>border-style					 </li>
+<li>background-image							 </li>
+<li>outline</li>
+<li>border-radius					 </li>
+<li>background-position						 </li>
+<li>outline-style</li>
+<li>visibility					 </li>
+<li>background-repeat							 </li>
+<li>outline-width     </li>
+<li>text-decoration				 </li>
+<li>background-size							 </li>
+<li>box-shadow</li>
+</ul>
+<p>重绘的开销其实可以不那么精确计算，因为正常情况下不会出现不停的修改样式，往往是做动画的时候才会出现。这个时候善用 css3动画的gpu加速的特性就好了。</p>
+<h3 id="04-回流的代价是什么？"><a href="#04-回流的代价是什么？" class="headerlink" title="04. 回流的代价是什么？"></a>04. 回流的代价是什么？</h3><p>回流就比较简单了，任何改变都可能导致整个页面回流，最简单的例子就是窗口发生改变，那么整个页面也就回流了。</p>
+<p>比如你突然改变一个元素的大小，自然会导致问题，这就是应该避免或者优化的东西。</p>
+<ul>
+<li>width </li>
+<li>top </li>
+<li>text-align </li>
+<li>height </li>
+<li>bottom </li>
+<li>overflow-y </li>
+<li>padding </li>
+<li>left </li>
+<li>font-weight </li>
+<li>margin </li>
+<li>right </li>
+<li>overflow </li>
+<li>display </li>
+<li>position </li>
+<li>font-family </li>
+<li>border-width </li>
+<li>float </li>
+<li>line </li>
+<li>height </li>
+<li>border </li>
+<li>clear </li>
+<li>vertival-align </li>
+<li>min-height </li>
+<li>white-space</li>
+</ul>
+<h3 id="05-优化"><a href="#05-优化" class="headerlink" title="05. 优化"></a>05. 优化</h3><h5 id="05-01-合并操作"><a href="#05-01-合并操作" class="headerlink" title="05.01. 合并操作"></a>05.01. 合并操作</h5><p>当我们要去修改css，尽量不用使用行内css，多用class，保证修改次数少。<br>设计 css 的时候，多用选择器。<br>保证一件事，减少次数，但是这个似乎现在浏览器都做了优化，但是还是需要注意。</p>
+<p>在css上注意，在dom操作上也需要注意。<br>比如我要绑定数据，写一个循环不停的创建，可能会不停的触发回流。</p>
+<p>合并就是减少回流次数</p>
+<ul>
+<li>比如说先隐藏，修改，显示</li>
+<li>使用 document fragment，是一个在内存中存在但不在 DOM 树中的文档节点，相当于一个临时容器。</li>
+<li>或者拷贝到一个不显示的地方，在进行移动操作。</li>
+</ul>
+<h5 id="05-2-避免触发同步布局"><a href="#05-2-避免触发同步布局" class="headerlink" title="05.2. 避免触发同步布局"></a>05.2. 避免触发同步布局</h5><p>首先需要知道什么是同步布局事件，我们刚才看了浏览器执行的流程</p>
+<p>dom tree &#x3D;&gt; ccs tree &#x3D;&gt; javascript &#x3D;&gt; render tree &#x3D;&gt; layout.</p>
+<p>但是如果遇到一种情况</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function a() &#123;</span><br><span class="line">	for(let i=0;i&lt;els.length;i++) &#123;</span><br><span class="line">		els[i].style.width = box.offsetWidth + &quot;px&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>本来是 javascript 执行以后开始计算整个布局，但是如果你每次都去获取，就会强制计算整个布局，然后返回数据，再一次循环，这个就是问题。</p>
+<p>不仅仅是我这种操作会触发</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function logBoxHeight() &#123;</span><br><span class="line">  box.classList.add(&#x27;super-big&#x27;);</span><br><span class="line"></span><br><span class="line">  // Gets the height of the box in pixels</span><br><span class="line">  // and logs it out.</span><br><span class="line">  console.log(box.offsetHeight);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以javascript获取属性需要谨慎, 前面如果有样式修改，那么再获取就会触发。</p>
+<h5 id="05-03-善用css3硬加加速"><a href="#05-03-善用css3硬加加速" class="headerlink" title="05.03 善用css3硬加加速"></a>05.03 善用css3硬加加速</h5><p>简单说就是移动使用transform，来代替top，left。<br>别用visibility，使用opacity。<br>如果要写动画，多用可以触发gpu加速的</p>
+<ul>
+<li>transform</li>
+<li>opacity</li>
+<li>filters</li>
+<li>Will-change</li>
+</ul>
+<h5 id="05-04-requestAnimationFrame"><a href="#05-04-requestAnimationFrame" class="headerlink" title="05.04 requestAnimationFrame"></a>05.04 requestAnimationFrame</h5><p><code>window.requestAnimationFrame()</code> 是一个用于执行动画的 Web API 方法。它接受一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前被调用。</p>
+<h3 id="06-总结"><a href="#06-总结" class="headerlink" title="06. 总结"></a>06. 总结</h3><p>这里弄清楚了回流和重绘的基本概念，为什么要知道这些概念，从而更好的去提升性能，特别是在一些关键的页面上。</p>
+<p>只是现在大家都用框架了，框架帮你做了大部分的事情。</p>
+<h3 id="07-引用"><a href="#07-引用" class="headerlink" title="07. 引用"></a>07. 引用</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/JHXL_/article/details/124046715">一文教会你何为重绘、回流？</a><br><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017329980">你真的了解回流和重绘吗</a></p>
+
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-03</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tblog/tags/web/'>
+                            web
+                        </a>
+                    
+                        <a href='/tblog/tags/css/'>
+                            css
+                        </a>
+                    
+                        <a href='/tblog/tags/javascript/'>
+                            javascript
+                        </a>
+                    
+                        <a href='/tblog/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/'>
+                            浏览器
+                        </a>
+                    
+                        <a href='/tblog/tags/%E9%87%8D%E7%BB%98/'>
+                            重绘
+                        </a>
+                    
+                        <a href='/tblog/tags/%E5%9B%9E%E6%B5%81/'>
+                            回流
+                        </a>
+                    
+                        <a href='/tblog/tags/%E4%BC%98%E5%8C%96/'>
+                            优化
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/tblog/2023/07/03/constructSignatureError/'>ConstructSignature 错误</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/tblog/2023/07/03/Implementation_Methods_for_Horizontal_and_Vertical_Centering/">css 垂直居中方案</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>🌊看过大海的人不会忘记海的广阔🌊</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/tblog/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/tblog/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>
