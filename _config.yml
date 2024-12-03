@@ -8,13 +8,13 @@ subtitle: '代码和生活'
 description: '乱写东西的地方，讲讲代码和生活'
 keywords: 
 author: tommy
-language: en
+language: zh-Hans
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://tanlanchou.github.io/tblog/
-root: /tblog/
+root: /tblog
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -100,7 +100,7 @@ ignore:
 ## Themes: https://hexo.io/themes/
 ## butterfly https://github.com/jerryc127/hexo-theme-butterfly
 ## delicate
-theme: cactus
+theme: A4
 theme_config:
   colorscheme: light
 
