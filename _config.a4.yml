@@ -15,7 +15,7 @@ showInMenu:  # menu 中的哪些页面显示在首页中（“首页”必定显
 
 
 index:  # 首页的页眉页脚
-  header: 看过大海的人不会忘记海的广阔 
+  header: 神仙树暴龙战士
   footer: Email:123456789@gmail.com # 除了可以填写任何文字外，可以自动邮箱链接化，但需按照这个格式填写：Email:xxx@gmail.com
   titlePosition: left # center | left  # 首页标题的位置
 
@@ -28,7 +28,7 @@ footerLink: # 底部的链接自定义
   # ...
 
 post: #除首页之外页面
-  footer: 🌊看过大海的人不会忘记海的广阔🌊   # 底部左侧 自定义信息
+  footer: 神仙树暴龙战士  # 底部左侧 自定义信息
   themeInfo: true # true | false  # 是否开启 底部右侧 声明本站信息
 
 # 相对于source目录下的头像url
@@ -67,14 +67,14 @@ color:
 # 评论插件：需要根据教程自行部署评论服务
 # ---------------------------------------------------------------------------------------
 comment:
-  enable: false 
+  enable: true 
   use: waline # values: waline
 
   # Waline
   # See: https://waline.js.org/guide/get-started.html
   waline:
-    serverUrl:  # Waline server url(vercel) example: https://example.example.com
+    serverUrl: walineserver-phi.vercel.app # Waline server url(vercel) example: https://example.example.com
     lang: zh-CN # Waline language, default: zh-CN. See: https://waline.js.org/guide/client/i18n.html
-
+    placeholder: 留下你的评论吧。 
 
 version: v1.7.0
