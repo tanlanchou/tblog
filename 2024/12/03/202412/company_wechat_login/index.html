@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="企业微信登录流程" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+ 
+            <!--注意：首页既不是post也不是page-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/waline.css">
+
+            
+
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+ 
+            
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+
+    
+            <!--返回顶部css-->
+            
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
+
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+
+            
+            
+                <!--目录-->
+                
+<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+
+            
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        <script>
+            const options = {
+                bottom: '40px', // default: '32px'
+                right: 'unset', // default: '32px'
+                left: '42px', // default: 'unset'
+                time: '0.3s', // default: '0.3s'
+                mixColor: '#fff', // default: '#fff'
+                backgroundColor: ' #e4e4e4 ',  // default: '#fff'
+                buttonColorDark: '#100f2c',  // default: '#100f2c'
+                buttonColorLight: '#fff', // default: '#fff'
+                saveInCookies: true, // default: true,
+                label: '🌓', // default: ''
+                autoMatchOsTheme: true // default: true
+            }
+            const darkmode = new Darkmode(options);
+            darkmode.showWidget();
+        </script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    企业微信登录流程
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-03</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：901</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：3分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#01-%E5%BC%80%E5%A7%8B"><span class="post-toc-text">01. 开始</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E8%8E%B7%E5%8F%96-code-%E5%92%8C-state"><span class="post-toc-text">获取 code 和 state</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%90%8E%E7%AB%AF%E6%B6%88%E8%B4%B9code"><span class="post-toc-text">后端消费code</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%BD%91%E9%A1%B5%E7%99%BB%E5%BD%95"><span class="post-toc-text">网页登录</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%9C%80%E5%90%8E"><span class="post-toc-text">最后</span></a></li></ol>
+            
+        
+        <div class=".article-gallery"><p>使用登录的前提是，你配置好了回调，信任域名之类的。</p>
+<h2 id="01-开始"><a href="#01-开始" class="headerlink" title="01. 开始"></a>01. 开始</h2><p><a target="_blank" rel="noopener" href="https://developer.work.weixin.qq.com/document/path/91335">https://developer.work.weixin.qq.com/document/path/91335</a></p>
+<p><a target="_blank" rel="noopener" href="https://prod-files-secure.s3.us-west-2.amazonaws.com/c58c4e60-4e7d-412f-8331-564f16cae57b/9131eeda-181c-4487-9edd-557f14553944/image.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/c58c4e60-4e7d-412f-8331-564f16cae57b/9131eeda-181c-4487-9edd-557f14553944/image.png" alt="image.png"></a></p>
+<p>这个是企业微信给的一张图</p>
+<p>也就是说 客户端重定向 ⇒ 微信企业后台 ⇒ 返回 code state ⇒ 客户端 code state ⇒ 自己后台 ⇒ 后台到企业微信后台 ⇒ 返回用户信息 ⇒ 返回用户信息到客户端</p>
+<p>这种应该就是静默获取用户信息。</p>
+<h2 id="获取-code-和-state"><a href="#获取-code-和-state" class="headerlink" title="获取 code 和 state"></a>获取 code 和 state</h2><p><a target="_blank" rel="noopener" href="https://developer.work.weixin.qq.com/document/path/91022">https://developer.work.weixin.qq.com/document/path/91022</a></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=CORPID&redirect_uri=REDIRECT_URI&response_type=code&scope=snsapi_base&state=STATE&agentid=AGENTID#wechat_redirect">https://open.weixin.qq.com/connect/oauth2/authorize?appid=CORPID&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;scope=snsapi_base&amp;state=STATE&amp;agentid=AGENTID#wechat_redirect</a></p>
+</blockquote>
+<p>按照上面的流程图上面，这一步是不需要自己的后台参与的，但是还是需要传 <a target="_blank" rel="noopener" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=CORPID&redirect_uri=REDIRECT_URI&response_type=code&scope=snsapi_base&state=STATE&agentid=AGENTID#wechat_redirect"><code>REDIRECT_URI</code></a> </p>
+<p>理由是需要验证 参数 <code>CORPID</code> 和 <code>REDIRECT_URI</code> 的合法性</p>
+<p><code>REDIRECT_URI</code>  需要是你配置那个域名，我这边使用的是前端地址，你要用后端也行。</p>
+<pre class="line-numbers language-none"><code class="language-none">const redirectUri &#x3D; encodeURIComponent(window.location.href);
+const weChatAuthUrl &#x3D; &#96;https:&#x2F;&#x2F;open.weixin.qq.com&#x2F;connect&#x2F;oauth2&#x2F;authorize?appid&#x3D;&amp;redirect_uri&#x3D;$&#123;redirectUri&#125;&amp;response_type&#x3D;code&amp;scope&#x3D;snsapi_base&amp;state&#x3D;STATE&amp;agentid&#x3D;#wechat_redirect&#96;;
+window.location.href &#x3D; weChatAuthUrl;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>这样服务就会传给你类似这种连接</p>
+<pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;api.3dept.com&#x2F;cgi-bin&#x2F;query?action&#x3D;get&amp;code&#x3D;AAAAAAgG333qs9EdaPbCAP1VaOrjuNkiAZHTWgaWsZQ&amp;state&#x3D;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>所以上面的代码他会一直刷新页面，所以这里需要判断是否是在企业微信环境</p>
+<pre class="line-numbers language-none"><code class="language-none">navigator.userAgent.toLowerCase().match(&#x2F;wxwork&#x2F;i) &#x3D;&#x3D; &quot;wxwork&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>然后写一个判断即可</p>
+<h2 id="后端消费code"><a href="#后端消费code" class="headerlink" title="后端消费code"></a>后端消费code</h2><p><a target="_blank" rel="noopener" href="https://developer.work.weixin.qq.com/document/path/91023">获取访问用户身份 - 文档 - 企业微信开发者中心 (qq.com)</a></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://qyapi.weixin.qq.com/cgi-bin/auth/getuserinfo?access_token=ACCESS_TOKEN&code=CODE">https://qyapi.weixin.qq.com/cgi-bin/auth/getuserinfo?access_token=ACCESS_TOKEN&amp;code=CODE</a></p>
+</blockquote>
+<p>需要先获取 <code>ACCESS_TOKEN</code></p>
+<p><a target="_blank" rel="noopener" href="https://developer.work.weixin.qq.com/document/path/91023#15074">https://developer.work.weixin.qq.com/document/path/91023#15074</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.work.weixin.qq.com/document/path/91039">获取access_token - 文档 - 企业微信开发者中心 (qq.com)</a></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=ID&corpsecret=SECRET">https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=ID&amp;corpsecret=SECRET</a></p>
+</blockquote>
+<p>这个后端就好写了。</p>
+<p>无非几个请求，唯一觉得神奇的是</p>
+<pre class="line-numbers language-none"><code class="language-none">https:&#x2F;&#x2F;qyapi.weixin.qq.com&#x2F;cgi-bin&#x2F;user&#x2F;get?access_token&#x3D;&quot; + accessToken + &quot;&amp;userid&#x3D;&quot;
+                + userId;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>还是能请求部分用户信息，按理说静默只能获取 <code>userid</code> 啊, 不过不重要。</p>
+<p>代码通了，不过需要处理用户直接刷新的问题</p>
+<h2 id="网页登录"><a href="#网页登录" class="headerlink" title="网页登录"></a>网页登录</h2><p>这个方案是不需要，但是查的时候顺便测试了一下，也可以，场景就是不在企业微信的环境里，通过扫描登录。</p>
+<p>前端</p>
+<pre class="line-numbers language-none"><code class="language-none">const urlParams &#x3D; new URLSearchParams(window.location.search);
+const user &#x3D; urlParams.get(&#39;user&#39;);
+if (user) &#123;
+    &#x2F;&#x2F; 假设user是一个JSON字符串，可以解析它
+    const parsedUser &#x3D; JSON.parse(decodeURIComponent(user));
+    this.$store.commit(&#39;setUser&#39;, parsedUser);
+&#125; else &#123;
+    &#x2F;&#x2F; 重定向到企业微信认证
+    const redirectUri &#x3D; encodeURIComponent(&#96;$&#123;window.location.origin&#125;&#x2F;wechat&#x2F;callback&#96;);
+    const weChatAuthUrl &#x3D; &#96;https:&#x2F;&#x2F;open.work.weixin.qq.com&#x2F;wwopen&#x2F;sso&#x2F;qrConnect?appid&#x3D;wwd93305cfd28429fb&amp;agentid&#x3D;1000025&amp;redirect_uri&#x3D;$&#123;redirectUri&#125;&amp;state&#x3D;STATE&#96;;
+    window.location.href &#x3D; weChatAuthUrl;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个 redirectUri  必须是后端的</p>
+<p>后端会接收一个 <code>code</code>，然后通过 <code>code + access_token</code> 获取用户信息，然后生成token或者用户信息，然后做一个浏览器的重定向给前端。</p>
+<p>代码量其实差别不大，甚至代码差别也不大</p>
+<p>这个方案的问题在于信息直接 <strong>get</strong> 传很丑陋, 虽然这玩意儿也不是什么秘密. 毕竟你 <strong>F12</strong> 或者拦截也能看得到，但是直接 <strong>url</strong> 里面传还是…</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p><a target="_blank" rel="noopener" href="https://developer.work.weixin.qq.com/document/path/90315#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%B0%83%E8%AF%95">https://developer.work.weixin.qq.com/document/path/90315#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%B0%83%E8%AF%95</a></p>
+<p>企业微信可以调试，详情见连接.</p>
+<p>这点我觉得比钉钉好多了。</p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2024-12-03</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1/'>
+                            企业微信
+                        </a>
+                    
+                        <a href='/tags/javascrip/'>
+                            javascrip
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2024/12/04/202412/eventsource_space/'>sse EventSource 空格</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2024/12/02/202412/bitlocker/">bitlocker命令行解锁</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
+
+
+        
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
+
+        <!--回到顶部按钮-->
+        
+            
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
+
+        
+        
+        <!--目录-->
+        
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+            
+<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
+
+        
+    
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

@@ -3,11 +3,11 @@
   <title>成天乱写</title>
   
   <subtitle>代码和生活</subtitle>
-  <link href="https://tanlanchou.github.io/tblog/atom.xml" rel="self"/>
+  <link href="https://tanlanchou.github.io/atom.xml" rel="self"/>
   
-  <link href="https://tanlanchou.github.io/tblog/"/>
-  <updated>2024-12-03T06:22:44.028Z</updated>
-  <id>https://tanlanchou.github.io/tblog/</id>
+  <link href="https://tanlanchou.github.io/"/>
+  <updated>2024-12-03T08:10:53.501Z</updated>
+  <id>https://tanlanchou.github.io/</id>
   
   <author>
     <name>tommy</name>
@@ -17,9 +17,60 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>sse EventSource 空格</title>
+    <link href="https://tanlanchou.github.io/2024/12/04/202412/eventsource_space/"/>
+    <id>https://tanlanchou.github.io/2024/12/04/202412/eventsource_space/</id>
+    <published>2024-12-04T14:47:01.000Z</published>
+    <updated>2024-12-03T08:10:53.501Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;p&gt;不知道基本的信息的可以看 &lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="javascript" scheme="https://tanlanchou.github.io/tags/javascript/"/>
+    
+    <category term="eventsource" scheme="https://tanlanchou.github.io/tags/eventsource/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>企业微信登录流程</title>
+    <link href="https://tanlanchou.github.io/2024/12/03/202412/company_wechat_login/"/>
+    <id>https://tanlanchou.github.io/2024/12/03/202412/company_wechat_login/</id>
+    <published>2024-12-03T14:47:01.000Z</published>
+    <updated>2024-12-03T08:09:17.630Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;p&gt;使用登录的前提是，你配置好了回调，信任域名之类的。&lt;/p&gt;
+&lt;h2 id=&quot;01-开始&quot;&gt;&lt;a href=&quot;#01-开始&quot; class=&quot;headerlink&quot; title=&quot;01. 开始&quot;&gt;&lt;/a&gt;01.</summary>
+        
+      
+    
+    
+    
+    
+    <category term="企业微信" scheme="https://tanlanchou.github.io/tags/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1/"/>
+    
+    <category term="javascrip" scheme="https://tanlanchou.github.io/tags/javascrip/"/>
+    
+  </entry>
+  
+  <entry>
     <title>bitlocker命令行解锁</title>
-    <link href="https://tanlanchou.github.io/tblog/2024/12/02/202412/bitlocker/"/>
-    <id>https://tanlanchou.github.io/tblog/2024/12/02/202412/bitlocker/</id>
+    <link href="https://tanlanchou.github.io/2024/12/02/202412/bitlocker/"/>
+    <id>https://tanlanchou.github.io/2024/12/02/202412/bitlocker/</id>
     <published>2024-12-02T14:47:01.000Z</published>
     <updated>2024-12-03T06:22:44.028Z</updated>
     
@@ -35,18 +86,18 @@
     
     
     
-    <category term="java" scheme="https://tanlanchou.github.io/tblog/tags/java/"/>
+    <category term="java" scheme="https://tanlanchou.github.io/tags/java/"/>
     
-    <category term="bitlocker" scheme="https://tanlanchou.github.io/tblog/tags/bitlocker/"/>
+    <category term="bitlocker" scheme="https://tanlanchou.github.io/tags/bitlocker/"/>
     
-    <category term="bash" scheme="https://tanlanchou.github.io/tblog/tags/bash/"/>
+    <category term="bash" scheme="https://tanlanchou.github.io/tags/bash/"/>
     
   </entry>
   
   <entry>
     <title>setInterval 浏览器执行频率</title>
-    <link href="https://tanlanchou.github.io/tblog/2024/03/11/javascript/setInterval_browser_execution_frequency/"/>
-    <id>https://tanlanchou.github.io/tblog/2024/03/11/javascript/setInterval_browser_execution_frequency/</id>
+    <link href="https://tanlanchou.github.io/2024/03/11/javascript/setInterval_browser_execution_frequency/"/>
+    <id>https://tanlanchou.github.io/2024/03/11/javascript/setInterval_browser_execution_frequency/</id>
     <published>2024-03-11T08:36:00.000Z</published>
     <updated>2024-12-02T05:28:09.910Z</updated>
     
@@ -64,16 +115,16 @@
     
     
     
-    <category term="web" scheme="https://tanlanchou.github.io/tblog/tags/web/"/>
+    <category term="web" scheme="https://tanlanchou.github.io/tags/web/"/>
     
-    <category term="javascript" scheme="https://tanlanchou.github.io/tblog/tags/javascript/"/>
+    <category term="javascript" scheme="https://tanlanchou.github.io/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>前端埋点</title>
-    <link href="https://tanlanchou.github.io/tblog/2024/02/23/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9/"/>
-    <id>https://tanlanchou.github.io/tblog/2024/02/23/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9/</id>
+    <link href="https://tanlanchou.github.io/2024/02/23/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9/"/>
+    <id>https://tanlanchou.github.io/2024/02/23/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9/</id>
     <published>2024-02-23T06:49:37.000Z</published>
     <updated>2024-12-02T05:28:09.935Z</updated>
     
@@ -89,16 +140,16 @@
     
     
     
-    <category term="前端" scheme="https://tanlanchou.github.io/tblog/tags/%E5%89%8D%E7%AB%AF/"/>
+    <category term="前端" scheme="https://tanlanchou.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
-    <category term="埋点" scheme="https://tanlanchou.github.io/tblog/tags/%E5%9F%8B%E7%82%B9/"/>
+    <category term="埋点" scheme="https://tanlanchou.github.io/tags/%E5%9F%8B%E7%82%B9/"/>
     
   </entry>
   
   <entry>
     <title>rss数据对比</title>
-    <link href="https://tanlanchou.github.io/tblog/2024/02/23/rss%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94/"/>
-    <id>https://tanlanchou.github.io/tblog/2024/02/23/rss%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94/</id>
+    <link href="https://tanlanchou.github.io/2024/02/23/rss%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94/"/>
+    <id>https://tanlanchou.github.io/2024/02/23/rss%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94/</id>
     <published>2024-02-23T06:48:52.000Z</published>
     <updated>2024-12-02T05:28:09.915Z</updated>
     
@@ -116,16 +167,16 @@
     
     
     
-    <category term="rss" scheme="https://tanlanchou.github.io/tblog/tags/rss/"/>
+    <category term="rss" scheme="https://tanlanchou.github.io/tags/rss/"/>
     
-    <category term="diff" scheme="https://tanlanchou.github.io/tblog/tags/diff/"/>
+    <category term="diff" scheme="https://tanlanchou.github.io/tags/diff/"/>
     
   </entry>
   
   <entry>
     <title>nestjs modules mailer</title>
-    <link href="https://tanlanchou.github.io/tblog/2024/02/23/nestjs-modules-mailer/"/>
-    <id>https://tanlanchou.github.io/tblog/2024/02/23/nestjs-modules-mailer/</id>
+    <link href="https://tanlanchou.github.io/2024/02/23/nestjs-modules-mailer/"/>
+    <id>https://tanlanchou.github.io/2024/02/23/nestjs-modules-mailer/</id>
     <published>2024-02-23T06:45:22.000Z</published>
     <updated>2024-12-02T05:28:09.912Z</updated>
     
@@ -141,18 +192,18 @@
     
     
     
-    <category term="typescript" scheme="https://tanlanchou.github.io/tblog/tags/typescript/"/>
+    <category term="typescript" scheme="https://tanlanchou.github.io/tags/typescript/"/>
     
-    <category term="后端" scheme="https://tanlanchou.github.io/tblog/tags/%E5%90%8E%E7%AB%AF/"/>
+    <category term="后端" scheme="https://tanlanchou.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
     
-    <category term="nestjs" scheme="https://tanlanchou.github.io/tblog/tags/nestjs/"/>
+    <category term="nestjs" scheme="https://tanlanchou.github.io/tags/nestjs/"/>
     
   </entry>
   
   <entry>
     <title>浏览器缓存大赏.</title>
-    <link href="https://tanlanchou.github.io/tblog/2023/12/14/browser/cache/"/>
-    <id>https://tanlanchou.github.io/tblog/2023/12/14/browser/cache/</id>
+    <link href="https://tanlanchou.github.io/2023/12/14/browser/cache/"/>
+    <id>https://tanlanchou.github.io/2023/12/14/browser/cache/</id>
     <published>2023-12-14T06:35:00.000Z</published>
     <updated>2024-12-02T05:28:09.903Z</updated>
     
@@ -168,20 +219,20 @@
     
     
     
-    <category term="browser" scheme="https://tanlanchou.github.io/tblog/tags/browser/"/>
+    <category term="browser" scheme="https://tanlanchou.github.io/tags/browser/"/>
     
-    <category term="cache" scheme="https://tanlanchou.github.io/tblog/tags/cache/"/>
+    <category term="cache" scheme="https://tanlanchou.github.io/tags/cache/"/>
     
-    <category term="Cache-Control" scheme="https://tanlanchou.github.io/tblog/tags/Cache-Control/"/>
+    <category term="Cache-Control" scheme="https://tanlanchou.github.io/tags/Cache-Control/"/>
     
-    <category term="Expires" scheme="https://tanlanchou.github.io/tblog/tags/Expires/"/>
+    <category term="Expires" scheme="https://tanlanchou.github.io/tags/Expires/"/>
     
   </entry>
   
   <entry>
     <title>前端请求模拟</title>
-    <link href="https://tanlanchou.github.io/tblog/2023/12/07/zaxiang/mock/"/>
-    <id>https://tanlanchou.github.io/tblog/2023/12/07/zaxiang/mock/</id>
+    <link href="https://tanlanchou.github.io/2023/12/07/zaxiang/mock/"/>
+    <id>https://tanlanchou.github.io/2023/12/07/zaxiang/mock/</id>
     <published>2023-12-07T06:25:00.000Z</published>
     <updated>2024-12-02T05:28:09.935Z</updated>
     
@@ -199,16 +250,16 @@
     
     
     
-    <category term="前端" scheme="https://tanlanchou.github.io/tblog/tags/%E5%89%8D%E7%AB%AF/"/>
+    <category term="前端" scheme="https://tanlanchou.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
     
-    <category term="axios-mock-adapter" scheme="https://tanlanchou.github.io/tblog/tags/axios-mock-adapter/"/>
+    <category term="axios-mock-adapter" scheme="https://tanlanchou.github.io/tags/axios-mock-adapter/"/>
     
   </entry>
   
   <entry>
     <title>前端 docker 项目如何动态加载环境变量</title>
-    <link href="https://tanlanchou.github.io/tblog/2023/12/07/zaxiang/front_docker_env/"/>
-    <id>https://tanlanchou.github.io/tblog/2023/12/07/zaxiang/front_docker_env/</id>
+    <link href="https://tanlanchou.github.io/2023/12/07/zaxiang/front_docker_env/"/>
+    <id>https://tanlanchou.github.io/2023/12/07/zaxiang/front_docker_env/</id>
     <published>2023-12-07T06:25:00.000Z</published>
     <updated>2024-12-02T05:28:09.934Z</updated>
     
@@ -227,20 +278,20 @@
     
     
     
-    <category term="javascript" scheme="https://tanlanchou.github.io/tblog/tags/javascript/"/>
+    <category term="javascript" scheme="https://tanlanchou.github.io/tags/javascript/"/>
     
-    <category term="docker" scheme="https://tanlanchou.github.io/tblog/tags/docker/"/>
+    <category term="docker" scheme="https://tanlanchou.github.io/tags/docker/"/>
     
-    <category term="shell" scheme="https://tanlanchou.github.io/tblog/tags/shell/"/>
+    <category term="shell" scheme="https://tanlanchou.github.io/tags/shell/"/>
     
-    <category term="nginx" scheme="https://tanlanchou.github.io/tblog/tags/nginx/"/>
+    <category term="nginx" scheme="https://tanlanchou.github.io/tags/nginx/"/>
     
   </entry>
   
   <entry>
     <title>自己实现一个 bind</title>
-    <link href="https://tanlanchou.github.io/tblog/2023/12/07/shuati/001_bind/"/>
-    <id>https://tanlanchou.github.io/tblog/2023/12/07/shuati/001_bind/</id>
+    <link href="https://tanlanchou.github.io/2023/12/07/shuati/001_bind/"/>
+    <id>https://tanlanchou.github.io/2023/12/07/shuati/001_bind/</id>
     <published>2023-12-07T06:14:00.000Z</published>
     <updated>2024-12-02T05:28:09.915Z</updated>
     
@@ -256,14 +307,14 @@
     
     
     
-    <category term="javascript" scheme="https://tanlanchou.github.io/tblog/tags/javascript/"/>
+    <category term="javascript" scheme="https://tanlanchou.github.io/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>electron url启动, 注册表, 打包</title>
-    <link href="https://tanlanchou.github.io/tblog/2023/12/07/electron/electron_caiken_01/"/>
-    <id>https://tanlanchou.github.io/tblog/2023/12/07/electron/electron_caiken_01/</id>
+    <link href="https://tanlanchou.github.io/2023/12/07/electron/electron_caiken_01/"/>
+    <id>https://tanlanchou.github.io/2023/12/07/electron/electron_caiken_01/</id>
     <published>2023-12-07T03:35:00.000Z</published>
     <updated>2024-12-02T05:28:09.908Z</updated>
     
@@ -280,18 +331,18 @@
     
     
     
-    <category term="环境" scheme="https://tanlanchou.github.io/tblog/tags/%E7%8E%AF%E5%A2%83/"/>
+    <category term="环境" scheme="https://tanlanchou.github.io/tags/%E7%8E%AF%E5%A2%83/"/>
     
-    <category term="electron" scheme="https://tanlanchou.github.io/tblog/tags/electron/"/>
+    <category term="electron" scheme="https://tanlanchou.github.io/tags/electron/"/>
     
-    <category term="打包" scheme="https://tanlanchou.github.io/tblog/tags/%E6%89%93%E5%8C%85/"/>
+    <category term="打包" scheme="https://tanlanchou.github.io/tags/%E6%89%93%E5%8C%85/"/>
     
   </entry>
   
   <entry>
     <title>url 通过协议启动应用程序</title>
-    <link href="https://tanlanchou.github.io/tblog/2023/12/01/javascript/url_open_software/"/>
-    <id>https://tanlanchou.github.io/tblog/2023/12/01/javascript/url_open_software/</id>
+    <link href="https://tanlanchou.github.io/2023/12/01/javascript/url_open_software/"/>
+    <id>https://tanlanchou.github.io/2023/12/01/javascript/url_open_software/</id>
     <published>2023-12-01T03:12:00.000Z</published>
     <updated>2024-12-02T05:28:09.911Z</updated>
     
@@ -307,16 +358,16 @@
     
     
     
-    <category term="web" scheme="https://tanlanchou.github.io/tblog/tags/web/"/>
+    <category term="web" scheme="https://tanlanchou.github.io/tags/web/"/>
     
-    <category term="javascript" scheme="https://tanlanchou.github.io/tblog/tags/javascript/"/>
+    <category term="javascript" scheme="https://tanlanchou.github.io/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>IndexDB API</title>
-    <link href="https://tanlanchou.github.io/tblog/2023/11/02/[Q103]IndexDB_Base/"/>
-    <id>https://tanlanchou.github.io/tblog/2023/11/02/[Q103]IndexDB_Base/</id>
+    <link href="https://tanlanchou.github.io/2023/11/02/[Q103]IndexDB_Base/"/>
+    <id>https://tanlanchou.github.io/2023/11/02/[Q103]IndexDB_Base/</id>
     <published>2023-11-02T13:21:21.000Z</published>
     <updated>2024-12-02T05:28:09.901Z</updated>
     
@@ -332,18 +383,18 @@
     
     
     
-    <category term="javascript" scheme="https://tanlanchou.github.io/tblog/tags/javascript/"/>
+    <category term="javascript" scheme="https://tanlanchou.github.io/tags/javascript/"/>
     
-    <category term="indexDB" scheme="https://tanlanchou.github.io/tblog/tags/indexDB/"/>
+    <category term="indexDB" scheme="https://tanlanchou.github.io/tags/indexDB/"/>
     
-    <category term="浏览器存储" scheme="https://tanlanchou.github.io/tblog/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AD%98%E5%82%A8/"/>
+    <category term="浏览器存储" scheme="https://tanlanchou.github.io/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AD%98%E5%82%A8/"/>
     
   </entry>
   
   <entry>
     <title>javascript this 指向</title>
-    <link href="https://tanlanchou.github.io/tblog/2023/09/03/[Q102]javascript_this_link/"/>
-    <id>https://tanlanchou.github.io/tblog/2023/09/03/[Q102]javascript_this_link/</id>
+    <link href="https://tanlanchou.github.io/2023/09/03/[Q102]javascript_this_link/"/>
+    <id>https://tanlanchou.github.io/2023/09/03/[Q102]javascript_this_link/</id>
     <published>2023-09-03T13:00:01.000Z</published>
     <updated>2024-12-02T05:28:09.900Z</updated>
     
@@ -353,16 +404,16 @@
     
     
     
-    <category term="javascript" scheme="https://tanlanchou.github.io/tblog/tags/javascript/"/>
+    <category term="javascript" scheme="https://tanlanchou.github.io/tags/javascript/"/>
     
-    <category term="this" scheme="https://tanlanchou.github.io/tblog/tags/this/"/>
+    <category term="this" scheme="https://tanlanchou.github.io/tags/this/"/>
     
   </entry>
   
   <entry>
     <title>flex 属性详解</title>
-    <link href="https://tanlanchou.github.io/tblog/2023/09/01/[Q101]Flex_attr/"/>
-    <id>https://tanlanchou.github.io/tblog/2023/09/01/[Q101]Flex_attr/</id>
+    <link href="https://tanlanchou.github.io/2023/09/01/[Q101]Flex_attr/"/>
+    <id>https://tanlanchou.github.io/2023/09/01/[Q101]Flex_attr/</id>
     <published>2023-09-01T13:00:01.000Z</published>
     <updated>2024-12-02T05:28:09.900Z</updated>
     
@@ -372,18 +423,18 @@
     
     
     
-    <category term="css" scheme="https://tanlanchou.github.io/tblog/tags/css/"/>
+    <category term="css" scheme="https://tanlanchou.github.io/tags/css/"/>
     
-    <category term="flex" scheme="https://tanlanchou.github.io/tblog/tags/flex/"/>
+    <category term="flex" scheme="https://tanlanchou.github.io/tags/flex/"/>
     
-    <category term="html" scheme="https://tanlanchou.github.io/tblog/tags/html/"/>
+    <category term="html" scheme="https://tanlanchou.github.io/tags/html/"/>
     
   </entry>
   
   <entry>
     <title>微信公众号网页踩坑？</title>
-    <link href="https://tanlanchou.github.io/tblog/2023/09/01/[wechat]wechat_website/"/>
-    <id>https://tanlanchou.github.io/tblog/2023/09/01/[wechat]wechat_website/</id>
+    <link href="https://tanlanchou.github.io/2023/09/01/[wechat]wechat_website/"/>
+    <id>https://tanlanchou.github.io/2023/09/01/[wechat]wechat_website/</id>
     <published>2023-09-01T13:00:01.000Z</published>
     <updated>2024-12-02T05:28:09.901Z</updated>
     
@@ -393,18 +444,18 @@
     
     
     
-    <category term="微信" scheme="https://tanlanchou.github.io/tblog/tags/%E5%BE%AE%E4%BF%A1/"/>
+    <category term="微信" scheme="https://tanlanchou.github.io/tags/%E5%BE%AE%E4%BF%A1/"/>
     
-    <category term="公众号" scheme="https://tanlanchou.github.io/tblog/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
+    <category term="公众号" scheme="https://tanlanchou.github.io/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
     
-    <category term="环境" scheme="https://tanlanchou.github.io/tblog/tags/%E7%8E%AF%E5%A2%83/"/>
+    <category term="环境" scheme="https://tanlanchou.github.io/tags/%E7%8E%AF%E5%A2%83/"/>
     
   </entry>
   
   <entry>
     <title>windows docker 安装遇到的坑</title>
-    <link href="https://tanlanchou.github.io/tblog/2023/08/29/wsl_can_not_boot/"/>
-    <id>https://tanlanchou.github.io/tblog/2023/08/29/wsl_can_not_boot/</id>
+    <link href="https://tanlanchou.github.io/2023/08/29/wsl_can_not_boot/"/>
+    <id>https://tanlanchou.github.io/2023/08/29/wsl_can_not_boot/</id>
     <published>2023-08-29T08:00:01.000Z</published>
     <updated>2024-12-02T05:28:09.934Z</updated>
     
@@ -422,18 +473,18 @@
     
     
     
-    <category term="docker" scheme="https://tanlanchou.github.io/tblog/tags/docker/"/>
+    <category term="docker" scheme="https://tanlanchou.github.io/tags/docker/"/>
     
-    <category term="windows" scheme="https://tanlanchou.github.io/tblog/tags/windows/"/>
+    <category term="windows" scheme="https://tanlanchou.github.io/tags/windows/"/>
     
-    <category term="update" scheme="https://tanlanchou.github.io/tblog/tags/update/"/>
+    <category term="update" scheme="https://tanlanchou.github.io/tags/update/"/>
     
   </entry>
   
   <entry>
     <title>vue3 createVNode &amp; render</title>
-    <link href="https://tanlanchou.github.io/tblog/2023/08/27/vue3_plugin/"/>
-    <id>https://tanlanchou.github.io/tblog/2023/08/27/vue3_plugin/</id>
+    <link href="https://tanlanchou.github.io/2023/08/27/vue3_plugin/"/>
+    <id>https://tanlanchou.github.io/2023/08/27/vue3_plugin/</id>
     <published>2023-08-27T15:30:01.000Z</published>
     <updated>2024-12-02T05:28:09.927Z</updated>
     
@@ -450,20 +501,20 @@
     
     
     
-    <category term="vue3" scheme="https://tanlanchou.github.io/tblog/tags/vue3/"/>
+    <category term="vue3" scheme="https://tanlanchou.github.io/tags/vue3/"/>
     
-    <category term="插件" scheme="https://tanlanchou.github.io/tblog/tags/%E6%8F%92%E4%BB%B6/"/>
+    <category term="插件" scheme="https://tanlanchou.github.io/tags/%E6%8F%92%E4%BB%B6/"/>
     
-    <category term="createVNode" scheme="https://tanlanchou.github.io/tblog/tags/createVNode/"/>
+    <category term="createVNode" scheme="https://tanlanchou.github.io/tags/createVNode/"/>
     
-    <category term="render" scheme="https://tanlanchou.github.io/tblog/tags/render/"/>
+    <category term="render" scheme="https://tanlanchou.github.io/tags/render/"/>
     
   </entry>
   
   <entry>
     <title>为什么 npm install 需要 sudo</title>
-    <link href="https://tanlanchou.github.io/tblog/2023/08/27/sudo_npm_install/"/>
-    <id>https://tanlanchou.github.io/tblog/2023/08/27/sudo_npm_install/</id>
+    <link href="https://tanlanchou.github.io/2023/08/27/sudo_npm_install/"/>
+    <id>https://tanlanchou.github.io/2023/08/27/sudo_npm_install/</id>
     <published>2023-08-27T03:13:01.000Z</published>
     <updated>2024-12-02T05:28:09.917Z</updated>
     
@@ -480,61 +531,9 @@
     
     
     
-    <category term="linux" scheme="https://tanlanchou.github.io/tblog/tags/linux/"/>
+    <category term="linux" scheme="https://tanlanchou.github.io/tags/linux/"/>
     
-    <category term="npm" scheme="https://tanlanchou.github.io/tblog/tags/npm/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>箭头函数有prototype吗？为什么？</title>
-    <link href="https://tanlanchou.github.io/tblog/2023/08/20/[Q001]ArrowFunctionvsFunction/"/>
-    <id>https://tanlanchou.github.io/tblog/2023/08/20/[Q001]ArrowFunctionvsFunction/</id>
-    <published>2023-08-20T14:47:01.000Z</published>
-    <updated>2024-12-02T05:28:09.899Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;01-x3D-gt-有没有原型链&quot;&gt;&lt;a href=&quot;#01-x3D-gt-有没有原型链&quot; class=&quot;headerlink&quot; title=&quot;01. () &amp;#x3D;&amp;gt; 有没有原型链&quot;&gt;&lt;/a&gt;01. () &amp;#x3D;&amp;gt;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="web" scheme="https://tanlanchou.github.io/tblog/tags/web/"/>
-    
-    <category term="javascript" scheme="https://tanlanchou.github.io/tblog/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Vue2.extend</title>
-    <link href="https://tanlanchou.github.io/tblog/2023/08/19/Vue_extends/"/>
-    <id>https://tanlanchou.github.io/tblog/2023/08/19/Vue_extends/</id>
-    <published>2023-08-19T06:47:21.000Z</published>
-    <updated>2024-12-02T05:28:09.899Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;01-什么是-Vue-extend&quot;&gt;&lt;a href=&quot;#01-什么是-Vue-extend&quot; class=&quot;headerlink&quot; title=&quot;01. 什么是 Vue.extend&quot;&gt;&lt;/a&gt;01. 什么是</summary>
-        
-      
-    
-    
-    
-    
-    <category term="vue3" scheme="https://tanlanchou.github.io/tblog/tags/vue3/"/>
-    
-    <category term="插件" scheme="https://tanlanchou.github.io/tblog/tags/%E6%8F%92%E4%BB%B6/"/>
-    
-    <category term="vue2" scheme="https://tanlanchou.github.io/tblog/tags/vue2/"/>
+    <category term="npm" scheme="https://tanlanchou.github.io/tags/npm/"/>
     
   </entry>
   
