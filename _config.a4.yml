@@ -16,7 +16,7 @@ showInMenu:  # menu 中的哪些页面显示在首页中（“首页”必定显
 
 index:  # 首页的页眉页脚
   header: 神仙树暴龙战士
-  footer: Email:123456789@gmail.com # 除了可以填写任何文字外，可以自动邮箱链接化，但需按照这个格式填写：Email:xxx@gmail.com
+  footer: Email:tlstommy@outlook.com # 除了可以填写任何文字外，可以自动邮箱链接化，但需按照这个格式填写：Email:xxx@gmail.com
   titlePosition: left # center | left  # 首页标题的位置
 
 footerLink: # 底部的链接自定义
