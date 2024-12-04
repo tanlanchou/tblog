@@ -62,6 +62,13 @@ color:
   linkBeforeClick: "#fec591" # 链接点击前的颜色
   linkAfterClick: "#fec591" # 链接点击后的颜色
 
+tool:
+  darkMode: false # 暗黑模式
+  returnToTop: true # 回到顶部按钮 
+  returnToLast: true # 回退页面按钮
+  topToc: true # 文章顶部目录
+  leftToc: true # 文章左侧目录 目前仅支持大屏幕浮现
+
 # ---------------------------------------------------------------------------------------
 # Comment plugin
 # 评论插件：需要根据教程自行部署评论服务
