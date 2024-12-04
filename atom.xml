@@ -42,6 +42,31 @@
   </entry>
   
   <entry>
+    <title>jwt实现原理</title>
+    <link href="https://tanlanchou.github.io/2024/12/04/202412/jwt/"/>
+    <id>https://tanlanchou.github.io/2024/12/04/202412/jwt/</id>
+    <published>2024-12-04T14:47:01.000Z</published>
+    <updated>2024-12-04T03:00:25.392Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="jwt" scheme="https://tanlanchou.github.io/tags/jwt/"/>
+    
+    <category term="原理" scheme="https://tanlanchou.github.io/tags/%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
     <title>企业微信登录流程</title>
     <link href="https://tanlanchou.github.io/2024/12/03/202412/company_wechat_login/"/>
     <id>https://tanlanchou.github.io/2024/12/03/202412/company_wechat_login/</id>
@@ -508,32 +533,6 @@
     <category term="createVNode" scheme="https://tanlanchou.github.io/tags/createVNode/"/>
     
     <category term="render" scheme="https://tanlanchou.github.io/tags/render/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>为什么 npm install 需要 sudo</title>
-    <link href="https://tanlanchou.github.io/2023/08/27/sudo_npm_install/"/>
-    <id>https://tanlanchou.github.io/2023/08/27/sudo_npm_install/</id>
-    <published>2023-08-27T03:13:01.000Z</published>
-    <updated>2024-12-02T05:28:09.917Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;其实以前我在linxu下开发都是直接&lt;/p&gt;
-&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td</summary>
-        
-      
-    
-    
-    
-    
-    <category term="linux" scheme="https://tanlanchou.github.io/tags/linux/"/>
-    
-    <category term="npm" scheme="https://tanlanchou.github.io/tags/npm/"/>
     
   </entry>
   

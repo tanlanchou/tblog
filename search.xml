@@ -25,6 +25,27 @@
     
     
     <entry>
+      <title>jwt实现原理</title>
+      <link href="/2024/12/04/202412/jwt/"/>
+      <url>/2024/12/04/202412/jwt/</url>
+      
+        <content type="html"><![CDATA[<div class=".article-gallery"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>虽然我是一个全栈，但是我居然一直没写过jwt。</p><p>因为我真的没有从头到尾，从前端到后端去负责过一个项目，全部自己做</p><p>以至于我犯了一个低级错误，认为token，也就是jwt生成的token是可以延长时间的。</p><p>哈哈哈哈哈，很尴尬</p><h2 id="JWT-的基本机制"><a href="#JWT-的基本机制" class="headerlink" title="JWT 的基本机制"></a>JWT 的基本机制</h2><p>JWT（JSON Web Token）是一种用于身份验证和信息交换的开放标准。它的基本机制如下：</p><ol><li>组成：JWT 由三部分组成 - 头部（Header）、载荷（Payload）和签名（Signature）</li><li>生成：服务器在用户登录成功后创建 JWT</li><li>传递：服务器将 JWT 返回给客户端</li><li>存储：客户端存储 JWT（通常在本地存储或 Cookie 中）</li><li>使用：客户端在后续请求中携带 JWT（通常在 Authorization 头中）</li><li>验证：服务器验证 JWT 的有效性和完整性</li></ol><h2 id="后端怎么做？或者说jwt原理是什么？"><a href="#后端怎么做？或者说jwt原理是什么？" class="headerlink" title="后端怎么做？或者说jwt原理是什么？"></a>后端怎么做？或者说jwt原理是什么？</h2><p>一般是引入第三方包。</p><p>原理的话，我一开始以为是存储。后面发现不是</p><p>因为看了源码<code>@nestjs/jwt</code>是用 HS256</p><p>也就是通过那个字符串加密解密解决问题</p><p>所以创建，刷新，验证，其实是一种加密算法，减小了存储的压力，但是计算的压力？</p><p>所以也就不存在延长某个token的登录时间，因为一旦生成就是固定的。</p><p>所以，你自己写也不是不行。</p><h2 id="怎么刷新？"><a href="#怎么刷新？" class="headerlink" title="怎么刷新？"></a>怎么刷新？</h2><p>无非就是前端和后端谁做。一般是后端做</p><p>就是请求的时候，验证token之后返回新token</p><p>但是这个时间就很玩味了</p><p>他频繁的请求，你每次都刷新很浪费。</p><p>我一般是超过1个小时，继续请求就刷新token</p><p>反正你了解了机制，按照你的需求考虑吧</p><h2 id="前端接入-JWT"><a href="#前端接入-JWT" class="headerlink" title="前端接入 JWT"></a>前端接入 JWT</h2><p>前端接入 JWT 的基本步骤如下：</p><ol><li>登录：发送用户凭证到服务器，获取 JWT</li><li>存储：将获取的 JWT 存储在本地（如 localStorage 或 sessionStorage）</li><li>请求拦截：使用 Axios 等库设置请求拦截器，自动在每个请求的 header 中添加 JWT</li><li>响应处理：处理 401（未授权）错误，可能需要刷新 token 或重新登录</li><li>登出：清除存储的 JWT</li></ol><p>示例代码（使用 Axios）：</p><pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">&#x2F;&#x2F; 存储 JWTconst storeJWT &#x3D; (token) &#x3D;&gt; &#123;  localStorage.setItem(&#39;jwt&#39;, token);&#125;;&#x2F;&#x2F; 获取 JWTconst getJWT &#x3D; () &#x3D;&gt; &#123;  return localStorage.getItem(&#39;jwt&#39;);&#125;;&#x2F;&#x2F; 设置请求拦截器axios.interceptors.request.use(config &#x3D;&gt; &#123;  const token &#x3D; getJWT();  if (token) &#123;    config.headers[&#39;Authorization&#39;] &#x3D; &#96;Bearer $&#123;token&#125;&#96;;  &#125;  return config;&#125;);&#x2F;&#x2F; 处理响应axios.interceptors.response.use(  response &#x3D;&gt; response,  error &#x3D;&gt; &#123;    if (error.response.status &#x3D;&#x3D;&#x3D; 401) &#123;      &#x2F;&#x2F; 处理未授权错误，如刷新 token 或重定向到登录页    &#125;    return Promise.reject(error);  &#125;);&#x2F;&#x2F; 登出const logout &#x3D; () &#x3D;&gt; &#123;  localStorage.removeItem(&#39;jwt&#39;);  &#x2F;&#x2F; 重定向到登录页或首页&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p>注意：JWT 是无状态的，服务器不能主动使其失效。因此，通常设置较短的过期时间并使用刷新 token 机制来平衡安全性和用户体验。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>thx</p></div>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> jwt </tag>
+            
+            <tag> 原理 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>企业微信登录流程</title>
       <link href="/2024/12/03/202412/company_wechat_login/"/>
       <url>/2024/12/03/202412/company_wechat_login/</url>

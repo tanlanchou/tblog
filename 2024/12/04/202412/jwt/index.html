@@ -4,7 +4,7 @@
     <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <meta name="description" content="企业微信登录流程" />
+    <meta name="description" content="jwt实现原理" />
     <meta name="hexo-theme-A4" content="v1.7.0" />
     <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
     <title>成天乱写 | 代码和生活</title>
@@ -146,7 +146,7 @@
         
             
                 <div class="post-main-title" style="text-align: center;">
-                    企业微信登录流程
+                    jwt实现原理
                 </div>
             
         
@@ -159,13 +159,13 @@
             <div class="post-head-meta-center">
         
                 
-                    <span>最近更新：2024-12-03</span> 
+                    <span>最近更新：2024-12-04</span> 
                 
                 
                     
                         &nbsp; | &nbsp;
                     
-                     <span>字数总计：901</span>
+                     <span>字数总计：796</span>
                 
                 
                     
@@ -187,79 +187,89 @@
     <div class="post-md">
         
             
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#01-%E5%BC%80%E5%A7%8B"><span class="post-toc-text">01. 开始</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E8%8E%B7%E5%8F%96-code-%E5%92%8C-state"><span class="post-toc-text">获取 code 和 state</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%90%8E%E7%AB%AF%E6%B6%88%E8%B4%B9code"><span class="post-toc-text">后端消费code</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E7%BD%91%E9%A1%B5%E7%99%BB%E5%BD%95"><span class="post-toc-text">网页登录</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%9C%80%E5%90%8E"><span class="post-toc-text">最后</span></a></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%89%8D%E8%A8%80"><span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#JWT-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%9C%BA%E5%88%B6"><span class="post-toc-text">JWT 的基本机制</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%90%8E%E7%AB%AF%E6%80%8E%E4%B9%88%E5%81%9A%EF%BC%9F%E6%88%96%E8%80%85%E8%AF%B4jwt%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="post-toc-text">后端怎么做？或者说jwt原理是什么？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%80%8E%E4%B9%88%E5%88%B7%E6%96%B0%EF%BC%9F"><span class="post-toc-text">怎么刷新？</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E5%89%8D%E7%AB%AF%E6%8E%A5%E5%85%A5-JWT"><span class="post-toc-text">前端接入 JWT</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#%E6%80%BB%E7%BB%93"><span class="post-toc-text">总结</span></a></li></ol>
             
         
-        <div class=".article-gallery"><p>使用登录的前提是，你配置好了回调，信任域名之类的。</p>
-<h2 id="01-开始"><a href="#01-开始" class="headerlink" title="01. 开始"></a>01. 开始</h2><p><a target="_blank" rel="noopener" href="https://developer.work.weixin.qq.com/document/path/91335">https://developer.work.weixin.qq.com/document/path/91335</a></p>
-<p><a target="_blank" rel="noopener" href="https://prod-files-secure.s3.us-west-2.amazonaws.com/c58c4e60-4e7d-412f-8331-564f16cae57b/9131eeda-181c-4487-9edd-557f14553944/image.png" title="image.png" class="gallery-item" style="box-shadow: none;"> <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/c58c4e60-4e7d-412f-8331-564f16cae57b/9131eeda-181c-4487-9edd-557f14553944/image.png" alt="image.png"></a></p>
-<p>这个是企业微信给的一张图</p>
-<p>也就是说 客户端重定向 ⇒ 微信企业后台 ⇒ 返回 code state ⇒ 客户端 code state ⇒ 自己后台 ⇒ 后台到企业微信后台 ⇒ 返回用户信息 ⇒ 返回用户信息到客户端</p>
-<p>这种应该就是静默获取用户信息。</p>
-<h2 id="获取-code-和-state"><a href="#获取-code-和-state" class="headerlink" title="获取 code 和 state"></a>获取 code 和 state</h2><p><a target="_blank" rel="noopener" href="https://developer.work.weixin.qq.com/document/path/91022">https://developer.work.weixin.qq.com/document/path/91022</a></p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=CORPID&redirect_uri=REDIRECT_URI&response_type=code&scope=snsapi_base&state=STATE&agentid=AGENTID#wechat_redirect">https://open.weixin.qq.com/connect/oauth2/authorize?appid=CORPID&amp;redirect_uri=REDIRECT_URI&amp;response_type=code&amp;scope=snsapi_base&amp;state=STATE&amp;agentid=AGENTID#wechat_redirect</a></p>
-</blockquote>
-<p>按照上面的流程图上面，这一步是不需要自己的后台参与的，但是还是需要传 <a target="_blank" rel="noopener" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=CORPID&redirect_uri=REDIRECT_URI&response_type=code&scope=snsapi_base&state=STATE&agentid=AGENTID#wechat_redirect"><code>REDIRECT_URI</code></a> </p>
-<p>理由是需要验证 参数 <code>CORPID</code> 和 <code>REDIRECT_URI</code> 的合法性</p>
-<p><code>REDIRECT_URI</code>  需要是你配置那个域名，我这边使用的是前端地址，你要用后端也行。</p>
-<pre class="line-numbers language-none"><code class="language-none">const redirectUri &#x3D; encodeURIComponent(window.location.href);
-const weChatAuthUrl &#x3D; &#96;https:&#x2F;&#x2F;open.weixin.qq.com&#x2F;connect&#x2F;oauth2&#x2F;authorize?appid&#x3D;&amp;redirect_uri&#x3D;$&#123;redirectUri&#125;&amp;response_type&#x3D;code&amp;scope&#x3D;snsapi_base&amp;state&#x3D;STATE&amp;agentid&#x3D;#wechat_redirect&#96;;
-window.location.href &#x3D; weChatAuthUrl;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+        <div class=".article-gallery"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>虽然我是一个全栈，但是我居然一直没写过jwt。</p>
+<p>因为我真的没有从头到尾，从前端到后端去负责过一个项目，全部自己做</p>
+<p>以至于我犯了一个低级错误，认为token，也就是jwt生成的token是可以延长时间的。</p>
+<p>哈哈哈哈哈，很尴尬</p>
+<h2 id="JWT-的基本机制"><a href="#JWT-的基本机制" class="headerlink" title="JWT 的基本机制"></a>JWT 的基本机制</h2><p>JWT（JSON Web Token）是一种用于身份验证和信息交换的开放标准。它的基本机制如下：</p>
+<ol>
+<li>组成：JWT 由三部分组成 - 头部（Header）、载荷（Payload）和签名（Signature）</li>
+<li>生成：服务器在用户登录成功后创建 JWT</li>
+<li>传递：服务器将 JWT 返回给客户端</li>
+<li>存储：客户端存储 JWT（通常在本地存储或 Cookie 中）</li>
+<li>使用：客户端在后续请求中携带 JWT（通常在 Authorization 头中）</li>
+<li>验证：服务器验证 JWT 的有效性和完整性</li>
+</ol>
+<h2 id="后端怎么做？或者说jwt原理是什么？"><a href="#后端怎么做？或者说jwt原理是什么？" class="headerlink" title="后端怎么做？或者说jwt原理是什么？"></a>后端怎么做？或者说jwt原理是什么？</h2><p>一般是引入第三方包。</p>
+<p>原理的话，我一开始以为是存储。后面发现不是</p>
+<p>因为看了源码<code>@nestjs/jwt</code>是用 HS256</p>
+<p>也就是通过那个字符串加密解密解决问题</p>
+<p>所以创建，刷新，验证，其实是一种加密算法，减小了存储的压力，但是计算的压力？</p>
+<p>所以也就不存在延长某个token的登录时间，因为一旦生成就是固定的。</p>
+<p>所以，你自己写也不是不行。</p>
+<h2 id="怎么刷新？"><a href="#怎么刷新？" class="headerlink" title="怎么刷新？"></a>怎么刷新？</h2><p>无非就是前端和后端谁做。一般是后端做</p>
+<p>就是请求的时候，验证token之后返回新token</p>
+<p>但是这个时间就很玩味了</p>
+<p>他频繁的请求，你每次都刷新很浪费。</p>
+<p>我一般是超过1个小时，继续请求就刷新token</p>
+<p>反正你了解了机制，按照你的需求考虑吧</p>
+<h2 id="前端接入-JWT"><a href="#前端接入-JWT" class="headerlink" title="前端接入 JWT"></a>前端接入 JWT</h2><p>前端接入 JWT 的基本步骤如下：</p>
+<ol>
+<li>登录：发送用户凭证到服务器，获取 JWT</li>
+<li>存储：将获取的 JWT 存储在本地（如 localStorage 或 sessionStorage）</li>
+<li>请求拦截：使用 Axios 等库设置请求拦截器，自动在每个请求的 header 中添加 JWT</li>
+<li>响应处理：处理 401（未授权）错误，可能需要刷新 token 或重新登录</li>
+<li>登出：清除存储的 JWT</li>
+</ol>
+<p>示例代码（使用 Axios）：</p>
+<pre class="line-numbers language-jsx" data-language="jsx"><code class="language-jsx">&#x2F;&#x2F; 存储 JWT
+const storeJWT &#x3D; (token) &#x3D;&gt; &#123;
+  localStorage.setItem(&#39;jwt&#39;, token);
+&#125;;
 
-<p>这样服务就会传给你类似这种连接</p>
-<pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;api.3dept.com&#x2F;cgi-bin&#x2F;query?action&#x3D;get&amp;code&#x3D;AAAAAAgG333qs9EdaPbCAP1VaOrjuNkiAZHTWgaWsZQ&amp;state&#x3D;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+&#x2F;&#x2F; 获取 JWT
+const getJWT &#x3D; () &#x3D;&gt; &#123;
+  return localStorage.getItem(&#39;jwt&#39;);
+&#125;;
 
-<p>所以上面的代码他会一直刷新页面，所以这里需要判断是否是在企业微信环境</p>
-<pre class="line-numbers language-none"><code class="language-none">navigator.userAgent.toLowerCase().match(&#x2F;wxwork&#x2F;i) &#x3D;&#x3D; &quot;wxwork&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+&#x2F;&#x2F; 设置请求拦截器
+axios.interceptors.request.use(config &#x3D;&gt; &#123;
+  const token &#x3D; getJWT();
+  if (token) &#123;
+    config.headers[&#39;Authorization&#39;] &#x3D; &#96;Bearer $&#123;token&#125;&#96;;
+  &#125;
+  return config;
+&#125;);
 
-<p>然后写一个判断即可</p>
-<h2 id="后端消费code"><a href="#后端消费code" class="headerlink" title="后端消费code"></a>后端消费code</h2><p><a target="_blank" rel="noopener" href="https://developer.work.weixin.qq.com/document/path/91023">获取访问用户身份 - 文档 - 企业微信开发者中心 (qq.com)</a></p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://qyapi.weixin.qq.com/cgi-bin/auth/getuserinfo?access_token=ACCESS_TOKEN&code=CODE">https://qyapi.weixin.qq.com/cgi-bin/auth/getuserinfo?access_token=ACCESS_TOKEN&amp;code=CODE</a></p>
-</blockquote>
-<p>需要先获取 <code>ACCESS_TOKEN</code></p>
-<p><a target="_blank" rel="noopener" href="https://developer.work.weixin.qq.com/document/path/91023#15074">https://developer.work.weixin.qq.com/document/path/91023#15074</a></p>
-<p><a target="_blank" rel="noopener" href="https://developer.work.weixin.qq.com/document/path/91039">获取access_token - 文档 - 企业微信开发者中心 (qq.com)</a></p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=ID&corpsecret=SECRET">https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=ID&amp;corpsecret=SECRET</a></p>
-</blockquote>
-<p>这个后端就好写了。</p>
-<p>无非几个请求，唯一觉得神奇的是</p>
-<pre class="line-numbers language-none"><code class="language-none">https:&#x2F;&#x2F;qyapi.weixin.qq.com&#x2F;cgi-bin&#x2F;user&#x2F;get?access_token&#x3D;&quot; + accessToken + &quot;&amp;userid&#x3D;&quot;
-                + userId;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 处理响应
+axios.interceptors.response.use(
+  response &#x3D;&gt; response,
+  error &#x3D;&gt; &#123;
+    if (error.response.status &#x3D;&#x3D;&#x3D; 401) &#123;
+      &#x2F;&#x2F; 处理未授权错误，如刷新 token 或重定向到登录页
+    &#125;
+    return Promise.reject(error);
+  &#125;
+);
 
-<p>还是能请求部分用户信息，按理说静默只能获取 <code>userid</code> 啊, 不过不重要。</p>
-<p>代码通了，不过需要处理用户直接刷新的问题</p>
-<h2 id="网页登录"><a href="#网页登录" class="headerlink" title="网页登录"></a>网页登录</h2><p>这个方案是不需要，但是查的时候顺便测试了一下，也可以，场景就是不在企业微信的环境里，通过扫描登录。</p>
-<p>前端</p>
-<pre class="line-numbers language-none"><code class="language-none">const urlParams &#x3D; new URLSearchParams(window.location.search);
-const user &#x3D; urlParams.get(&#39;user&#39;);
-if (user) &#123;
-    &#x2F;&#x2F; 假设user是一个JSON字符串，可以解析它
-    const parsedUser &#x3D; JSON.parse(decodeURIComponent(user));
-    this.$store.commit(&#39;setUser&#39;, parsedUser);
-&#125; else &#123;
-    &#x2F;&#x2F; 重定向到企业微信认证
-    const redirectUri &#x3D; encodeURIComponent(&#96;$&#123;window.location.origin&#125;&#x2F;wechat&#x2F;callback&#96;);
-    const weChatAuthUrl &#x3D; &#96;https:&#x2F;&#x2F;open.work.weixin.qq.com&#x2F;wwopen&#x2F;sso&#x2F;qrConnect?appid&#x3D;wwd93305cfd28429fb&amp;agentid&#x3D;1000025&amp;redirect_uri&#x3D;$&#123;redirectUri&#125;&amp;state&#x3D;STATE&#96;;
-    window.location.href &#x3D; weChatAuthUrl;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+&#x2F;&#x2F; 登出
+const logout &#x3D; () &#x3D;&gt; &#123;
+  localStorage.removeItem(&#39;jwt&#39;);
+  &#x2F;&#x2F; 重定向到登录页或首页
+&#125;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>这个 redirectUri  必须是后端的</p>
-<p>后端会接收一个 <code>code</code>，然后通过 <code>code + access_token</code> 获取用户信息，然后生成token或者用户信息，然后做一个浏览器的重定向给前端。</p>
-<p>代码量其实差别不大，甚至代码差别也不大</p>
-<p>这个方案的问题在于信息直接 <strong>get</strong> 传很丑陋, 虽然这玩意儿也不是什么秘密. 毕竟你 <strong>F12</strong> 或者拦截也能看得到，但是直接 <strong>url</strong> 里面传还是…</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p><a target="_blank" rel="noopener" href="https://developer.work.weixin.qq.com/document/path/90315#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%B0%83%E8%AF%95">https://developer.work.weixin.qq.com/document/path/90315#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%B0%83%E8%AF%95</a></p>
-<p>企业微信可以调试，详情见连接.</p>
-<p>这点我觉得比钉钉好多了。</p>
+<p>注意：JWT 是无状态的，服务器不能主动使其失效。因此，通常设置较短的过期时间并使用刷新 token 机制来平衡安全性和用户体验。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>thx</p>
 </div>
     </div>
 
     <div class="post-meta">
         <i>
         
-            <span>2024-12-03</span>
+            <span>2024-12-04</span>
             
                 <span>该篇文章被 tommy</span>
             
@@ -267,12 +277,12 @@ if (user) &#123;
                 <span>打上标签:
                     
                     
-                        <a href='/tags/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1/'>
-                            企业微信
+                        <a href='/tags/jwt/'>
+                            jwt
                         </a>
                     
-                        <a href='/tags/javascrip/'>
-                            javascrip
+                        <a href='/tags/%E5%8E%9F%E7%90%86/'>
+                            原理
                         </a>
                     
                 </span>
@@ -289,11 +299,11 @@ if (user) &#123;
     
             <div class="post-footer-pre-next">
                 
-                    <span>上一篇：<a href='/2024/12/04/202412/jwt/'>jwt实现原理</a></span>
+                    <span>上一篇：<a href='/2024/12/04/202412/eventsource_space/'>sse EventSource 空格</a></span>
                 
 
                 
-                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2024/12/02/202412/bitlocker/">bitlocker命令行解锁</a>
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2024/12/03/202412/company_wechat_login/">企业微信登录流程</a>
                     </span>
                 
             </div>
