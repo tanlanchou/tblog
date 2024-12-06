@@ -11,50 +11,44 @@
 
     
         
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+<link rel="stylesheet" href="/css/highlight/style1.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+        
+<link rel="stylesheet" href="/css/reset.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+        
+<link rel="stylesheet" href="/css/markdown.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+        
+<link rel="stylesheet" href="/css/fonts.css">
  
-            <!--注意：首页既不是post也不是page-->
+         <!--注意：首页既不是post也不是page-->
+        
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/waline.css">
+<link rel="stylesheet" href="/css/waline.css">
 
-            
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
  
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+        
+<link rel="stylesheet" href="/css/style.css">
 
-    
+
+        
             <!--返回顶部css-->
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
-
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+<link rel="stylesheet" href="/css/returnToTop.css">
 
             
-            
-                <!--目录-->
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+<link rel="stylesheet" href="/css/unicons.css">
 
+        
+        
+            <!--目录-->
             
+<link rel="stylesheet" href="/css/toc.css">
 
         
     
@@ -69,9 +63,8 @@
 <link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
 
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
     
     
 
@@ -165,7 +158,7 @@
                     
                         &nbsp; | &nbsp;
                     
-                     <span>字数总计：619</span>
+                     <span>字数总计：652</span>
                 
                 
                     
@@ -194,75 +187,28 @@
 <p>本质上是一种长链接，所以是服务器单向浏览器（或者说客户端）的一种方式</p>
 <p>但是这次我纠结的是 <code>EventSource</code></p>
 <h2 id="基本情况"><a href="#基本情况" class="headerlink" title="基本情况"></a>基本情况</h2><p>写了一个超简单的接收</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> fullUrl <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>myUrl<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string">?</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>params<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
-<span class="token keyword">let</span> eventSource <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EventSource</span><span class="token punctuation">(</span>fullUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
-eventSource<span class="token punctuation">.</span><span class="token function-variable function">onopen</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-eventSource<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>data <span class="token operator">===</span> <span class="token string">"[DONE]"</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>aiReturnDataLoading <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-    eventSource<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    eventSource <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>aiReturnData <span class="token operator">+=</span> event<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getBottom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-eventSource<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fullUrl = <span class="string">`<span class="subst">$&#123;myUrl&#125;</span>?<span class="subst">$&#123;params.toString()&#125;</span>`</span>;</span><br><span class="line"><span class="keyword">let</span> eventSource = <span class="keyword">new</span> <span class="title class_">EventSource</span>(fullUrl);</span><br><span class="line">eventSource.<span class="property">onopen</span> = <span class="function">() =&gt;</span> &#123;&#125;;</span><br><span class="line">eventSource.<span class="property">onmessage</span> = <span class="keyword">async</span> (event) =&gt; &#123;</span><br><span class="line">  <span class="keyword">if</span> (event.<span class="property">data</span> === <span class="string">&quot;[DONE]&quot;</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">aiReturnDataLoading</span> = <span class="literal">false</span>;</span><br><span class="line">    eventSource.<span class="title function_">close</span>();</span><br><span class="line">    eventSource = <span class="literal">null</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">aiReturnData</span> += event.<span class="property">data</span>;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">getBottom</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">eventSource.<span class="property">onerror</span> = <span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>传的是markdown，但是发现markdown是乱的，就是有些不解析。</p>
 <p>打出来以后发现是后端没传空格</p>
-<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">-aaaa<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-aaaa</span><br></pre></td></tr></table></figure>
 
 <p>没有空格就没法解析。</p>
 <p>后端直接用了curl给我打出来了，有空格</p>
-<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">data: \n<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data: \n</span><br></pre></td></tr></table></figure>
 
 <p><code>\n</code> 前面确实有空格，但是为什么我这里只能收到一个空字符串？</p>
 <p>于是查了下文档也就是阮一峰的哪个</p>
-<pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">data:  message\n\n<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data:  message\n\n</span><br></pre></td></tr></table></figure>
 
 <p>也就是说 <code>message</code> 前面是有空格的, 于是自己写了一个 <strong>sse</strong> 的服务</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/stream"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-  <span class="token comment">// 设置响应头</span>
-  res<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Content-Type"</span><span class="token punctuation">,</span> <span class="token string">"text/event-stream"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  res<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Cache-Control"</span><span class="token punctuation">,</span> <span class="token string">"no-cache"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  res<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"Connection"</span><span class="token punctuation">,</span> <span class="token string">"keep-alive"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  <span class="token keyword">const</span> message <span class="token operator">=</span>
-    <span class="token string">"djslkadjlaksjdlkasjdlkasjdlkasjdlkasjdlsajlkjdlakjsdlajldkjaslkd"</span><span class="token punctuation">;</span>
-  <span class="token keyword">let</span> index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-
-  <span class="token keyword">const</span> interval <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">&lt;</span> message<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-      <span class="token keyword">const</span> char <span class="token operator">=</span> message<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      res<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">data: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>char<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string"> \n\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      res<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">data:  \n\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      index<span class="token operator">++</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
-      <span class="token function">clearInterval</span><span class="token punctuation">(</span>interval<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">&#125;</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  req<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">"close"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">&#123;</span>
-    <span class="token function">clearInterval</span><span class="token punctuation">(</span>interval<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Client disconnected"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="title function_">get</span>(<span class="string">&quot;/stream&quot;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 设置响应头</span></span><br><span class="line">  res.<span class="title function_">setHeader</span>(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;text/event-stream&quot;</span>);</span><br><span class="line">  res.<span class="title function_">setHeader</span>(<span class="string">&quot;Cache-Control&quot;</span>, <span class="string">&quot;no-cache&quot;</span>);</span><br><span class="line">  res.<span class="title function_">setHeader</span>(<span class="string">&quot;Connection&quot;</span>, <span class="string">&quot;keep-alive&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> message =</span><br><span class="line">    <span class="string">&quot;djslkadjlaksjdlkasjdlkasjdlkasjdlkasjdlsajlkjdlakjsdlajldkjaslkd&quot;</span>;</span><br><span class="line">  <span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> interval = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; message.<span class="property">length</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> char = message.<span class="title function_">charAt</span>(index);</span><br><span class="line">      res.<span class="title function_">write</span>(<span class="string">`data: <span class="subst">$&#123;char&#125;</span> \n\n`</span>);</span><br><span class="line">      res.<span class="title function_">write</span>(<span class="string">`data:  \n\n`</span>);</span><br><span class="line">      index++;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">clearInterval</span>(interval);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">  req.<span class="title function_">on</span>(<span class="string">&quot;close&quot;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">clearInterval</span>(interval);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;Client disconnected&quot;</span>);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>反复修改了 res.write 的空格，然后前端调用</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token keyword">const</span> eventSource <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">EventSource</span><span class="token punctuation">(</span><span class="token string">'/stream'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-eventSource<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">)</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">.</span>length<span class="token punctuation">)</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
-eventSource<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'EventSource failed:'</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> eventSource = <span class="keyword">new</span> <span class="title class_">EventSource</span>(<span class="string">&#x27;/stream&#x27;</span>);</span><br><span class="line">eventSource.<span class="property">onmessage</span> = <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(event.<span class="property">data</span>)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(event.<span class="property">data</span>.<span class="property">length</span>)</span><br><span class="line">&#125;;</span><br><span class="line">eventSource.<span class="property">onerror</span> = <span class="keyword">function</span>(<span class="params">err</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;EventSource failed:&#x27;</span>, err);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <p>证明了一个事实</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token literal-property property">data</span><span class="token operator">:</span>空格message\n\n<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">data</span>:空格message\n\n</span><br></pre></td></tr></table></figure>
 
 <p>必须要有空格，后端给我看了下 <strong>java</strong> 源码，确实没有 <code>append</code> 空格, 不是很理解，不过可以手动了空格以后问题解决</p>
 <p>为了严谨我还是查了下官方文档</p>
@@ -311,9 +257,11 @@ eventSource<span class="token punctuation">.</span><span class="token function-v
     
             <div class="post-footer-pre-next">
                 
+                    <span>上一篇：<a href='/2024/12/05/202412/jwt/'>jwt实现原理</a></span>
+                
 
                 
-                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2024/12/04/202412/jwt/">jwt实现原理</a>
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2024/12/03/202412/company_wechat_login/">企业微信登录流程</a>
                     </span>
                 
             </div>
@@ -400,36 +348,34 @@ eventSource<span class="token punctuation">.</span><span class="token function-v
 
 
     
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
-
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
-
-        <!--回到顶部按钮-->
-        
-            
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
-
-        
-        
-        <!--目录-->
-        
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
-
-        
+    <!--目录-->
     
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
 
 
 

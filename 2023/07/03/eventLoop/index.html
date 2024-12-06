@@ -11,50 +11,44 @@
 
     
         
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+<link rel="stylesheet" href="/css/highlight/style1.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+        
+<link rel="stylesheet" href="/css/reset.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+        
+<link rel="stylesheet" href="/css/markdown.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+        
+<link rel="stylesheet" href="/css/fonts.css">
  
-            <!--注意：首页既不是post也不是page-->
+         <!--注意：首页既不是post也不是page-->
+        
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/waline.css">
+<link rel="stylesheet" href="/css/waline.css">
 
-            
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
  
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+        
+<link rel="stylesheet" href="/css/style.css">
 
-    
+
+        
             <!--返回顶部css-->
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
-
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+<link rel="stylesheet" href="/css/returnToTop.css">
 
             
-            
-                <!--目录-->
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+<link rel="stylesheet" href="/css/unicons.css">
 
+        
+        
+            <!--目录-->
             
+<link rel="stylesheet" href="/css/toc.css">
 
         
     
@@ -69,9 +63,8 @@
 <link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
 
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
     
     
 
@@ -190,7 +183,7 @@
                 <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-V8%E5%BC%95%E6%93%8E"><span class="post-toc-text">1. V8引擎</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-%E4%BB%80%E4%B9%88%E6%98%AFjs%E7%BA%BF%E7%A8%8B%E5%92%8C%E6%B8%B2%E6%9F%93%E7%BA%BF%E7%A8%8B"><span class="post-toc-text">2. 什么是js线程和渲染线程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%EF%BC%9F"><span class="post-toc-text">3. 事件循环是怎么做的？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-setTimeout%EF%BC%8C%E7%BD%91%E7%BB%9C%E8%AF%B7%E6%B1%82%E6%98%AF%E6%80%8E%E4%B9%88%E5%81%9A%E7%9A%84%EF%BC%9F"><span class="post-toc-text">4. setTimeout，网络请求是怎么做的？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-%E4%B8%BA%E4%BB%80%E4%B9%88js%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="post-toc-text">5. 为什么js是单线程？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-%E5%BE%AE%E4%BB%BB%E5%8A%A1%EF%BC%8C%E5%AE%8F%E4%BB%BB%E5%8A%A1"><span class="post-toc-text">6. 微任务，宏任务</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-%E7%AC%AC%E4%B8%80%E9%A2%98"><span class="post-toc-text">7. 第一题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-%E7%AC%AC%E4%BA%8C%E9%A2%98"><span class="post-toc-text">8. 第二题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-%E7%AC%AC%E4%B8%89%E9%A2%98"><span class="post-toc-text">9. 第三题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-%E7%AC%AC%E5%9B%9B%E9%A2%98"><span class="post-toc-text">9. 第四题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#10-%E6%80%BB%E7%BB%93"><span class="post-toc-text">10. 总结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#11-%E5%BC%95%E7%94%A8"><span class="post-toc-text">11. 引用</span></a></li></ol>
             
         
-        <h3 id="1-V8引擎"><a href="#1-V8引擎" class="headerlink" title="1. V8引擎"></a>1. V8引擎</h3><p>当我们有段 javascript 是如何执行的？</p>
+        <div class=".article-gallery"><h3 id="1-V8引擎"><a href="#1-V8引擎" class="headerlink" title="1. V8引擎"></a>1. V8引擎</h3><p>当我们有段 javascript 是如何执行的？</p>
 <p>当浏览器解析到一段javascript，会将 javascript 交给 js引擎，引擎去做一系列事情。</p>
 <p>词法分析，语法分析，编译，优化之类的，但是如果要关联到我们常用的js，非常重要的就是，堆和栈，下面是堆栈的简单解释。</p>
 <blockquote>
@@ -348,7 +341,7 @@
 <li><a target="_blank" rel="noopener" href="https://html.spec.whatwg.org/multipage/webappapis.html#event-loops">event-loops</a></li>
 <li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904087163502605">异步任务(微任务、宏任务)，你学会了吗？还有4道面试题</a></li>
 </ul>
-
+</div>
     </div>
 
     <div class="post-meta">
@@ -487,36 +480,34 @@
 
 
     
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
-
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
-
-        <!--回到顶部按钮-->
-        
-            
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
-
-        
-        
-        <!--目录-->
-        
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
-
-        
+    <!--目录-->
     
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
 
 
 

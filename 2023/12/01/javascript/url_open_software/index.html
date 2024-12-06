@@ -11,50 +11,44 @@
 
     
         
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+<link rel="stylesheet" href="/css/highlight/style1.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+        
+<link rel="stylesheet" href="/css/reset.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+        
+<link rel="stylesheet" href="/css/markdown.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+        
+<link rel="stylesheet" href="/css/fonts.css">
  
-            <!--注意：首页既不是post也不是page-->
+         <!--注意：首页既不是post也不是page-->
+        
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/waline.css">
+<link rel="stylesheet" href="/css/waline.css">
 
-            
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
  
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+        
+<link rel="stylesheet" href="/css/style.css">
 
-    
+
+        
             <!--返回顶部css-->
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
-
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+<link rel="stylesheet" href="/css/returnToTop.css">
 
             
-            
-                <!--目录-->
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+<link rel="stylesheet" href="/css/unicons.css">
 
+        
+        
+            <!--目录-->
             
+<link rel="stylesheet" href="/css/toc.css">
 
         
     
@@ -69,9 +63,8 @@
 <link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
 
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
     
     
 
@@ -190,7 +183,7 @@
                 <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#01-url-%E5%A6%82%E4%BD%95%E5%85%B3%E8%81%94%E5%88%B0%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="post-toc-text">01. url 如何关联到应用程序?</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#02-%E5%8D%8F%E8%AE%AE%E6%80%8E%E4%B9%88%E6%9D%A5%E7%9A%84"><span class="post-toc-text">02. 协议怎么来的?</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#03-html-%E5%A6%82%E4%BD%95%E7%9F%A5%E9%81%93%E5%8D%8F%E8%AE%AE%E6%98%AF%E5%90%A6%E6%89%93%E5%BC%80"><span class="post-toc-text">03. html 如何知道协议是否打开?</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E6%80%BB%E7%BB%93"><span class="post-toc-text">04. 总结</span></a></li></ol></li></ol></li></ol>
             
         
-        <h1 id="01-url-如何关联到应用程序"><a href="#01-url-如何关联到应用程序" class="headerlink" title="01. url 如何关联到应用程序?"></a>01. url 如何关联到应用程序?</h1><p>做过html肯定都知道下面这段代码</p>
+        <div class=".article-gallery"><h1 id="01-url-如何关联到应用程序"><a href="#01-url-如何关联到应用程序" class="headerlink" title="01. url 如何关联到应用程序?"></a>01. url 如何关联到应用程序?</h1><p>做过html肯定都知道下面这段代码</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;mailto:xxx@xxx.com&quot;</span>&gt;</span>发送邮件<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>通过<code>href</code>属性，我们可以指定一个url，当用户点击这个链接的时候，浏览器就会打开一个新的浏览器窗口，并且打开一个新的邮件客户端，并将邮件地址填入其中。</p>
@@ -223,7 +216,7 @@
 <p>其实百度盘页面点下载, 打开F12 其实就知道了.</p>
 <h3 id="04-总结"><a href="#04-总结" class="headerlink" title="04. 总结"></a>04. 总结</h3><p>最优情况还是使用百度的方案, 最稳定, 有就一定有, 不怕浏览器兼容性问题.</p>
 <p>前提是需要软件是你自己的, 如果不是你自己的, 就只能看别人是否实现这一套或者你加一个启动器..</p>
-
+</div>
     </div>
 
     <div class="post-meta">
@@ -350,36 +343,34 @@
 
 
     
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
-
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
-
-        <!--回到顶部按钮-->
-        
-            
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
-
-        
-        
-        <!--目录-->
-        
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
-
-        
+    <!--目录-->
     
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
 
 
 

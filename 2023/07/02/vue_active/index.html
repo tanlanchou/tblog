@@ -11,50 +11,44 @@
 
     
         
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+<link rel="stylesheet" href="/css/highlight/style1.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+        
+<link rel="stylesheet" href="/css/reset.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+        
+<link rel="stylesheet" href="/css/markdown.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+        
+<link rel="stylesheet" href="/css/fonts.css">
  
-            <!--注意：首页既不是post也不是page-->
+         <!--注意：首页既不是post也不是page-->
+        
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/waline.css">
+<link rel="stylesheet" href="/css/waline.css">
 
-            
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
  
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+        
+<link rel="stylesheet" href="/css/style.css">
 
-    
+
+        
             <!--返回顶部css-->
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
-
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+<link rel="stylesheet" href="/css/returnToTop.css">
 
             
-            
-                <!--目录-->
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+<link rel="stylesheet" href="/css/unicons.css">
 
+        
+        
+            <!--目录-->
             
+<link rel="stylesheet" href="/css/toc.css">
 
         
     
@@ -69,9 +63,8 @@
 <link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
 
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
     
     
 
@@ -190,7 +183,7 @@
                 <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-Vue3-x-onActivated"><span class="post-toc-text">1. Vue3.x onActivated</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Vue2-x-actived"><span class="post-toc-text">Vue2.x actived</span></a></li></ol>
             
         
-        <h3 id="1-Vue3-x-onActivated"><a href="#1-Vue3-x-onActivated" class="headerlink" title="1. Vue3.x onActivated"></a>1. Vue3.x onActivated</h3><p><code>keep-alive</code>  的源码之前看了大概看过，可以看这里 <a href="/tblog/2023/06/29/vue3_keep_alive/">keep-alive</a></p>
+        <div class=".article-gallery"><h3 id="1-Vue3-x-onActivated"><a href="#1-Vue3-x-onActivated" class="headerlink" title="1. Vue3.x onActivated"></a>1. Vue3.x onActivated</h3><p><code>keep-alive</code>  的源码之前看了大概看过，可以看这里 <a href="/tblog/2023/06/29/vue3_keep_alive/">keep-alive</a></p>
 <p><code>active</code> 会在 <code>processComponent</code> 当中调用</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">processComponent</span> = (<span class="params">n1, n2, container, anchor, parentComponent, parentSuspense, isSVG, slotScopeIds, optimized</span>) =&gt; &#123;</span><br><span class="line">    n2.<span class="property">slotScopeIds</span> = slotScopeIds;</span><br><span class="line">    <span class="keyword">if</span> (n1 == <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (n2.<span class="property">shapeFlag</span> &amp; <span class="number">512</span> <span class="comment">/* ShapeFlags.COMPONENT_KEPT_ALIVE */</span>) &#123;</span><br><span class="line">            parentComponent.<span class="property">ctx</span>.<span class="title function_">activate</span>(n2, container, anchor, isSVG, optimized);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="title function_">mountComponent</span>(n2, container, anchor, parentComponent, parentSuspense, isSVG, optimized);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="title function_">updateComponent</span>(n1, n2, optimized);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -213,7 +206,7 @@
 
 <p>也就是说通过 <strong>Object.defineProperty &#x3D;&gt; set &#x3D;&gt; dep &#x3D;&gt; 触发 watcher &#x3D;&gt; 触发更新 &#x3D;&gt; _update &#x3D;&gt; patch &#x3D;&gt; initComponent &#x3D;&gt; 然后加入队列</strong></p>
 <p>最后在 patch 结束以后，统一调用.</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">invokeInsertHook</span>(vnode, insertedVnodeQueue, isInitialPatch);</span><br></pre></td></tr></table></figure>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">invokeInsertHook</span>(vnode, insertedVnodeQueue, isInitialPatch);</span><br></pre></td></tr></table></figure></div>
     </div>
 
     <div class="post-meta">
@@ -352,36 +345,34 @@
 
 
     
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
-
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
-
-        <!--回到顶部按钮-->
-        
-            
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
-
-        
-        
-        <!--目录-->
-        
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
-
-        
+    <!--目录-->
     
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
 
 
 

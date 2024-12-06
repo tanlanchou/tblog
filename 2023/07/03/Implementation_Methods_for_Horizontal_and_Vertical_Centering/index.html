@@ -11,50 +11,44 @@
 
     
         
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+<link rel="stylesheet" href="/css/highlight/style1.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+        
+<link rel="stylesheet" href="/css/reset.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+        
+<link rel="stylesheet" href="/css/markdown.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+        
+<link rel="stylesheet" href="/css/fonts.css">
  
-            <!--注意：首页既不是post也不是page-->
+         <!--注意：首页既不是post也不是page-->
+        
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/waline.css">
+<link rel="stylesheet" href="/css/waline.css">
 
-            
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
  
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+        
+<link rel="stylesheet" href="/css/style.css">
 
-    
+
+        
             <!--返回顶部css-->
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
-
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+<link rel="stylesheet" href="/css/returnToTop.css">
 
             
-            
-                <!--目录-->
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+<link rel="stylesheet" href="/css/unicons.css">
 
+        
+        
+            <!--目录-->
             
+<link rel="stylesheet" href="/css/toc.css">
 
         
     
@@ -69,9 +63,8 @@
 <link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
 
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
     
     
 
@@ -190,7 +183,7 @@
                 <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-flex-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"><span class="post-toc-text">01. flex 基本知识</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-flex-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="post-toc-text">02. flex 垂直居中</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-grid-%E5%B8%83%E5%B1%80%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"><span class="post-toc-text">03. grid 布局基本知识</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-grid-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="post-toc-text">04. grid 垂直居中</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-table"><span class="post-toc-text">05. table</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#06-absolute"><span class="post-toc-text">06. absolute</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#07-%E6%80%BB%E7%BB%93"><span class="post-toc-text">07. 总结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#08-%E5%BC%95%E7%94%A8"><span class="post-toc-text">08. 引用</span></a></li></ol>
             
         
-        <p>一般方案上来说很多。</p>
+        <div class=".article-gallery"><p>一般方案上来说很多。</p>
 <ol>
 <li>flex</li>
 <li>grid</li>
@@ -198,7 +191,7 @@
 <li>absolute</li>
 </ol>
 <h3 id="01-flex-基本知识"><a href="#01-flex-基本知识" class="headerlink" title="01. flex 基本知识"></a>01. flex 基本知识</h3><p>做这个之前需要先简单知道一下 flex 是做什么的，阮一峰的那一篇就挺好。</p>
-<p><img src="/tblog/img/bg2015071004.png" alt="alt text"></p>
+<p><a href="/img/bg2015071004.png" title="alt text" class="gallery-item" style="box-shadow: none;"> <img src="/img/bg2015071004.png" alt="alt text"></a></p>
 <blockquote>
 <p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。</p>
 <p>项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。</p>
@@ -291,7 +284,7 @@
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/JHXL_/article/details/124046715">一文教会你何为重绘、回流？</a></li>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/chunxiaqiudong5/article/details/104049484">CSS 变形(CSS3) transform</a></li>
 </ul>
-
+</div>
     </div>
 
     <div class="post-meta">
@@ -434,36 +427,34 @@
 
 
     
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
-
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
-
-        <!--回到顶部按钮-->
-        
-            
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
-
-        
-        
-        <!--目录-->
-        
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
-
-        
+    <!--目录-->
     
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
 
 
 

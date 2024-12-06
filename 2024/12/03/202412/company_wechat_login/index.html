@@ -11,50 +11,44 @@
 
     
         
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+<link rel="stylesheet" href="/css/highlight/style1.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+        
+<link rel="stylesheet" href="/css/reset.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+        
+<link rel="stylesheet" href="/css/markdown.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+        
+<link rel="stylesheet" href="/css/fonts.css">
  
-            <!--注意：首页既不是post也不是page-->
+         <!--注意：首页既不是post也不是page-->
+        
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/waline.css">
+<link rel="stylesheet" href="/css/waline.css">
 
-            
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
  
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+        
+<link rel="stylesheet" href="/css/style.css">
 
-    
+
+        
             <!--返回顶部css-->
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
-
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+<link rel="stylesheet" href="/css/returnToTop.css">
 
             
-            
-                <!--目录-->
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+<link rel="stylesheet" href="/css/unicons.css">
 
+        
+        
+            <!--目录-->
             
+<link rel="stylesheet" href="/css/toc.css">
 
         
     
@@ -69,9 +63,8 @@
 <link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
 
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
     
     
 
@@ -165,7 +158,7 @@
                     
                         &nbsp; | &nbsp;
                     
-                     <span>字数总计：901</span>
+                     <span>字数总计：842</span>
                 
                 
                     
@@ -203,15 +196,13 @@
 <p>按照上面的流程图上面，这一步是不需要自己的后台参与的，但是还是需要传 <a target="_blank" rel="noopener" href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=CORPID&redirect_uri=REDIRECT_URI&response_type=code&scope=snsapi_base&state=STATE&agentid=AGENTID#wechat_redirect"><code>REDIRECT_URI</code></a> </p>
 <p>理由是需要验证 参数 <code>CORPID</code> 和 <code>REDIRECT_URI</code> 的合法性</p>
 <p><code>REDIRECT_URI</code>  需要是你配置那个域名，我这边使用的是前端地址，你要用后端也行。</p>
-<pre class="line-numbers language-none"><code class="language-none">const redirectUri &#x3D; encodeURIComponent(window.location.href);
-const weChatAuthUrl &#x3D; &#96;https:&#x2F;&#x2F;open.weixin.qq.com&#x2F;connect&#x2F;oauth2&#x2F;authorize?appid&#x3D;&amp;redirect_uri&#x3D;$&#123;redirectUri&#125;&amp;response_type&#x3D;code&amp;scope&#x3D;snsapi_base&amp;state&#x3D;STATE&amp;agentid&#x3D;#wechat_redirect&#96;;
-window.location.href &#x3D; weChatAuthUrl;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const redirectUri = encodeURIComponent(window.location.href);</span><br><span class="line">const weChatAuthUrl = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=&amp;redirect_uri=$&#123;redirectUri&#125;&amp;response_type=code&amp;scope=snsapi_base&amp;state=STATE&amp;agentid=#wechat_redirect`;</span><br><span class="line">window.location.href = weChatAuthUrl;</span><br></pre></td></tr></table></figure>
 
 <p>这样服务就会传给你类似这种连接</p>
-<pre class="line-numbers language-none"><code class="language-none">http:&#x2F;&#x2F;api.3dept.com&#x2F;cgi-bin&#x2F;query?action&#x3D;get&amp;code&#x3D;AAAAAAgG333qs9EdaPbCAP1VaOrjuNkiAZHTWgaWsZQ&amp;state&#x3D;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://api.3dept.com/cgi-bin/query?action=get&amp;code=AAAAAAgG333qs9EdaPbCAP1VaOrjuNkiAZHTWgaWsZQ&amp;state=</span><br></pre></td></tr></table></figure>
 
 <p>所以上面的代码他会一直刷新页面，所以这里需要判断是否是在企业微信环境</p>
-<pre class="line-numbers language-none"><code class="language-none">navigator.userAgent.toLowerCase().match(&#x2F;wxwork&#x2F;i) &#x3D;&#x3D; &quot;wxwork&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">navigator.userAgent.toLowerCase().match(/wxwork/i) == &quot;wxwork&quot;</span><br></pre></td></tr></table></figure>
 
 <p>然后写一个判断即可</p>
 <h2 id="后端消费code"><a href="#后端消费code" class="headerlink" title="后端消费code"></a>后端消费code</h2><p><a target="_blank" rel="noopener" href="https://developer.work.weixin.qq.com/document/path/91023">获取访问用户身份 - 文档 - 企业微信开发者中心 (qq.com)</a></p>
@@ -226,25 +217,13 @@ window.location.href &#x3D; weChatAuthUrl;<span aria-hidden="true" class="line-n
 </blockquote>
 <p>这个后端就好写了。</p>
 <p>无非几个请求，唯一觉得神奇的是</p>
-<pre class="line-numbers language-none"><code class="language-none">https:&#x2F;&#x2F;qyapi.weixin.qq.com&#x2F;cgi-bin&#x2F;user&#x2F;get?access_token&#x3D;&quot; + accessToken + &quot;&amp;userid&#x3D;&quot;
-                + userId;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">https://qyapi.weixin.qq.com/cgi-bin/user/get?access_token=&quot; + accessToken + &quot;&amp;userid=&quot;</span><br><span class="line">                + userId;</span><br></pre></td></tr></table></figure>
 
 <p>还是能请求部分用户信息，按理说静默只能获取 <code>userid</code> 啊, 不过不重要。</p>
 <p>代码通了，不过需要处理用户直接刷新的问题</p>
 <h2 id="网页登录"><a href="#网页登录" class="headerlink" title="网页登录"></a>网页登录</h2><p>这个方案是不需要，但是查的时候顺便测试了一下，也可以，场景就是不在企业微信的环境里，通过扫描登录。</p>
 <p>前端</p>
-<pre class="line-numbers language-none"><code class="language-none">const urlParams &#x3D; new URLSearchParams(window.location.search);
-const user &#x3D; urlParams.get(&#39;user&#39;);
-if (user) &#123;
-    &#x2F;&#x2F; 假设user是一个JSON字符串，可以解析它
-    const parsedUser &#x3D; JSON.parse(decodeURIComponent(user));
-    this.$store.commit(&#39;setUser&#39;, parsedUser);
-&#125; else &#123;
-    &#x2F;&#x2F; 重定向到企业微信认证
-    const redirectUri &#x3D; encodeURIComponent(&#96;$&#123;window.location.origin&#125;&#x2F;wechat&#x2F;callback&#96;);
-    const weChatAuthUrl &#x3D; &#96;https:&#x2F;&#x2F;open.work.weixin.qq.com&#x2F;wwopen&#x2F;sso&#x2F;qrConnect?appid&#x3D;wwd93305cfd28429fb&amp;agentid&#x3D;1000025&amp;redirect_uri&#x3D;$&#123;redirectUri&#125;&amp;state&#x3D;STATE&#96;;
-    window.location.href &#x3D; weChatAuthUrl;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const urlParams = new URLSearchParams(window.location.search);</span><br><span class="line">const user = urlParams.get(&#x27;user&#x27;);</span><br><span class="line">if (user) &#123;</span><br><span class="line">    // 假设user是一个JSON字符串，可以解析它</span><br><span class="line">    const parsedUser = JSON.parse(decodeURIComponent(user));</span><br><span class="line">    this.$store.commit(&#x27;setUser&#x27;, parsedUser);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    // 重定向到企业微信认证</span><br><span class="line">    const redirectUri = encodeURIComponent(`$&#123;window.location.origin&#125;/wechat/callback`);</span><br><span class="line">    const weChatAuthUrl = `https://open.work.weixin.qq.com/wwopen/sso/qrConnect?appid=wwd93305cfd28429fb&amp;agentid=1000025&amp;redirect_uri=$&#123;redirectUri&#125;&amp;state=STATE`;</span><br><span class="line">    window.location.href = weChatAuthUrl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这个 redirectUri  必须是后端的</p>
 <p>后端会接收一个 <code>code</code>，然后通过 <code>code + access_token</code> 获取用户信息，然后生成token或者用户信息，然后做一个浏览器的重定向给前端。</p>
@@ -289,7 +268,7 @@ if (user) &#123;
     
             <div class="post-footer-pre-next">
                 
-                    <span>上一篇：<a href='/2024/12/04/202412/jwt/'>jwt实现原理</a></span>
+                    <span>上一篇：<a href='/2024/12/04/202412/eventsource_space/'>sse EventSource 空格</a></span>
                 
 
                 
@@ -380,36 +359,34 @@ if (user) &#123;
 
 
     
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
-
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
-
-        <!--回到顶部按钮-->
-        
-            
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
-
-        
-        
-        <!--目录-->
-        
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
-
-        
+    <!--目录-->
     
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
 
 
 

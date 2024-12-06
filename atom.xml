@@ -3,11 +3,11 @@
   <title>成天乱写</title>
   
   <subtitle>代码和生活</subtitle>
-  <link href="https://tanlanchou.github.io/atom.xml" rel="self"/>
+  <link href="https://callmetommy.cn/atom.xml" rel="self"/>
   
-  <link href="https://tanlanchou.github.io/"/>
-  <updated>2024-12-03T08:10:53.501Z</updated>
-  <id>https://tanlanchou.github.io/</id>
+  <link href="https://callmetommy.cn/"/>
+  <updated>2024-12-05T03:25:01.232Z</updated>
+  <id>https://callmetommy.cn/</id>
   
   <author>
     <name>tommy</name>
@@ -17,9 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>jwt实现原理</title>
+    <link href="https://callmetommy.cn/2024/12/05/202412/jwt/"/>
+    <id>https://callmetommy.cn/2024/12/05/202412/jwt/</id>
+    <published>2024-12-05T14:47:01.000Z</published>
+    <updated>2024-12-05T03:25:01.232Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="jwt" scheme="https://callmetommy.cn/tags/jwt/"/>
+    
+    <category term="原理" scheme="https://callmetommy.cn/tags/%E5%8E%9F%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
     <title>sse EventSource 空格</title>
-    <link href="https://tanlanchou.github.io/2024/12/04/202412/eventsource_space/"/>
-    <id>https://tanlanchou.github.io/2024/12/04/202412/eventsource_space/</id>
+    <link href="https://callmetommy.cn/2024/12/04/202412/eventsource_space/"/>
+    <id>https://callmetommy.cn/2024/12/04/202412/eventsource_space/</id>
     <published>2024-12-04T14:47:01.000Z</published>
     <updated>2024-12-03T08:10:53.501Z</updated>
     
@@ -35,41 +60,16 @@
     
     
     
-    <category term="javascript" scheme="https://tanlanchou.github.io/tags/javascript/"/>
+    <category term="javascript" scheme="https://callmetommy.cn/tags/javascript/"/>
     
-    <category term="eventsource" scheme="https://tanlanchou.github.io/tags/eventsource/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>jwt实现原理</title>
-    <link href="https://tanlanchou.github.io/2024/12/04/202412/jwt/"/>
-    <id>https://tanlanchou.github.io/2024/12/04/202412/jwt/</id>
-    <published>2024-12-04T14:47:01.000Z</published>
-    <updated>2024-12-04T03:00:25.392Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="jwt" scheme="https://tanlanchou.github.io/tags/jwt/"/>
-    
-    <category term="原理" scheme="https://tanlanchou.github.io/tags/%E5%8E%9F%E7%90%86/"/>
+    <category term="eventsource" scheme="https://callmetommy.cn/tags/eventsource/"/>
     
   </entry>
   
   <entry>
     <title>企业微信登录流程</title>
-    <link href="https://tanlanchou.github.io/2024/12/03/202412/company_wechat_login/"/>
-    <id>https://tanlanchou.github.io/2024/12/03/202412/company_wechat_login/</id>
+    <link href="https://callmetommy.cn/2024/12/03/202412/company_wechat_login/"/>
+    <id>https://callmetommy.cn/2024/12/03/202412/company_wechat_login/</id>
     <published>2024-12-03T14:47:01.000Z</published>
     <updated>2024-12-03T08:09:17.630Z</updated>
     
@@ -86,16 +86,16 @@
     
     
     
-    <category term="企业微信" scheme="https://tanlanchou.github.io/tags/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1/"/>
+    <category term="企业微信" scheme="https://callmetommy.cn/tags/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1/"/>
     
-    <category term="javascrip" scheme="https://tanlanchou.github.io/tags/javascrip/"/>
+    <category term="javascrip" scheme="https://callmetommy.cn/tags/javascrip/"/>
     
   </entry>
   
   <entry>
     <title>bitlocker命令行解锁</title>
-    <link href="https://tanlanchou.github.io/2024/12/02/202412/bitlocker/"/>
-    <id>https://tanlanchou.github.io/2024/12/02/202412/bitlocker/</id>
+    <link href="https://callmetommy.cn/2024/12/02/202412/bitlocker/"/>
+    <id>https://callmetommy.cn/2024/12/02/202412/bitlocker/</id>
     <published>2024-12-02T14:47:01.000Z</published>
     <updated>2024-12-03T06:22:44.028Z</updated>
     
@@ -111,18 +111,18 @@
     
     
     
-    <category term="java" scheme="https://tanlanchou.github.io/tags/java/"/>
+    <category term="java" scheme="https://callmetommy.cn/tags/java/"/>
     
-    <category term="bitlocker" scheme="https://tanlanchou.github.io/tags/bitlocker/"/>
+    <category term="bitlocker" scheme="https://callmetommy.cn/tags/bitlocker/"/>
     
-    <category term="bash" scheme="https://tanlanchou.github.io/tags/bash/"/>
+    <category term="bash" scheme="https://callmetommy.cn/tags/bash/"/>
     
   </entry>
   
   <entry>
     <title>setInterval 浏览器执行频率</title>
-    <link href="https://tanlanchou.github.io/2024/03/11/javascript/setInterval_browser_execution_frequency/"/>
-    <id>https://tanlanchou.github.io/2024/03/11/javascript/setInterval_browser_execution_frequency/</id>
+    <link href="https://callmetommy.cn/2024/03/11/javascript/setInterval_browser_execution_frequency/"/>
+    <id>https://callmetommy.cn/2024/03/11/javascript/setInterval_browser_execution_frequency/</id>
     <published>2024-03-11T08:36:00.000Z</published>
     <updated>2024-12-02T05:28:09.910Z</updated>
     
@@ -131,25 +131,25 @@
       
         
         
-    <summary type="html">&lt;p&gt;在写一个东西的时候需要在某个时间定时执行一些任务, 在浏览器.&lt;/p&gt;
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;p&gt;在写一个东西的时候需要在某个时间定时执行一些任务, 在浏览器.&lt;/p&gt;
 &lt;p&gt;东西很快就写好了.&lt;/p&gt;
-&lt;figure class=&quot;highlight tsx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span</summary>
+&lt;figure class=&quot;highlight tsx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
         
       
     
     
     
     
-    <category term="web" scheme="https://tanlanchou.github.io/tags/web/"/>
+    <category term="web" scheme="https://callmetommy.cn/tags/web/"/>
     
-    <category term="javascript" scheme="https://tanlanchou.github.io/tags/javascript/"/>
+    <category term="javascript" scheme="https://callmetommy.cn/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>前端埋点</title>
-    <link href="https://tanlanchou.github.io/2024/02/23/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9/"/>
-    <id>https://tanlanchou.github.io/2024/02/23/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9/</id>
+    <link href="https://callmetommy.cn/2024/02/23/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9/"/>
+    <id>https://callmetommy.cn/2024/02/23/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9/</id>
     <published>2024-02-23T06:49:37.000Z</published>
     <updated>2024-12-02T05:28:09.935Z</updated>
     
@@ -158,23 +158,23 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;1-首先需要知道什么是埋点&quot;&gt;&lt;a href=&quot;#1-首先需要知道什么是埋点&quot; class=&quot;headerlink&quot; title=&quot;1. 首先需要知道什么是埋点&quot;&gt;&lt;/a&gt;1.</summary>
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h2 id=&quot;1-首先需要知道什么是埋点&quot;&gt;&lt;a href=&quot;#1-首先需要知道什么是埋点&quot; class=&quot;headerlink&quot; title=&quot;1. 首先需要知道什么是埋点&quot;&gt;&lt;/a&gt;1.</summary>
         
       
     
     
     
     
-    <category term="前端" scheme="https://tanlanchou.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
+    <category term="前端" scheme="https://callmetommy.cn/tags/%E5%89%8D%E7%AB%AF/"/>
     
-    <category term="埋点" scheme="https://tanlanchou.github.io/tags/%E5%9F%8B%E7%82%B9/"/>
+    <category term="埋点" scheme="https://callmetommy.cn/tags/%E5%9F%8B%E7%82%B9/"/>
     
   </entry>
   
   <entry>
     <title>rss数据对比</title>
-    <link href="https://tanlanchou.github.io/2024/02/23/rss%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94/"/>
-    <id>https://tanlanchou.github.io/2024/02/23/rss%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94/</id>
+    <link href="https://callmetommy.cn/2024/02/23/rss%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94/"/>
+    <id>https://callmetommy.cn/2024/02/23/rss%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94/</id>
     <published>2024-02-23T06:48:52.000Z</published>
     <updated>2024-12-02T05:28:09.915Z</updated>
     
@@ -183,25 +183,24 @@
       
         
         
-    <summary type="html">&lt;p&gt;做事儿的目的在于我需要对比两个 &lt;code&gt;xml&lt;/code&gt;, 也就是 &lt;code&gt;rss&lt;/code&gt; 之间的差异&lt;/p&gt;
-&lt;p&gt;最开始是自己做对比, 但是还是觉得太麻烦.&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;xml&lt;/code&gt; 对比在 &lt;code&gt;npmjs&lt;/code&gt;</summary>
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;p&gt;做事儿的目的在于我需要对比两个 &lt;code&gt;xml&lt;/code&gt;, 也就是 &lt;code&gt;rss&lt;/code&gt; 之间的差异&lt;/p&gt;
+&lt;p&gt;最开始是自己做对比,</summary>
         
       
     
     
     
     
-    <category term="rss" scheme="https://tanlanchou.github.io/tags/rss/"/>
+    <category term="rss" scheme="https://callmetommy.cn/tags/rss/"/>
     
-    <category term="diff" scheme="https://tanlanchou.github.io/tags/diff/"/>
+    <category term="diff" scheme="https://callmetommy.cn/tags/diff/"/>
     
   </entry>
   
   <entry>
     <title>nestjs modules mailer</title>
-    <link href="https://tanlanchou.github.io/2024/02/23/nestjs-modules-mailer/"/>
-    <id>https://tanlanchou.github.io/2024/02/23/nestjs-modules-mailer/</id>
+    <link href="https://callmetommy.cn/2024/02/23/nestjs-modules-mailer/"/>
+    <id>https://callmetommy.cn/2024/02/23/nestjs-modules-mailer/</id>
     <published>2024-02-23T06:45:22.000Z</published>
     <updated>2024-12-02T05:28:09.912Z</updated>
     
@@ -210,25 +209,25 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;文档&quot;&gt;&lt;a href=&quot;#文档&quot; class=&quot;headerlink&quot; title=&quot;文档&quot;&gt;&lt;/a&gt;文档&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://nest-modules.github.io/mailer/docs/mailer.html&quot;&gt;How</summary>
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h2 id=&quot;文档&quot;&gt;&lt;a href=&quot;#文档&quot; class=&quot;headerlink&quot; title=&quot;文档&quot;&gt;&lt;/a&gt;文档&lt;/h2&gt;&lt;p&gt;&lt;a</summary>
         
       
     
     
     
     
-    <category term="typescript" scheme="https://tanlanchou.github.io/tags/typescript/"/>
+    <category term="typescript" scheme="https://callmetommy.cn/tags/typescript/"/>
     
-    <category term="后端" scheme="https://tanlanchou.github.io/tags/%E5%90%8E%E7%AB%AF/"/>
+    <category term="后端" scheme="https://callmetommy.cn/tags/%E5%90%8E%E7%AB%AF/"/>
     
-    <category term="nestjs" scheme="https://tanlanchou.github.io/tags/nestjs/"/>
+    <category term="nestjs" scheme="https://callmetommy.cn/tags/nestjs/"/>
     
   </entry>
   
   <entry>
     <title>浏览器缓存大赏.</title>
-    <link href="https://tanlanchou.github.io/2023/12/14/browser/cache/"/>
-    <id>https://tanlanchou.github.io/2023/12/14/browser/cache/</id>
+    <link href="https://callmetommy.cn/2023/12/14/browser/cache/"/>
+    <id>https://callmetommy.cn/2023/12/14/browser/cache/</id>
     <published>2023-12-14T06:35:00.000Z</published>
     <updated>2024-12-02T05:28:09.903Z</updated>
     
@@ -237,54 +236,27 @@
       
         
         
-    <summary type="html">&lt;h3 id=&quot;01-强制缓存&quot;&gt;&lt;a href=&quot;#01-强制缓存&quot; class=&quot;headerlink&quot; title=&quot;01. 强制缓存&quot;&gt;&lt;/a&gt;01. 强制缓存&lt;/h3&gt;&lt;p&gt;&lt;a</summary>
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h3 id=&quot;01-强制缓存&quot;&gt;&lt;a href=&quot;#01-强制缓存&quot; class=&quot;headerlink&quot; title=&quot;01. 强制缓存&quot;&gt;&lt;/a&gt;01. 强制缓存&lt;/h3&gt;&lt;p&gt;&lt;a</summary>
         
       
     
     
     
     
-    <category term="browser" scheme="https://tanlanchou.github.io/tags/browser/"/>
+    <category term="browser" scheme="https://callmetommy.cn/tags/browser/"/>
     
-    <category term="cache" scheme="https://tanlanchou.github.io/tags/cache/"/>
+    <category term="cache" scheme="https://callmetommy.cn/tags/cache/"/>
     
-    <category term="Cache-Control" scheme="https://tanlanchou.github.io/tags/Cache-Control/"/>
+    <category term="Cache-Control" scheme="https://callmetommy.cn/tags/Cache-Control/"/>
     
-    <category term="Expires" scheme="https://tanlanchou.github.io/tags/Expires/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端请求模拟</title>
-    <link href="https://tanlanchou.github.io/2023/12/07/zaxiang/mock/"/>
-    <id>https://tanlanchou.github.io/2023/12/07/zaxiang/mock/</id>
-    <published>2023-12-07T06:25:00.000Z</published>
-    <updated>2024-12-02T05:28:09.935Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;这个迭代后端很麻烦, 所以接口不太可能第一时间提供给我.&lt;/p&gt;
-&lt;p&gt;于是我先开会约定了接口, 就开始找网上的模拟解决办法.&lt;/p&gt;
-&lt;h2 id=&quot;要求&quot;&gt;&lt;a href=&quot;#要求&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="前端" scheme="https://tanlanchou.github.io/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="axios-mock-adapter" scheme="https://tanlanchou.github.io/tags/axios-mock-adapter/"/>
+    <category term="Expires" scheme="https://callmetommy.cn/tags/Expires/"/>
     
   </entry>
   
   <entry>
     <title>前端 docker 项目如何动态加载环境变量</title>
-    <link href="https://tanlanchou.github.io/2023/12/07/zaxiang/front_docker_env/"/>
-    <id>https://tanlanchou.github.io/2023/12/07/zaxiang/front_docker_env/</id>
+    <link href="https://callmetommy.cn/2023/12/07/zaxiang/front_docker_env/"/>
+    <id>https://callmetommy.cn/2023/12/07/zaxiang/front_docker_env/</id>
     <published>2023-12-07T06:25:00.000Z</published>
     <updated>2024-12-02T05:28:09.934Z</updated>
     
@@ -293,30 +265,55 @@
       
         
         
-    <summary type="html">&lt;p&gt;首先我们需要明白一个前提, 前端打包出来的东西是 html, css, js, 字体, 图片……&lt;/p&gt;
-&lt;p&gt;他是没有能力访问服务器的环境变量的. 所以如果要动态使用环境变量, 我大概想了一想, 有3种方式.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;nginx</summary>
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;p&gt;首先我们需要明白一个前提, 前端打包出来的东西是 html, css, js, 字体, 图片……&lt;/p&gt;
+&lt;p&gt;他是没有能力访问服务器的环境变量的. 所以如果要动态使用环境变量, 我大概想了一想,</summary>
         
       
     
     
     
     
-    <category term="javascript" scheme="https://tanlanchou.github.io/tags/javascript/"/>
+    <category term="javascript" scheme="https://callmetommy.cn/tags/javascript/"/>
     
-    <category term="docker" scheme="https://tanlanchou.github.io/tags/docker/"/>
+    <category term="docker" scheme="https://callmetommy.cn/tags/docker/"/>
     
-    <category term="shell" scheme="https://tanlanchou.github.io/tags/shell/"/>
+    <category term="shell" scheme="https://callmetommy.cn/tags/shell/"/>
     
-    <category term="nginx" scheme="https://tanlanchou.github.io/tags/nginx/"/>
+    <category term="nginx" scheme="https://callmetommy.cn/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>前端请求模拟</title>
+    <link href="https://callmetommy.cn/2023/12/07/zaxiang/mock/"/>
+    <id>https://callmetommy.cn/2023/12/07/zaxiang/mock/</id>
+    <published>2023-12-07T06:25:00.000Z</published>
+    <updated>2024-12-02T05:28:09.935Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;p&gt;这个迭代后端很麻烦, 所以接口不太可能第一时间提供给我.&lt;/p&gt;
+&lt;p&gt;于是我先开会约定了接口, 就开始找网上的模拟解决办法.&lt;/p&gt;
+&lt;h2 id=&quot;要求&quot;&gt;&lt;a href=&quot;#要求&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="前端" scheme="https://callmetommy.cn/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="axios-mock-adapter" scheme="https://callmetommy.cn/tags/axios-mock-adapter/"/>
     
   </entry>
   
   <entry>
     <title>自己实现一个 bind</title>
-    <link href="https://tanlanchou.github.io/2023/12/07/shuati/001_bind/"/>
-    <id>https://tanlanchou.github.io/2023/12/07/shuati/001_bind/</id>
+    <link href="https://callmetommy.cn/2023/12/07/shuati/001_bind/"/>
+    <id>https://callmetommy.cn/2023/12/07/shuati/001_bind/</id>
     <published>2023-12-07T06:14:00.000Z</published>
     <updated>2024-12-02T05:28:09.915Z</updated>
     
@@ -325,21 +322,21 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;在 JavaScript 中，&lt;code&gt;bind&lt;/code&gt; 方法是用来改变函数的 &lt;code&gt;this&lt;/code&gt;</summary>
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;在 JavaScript 中，&lt;code&gt;bind&lt;/code&gt;</summary>
         
       
     
     
     
     
-    <category term="javascript" scheme="https://tanlanchou.github.io/tags/javascript/"/>
+    <category term="javascript" scheme="https://callmetommy.cn/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>electron url启动, 注册表, 打包</title>
-    <link href="https://tanlanchou.github.io/2023/12/07/electron/electron_caiken_01/"/>
-    <id>https://tanlanchou.github.io/2023/12/07/electron/electron_caiken_01/</id>
+    <link href="https://callmetommy.cn/2023/12/07/electron/electron_caiken_01/"/>
+    <id>https://callmetommy.cn/2023/12/07/electron/electron_caiken_01/</id>
     <published>2023-12-07T03:35:00.000Z</published>
     <updated>2024-12-02T05:28:09.908Z</updated>
     
@@ -348,26 +345,26 @@
       
         
         
-    <summary type="html">&lt;p&gt;最近一直在做 electron 项目, 遇到了一些问题, 这里记录一下&lt;/p&gt;
-&lt;h3 id=&quot;01-url启动&quot;&gt;&lt;a href=&quot;#01-url启动&quot; class=&quot;headerlink&quot; title=&quot;01. url启动.&quot;&gt;&lt;/a&gt;01.</summary>
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;p&gt;最近一直在做 electron 项目, 遇到了一些问题, 这里记录一下&lt;/p&gt;
+&lt;h3 id=&quot;01-url启动&quot;&gt;&lt;a href=&quot;#01-url启动&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
     
     
-    <category term="环境" scheme="https://tanlanchou.github.io/tags/%E7%8E%AF%E5%A2%83/"/>
+    <category term="环境" scheme="https://callmetommy.cn/tags/%E7%8E%AF%E5%A2%83/"/>
     
-    <category term="electron" scheme="https://tanlanchou.github.io/tags/electron/"/>
+    <category term="electron" scheme="https://callmetommy.cn/tags/electron/"/>
     
-    <category term="打包" scheme="https://tanlanchou.github.io/tags/%E6%89%93%E5%8C%85/"/>
+    <category term="打包" scheme="https://callmetommy.cn/tags/%E6%89%93%E5%8C%85/"/>
     
   </entry>
   
   <entry>
     <title>url 通过协议启动应用程序</title>
-    <link href="https://tanlanchou.github.io/2023/12/01/javascript/url_open_software/"/>
-    <id>https://tanlanchou.github.io/2023/12/01/javascript/url_open_software/</id>
+    <link href="https://callmetommy.cn/2023/12/01/javascript/url_open_software/"/>
+    <id>https://callmetommy.cn/2023/12/01/javascript/url_open_software/</id>
     <published>2023-12-01T03:12:00.000Z</published>
     <updated>2024-12-02T05:28:09.911Z</updated>
     
@@ -376,23 +373,23 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;01-url-如何关联到应用程序&quot;&gt;&lt;a href=&quot;#01-url-如何关联到应用程序&quot; class=&quot;headerlink&quot; title=&quot;01. url 如何关联到应用程序?&quot;&gt;&lt;/a&gt;01. url</summary>
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h1 id=&quot;01-url-如何关联到应用程序&quot;&gt;&lt;a href=&quot;#01-url-如何关联到应用程序&quot; class=&quot;headerlink&quot; title=&quot;01. url 如何关联到应用程序?&quot;&gt;&lt;/a&gt;01.</summary>
         
       
     
     
     
     
-    <category term="web" scheme="https://tanlanchou.github.io/tags/web/"/>
+    <category term="web" scheme="https://callmetommy.cn/tags/web/"/>
     
-    <category term="javascript" scheme="https://tanlanchou.github.io/tags/javascript/"/>
+    <category term="javascript" scheme="https://callmetommy.cn/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>IndexDB API</title>
-    <link href="https://tanlanchou.github.io/2023/11/02/[Q103]IndexDB_Base/"/>
-    <id>https://tanlanchou.github.io/2023/11/02/[Q103]IndexDB_Base/</id>
+    <link href="https://callmetommy.cn/2023/11/02/[Q103]IndexDB_Base/"/>
+    <id>https://callmetommy.cn/2023/11/02/[Q103]IndexDB_Base/</id>
     <published>2023-11-02T13:21:21.000Z</published>
     <updated>2024-12-02T05:28:09.901Z</updated>
     
@@ -401,25 +398,25 @@
       
         
         
-    <summary type="html">&lt;h3 id=&quot;01-什么是IndexDB&quot;&gt;&lt;a href=&quot;#01-什么是IndexDB&quot; class=&quot;headerlink&quot; title=&quot;01. 什么是IndexDB?&quot;&gt;&lt;/a&gt;01. 什么是IndexDB?&lt;/h3&gt;&lt;p&gt;&lt;a</summary>
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h3 id=&quot;01-什么是IndexDB&quot;&gt;&lt;a href=&quot;#01-什么是IndexDB&quot; class=&quot;headerlink&quot; title=&quot;01. 什么是IndexDB?&quot;&gt;&lt;/a&gt;01.</summary>
         
       
     
     
     
     
-    <category term="javascript" scheme="https://tanlanchou.github.io/tags/javascript/"/>
+    <category term="javascript" scheme="https://callmetommy.cn/tags/javascript/"/>
     
-    <category term="indexDB" scheme="https://tanlanchou.github.io/tags/indexDB/"/>
+    <category term="indexDB" scheme="https://callmetommy.cn/tags/indexDB/"/>
     
-    <category term="浏览器存储" scheme="https://tanlanchou.github.io/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AD%98%E5%82%A8/"/>
+    <category term="浏览器存储" scheme="https://callmetommy.cn/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AD%98%E5%82%A8/"/>
     
   </entry>
   
   <entry>
     <title>javascript this 指向</title>
-    <link href="https://tanlanchou.github.io/2023/09/03/[Q102]javascript_this_link/"/>
-    <id>https://tanlanchou.github.io/2023/09/03/[Q102]javascript_this_link/</id>
+    <link href="https://callmetommy.cn/2023/09/03/[Q102]javascript_this_link/"/>
+    <id>https://callmetommy.cn/2023/09/03/[Q102]javascript_this_link/</id>
     <published>2023-09-03T13:00:01.000Z</published>
     <updated>2024-12-02T05:28:09.900Z</updated>
     
@@ -429,16 +426,16 @@
     
     
     
-    <category term="javascript" scheme="https://tanlanchou.github.io/tags/javascript/"/>
+    <category term="javascript" scheme="https://callmetommy.cn/tags/javascript/"/>
     
-    <category term="this" scheme="https://tanlanchou.github.io/tags/this/"/>
+    <category term="this" scheme="https://callmetommy.cn/tags/this/"/>
     
   </entry>
   
   <entry>
     <title>flex 属性详解</title>
-    <link href="https://tanlanchou.github.io/2023/09/01/[Q101]Flex_attr/"/>
-    <id>https://tanlanchou.github.io/2023/09/01/[Q101]Flex_attr/</id>
+    <link href="https://callmetommy.cn/2023/09/01/[Q101]Flex_attr/"/>
+    <id>https://callmetommy.cn/2023/09/01/[Q101]Flex_attr/</id>
     <published>2023-09-01T13:00:01.000Z</published>
     <updated>2024-12-02T05:28:09.900Z</updated>
     
@@ -448,18 +445,18 @@
     
     
     
-    <category term="css" scheme="https://tanlanchou.github.io/tags/css/"/>
+    <category term="css" scheme="https://callmetommy.cn/tags/css/"/>
     
-    <category term="flex" scheme="https://tanlanchou.github.io/tags/flex/"/>
+    <category term="flex" scheme="https://callmetommy.cn/tags/flex/"/>
     
-    <category term="html" scheme="https://tanlanchou.github.io/tags/html/"/>
+    <category term="html" scheme="https://callmetommy.cn/tags/html/"/>
     
   </entry>
   
   <entry>
     <title>微信公众号网页踩坑？</title>
-    <link href="https://tanlanchou.github.io/2023/09/01/[wechat]wechat_website/"/>
-    <id>https://tanlanchou.github.io/2023/09/01/[wechat]wechat_website/</id>
+    <link href="https://callmetommy.cn/2023/09/01/[wechat]wechat_website/"/>
+    <id>https://callmetommy.cn/2023/09/01/[wechat]wechat_website/</id>
     <published>2023-09-01T13:00:01.000Z</published>
     <updated>2024-12-02T05:28:09.901Z</updated>
     
@@ -469,18 +466,18 @@
     
     
     
-    <category term="微信" scheme="https://tanlanchou.github.io/tags/%E5%BE%AE%E4%BF%A1/"/>
+    <category term="微信" scheme="https://callmetommy.cn/tags/%E5%BE%AE%E4%BF%A1/"/>
     
-    <category term="公众号" scheme="https://tanlanchou.github.io/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
+    <category term="公众号" scheme="https://callmetommy.cn/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
     
-    <category term="环境" scheme="https://tanlanchou.github.io/tags/%E7%8E%AF%E5%A2%83/"/>
+    <category term="环境" scheme="https://callmetommy.cn/tags/%E7%8E%AF%E5%A2%83/"/>
     
   </entry>
   
   <entry>
     <title>windows docker 安装遇到的坑</title>
-    <link href="https://tanlanchou.github.io/2023/08/29/wsl_can_not_boot/"/>
-    <id>https://tanlanchou.github.io/2023/08/29/wsl_can_not_boot/</id>
+    <link href="https://callmetommy.cn/2023/08/29/wsl_can_not_boot/"/>
+    <id>https://callmetommy.cn/2023/08/29/wsl_can_not_boot/</id>
     <published>2023-08-29T08:00:01.000Z</published>
     <updated>2024-12-02T05:28:09.934Z</updated>
     
@@ -489,7 +486,7 @@
       
         
         
-    <summary type="html">&lt;p&gt;公司电脑 docker windows 安装完成以后, 打开docker报错, wsl报错&lt;/p&gt;
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;p&gt;公司电脑 docker windows 安装完成以后, 打开docker报错, wsl报错&lt;/p&gt;
 &lt;p&gt;于是命令行查看 wsl –list 发现安装了 wsl, 只是没有分发版本&lt;/p&gt;
 &lt;p&gt;那就安装呗,</summary>
         
@@ -498,18 +495,18 @@
     
     
     
-    <category term="docker" scheme="https://tanlanchou.github.io/tags/docker/"/>
+    <category term="docker" scheme="https://callmetommy.cn/tags/docker/"/>
     
-    <category term="windows" scheme="https://tanlanchou.github.io/tags/windows/"/>
+    <category term="windows" scheme="https://callmetommy.cn/tags/windows/"/>
     
-    <category term="update" scheme="https://tanlanchou.github.io/tags/update/"/>
+    <category term="update" scheme="https://callmetommy.cn/tags/update/"/>
     
   </entry>
   
   <entry>
     <title>vue3 createVNode &amp; render</title>
-    <link href="https://tanlanchou.github.io/2023/08/27/vue3_plugin/"/>
-    <id>https://tanlanchou.github.io/2023/08/27/vue3_plugin/</id>
+    <link href="https://callmetommy.cn/2023/08/27/vue3_plugin/"/>
+    <id>https://callmetommy.cn/2023/08/27/vue3_plugin/</id>
     <published>2023-08-27T15:30:01.000Z</published>
     <updated>2024-12-02T05:28:09.927Z</updated>
     
@@ -518,21 +515,21 @@
       
         
         
-    <summary type="html">&lt;p&gt;之前用 Vue2.x 写了一个 loading，思路是&lt;/p&gt;
-&lt;p&gt;写一个 vue 文件 &amp;#x3D;&amp;gt; 使用 Vue.extend 创建虚拟dom &amp;#x3D;&amp;gt; 写一个 install 插件，插件中写方法调用 vue 文件中的开关</summary>
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;p&gt;之前用 Vue2.x 写了一个 loading，思路是&lt;/p&gt;
+&lt;p&gt;写一个 vue 文件 &amp;#x3D;&amp;gt; 使用 Vue.extend 创建虚拟dom &amp;#x3D;&amp;gt; 写一个 install</summary>
         
       
     
     
     
     
-    <category term="vue3" scheme="https://tanlanchou.github.io/tags/vue3/"/>
+    <category term="vue3" scheme="https://callmetommy.cn/tags/vue3/"/>
     
-    <category term="插件" scheme="https://tanlanchou.github.io/tags/%E6%8F%92%E4%BB%B6/"/>
+    <category term="插件" scheme="https://callmetommy.cn/tags/%E6%8F%92%E4%BB%B6/"/>
     
-    <category term="createVNode" scheme="https://tanlanchou.github.io/tags/createVNode/"/>
+    <category term="createVNode" scheme="https://callmetommy.cn/tags/createVNode/"/>
     
-    <category term="render" scheme="https://tanlanchou.github.io/tags/render/"/>
+    <category term="render" scheme="https://callmetommy.cn/tags/render/"/>
     
   </entry>
   

@@ -11,50 +11,44 @@
 
     
         
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+<link rel="stylesheet" href="/css/highlight/style1.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+        
+<link rel="stylesheet" href="/css/reset.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+        
+<link rel="stylesheet" href="/css/markdown.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+        
+<link rel="stylesheet" href="/css/fonts.css">
  
-            <!--注意：首页既不是post也不是page-->
+         <!--注意：首页既不是post也不是page-->
+        
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/waline.css">
+<link rel="stylesheet" href="/css/waline.css">
 
-            
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
  
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+        
+<link rel="stylesheet" href="/css/style.css">
 
-    
+
+        
             <!--返回顶部css-->
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
-
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+<link rel="stylesheet" href="/css/returnToTop.css">
 
             
-            
-                <!--目录-->
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+<link rel="stylesheet" href="/css/unicons.css">
 
+        
+        
+            <!--目录-->
             
+<link rel="stylesheet" href="/css/toc.css">
 
         
     
@@ -69,9 +63,8 @@
 <link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
 
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
     
     
 
@@ -190,7 +183,7 @@
                 <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-%E7%AE%80%E4%BB%8B"><span class="post-toc-text">1. 简介</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-%E7%89%B9%E6%80%A7"><span class="post-toc-text">2. 特性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-line-box"><span class="post-toc-text">3. line-box</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-line-%E7%BA%BF"><span class="post-toc-text">4. line 线</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-%E6%80%BB%E7%BB%93"><span class="post-toc-text">5. 总结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-%E8%B5%84%E6%96%99"><span class="post-toc-text">6. 资料</span></a></li></ol>
             
         
-        <h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p>官方解释</p>
+        <div class=".article-gallery"><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h3><p>官方解释</p>
 <blockquote>
 <p>An inline formatting context is a formatting context that contains inline-level boxes. It is used to determine the layout for the inline-level boxes and their relationships with the line boxes they participate in.</p>
 </blockquote>
@@ -236,7 +229,7 @@
 </blockquote>
 <p>有一个中心线的概念，也就是 <code>baseline</code>, ifc 容器基于 baseline 进行定位。</p>
 <p>所以出现了这种情况，当容器没有内联元素时，基线会被设置为容器的下边缘，当容器内有字符作为内联元素时，基于字体作为 baseline 位置。</p>
-<h3 id="4-line-线"><a href="#4-line-线" class="headerlink" title="4. line 线"></a>4. line 线</h3><p><img src="/tblog/img/css-ifc-baseline.jpg" alt="alt text"></p>
+<h3 id="4-line-线"><a href="#4-line-线" class="headerlink" title="4. line 线"></a>4. line 线</h3><p><a href="/img/css-ifc-baseline.jpg" title="alt text" class="gallery-item" style="box-shadow: none;"> <img src="/img/css-ifc-baseline.jpg" alt="alt text"></a></p>
 <p>理论上我们都是通过默认的基线水平排列，就是baseline这条线， top, middle, bottom 通过 vertical-align 设置。</p>
 <p>那么这个时候我就产生了一个疑问，怎么影响 baseline呢？</p>
 <p>首先 baseline 和 middle line 是不一样的，如果字体越大差距越大，所以想要完全居中，直接 <code>font-size:0</code> 就可以了。</p>
@@ -249,7 +242,7 @@
 <li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000004466536">[译]:BFC与IFC</a></li>
 <li><a target="_blank" rel="noopener" href="https://mengsixing.github.io/blog/css-ifc.html#css-%E5%86%85%E8%81%94%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87">CSS IFC 总结</a></li>
 </ul>
-
+</div>
     </div>
 
     <div class="post-meta">
@@ -380,36 +373,34 @@
 
 
     
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
-
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
-
-        <!--回到顶部按钮-->
-        
-            
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
-
-        
-        
-        <!--目录-->
-        
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
-
-        
+    <!--目录-->
     
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
 
 
 

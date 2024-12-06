@@ -11,50 +11,44 @@
 
     
         
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+<link rel="stylesheet" href="/css/highlight/style1.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+        
+<link rel="stylesheet" href="/css/reset.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+        
+<link rel="stylesheet" href="/css/markdown.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+        
+<link rel="stylesheet" href="/css/fonts.css">
  
-            <!--注意：首页既不是post也不是page-->
+         <!--注意：首页既不是post也不是page-->
+        
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/waline.css">
+<link rel="stylesheet" href="/css/waline.css">
 
-            
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
  
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+        
+<link rel="stylesheet" href="/css/style.css">
 
-    
+
+        
             <!--返回顶部css-->
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
-
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+<link rel="stylesheet" href="/css/returnToTop.css">
 
             
-            
-                <!--目录-->
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+<link rel="stylesheet" href="/css/unicons.css">
 
+        
+        
+            <!--目录-->
             
+<link rel="stylesheet" href="/css/toc.css">
 
         
     
@@ -69,9 +63,8 @@
 <link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
 
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
     
     
 
@@ -190,7 +183,7 @@
                 <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#vue3-effect"><span class="post-toc-text">vue3 effect</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-track"><span class="post-toc-text">01. track</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-triggger"><span class="post-toc-text">02. triggger</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#track-amp-trigger-%E6%80%BB%E7%BB%93"><span class="post-toc-text">track &amp; trigger 总结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-reactiveEffect-%E6%BA%90%E7%A0%81"><span class="post-toc-text">03. reactiveEffect 源码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E6%80%8E%E4%B9%88%E8%B0%83%E7%94%A8-reactiveEffect"><span class="post-toc-text">04. 怎么调用 reactiveEffect</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-%E6%80%BB%E7%BB%93%E3%80%82"><span class="post-toc-text">05. 总结。</span></a></li></ol></li></ol></li></ol>
             
         
-        <h1 id="vue3-effect"><a href="#vue3-effect" class="headerlink" title="vue3 effect"></a>vue3 effect</h1><h3 id="01-track"><a href="#01-track" class="headerlink" title="01. track"></a>01. track</h3><p>以响应式代码为例子</p>
+        <div class=".article-gallery"><h1 id="vue3-effect"><a href="#vue3-effect" class="headerlink" title="vue3 effect"></a>vue3 effect</h1><h3 id="01-track"><a href="#01-track" class="headerlink" title="01. track"></a>01. track</h3><p>以响应式代码为例子</p>
 <p><strong>packages&#x2F;reactivity&#x2F;src&#x2F;baseHandlers.ts</strong> 中 <code>createGetter</code> 该方法为 <code>Proxy</code> 提供 <code>Getter</code> 的工厂方法</p>
 <p>在判断，特殊返回完成之后，会进行 <code>track</code></p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!isReadonly) &#123;</span><br><span class="line">    <span class="title function_">track</span>(target, <span class="title class_">TrackOpTypes</span>.<span class="property">GET</span>, key)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -269,7 +262,7 @@
 <p><code>dep.add(activeEffect)</code></p>
 <p>通过 trigger 方法，来找到对应的 reactiveEffect, 不仅仅包含当前 key 的，还包含对用操作类型的 reactiveEffect </p>
 <p>然后统一去触发。</p>
-
+</div>
     </div>
 
     <div class="post-meta">
@@ -396,36 +389,34 @@
 
 
     
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
-
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
-
-        <!--回到顶部按钮-->
-        
-            
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
-
-        
-        
-        <!--目录-->
-        
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
-
-        
+    <!--目录-->
     
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
 
 
 

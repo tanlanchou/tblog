@@ -11,50 +11,44 @@
 
     
         
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+<link rel="stylesheet" href="/css/highlight/style1.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+        
+<link rel="stylesheet" href="/css/reset.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+        
+<link rel="stylesheet" href="/css/markdown.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+        
+<link rel="stylesheet" href="/css/fonts.css">
  
-            <!--注意：首页既不是post也不是page-->
+         <!--注意：首页既不是post也不是page-->
+        
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/waline.css">
+<link rel="stylesheet" href="/css/waline.css">
 
-            
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
  
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+        
+<link rel="stylesheet" href="/css/style.css">
 
-    
+
+        
             <!--返回顶部css-->
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
-
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+<link rel="stylesheet" href="/css/returnToTop.css">
 
             
-            
-                <!--目录-->
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+<link rel="stylesheet" href="/css/unicons.css">
 
+        
+        
+            <!--目录-->
             
+<link rel="stylesheet" href="/css/toc.css">
 
         
     
@@ -69,9 +63,8 @@
 <link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
 
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
     
     
 
@@ -190,7 +183,7 @@
                 <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-queueJob"><span class="post-toc-text">01. queueJob</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-queueFlush"><span class="post-toc-text">02. queueFlush</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-flushJobs"><span class="post-toc-text">03. flushJobs</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-flushPostFlushCbs"><span class="post-toc-text">04. flushPostFlushCbs</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-%E6%80%BB%E7%BB%93%E3%80%82"><span class="post-toc-text">05. 总结。</span></a></li></ol>
             
         
-        <h3 id="01-queueJob"><a href="#01-queueJob" class="headerlink" title="01. queueJob"></a>01. queueJob</h3><p>首先需要知道这个接口的定义，他就是任务调度的 <strong>job</strong> 定义</p>
+        <div class=".article-gallery"><h3 id="01-queueJob"><a href="#01-queueJob" class="headerlink" title="01. queueJob"></a>01. queueJob</h3><p>首先需要知道这个接口的定义，他就是任务调度的 <strong>job</strong> 定义</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> <span class="title class_">SchedulerJob</span> <span class="keyword">extends</span> <span class="title class_">Function</span> &#123;</span><br><span class="line">  id?: <span class="built_in">number</span> <span class="comment">//唯一ID</span></span><br><span class="line">  pre?: <span class="built_in">boolean</span> <span class="comment">//是否是预处理</span></span><br><span class="line">  active?: <span class="built_in">boolean</span> <span class="comment">//是否激活</span></span><br><span class="line">  computed?: <span class="built_in">boolean</span> <span class="comment">//是否是计算任务</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 表示是否允许该效果自行递归触发</span></span><br><span class="line"><span class="comment">    * 当由调度程序管理时。</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * 默认情况下，作业无法自行触发，因为某些内置方法调用，</span></span><br><span class="line"><span class="comment">    * 例如 Array.prototype.push 实际上也执行读取（#1740）</span></span><br><span class="line"><span class="comment">    * 可能导致令人困惑的无限循环。</span></span><br><span class="line"><span class="comment">    * 允许的情况是组件更新函数和监视回调。</span></span><br><span class="line"><span class="comment">    * 组件更新函数可能会更新子组件 props，进而更新子组件 props</span></span><br><span class="line"><span class="comment">    * 触发刷新：“预”监视回调，该回调会改变父级的状态</span></span><br><span class="line"><span class="comment">    * 依赖于（#1801）。 监视回调不会跟踪其依赖项，因此如果</span></span><br><span class="line"><span class="comment">    * 再次触发自身，这可能是故意的，并且是用户的</span></span><br><span class="line"><span class="comment">    * 负责执行递归状态突变，最终</span></span><br><span class="line"><span class="comment">    * 稳定（#1727）。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  allowRecurse?: <span class="built_in">boolean</span></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 设置组件渲染效果时由renderer.ts附加</span></span><br><span class="line"><span class="comment">    * 用于在报告最大递归更新时获取组件信息。</span></span><br><span class="line"><span class="comment">    * 仅限开发人员。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">  ownerInstance?: <span class="title class_">ComponentInternalInstance</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>然后下面是入口, 传入一个 <code>job</code>, 并且 <code>push</code> 进入队列。</p>
@@ -233,7 +226,7 @@
 
 <p>这些回调函数是在 <code>pendingPostFlushCbs</code> 当中, 他可能是 <code>queuePostRenderEffect</code> 加入的, <code>queuePostRenderEffect</code> 是各种生命周期函数加入的。</p>
 <h3 id="05-总结。"><a href="#05-总结。" class="headerlink" title="05. 总结。"></a>05. 总结。</h3><p>这里解释了 Vue3.x 调度的大概流程，我之所以想看这个，是因为我在看 <code>nextTick</code> 源码, 不看这个无法完全理解 <code>nextTick</code>.</p>
-
+</div>
     </div>
 
     <div class="post-meta">
@@ -372,36 +365,34 @@
 
 
     
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
-
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
-
-        <!--回到顶部按钮-->
-        
-            
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
-
-        
-        
-        <!--目录-->
-        
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
-
-        
+    <!--目录-->
     
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
 
 
 

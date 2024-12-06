@@ -11,50 +11,44 @@
 
     
         
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/highlight/style1.css">
+<link rel="stylesheet" href="/css/highlight/style1.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/a11y-dark.min.css">
+        
+<link rel="stylesheet" href="/css/reset.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/reset.css">
+        
+<link rel="stylesheet" href="/css/markdown.css">
 
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/markdown.css">
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/fonts.css">
+        
+<link rel="stylesheet" href="/css/fonts.css">
  
-            <!--注意：首页既不是post也不是page-->
+         <!--注意：首页既不是post也不是page-->
+        
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/waline.css">
+<link rel="stylesheet" href="/css/waline.css">
 
-            
-
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/ui.css">
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
  
-            
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/style.css">
+        
+<link rel="stylesheet" href="/css/style.css">
 
-    
+
+        
             <!--返回顶部css-->
             
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/returnToTop.css">
-
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/unicons.css">
+<link rel="stylesheet" href="/css/returnToTop.css">
 
             
-            
-                <!--目录-->
-                
-<link rel="stylesheet" href="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/css/toc.css">
+<link rel="stylesheet" href="/css/unicons.css">
 
+        
+        
+            <!--目录-->
             
+<link rel="stylesheet" href="/css/toc.css">
 
         
     
@@ -69,9 +63,8 @@
 <link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
 
 
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
     
     
 
@@ -190,7 +183,7 @@
                 <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ConstructSignature"><span class="post-toc-text">ConstructSignature</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E4%BB%80%E4%B9%88%E6%98%AF%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%AD%BE%E5%90%8D"><span class="post-toc-text">01. 什么是构造函数签名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E6%B3%9B%E5%9E%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%AD%BE%E5%90%8D"><span class="post-toc-text">02. 泛型构造函数签名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="post-toc-text">03. 应用场景</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E5%AE%9A%E4%B9%89%E4%BA%86%E6%9E%84%E9%80%A0%E5%99%A8%E7%AD%BE%E5%90%8D%E7%9A%84%E6%8E%A5%E5%8F%A3%E6%97%A0%E6%B3%95%E8%A2%AB%E5%AE%9E%E7%8E%B0"><span class="post-toc-text">04. 定义了构造器签名的接口无法被实现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-link"><span class="post-toc-text">05. link</span></a></li></ol></li></ol></li></ol>
             
         
-        <h1 id="ConstructSignature"><a href="#ConstructSignature" class="headerlink" title="ConstructSignature"></a>ConstructSignature</h1><p>看构造函数签名起源于一个错误</p>
+        <div class=".article-gallery"><h1 id="ConstructSignature"><a href="#ConstructSignature" class="headerlink" title="ConstructSignature"></a>ConstructSignature</h1><p>看构造函数签名起源于一个错误</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">commonMobileFunc</span> &#123;</span><br><span class="line">  <span class="keyword">abstract</span> <span class="title function_">call</span>(<span class="attr">ph</span>: <span class="built_in">number</span>): <span class="built_in">void</span>;</span><br><span class="line">  <span class="keyword">abstract</span> <span class="title function_">sms</span>(<span class="attr">ph</span>: <span class="built_in">number</span>, <span class="attr">text</span>: <span class="built_in">string</span>): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">oldMobile</span> <span class="keyword">extends</span> <span class="title class_ inherited__">commonMobileFunc</span> &#123;</span><br><span class="line">  <span class="title function_">call</span>(<span class="attr">ph</span>: <span class="built_in">number</span>): <span class="built_in">void</span> &#123;&#125;</span><br><span class="line">  <span class="title function_">sms</span>(<span class="attr">ph</span>: <span class="built_in">number</span>, <span class="attr">text</span>: <span class="built_in">string</span>): <span class="built_in">void</span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">newMobile</span> <span class="keyword">extends</span> <span class="title class_ inherited__">commonMobileFunc</span> &#123;</span><br><span class="line">  <span class="title function_">call</span>(<span class="attr">ph</span>: <span class="built_in">number</span>): <span class="built_in">void</span> &#123;&#125;</span><br><span class="line">  <span class="title function_">sms</span>(<span class="attr">ph</span>: <span class="built_in">number</span>, <span class="attr">text</span>: <span class="built_in">string</span>): <span class="built_in">void</span> &#123;&#125;</span><br><span class="line">  <span class="title function_">videoCall</span>(<span class="params">ph: <span class="built_in">number</span></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">exec</span>&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">  <span class="attr">model</span>: T;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">arg: T</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">model</span> = <span class="keyword">new</span> <span class="title function_">arg</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">sms</span>(<span class="params">ph: <span class="built_in">number</span>, text: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">model</span>.<span class="title function_">sms</span>(ph, text);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
@@ -236,7 +229,7 @@
 <li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/13407036/how-does-interfaces-with-construct-signatures-work">How does interfaces with construct signatures work?</a></li>
 <li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904184894980104#heading-14">一文读懂 TypeScript 泛型及应用（ 7.8K字）</a></li>
 </ol>
-
+</div>
     </div>
 
     <div class="post-meta">
@@ -359,36 +352,34 @@
 
 
     
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlight.min.js"></script>
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/highlightjs-line-numbers.js"></script>
-
-
-        
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/randomHeaderContent.js"></script>
-
-        <!--回到顶部按钮-->
-        
-            
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/returnToTop.js"></script>
-
-        
-        
-        <!--目录-->
-        
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
-            
-<script src="https://jsd.onmicrosoft.cn/npm/hexo-theme-a4@latest/source/js/toc.js"></script>
-
-        
+    <!--目录-->
     
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
 
 
 
