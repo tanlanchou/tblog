@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://tanlanchou.github.io/
+url: https://callmetommy.cn
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -45,7 +45,7 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: false
+  enable: true
   line_number: true
   auto_detect: false
   tab_replace: ''
@@ -55,12 +55,8 @@ prismjs:
   enable: true
   preprocess: true
   line_number: true
-  tab_replace: ''
-prism_plugin:
-  mode: 'preprocess'    # realtime/preprocess
-  theme: 'default'
-  line_number: true   # default false
-  custom_css: ''     # optional
+  tab_replace: 
+
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
