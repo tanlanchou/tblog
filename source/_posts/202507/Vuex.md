@@ -47,8 +47,8 @@ app.config.globalProperties.$myGlobalString = 'A global string'
 2. 配合开发工具 `Vuex` 可以追溯变化
 
 3. 封装后可以逻辑分离
-
-
+   
+   
 
 当然，如果你自己项目小，其实 `Provide` 和 `Inject` 就可以了，简单做做管理
 
@@ -65,8 +65,8 @@ app.config.globalProperties.$myGlobalString = 'A global string'
 4. Actions(动作)
 
 5. modules(模块)
-
-
+   
+   
 
 逻辑很简单
 
@@ -165,5 +165,45 @@ const incrementAsync = () => store.dispatch('counter/incrementAsync');
 
 
 ### 03. 为什么要这么设计？
+
+其实应该是直接用了 **react redux** 的做法。
+
+
+
+核心其实是，**数据流向单一**
+
+****其实这个第一个词反过来就是不单一，什么叫不单一？
+
+比如我用 全局变量，我用 `Provide`, 就会有一个问题，谁都可以改这个
+
+他的入口是多是，任何一个地方都可以修改。
+
+
+
+你根本不知道是谁改的。这个时候就只能一个一个的排查。
+
+而且来源根本不固定，甚至有人拿来做双向绑定都可能
+
+
+
+所以至少他必须用 `mutations` ，你加断点都好加一些。
+
+当你数据来源统一的走了 `mutations `, 那么就可以管理了 
+
+
+
+而且由于 mutations 的存在，可以控制类型，控制结果，控制数据，让状态处于可以预测。
+
+
+
+测试也方面，同样受益。
+
+
+
+总之他就是希望进行单向数据流，保证结果可靠性，数据可靠性，并且可以追踪。
+
+
+
+### 04. Vuex 是怎么实现的?
 
 
