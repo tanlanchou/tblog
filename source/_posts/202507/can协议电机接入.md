@@ -313,4 +313,4 @@ ${SDO_ID}#2B4060000F000000
 cansend $INTERFACE "${SDO_ID}#23FF6000${SPEED_HEX}"
 ```
 
-电机就这么转起来了
+电机就这么转起来了co
