@@ -1,15 +1,28 @@
 @echo off
 setlocal
 
-:: 设置远程服务器信息
+:: Settings
+set TAR_NAME=html.tar
 set REMOTE_USER=root
 set REMOTE_HOST=60.205.227.108
-set REMOTE_DIR=/root/project/tblog
+set REMOTE_TARGET_DIR=/var/www/html/tblog
 
-:: 设置本地文件夹
-set LOCAL_DIR=.deploy_git
+:: Step 1: Clean and generate hexo site
+call hexo clean
+call hexo generate
 
-:: 使用scp命令复制文件夹到远程服务器
-scp -r %LOCAL_DIR% %REMOTE_USER%@%REMOTE_HOST%:%REMOTE_DIR%
+:: Step 2: Prepare tar
+rmdir /s /q html 2>nul
+xcopy public html /E /I /Y >nul
+
+if exist %TAR_NAME% del %TAR_NAME%
+tar -cf %TAR_NAME% html
+
+:: Step 3: Upload tar to server
+scp %TAR_NAME% %REMOTE_USER%@%REMOTE_HOST%:%REMOTE_TARGET_DIR%/
+
+:: Step 4: Clean local temp files
+del %TAR_NAME%
+rmdir /s /q html
 
 endlocal
