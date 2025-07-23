@@ -1,3 +1,15 @@
+
+
+---
+
+title: Vuex 基本用法
+date: 2025-07-23 19:59:03
+tags: 
+    - Vuex
+    - Vue3
+
+---
+
 ### 01. 什么是Vuex?
 
 他就是一个Vue插件，用来管理状态。
@@ -206,4 +218,54 @@ const incrementAsync = () => store.dispatch('counter/incrementAsync');
 
 ### 04. Vuex 是怎么实现的?
 
+这次本来就是为了看源码而来的。
 
+插件注册的时候，有一个 
+
+```javascript
+  install (app, injectKey) {
+    app.provide(injectKey || storeKey, this)
+    app.config.globalProperties.$store = this
+
+    const useDevtools = this._devtools !== undefined
+      ? this._devtools
+      : __DEV__ || __VUE_PROD_DEVTOOLS__
+
+    if (useDevtools) {
+      addDevtools(app, this)
+    }
+  }
+```
+
+
+
+然后在 useStore 的时候
+
+```javascript
+// src/injectKey.js
+import { inject } from 'vue'
+
+export const storeKey = 'store'
+
+export function useStore (key = null) {
+  return inject(key !== null ? key : storeKey)
+}
+```
+
+对，其实这就是核心代码..
+
+
+
+`app.use(store) -> store.install() -> app.provide('store', ...)`
+
+`组件 setup() -> useStore() -> inject('store')`
+
+
+
+其他源码简单看了一下。
+
+就是有一个对象 `store`
+
+然后遍历出 `options`,  options 就是参数, state，getter, mutations 之类的
+
+然后注册，然后绑定，并且让 state computer 并且 响应式.
