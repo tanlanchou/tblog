@@ -1,13 +1,9 @@
-
-
 ---
-
 title: Vuex 基本用法
 date: 2025-07-23 19:59:03
 tags: 
     - Vuex
     - Vue3
-
 ---
 
 ### 01. 什么是Vuex?
