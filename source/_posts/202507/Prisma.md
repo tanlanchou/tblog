@@ -1,18 +1,12 @@
 ---
-
 title: Prisma 基本应用
 date: 2025-07-25 09:45:01
 tags: 
     - Prisma
     - Orm
-	- Nestjs
-
+    - Nestjs
 ---
-
-
 ## Prisma Nestjs
-
-
 
 [Prisma 文档 - Prisma 中文](https://prisma.org.cn/docs)
 
@@ -30,15 +24,11 @@ tags:
 
 他会在这个直接生成一个这个文件
 
-
-
 ```javascript
 generator client { provider = "prisma-client-js" } datasource db { provider = "mysql" url = env("DATABASE_URL") }
 ```
 
 类似于这样，`provider` 根据数据库来.
-
-
 
 ### 02. 设置DATABASE_URL
 
@@ -47,8 +37,6 @@ generator client { provider = "prisma-client-js" } datasource db { provider = "m
 但是对于我来说是一个问题，因为我是在公共环境中存储代码的，虽然仓库是私有的..
 
 并且我还希望能够统一的通过 **consul** 来管理，所以写了一个 `module`
-
-
 
 PrismaModule
 
@@ -84,14 +72,7 @@ export class PrismaModule {
 }
 ```
 
-
-
-
-
 **PrismaService**
-
-
-
 
 ```javascript
 import { Injectable, Inject, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
@@ -110,11 +91,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
 }
 ```
 
-
-
 理论上你是不需要这一步的。这是因为我想自动去注入的原因。
-
-
 
 ### 03. 创建数据库
 
@@ -122,39 +99,26 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
 
 所以我是在数据库中创建好表同步到代码中
 
-
-
 ```shell
 npx primsa db pull 
 npx prisma generate
 ```
 
-
-
 拉去成功之后编一下。
 
 然后就直接可以在项目中使用了
-
-
-
 
 ```typescript
 constructor(private readonly globalService: GlobalService, private readonly prisma: PrismaService) { }
 ```
 
-
-
 如果是想自己写，就 `push` 一下或者有自动同步的，这个需要自己查一下。
-
-
 
 ### 04. 语法
 
 https://prisma.org.cn/docs
 
 查看文档或者直接问ai也行。
-
-### 
 
 ### 05. 结束
 
@@ -164,8 +128,4 @@ https://prisma.org.cn/docs
 
 体验非常好。
 
-
-
 只是，在这个AI的时代，其实用啥感觉都一样，毕竟很多都不需要你自己写。cursor 会帮你搞定。
-
-
