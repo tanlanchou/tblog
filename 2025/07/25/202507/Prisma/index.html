@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="Prisma 基本应用" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    Prisma 基本应用
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2025-07-24</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：656</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：2分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Prisma-Nestjs"><span class="post-toc-text">Prisma Nestjs</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="post-toc-text">01. 初始化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E8%AE%BE%E7%BD%AEDATABASE-URL"><span class="post-toc-text">02. 设置DATABASE_URL</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="post-toc-text">03. 创建数据库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E8%AF%AD%E6%B3%95"><span class="post-toc-text">04. 语法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-%E7%BB%93%E6%9D%9F"><span class="post-toc-text">05. 结束</span></a></li></ol></li></ol>
+            
+        
+        <div class=".article-gallery"><h2 id="Prisma-Nestjs"><a href="#Prisma-Nestjs" class="headerlink" title="Prisma Nestjs"></a>Prisma Nestjs</h2><p><a target="_blank" rel="noopener" href="https://prisma.org.cn/docs">Prisma 文档 - Prisma 中文</a></p>
+<p>这里主要是要记一个简单的 prisma 在 nestjs 上应用的教程.</p>
+<p>主要是懒得记。</p>
+<h3 id="01-初始化"><a href="#01-初始化" class="headerlink" title="01. 初始化"></a>01. 初始化</h3><pre><code>npx prisma init
+</code></pre>
+<p>这一步主要是实例化一个初始化的脚本。</p>
+<p><strong>prisma\schema.prisma</strong></p>
+<p>他会在这个直接生成一个这个文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">generator client &#123; provider = <span class="string">&quot;prisma-client-js&quot;</span> &#125; datasource db &#123; provider = <span class="string">&quot;mysql&quot;</span> url = <span class="title function_">env</span>(<span class="string">&quot;DATABASE_URL&quot;</span>) &#125;</span><br></pre></td></tr></table></figure>
+
+<p>类似于这样，<code>provider</code> 根据数据库来.</p>
+<h3 id="02-设置DATABASE-URL"><a href="#02-设置DATABASE-URL" class="headerlink" title="02. 设置DATABASE_URL"></a>02. 设置DATABASE_URL</h3><p>可以直接在环境变量中设置，<code>env(”DATABASE_URL”)</code> , <strong>docker</strong> 打包的时候直接传入环境变量</p>
+<p>但是对于我来说是一个问题，因为我是在公共环境中存储代码的，虽然仓库是私有的..</p>
+<p>并且我还希望能够统一的通过 <strong>consul</strong> 来管理，所以写了一个 <code>module</code></p>
+<p>PrismaModule</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Module</span>, <span class="title class_">Global</span>, <span class="title class_">DynamicModule</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">PrismaService</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;./service&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">ConfigService</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;src/common/config/config.service&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> interface <span class="title class_">PrismaModuleOptions</span> &#123;</span><br><span class="line">  <span class="attr">configKey</span>: string;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@<span class="title class_">Global</span>()</span><br><span class="line">@<span class="title class_">Module</span>(&#123;&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">PrismaModule</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="title function_">register</span>(<span class="attr">options</span>: <span class="title class_">PrismaModuleOptions</span>): <span class="title class_">DynamicModule</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">module</span>: <span class="title class_">PrismaModule</span>,</span><br><span class="line">      <span class="attr">providers</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">provide</span>: <span class="string">&#x27;DATABASE_URL&#x27;</span>,</span><br><span class="line">          <span class="attr">useFactory</span>: <span class="keyword">async</span> (<span class="attr">consulService</span>: <span class="title class_">ConfigService</span>) =&gt; &#123;</span><br><span class="line">            <span class="keyword">const</span> config = <span class="keyword">await</span> consulService.<span class="title function_">get</span>(options.<span class="property">configKey</span>);</span><br><span class="line">            <span class="keyword">return</span> config.<span class="property">dbUrl</span>;</span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="attr">inject</span>: [<span class="title class_">ConfigService</span>],</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title class_">PrismaService</span>,</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">exports</span>: [<span class="string">&#x27;DATABASE_URL&#x27;</span>, <span class="title class_">PrismaService</span>],</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>PrismaService</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Injectable</span>, <span class="title class_">Inject</span>, <span class="title class_">OnModuleInit</span>, <span class="title class_">OnModuleDestroy</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@nestjs/common&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">PrismaClient</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@prisma/client&#x27;</span>;</span><br><span class="line">@<span class="title class_">Injectable</span>()</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> <span class="title class_">PrismaService</span> <span class="keyword">extends</span> <span class="title class_ inherited__">PrismaClient</span> implements <span class="title class_">OnModuleInit</span>, <span class="title class_">OnModuleDestroy</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">@Inject(<span class="string">&#x27;DATABASE_URL&#x27;</span>) private readonly databaseUrl: string</span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>(&#123; <span class="attr">datasources</span>: &#123; <span class="attr">db</span>: &#123; <span class="attr">url</span>: databaseUrl &#125; &#125; &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">onModuleInit</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="variable language_">this</span>.$connect();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">onModuleDestroy</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="variable language_">this</span>.$disconnect();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>理论上你是不需要这一步的。这是因为我想自动去注入的原因。</p>
+<h3 id="03-创建数据库"><a href="#03-创建数据库" class="headerlink" title="03. 创建数据库"></a>03. 创建数据库</h3><p>我个人是更喜欢在数据库中创建好的，因为我觉得他的配置文件学要写的东西太多了。</p>
+<p>所以我是在数据库中创建好表同步到代码中</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npx primsa db pull </span><br><span class="line">npx prisma generate</span><br></pre></td></tr></table></figure>
+
+<p>拉去成功之后编一下。</p>
+<p>然后就直接可以在项目中使用了</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">constructor</span>(<span class="params"><span class="keyword">private</span> <span class="keyword">readonly</span> globalService: GlobalService, <span class="keyword">private</span> <span class="keyword">readonly</span> prisma: PrismaService</span>) &#123; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果是想自己写，就 <code>push</code> 一下或者有自动同步的，这个需要自己查一下。</p>
+<h3 id="04-语法"><a href="#04-语法" class="headerlink" title="04. 语法"></a>04. 语法</h3><p><a target="_blank" rel="noopener" href="https://prisma.org.cn/docs">https://prisma.org.cn/docs</a></p>
+<p>查看文档或者直接问ai也行。</p>
+<h3 id="05-结束"><a href="#05-结束" class="headerlink" title="05. 结束"></a>05. 结束</h3><p>使用过程非常的丝滑，虽然现在我基本上用不到所谓的高性能这一块，多数据源，连接池之类的</p>
+<p>但是接入过程及其丝滑，除了数据库连接接本上0配置，完全不用写 <code>entity</code> 之类的东西。</p>
+<p>体验非常好。</p>
+<p>只是，在这个AI的时代，其实用啥感觉都一样，毕竟很多都不需要你自己写。cursor 会帮你搞定。</p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2025-07-25</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/Prisma/'>
+                            Prisma
+                        </a>
+                    
+                        <a href='/tags/Orm/'>
+                            Orm
+                        </a>
+                    
+                        <a href='/tags/Nestjs/'>
+                            Nestjs
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2025/07/24/202507/Pinia/">Pinia 基本和源码简单分析</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

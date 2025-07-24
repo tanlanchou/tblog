@@ -6,7 +6,7 @@
   <link href="https://callmetommy.cn/atom.xml" rel="self"/>
   
   <link href="https://callmetommy.cn/"/>
-  <updated>2024-12-05T03:25:01.232Z</updated>
+  <updated>2025-07-24T01:54:22.762Z</updated>
   <id>https://callmetommy.cn/</id>
   
   <author>
@@ -15,6 +15,137 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Prisma 基本应用</title>
+    <link href="https://callmetommy.cn/2025/07/25/202507/Prisma/"/>
+    <id>https://callmetommy.cn/2025/07/25/202507/Prisma/</id>
+    <published>2025-07-25T01:45:01.000Z</published>
+    <updated>2025-07-24T01:54:22.762Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h2 id=&quot;Prisma-Nestjs&quot;&gt;&lt;a href=&quot;#Prisma-Nestjs&quot; class=&quot;headerlink&quot; title=&quot;Prisma Nestjs&quot;&gt;&lt;/a&gt;Prisma</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Prisma" scheme="https://callmetommy.cn/tags/Prisma/"/>
+    
+    <category term="Orm" scheme="https://callmetommy.cn/tags/Orm/"/>
+    
+    <category term="Nestjs" scheme="https://callmetommy.cn/tags/Nestjs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Pinia 基本和源码简单分析</title>
+    <link href="https://callmetommy.cn/2025/07/24/202507/Pinia/"/>
+    <id>https://callmetommy.cn/2025/07/24/202507/Pinia/</id>
+    <published>2025-07-24T09:47:01.000Z</published>
+    <updated>2025-07-23T09:53:14.014Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h1 id=&quot;Pinia-基本&quot;&gt;&lt;a href=&quot;#Pinia-基本&quot; class=&quot;headerlink&quot; title=&quot;Pinia 基本&quot;&gt;&lt;/a&gt;Pinia 基本&lt;/h1&gt;&lt;h3 id=&quot;01-情况&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Vue3" scheme="https://callmetommy.cn/tags/Vue3/"/>
+    
+    <category term="Pinia" scheme="https://callmetommy.cn/tags/Pinia/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vuex 基本用法</title>
+    <link href="https://callmetommy.cn/2025/07/23/202507/Vuex/"/>
+    <id>https://callmetommy.cn/2025/07/23/202507/Vuex/</id>
+    <published>2025-07-23T11:59:03.000Z</published>
+    <updated>2025-07-23T05:46:31.776Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h3 id=&quot;01-什么是Vuex&quot;&gt;&lt;a href=&quot;#01-什么是Vuex&quot; class=&quot;headerlink&quot; title=&quot;01. 什么是Vuex?&quot;&gt;&lt;/a&gt;01.</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Vue3" scheme="https://callmetommy.cn/tags/Vue3/"/>
+    
+    <category term="Vuex" scheme="https://callmetommy.cn/tags/Vuex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>can 电机是否接入</title>
+    <link href="https://callmetommy.cn/2025/07/21/202507/can%E5%8D%8F%E8%AE%AE%E7%94%B5%E6%9C%BA%E6%8E%A5%E5%85%A5/"/>
+    <id>https://callmetommy.cn/2025/07/21/202507/can%E5%8D%8F%E8%AE%AE%E7%94%B5%E6%9C%BA%E6%8E%A5%E5%85%A5/</id>
+    <published>2025-07-21T13:30:22.000Z</published>
+    <updated>2025-07-22T12:59:35.056Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h1 id=&quot;can协议电机接入&quot;&gt;&lt;a href=&quot;#can协议电机接入&quot; class=&quot;headerlink&quot; title=&quot;can协议电机接入&quot;&gt;&lt;/a&gt;can协议电机接入&lt;/h1&gt;&lt;h3</summary>
+        
+      
+    
+    
+    
+    
+    <category term="can2.0" scheme="https://callmetommy.cn/tags/can2-0/"/>
+    
+    <category term="canopen" scheme="https://callmetommy.cn/tags/canopen/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tree-Sharking, rollup解析，vue</title>
+    <link href="https://callmetommy.cn/2025/07/20/202507/tree_shaking_base/"/>
+    <id>https://callmetommy.cn/2025/07/20/202507/tree_shaking_base/</id>
+    <published>2025-07-20T14:47:01.000Z</published>
+    <updated>2025-07-21T08:19:55.997Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h1 id=&quot;Tree-Sharking-rollup解析，vue&quot;&gt;&lt;a href=&quot;#Tree-Sharking-rollup解析，vue&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Vue3" scheme="https://callmetommy.cn/tags/Vue3/"/>
+    
+    <category term="Vue2" scheme="https://callmetommy.cn/tags/Vue2/"/>
+    
+    <category term="Tree-Sharking" scheme="https://callmetommy.cn/tags/Tree-Sharking/"/>
+    
+    <category term="Commonjs" scheme="https://callmetommy.cn/tags/Commonjs/"/>
+    
+  </entry>
   
   <entry>
     <title>jwt实现原理</title>
@@ -410,126 +541,6 @@
     <category term="indexDB" scheme="https://callmetommy.cn/tags/indexDB/"/>
     
     <category term="浏览器存储" scheme="https://callmetommy.cn/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AD%98%E5%82%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>javascript this 指向</title>
-    <link href="https://callmetommy.cn/2023/09/03/[Q102]javascript_this_link/"/>
-    <id>https://callmetommy.cn/2023/09/03/[Q102]javascript_this_link/</id>
-    <published>2023-09-03T13:00:01.000Z</published>
-    <updated>2024-12-02T05:28:09.900Z</updated>
-    
-    
-    <summary type="html">明确 this 指向, this 在各种环境下是如何运作的.</summary>
-    
-    
-    
-    
-    <category term="javascript" scheme="https://callmetommy.cn/tags/javascript/"/>
-    
-    <category term="this" scheme="https://callmetommy.cn/tags/this/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>flex 属性详解</title>
-    <link href="https://callmetommy.cn/2023/09/01/[Q101]Flex_attr/"/>
-    <id>https://callmetommy.cn/2023/09/01/[Q101]Flex_attr/</id>
-    <published>2023-09-01T13:00:01.000Z</published>
-    <updated>2024-12-02T05:28:09.900Z</updated>
-    
-    
-    <summary type="html">写这个的目的是为了详细解释一下 flex 每个属性的意义和用法, 原因是因为突然发觉我自己对于 flex 细节并不是完全清楚</summary>
-    
-    
-    
-    
-    <category term="css" scheme="https://callmetommy.cn/tags/css/"/>
-    
-    <category term="flex" scheme="https://callmetommy.cn/tags/flex/"/>
-    
-    <category term="html" scheme="https://callmetommy.cn/tags/html/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>微信公众号网页踩坑？</title>
-    <link href="https://callmetommy.cn/2023/09/01/[wechat]wechat_website/"/>
-    <id>https://callmetommy.cn/2023/09/01/[wechat]wechat_website/</id>
-    <published>2023-09-01T13:00:01.000Z</published>
-    <updated>2024-12-02T05:28:09.901Z</updated>
-    
-    
-    <summary type="html">了解和介绍一下 javascript 有哪些编程的方式</summary>
-    
-    
-    
-    
-    <category term="微信" scheme="https://callmetommy.cn/tags/%E5%BE%AE%E4%BF%A1/"/>
-    
-    <category term="公众号" scheme="https://callmetommy.cn/tags/%E5%85%AC%E4%BC%97%E5%8F%B7/"/>
-    
-    <category term="环境" scheme="https://callmetommy.cn/tags/%E7%8E%AF%E5%A2%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>windows docker 安装遇到的坑</title>
-    <link href="https://callmetommy.cn/2023/08/29/wsl_can_not_boot/"/>
-    <id>https://callmetommy.cn/2023/08/29/wsl_can_not_boot/</id>
-    <published>2023-08-29T08:00:01.000Z</published>
-    <updated>2024-12-02T05:28:09.934Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;p&gt;公司电脑 docker windows 安装完成以后, 打开docker报错, wsl报错&lt;/p&gt;
-&lt;p&gt;于是命令行查看 wsl –list 发现安装了 wsl, 只是没有分发版本&lt;/p&gt;
-&lt;p&gt;那就安装呗,</summary>
-        
-      
-    
-    
-    
-    
-    <category term="docker" scheme="https://callmetommy.cn/tags/docker/"/>
-    
-    <category term="windows" scheme="https://callmetommy.cn/tags/windows/"/>
-    
-    <category term="update" scheme="https://callmetommy.cn/tags/update/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue3 createVNode &amp; render</title>
-    <link href="https://callmetommy.cn/2023/08/27/vue3_plugin/"/>
-    <id>https://callmetommy.cn/2023/08/27/vue3_plugin/</id>
-    <published>2023-08-27T15:30:01.000Z</published>
-    <updated>2024-12-02T05:28:09.927Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;p&gt;之前用 Vue2.x 写了一个 loading，思路是&lt;/p&gt;
-&lt;p&gt;写一个 vue 文件 &amp;#x3D;&amp;gt; 使用 Vue.extend 创建虚拟dom &amp;#x3D;&amp;gt; 写一个 install</summary>
-        
-      
-    
-    
-    
-    
-    <category term="vue3" scheme="https://callmetommy.cn/tags/vue3/"/>
-    
-    <category term="插件" scheme="https://callmetommy.cn/tags/%E6%8F%92%E4%BB%B6/"/>
-    
-    <category term="createVNode" scheme="https://callmetommy.cn/tags/createVNode/"/>
-    
-    <category term="render" scheme="https://callmetommy.cn/tags/render/"/>
     
   </entry>
   

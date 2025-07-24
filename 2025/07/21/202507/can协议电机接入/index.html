@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="can 电机是否接入" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    can 电机是否接入
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2025-07-22</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.9k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：8分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#can%E5%8D%8F%E8%AE%AE%E7%94%B5%E6%9C%BA%E6%8E%A5%E5%85%A5"><span class="post-toc-text">can协议电机接入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E6%8E%A5%E5%85%A5%E7%94%B5%E6%9C%BA"><span class="post-toc-text">01. 接入电机</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E7%A1%AE%E8%AE%A4%E6%98%AF%E5%90%A6%E6%AD%A3%E7%A1%AE%E6%8E%A5%E5%85%A5"><span class="post-toc-text">02. 确认是否正确接入</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#02-01-%E7%A1%AE%E8%AE%A4%E7%BD%91%E5%8F%A3%E6%98%AF%E5%90%A6%E6%AD%A3%E5%B8%B8"><span class="post-toc-text">02.01 确认网口是否正常</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#02-02-%E7%A1%AE%E8%AE%A4%E7%94%B5%E6%9C%BA%E6%98%AF%E5%90%A6%E8%BF%9E%E6%8E%A5%E4%B8%8A"><span class="post-toc-text">02.02 确认电机是否连接上</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E6%9C%80%E6%9C%80%E6%9C%80%E5%9F%BA%E6%9C%AC%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="post-toc-text">03. 最最最基本的概念</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E8%AE%A9%E7%94%B5%E6%9C%BA%E5%8A%A8%E8%B5%B7%E6%9D%A5"><span class="post-toc-text">04. 让电机动起来</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#04-01-%E8%BF%9B%E5%85%A5%E8%BD%AE%E5%BB%93%E9%80%9F%E5%BA%A6%E6%A8%A1%E5%BC%8F"><span class="post-toc-text">04.01 进入轮廓速度模式</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#04-02-%E5%A4%8D%E4%BD%8D%E6%95%85%E9%9A%9C%E7%8A%B6%E6%80%81"><span class="post-toc-text">04.02 复位故障状态</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#04-03-%E8%AE%BE%E7%BD%AE%E9%80%9F%E5%BA%A6%E8%BD%AC%E5%8A%A8"><span class="post-toc-text">04.03 设置速度转动</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+            
+        
+        <div class=".article-gallery"><h1 id="can协议电机接入"><a href="#can协议电机接入" class="headerlink" title="can协议电机接入"></a>can协议电机接入</h1><h3 id="01-接入电机"><a href="#01-接入电机" class="headerlink" title="01. 接入电机"></a>01. 接入电机</h3><p>插好电机，通电，并且和支持can协议那个双绞线接好，高低确认好</p>
+<p>这一步我是考硬件的同事完成的.</p>
+<h3 id="02-确认是否正确接入"><a href="#02-确认是否正确接入" class="headerlink" title="02. 确认是否正确接入"></a>02. 确认是否正确接入</h3><h5 id="02-01-确认网口是否正常"><a href="#02-01-确认网口是否正常" class="headerlink" title="02.01 确认网口是否正常"></a>02.01 确认网口是否正常</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip <span class="built_in">link</span> show</span><br></pre></td></tr></table></figure>
+
+<p>你得有 <strong>can</strong> 协议的网口出现</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3: can0: &lt;NOARP,UP,LOWER_UP,ECHO&gt; mtu 16 qdisc pfifo_fast state UP mode DEFAULT group default qlen 10</span><br><span class="line">    <span class="built_in">link</span>/can </span><br><span class="line">4: can1: &lt;NOARP,UP,LOWER_UP,ECHO&gt; mtu 16 qdisc pfifo_fast state UP mode DEFAULT group default qlen 10</span><br><span class="line">    <span class="built_in">link</span>/can </span><br></pre></td></tr></table></figure>
+
+<p>并且也需要是 up 状态</p>
+<blockquote>
+<p>up 状态表示该接口<strong>已经被启用</strong>，并且<strong>处于活动状态</strong></p>
+</blockquote>
+<p>有这个只能表明你有带双通道的CAN接口，CAN控制器驱动应该正常。</p>
+<p>还可以再细节的查一下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ip -details link show can0</span><br><span class="line">ip -details link show can1</span><br></pre></td></tr></table></figure>
+
+<p>拿我的返回来说</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">user@ak41-ubuntu:~/canopen$ ip -details link show can0</span><br><span class="line">3: can0: &lt;NOARP,UP,LOWER_UP,ECHO&gt; mtu 16 qdisc pfifo_fast state UP mode DEFAULT group default qlen 10</span><br><span class="line">    link/can  promiscuity 0 minmtu 0 maxmtu 0 </span><br><span class="line">    can state ERROR-ACTIVE (berr-counter tx 0 rx 0) restart-ms 0 </span><br><span class="line">          bitrate 1000000 sample-point 0.740 </span><br><span class="line">          tq 20 prop-seg 18 phase-seg1 18 phase-seg2 13 sjw 1</span><br><span class="line">          mttcan: tseg1 2..255 tseg2 0..127 sjw 1..127 brp 1..511 brp-inc 1</span><br><span class="line">          mttcan: dtseg1 1..31 dtseg2 0..15 dsjw 1..15 dbrp 1..15 dbrp-inc 1</span><br><span class="line">          clock 50000000 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 parentbus platform parentdev c310000.mttcan </span><br><span class="line">user@ak41-ubuntu:~/canopen$ ip -details link show can1</span><br><span class="line">4: can1: &lt;NOARP,UP,LOWER_UP,ECHO&gt; mtu 16 qdisc pfifo_fast state UP mode DEFAULT group default qlen 10</span><br><span class="line">    link/can  promiscuity 0 minmtu 0 maxmtu 0 </span><br><span class="line">    can state ERROR-ACTIVE (berr-counter tx 0 rx 0) restart-ms 0 </span><br><span class="line">          bitrate 1000000 sample-point 0.740 </span><br><span class="line">          tq 20 prop-seg 18 phase-seg1 18 phase-seg2 13 sjw 1</span><br><span class="line">          mttcan: tseg1 2..255 tseg2 0..127 sjw 1..127 brp 1..511 brp-inc 1</span><br><span class="line">          mttcan: dtseg1 1..31 dtseg2 0..15 dsjw 1..15 dbrp 1..15 dbrp-inc 1</span><br><span class="line">          clock 50000000 numtxqueues 1 numrxqueues 1 gso_max_size 65536 gso_max_segs 65535 parentbus platform parentdev c320000.mttcan </span><br></pre></td></tr></table></figure>
+
+<p><strong><code>state ERROR-ACTIVE</code></strong> 说明can控制器工作正常</p>
+<p><strong><code>berr-counter tx 0 rx 0</code></strong> 说没没有错误</p>
+<p><strong><code>bitrate 1000000</code></strong> 比特率 <strong>1,000,000 bps</strong></p>
+<p>这个很重要，因为我们需要确认电机的比特率是多少，并且这里要同步。</p>
+<p>因为电机的波特率可能是另一个值（比如 500kbps, 250kbps 等），所有CAN设备必须使用完全相同的波特率才能通信。</p>
+<p>如果明确不一样，需要修改</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">1. 先关闭can0接口</span></span><br><span class="line">sudo ip link set can0 down</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">2. 设置新的波特率</span></span><br><span class="line">sudo ip link set can0 type can bitrate 500000</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">3. 重新打开can0接口</span></span><br><span class="line">sudo ip link set can0 up</span><br></pre></td></tr></table></figure>
+
+<p> 这里只是举个例子</p>
+<h5 id="02-02-确认电机是否连接上"><a href="#02-02-确认电机是否连接上" class="headerlink" title="02.02 确认电机是否连接上"></a>02.02 确认电机是否连接上</h5><p>确认肯定就需要通信了。</p>
+<p>首先需要安装一个东西，才能通过命令行和电机通信</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install can-utils</span><br></pre></td></tr></table></figure>
+
+<p>安装完成就可以开始了</p>
+<p>一个终端</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">candump any</span><br></pre></td></tr></table></figure>
+
+<p>他用来监听所有的信息</p>
+<p>然后开另一个终端</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cansend can0 000#0100</span><br></pre></td></tr></table></figure>
+
+<p>can 的发送协议里 <strong>[CAN-ID] # [Data]</strong></p>
+<p><strong>000</strong> 表示系统广播，就是所有的设备都必须监听的</p>
+<p><strong>01</strong> 表示启动远程节点</p>
+<p><strong>00</strong> 表示所有节点</p>
+<p>但是我没有收到回复</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">user@ak41-ubuntu:~/canopen$     candump any</span><br><span class="line">  can0  000   [2]  01 00</span><br><span class="line">  can1  000   [2]  01 00</span><br><span class="line">  can1  000   [2]  01 00</span><br><span class="line">  can0  000   [2]  01 00</span><br></pre></td></tr></table></figure>
+
+<p>这个只能代表我的can接口之间通信没问题, 接口都连接到了同一个CAN总线上, 物理连接没问题.</p>
+<p>理论上来说, 我有配置文件之类的东西，我可以确定节点是什么。但是供应商还没有回复我。</p>
+<p>所以</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for i in $(seq 1 127); do</span><br><span class="line">  printf &quot;Pinging Node ID %d...\n&quot; &quot;$i&quot;</span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">This sends a request to <span class="built_in">read</span> a standard object (Vendor ID)</span></span><br><span class="line"><span class="meta prompt_">  # </span><span class="language-bash">The CAN ID is 0x600 + the node ID we are trying</span></span><br><span class="line">  cansend can0 $(printf &quot;%X#4018100000000000&quot; $((0x600 + i)) )</span><br><span class="line">  sleep 0.05  # wait a tiny bit for a response</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<p>这个就是循环去请求不同的<strong>Can-ID</strong>, 让他给我发设备的身份信息</p>
+<p>于是得到了一个结果</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">can0  601   [8]  40 18 10 00 00 00 00 00</span><br><span class="line">can0  581   [8]  4F 18 10 00 04 00 00 00</span><br></pre></td></tr></table></figure>
+
+<p> <strong>4Fh</strong> 是应答码</p>
+<p><strong>18 10 00</strong> 确认地址没问题</p>
+<p><strong>04 00 00 00</strong> 是小端，翻过来 <strong>0x00000004</strong> </p>
+<p>ok. 这里其实就是基本确认了通信成功了，也就是确定了 can 协议的电机连接上了</p>
+<p>这个东西是 <strong>CANopen 默认标识符（COB-ID）列表</strong></p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/CANopen">https://en.wikipedia.org/wiki/CANopen</a></p>
+<h3 id="03-最最最基本的概念"><a href="#03-最最最基本的概念" class="headerlink" title="03. 最最最基本的概念"></a>03. 最最最基本的概念</h3><table>
+<thead>
+<tr>
+<th>对象</th>
+<th>比喻</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SDO</td>
+<td>客户服务柜台</td>
+<td>配置参数，读写对象字典，准确但慢</td>
+</tr>
+<tr>
+<td>PDO</td>
+<td>大喇叭广播</td>
+<td>实时数据，传输位置&#x2F;速度，快但无确认</td>
+</tr>
+<tr>
+<td>NMT</td>
+<td>系统管理员</td>
+<td>控制网络，启动&#x2F;停止&#x2F;复位设备</td>
+</tr>
+<tr>
+<td>SYNC</td>
+<td>节拍器</td>
+<td>同步动作，让所有设备步调一致</td>
+</tr>
+<tr>
+<td>EMCY</td>
+<td>急救警报</td>
+<td>报告故障，设备主动上报严重错误</td>
+</tr>
+</tbody></table>
+<p>后面我们需要一个SDO, 所以优先知道他的概念</p>
+<p><a target="_blank" rel="noopener" href="https://www.can-cia.org/can-knowledge/sdo-protocol">https://www.can-cia.org/can-knowledge/sdo-protocol</a></p>
+<blockquote>
+<p>CAN ID: 0x601  （0x600 + NodeID 0x01） ← 发给 node 1 的 SDO 请求<br>DLC: 8<br>Data:<br>   Byte 0: command specifier（控制字节）<br>   Byte 1-2: index（对象字典索引，低字节在前）<br>   Byte 3: subindex（子索引）<br>   Byte 4-7: data（数据，4 字节以内）</p>
+</blockquote>
+<p>详细的命令可以通过这个网站查询，比如我接下来要修改模式 </p>
+<p><a target="_blank" rel="noopener" href="https://doc-legacy.synapticon.com/software/44/object_dict/all_objects/index.html#all-objects">List of all Objects &amp;#8212; Synapticon Documentation</a></p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th><a target="_blank" rel="noopener" href="https://doc-legacy.synapticon.com/software/44/documentation_html/object_htmls/6060/index.html">0x6060</a></th>
+<th><a target="_blank" rel="noopener" href="https://doc-legacy.synapticon.com/software/44/documentation_html/object_htmls/6060/index.html">Modes of operation</a></th>
+</tr>
+</thead>
+</table>
+</blockquote>
+<p>然后详细点进去</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>-2</td>
+<td>Commutation offset detection mode</td>
+</tr>
+<tr>
+<td>-1</td>
+<td>Cogging compensation recording mode</td>
+</tr>
+<tr>
+<td>+1</td>
+<td>Profile position mode</td>
+</tr>
+<tr>
+<td>+3</td>
+<td>Profile velocity mode</td>
+</tr>
+<tr>
+<td>+4</td>
+<td>Torque profile mode</td>
+</tr>
+<tr>
+<td>+6</td>
+<td>Homing mode</td>
+</tr>
+<tr>
+<td>+8</td>
+<td>Cyclic sync position mode</td>
+</tr>
+<tr>
+<td>+9</td>
+<td>Cyclic sync velocity mode</td>
+</tr>
+<tr>
+<td>+10</td>
+<td>Cyclic sync torque mode</td>
+</tr>
+</tbody></table>
+<p>应该怎么设置大概就知道了。</p>
+<h3 id="04-让电机动起来"><a href="#04-让电机动起来" class="headerlink" title="04. 让电机动起来"></a>04. 让电机动起来</h3><p>这个时候就需要电机厂商提供的eds文件了，我测试用的是 EYOU的电机</p>
+<h5 id="04-01-进入轮廓速度模式"><a href="#04-01-进入轮廓速度模式" class="headerlink" title="04.01 进入轮廓速度模式"></a>04.01 进入轮廓速度模式</h5><blockquote>
+<p>[6060]<br>ParameterName&#x3D;Modes of operation<br>ObjectType&#x3D;7<br>AccessType&#x3D;RW<br>DataType&#x3D;0x0002<br>PDOMapping&#x3D;1<br>ObjFlags&#x3D;0x00000000<br>DefaultValue&#x3D;1</p>
+</blockquote>
+<p>然后根据文档</p>
+<blockquote>
+<p>轮廓位置模式,profile position mode(1)</p>
+<p>轮廓速度模式,profile velocity mode(3)</p>
+<p>轮廓扭矩模式,profile torque mode(4)</p>
+<p>插补位置模式,interpolated position mode(7)</p>
+<p>循环同步位置模式,cyclic synchronous position mode(8)</p>
+<p>循环同步速度模式, cyclic synchronous velocity mode(9)</p>
+<p>循环同步扭矩模式, cyclic synchronous torque mode(10)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>COB-ID</th>
+<th>Byte0(CS)</th>
+<th>Byte1(Byte2)</th>
+<th>Byte3</th>
+<th>Byte4</th>
+<th>Byte5</th>
+<th>Byte6</th>
+<th>Byte7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>写</td>
+<td>0x600+NodeID</td>
+<td>0x23</td>
+<td>index</td>
+<td>subindex</td>
+<td>data</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>写</td>
+<td>0x600+NodeID</td>
+<td>0x27</td>
+<td>index</td>
+<td>subindex</td>
+<td>data</td>
+<td></td>
+<td></td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>写</td>
+<td>0x600+NodeID</td>
+<td>0x2B</td>
+<td>index</td>
+<td>subindex</td>
+<td>data</td>
+<td></td>
+<td>&#x2F;</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>写</td>
+<td>0x600+NodeID</td>
+<td>0x2F</td>
+<td>index</td>
+<td>subindex</td>
+<td>data</td>
+<td>&#x2F;</td>
+<td>&#x2F;</td>
+<td>&#x2F;</td>
+</tr>
+<tr>
+<td>返回</td>
+<td>0x580+NodeID</td>
+<td>0x60</td>
+<td>index</td>
+<td>subindex</td>
+<td>-</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>返回</td>
+<td>0x580+NodeID</td>
+<td>0x80</td>
+<td>index</td>
+<td>subindex</td>
+<td>aborting code</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>那我们用 <strong>CANopen SDO</strong> 命令, 基于 <strong>03</strong> 中的规则, 我们的命令就很清晰了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">601#</span><span class="language-bash">2F60600003000000</span></span><br></pre></td></tr></table></figure>
+
+<p>那么我们进入了 <strong>轮廓速度模式,profile velocity mode(3)</strong></p>
+<h5 id="04-02-复位故障状态"><a href="#04-02-复位故障状态" class="headerlink" title="04.02 复位故障状态"></a>04.02 复位故障状态</h5><p>这一步主要是为了万一上次有错误，先复位</p>
+<blockquote>
+<p>[6040]<br>ParameterName&#x3D;Controlword<br>ObjectType&#x3D;7<br>AccessType&#x3D;RW<br>DataType&#x3D;0x0006<br>PDOMapping&#x3D;1<br>ObjFlags&#x3D;0x00000000<br>DefaultValue&#x3D;0</p>
+</blockquote>
+<p>这次是两个字节了</p>
+<table>
+<thead>
+<tr>
+<th>位 (Bit)</th>
+<th>15-11</th>
+<th>10</th>
+<th>9</th>
+<th>8</th>
+<th>7</th>
+<th>6-5</th>
+<th>4</th>
+<th>3</th>
+<th>2</th>
+<th>1</th>
+<th>0</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>你的缩写</td>
+<td>ms</td>
+<td>r</td>
+<td>oms</td>
+<td>h</td>
+<td>fr</td>
+<td>oms</td>
+<td>eo</td>
+<td>qs</td>
+<td>ev</td>
+<td>so</td>
+<td>so</td>
+</tr>
+<tr>
+<td>完整名称</td>
+<td>Manufacturer Specific</td>
+<td>Reserved</td>
+<td>Operation Mode Specific</td>
+<td>Halt</td>
+<td>Fault Reset</td>
+<td>Operation Mode Specific</td>
+<td>Enable Operation</td>
+<td>Quick Stop</td>
+<td>Enable Voltage</td>
+<td>Switch On</td>
+<td>Switch On</td>
+</tr>
+<tr>
+<td>中文解释</td>
+<td>厂商自定义</td>
+<td>保留</td>
+<td>操作模式特定</td>
+<td>暂停</td>
+<td>故障复位</td>
+<td>操作模式特定</td>
+<td>运行使能</td>
+<td>快速停止</td>
+<td>电压使能</td>
+<td>上电</td>
+<td>上电</td>
+</tr>
+</tbody></table>
+<p>然后我尝试去复位了他的状态, 大概如下</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$</span><span class="language-bash">&#123;SDO_ID&#125;<span class="comment">#2B40600008000000</span></span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">&#123;SDO_ID&#125;<span class="comment">#2B40600006000000</span></span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">&#123;SDO_ID&#125;<span class="comment">#2B40600007000000</span></span></span><br><span class="line"><span class="meta prompt_">$</span><span class="language-bash">&#123;SDO_ID&#125;<span class="comment">#2B4060000F000000</span></span></span><br></pre></td></tr></table></figure>
+
+<p>作为一个玩机器人的前端，刚开始真的懵了。<br><code>0F</code> 是个十六进制的值，所以这里是 <code>0000 1111</code></p>
+<p>所以代表着 上电，电压使能，快速停止</p>
+<h5 id="04-03-设置速度转动"><a href="#04-03-设置速度转动" class="headerlink" title="04.03 设置速度转动"></a>04.03 设置速度转动</h5><table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Index:Sub</th>
+<th>Type</th>
+<th>Bit Size</th>
+<th>Min Data</th>
+<th>Max Data</th>
+<th>Default Data</th>
+<th>Unit</th>
+<th>Access</th>
+<th>PDO Mapping</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Target velocity</td>
+<td>0x60FF:0</td>
+<td>DINT</td>
+<td>32</td>
+<td></td>
+<td></td>
+<td>0</td>
+<td>rpm</td>
+<td>readwrite</td>
+<td>Receive PDO (Outputs)</td>
+</tr>
+</tbody></table>
+<p>于是</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cansend $INTERFACE &quot;$&#123;SDO_ID&#125;#23FF6000$&#123;SPEED_HEX&#125;&quot;</span><br></pre></td></tr></table></figure>
+
+<p>电机就这么转起来了co</p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2025-07-21</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/can2-0/'>
+                            can2.0
+                        </a>
+                    
+                        <a href='/tags/canopen/'>
+                            canopen
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2025/07/23/202507/Vuex/'>Vuex 基本用法</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2025/07/20/202507/tree_shaking_base/">Tree-Sharking, rollup解析，vue</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>
