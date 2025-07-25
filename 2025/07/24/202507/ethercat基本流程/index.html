@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>成天乱写 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="成天乱写" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">成天乱写</a> 
+            <span class="description">乱写东西的地方，讲讲代码和生活</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2025-07-24</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：846</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：3分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E9%85%8D%E7%BD%AE%E6%B5%81%E7%A8%8B"><span class="post-toc-text">配置流程</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#%F0%9F%93%82-%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%8A%B6%E6%80%81%E7%9B%B8%E5%85%B3%E5%AF%B9%E8%B1%A1%EF%BC%88CiA-402%EF%BC%89"><span class="post-toc-text">📂 控制与状态相关对象（CiA 402）</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#%E2%9A%99%EF%B8%8F-%E8%AE%BE%E5%A4%87%E9%85%8D%E7%BD%AE%E4%B8%8E%E8%AF%8A%E6%96%AD%E7%B1%BB%E5%AF%B9%E8%B1%A1%EF%BC%88%E9%80%9A%E7%94%A8%EF%BC%89"><span class="post-toc-text">⚙️ 设备配置与诊断类对象（通用）</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <div class=".article-gallery"><h3 id="配置流程"><a href="#配置流程" class="headerlink" title="配置流程"></a>配置流程</h3><p>01ecrt_request_master 连接主站</p>
+<p>ecrt_master_create_domain 创建数据域 &#x3D;&gt; 类似新建文件夹内，后续PDO之类的会进来</p>
+<p>ecrt_master_get_slave获取从站信息(这里可以批量)</p>
+<p>ecrt_master_slave_config 把从站信息告诉主站</p>
+<p>ecrt_slave_config_pdos 配置pdo 规范</p>
+<ul>
+<li><p><strong>目的</strong>：这是最关键的配置步骤之一。对于每个从站，你需要精确地定义：</p>
+</li>
+<li><p>**同步管理器 (Sync Managers)**：配置哪些“邮箱”用于输入（从站 -&gt; 主站）和输出（主站 -&gt; 从站）。</p>
+</li>
+<li><p>**过程数据对象 (PDOs)**：指定你希望通过这些“邮箱”交换的具体数据是什么。例如，“我希望将‘目标位置’这个PDO映射到输出邮箱，并将‘实际位置’这个PDO映射到输入邮箱”。</p>
+</li>
+<li><p><strong>信息来源</strong>：这些配置信息（PDO索引、同步管理器设置）通常来自于从站设备的ESI (EtherCAT Slave Information) 文件，或者通过 <code>ethercat</code> 命令行工具扫描得到</p>
+</li>
+</ul>
+<p>ecrt_slave_config_dc 设置分布式时钟</p>
+<table>
+<thead>
+<tr>
+<th>数值</th>
+<th>含义说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>0x0001</code></td>
+<td>启用 DC 支持</td>
+</tr>
+<tr>
+<td><code>0x0300</code></td>
+<td>启用 Sync0 输出 + 同步激活（常用）</td>
+</tr>
+<tr>
+<td><code>0x0700</code></td>
+<td>启用 Sync0 和 Sync1 输出</td>
+</tr>
+</tbody></table>
+<p>ecrt_master_select_reference_clock 设置参考时钟（可选）</p>
+<p>ecrt_domain_reg_pdo_entry_list 注册pdo</p>
+<p>ecrt_master_sdo_download 通过SDO 获取和设置字典对象.</p>
+<p>ecrt_slave_config_emcy_handler 注册 EMCY 回调处理函数</p>
+<table>
+<thead>
+<tr>
+<th>组成</th>
+<th>作用</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>对象字典（Object Dictionary）</strong></td>
+<td>定义设备的数据结构</td>
+<td><code>0x6040</code>、<code>0x6060</code>、<code>0x607A</code> 等</td>
+</tr>
+<tr>
+<td><strong>SDO（Service Data Object）服务</strong></td>
+<td>读&#x2F;写对象字典参数（非实时）</td>
+<td>修改加速度、读取固件版本等</td>
+</tr>
+<tr>
+<td><strong>PDO（Process Data Object）服务</strong></td>
+<td>实时数据传输（周期性）</td>
+<td>控制字、目标位置、反馈位置</td>
+</tr>
+<tr>
+<td><strong>Emergency（EMCY）报文</strong></td>
+<td>异常报警机制</td>
+<td>电机过载、编码器错误等</td>
+</tr>
+<tr>
+<td><strong>SYNC 同步机制</strong></td>
+<td>时间同步（如果使用同步模式）</td>
+<td>主站发同步触发信号</td>
+</tr>
+<tr>
+<td><strong>CiA 301&#x2F;40x 设备配置规范</strong></td>
+<td>设备行为标准（如 CiA 402）</td>
+<td>电机状态切换逻辑、模式设置</td>
+</tr>
+</tbody></table>
+<h5 id="📂-控制与状态相关对象（CiA-402）"><a href="#📂-控制与状态相关对象（CiA-402）" class="headerlink" title="📂 控制与状态相关对象（CiA 402）"></a>📂 控制与状态相关对象（CiA 402）</h5><table>
+<thead>
+<tr>
+<th>Index</th>
+<th>Sub</th>
+<th>Name</th>
+<th>类型</th>
+<th>含义与作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>0x603F</strong></td>
+<td>0</td>
+<td>Error code</td>
+<td>UINT16</td>
+<td>最近一次错误码，比如过流、过压等 (<a target="_blank" rel="noopener" href="https://doc-legacy.synapticon.com/software/42/documentation_html/object_htmls/603F/index.html?utm_source=chatgpt.com" title="0x603F Error code - Synapticon Documentation">doc-legacy.synapticon.com</a>)</td>
+</tr>
+<tr>
+<td><strong>0x6040</strong></td>
+<td>0</td>
+<td>Controlword</td>
+<td>UINT16</td>
+<td>控制状态机，例如 Enable&#x2F;RUN&#x2F;Reset (<a target="_blank" rel="noopener" href="https://www.kollmorgen.com/sites/default/files/public_downloads/RGM_CANopen_PDF.pdf?utm_source=chatgpt.com" title="[PDF] RGM CANopen - Kollmorgen">kollmorgen.com</a>, <a target="_blank" rel="noopener" href="https://download.variodrive.nl/ACS/product_guides/EtherCAT-DS402-Products-User-Guide.pdf?utm_source=chatgpt.com" title="[PDF] EtherCAT DS402 Products User Guide - My Document">download.variodrive.nl</a>)</td>
+</tr>
+<tr>
+<td><strong>0x6041</strong></td>
+<td>0</td>
+<td>Statusword</td>
+<td>UINT16</td>
+<td>状态反馈，如 Fault&#x2F;Operation enabled等 (<a target="_blank" rel="noopener" href="https://www.kollmorgen.com/sites/default/files/public_downloads/RGM_CANopen_PDF.pdf?utm_source=chatgpt.com" title="[PDF] RGM CANopen - Kollmorgen">kollmorgen.com</a>, <a target="_blank" rel="noopener" href="https://download.variodrive.nl/ACS/product_guides/EtherCAT-DS402-Products-User-Guide.pdf?utm_source=chatgpt.com" title="[PDF] EtherCAT DS402 Products User Guide - My Document">download.variodrive.nl</a>)</td>
+</tr>
+<tr>
+<td><strong>0x6060</strong></td>
+<td>0</td>
+<td>Modes of operation</td>
+<td>SINT8</td>
+<td>设置运行模式：CSP&#x2F;CST&#x2F;CSV等 (<a target="_blank" rel="noopener" href="https://www.kollmorgen.com/sites/default/files/public_downloads/RGM_CANopen_PDF.pdf?utm_source=chatgpt.com" title="[PDF] RGM CANopen - Kollmorgen">kollmorgen.com</a>, <a target="_blank" rel="noopener" href="https://download.variodrive.nl/ACS/product_guides/EtherCAT-DS402-Products-User-Guide.pdf?utm_source=chatgpt.com" title="[PDF] EtherCAT DS402 Products User Guide - My Document">download.variodrive.nl</a>)</td>
+</tr>
+<tr>
+<td><strong>0x6061</strong></td>
+<td>0</td>
+<td>Modes display</td>
+<td>SINT8</td>
+<td>当前运行模式反馈 (<a target="_blank" rel="noopener" href="https://www.kollmorgen.com/sites/default/files/public_downloads/RGM_CANopen_PDF.pdf?utm_source=chatgpt.com" title="[PDF] RGM CANopen - Kollmorgen">kollmorgen.com</a>, <a target="_blank" rel="noopener" href="https://download.variodrive.nl/ACS/product_guides/EtherCAT-DS402-Products-User-Guide.pdf?utm_source=chatgpt.com" title="[PDF] EtherCAT DS402 Products User Guide - My Document">download.variodrive.nl</a>)</td>
+</tr>
+<tr>
+<td><strong>0x6071</strong></td>
+<td>0</td>
+<td>Target torque</td>
+<td>INT16</td>
+<td>设置目标转矩 (<a target="_blank" rel="noopener" href="https://doc-legacy.synapticon.com/software/41/object_dict/all_objects/index.html?utm_source=chatgpt.com" title="List of all Objects - Synapticon Documentation">doc-legacy.synapticon.com</a>, <a target="_blank" rel="noopener" href="https://www.kollmorgen.com/sites/default/files/public_downloads/RGM_CANopen_PDF.pdf?utm_source=chatgpt.com" title="[PDF] RGM CANopen - Kollmorgen">kollmorgen.com</a>)</td>
+</tr>
+<tr>
+<td><strong>0x607A</strong></td>
+<td>0</td>
+<td>Target position</td>
+<td>INT32</td>
+<td>设置目标位置 (<a target="_blank" rel="noopener" href="https://doc-legacy.synapticon.com/software/41/object_dict/all_objects/index.html?utm_source=chatgpt.com" title="List of all Objects - Synapticon Documentation">doc-legacy.synapticon.com</a>, <a target="_blank" rel="noopener" href="https://www.kollmorgen.com/sites/default/files/public_downloads/RGM_CANopen_PDF.pdf?utm_source=chatgpt.com" title="[PDF] RGM CANopen - Kollmorgen">kollmorgen.com</a>)</td>
+</tr>
+<tr>
+<td><strong>0x60FF</strong></td>
+<td>0</td>
+<td>Target velocity</td>
+<td>INT32</td>
+<td>设置目标速度 (<a target="_blank" rel="noopener" href="https://doc-legacy.synapticon.com/software/41/object_dict/all_objects/index.html?utm_source=chatgpt.com" title="List of all Objects - Synapticon Documentation">doc-legacy.synapticon.com</a>, <a target="_blank" rel="noopener" href="https://www.kollmorgen.com/sites/default/files/public_downloads/RGM_CANopen_PDF.pdf?utm_source=chatgpt.com" title="[PDF] RGM CANopen - Kollmorgen">kollmorgen.com</a>)</td>
+</tr>
+<tr>
+<td><strong>0x6064</strong></td>
+<td>0</td>
+<td>Actual position</td>
+<td>INT32</td>
+<td>实际位置反馈 (<a target="_blank" rel="noopener" href="https://doc-legacy.synapticon.com/software/41/object_dict/all_objects/index.html?utm_source=chatgpt.com" title="List of all Objects - Synapticon Documentation">doc-legacy.synapticon.com</a>, <a target="_blank" rel="noopener" href="https://www.kollmorgen.com/sites/default/files/public_downloads/RGM_CANopen_PDF.pdf?utm_source=chatgpt.com" title="[PDF] RGM CANopen - Kollmorgen">kollmorgen.com</a>)</td>
+</tr>
+<tr>
+<td><strong>0x606C</strong></td>
+<td>0</td>
+<td>Actual velocity</td>
+<td>INT32</td>
+<td>实际速度反馈 (<a target="_blank" rel="noopener" href="https://doc-legacy.synapticon.com/software/41/object_dict/all_objects/index.html?utm_source=chatgpt.com" title="List of all Objects - Synapticon Documentation">doc-legacy.synapticon.com</a>, <a target="_blank" rel="noopener" href="https://www.kollmorgen.com/sites/default/files/public_downloads/RGM_CANopen_PDF.pdf?utm_source=chatgpt.com" title="[PDF] RGM CANopen - Kollmorgen">kollmorgen.com</a>)</td>
+</tr>
+<tr>
+<td><strong>0x6077</strong></td>
+<td>0</td>
+<td>Actual torque</td>
+<td>INT16</td>
+<td>实际转矩反馈 (<a target="_blank" rel="noopener" href="https://doc-legacy.synapticon.com/software/41/object_dict/all_objects/index.html?utm_source=chatgpt.com" title="List of all Objects - Synapticon Documentation">doc-legacy.synapticon.com</a>, <a target="_blank" rel="noopener" href="https://www.kollmorgen.com/sites/default/files/public_downloads/RGM_CANopen_PDF.pdf?utm_source=chatgpt.com" title="[PDF] RGM CANopen - Kollmorgen">kollmorgen.com</a>)</td>
+</tr>
+<tr>
+<td><strong>0x60B0</strong></td>
+<td>0</td>
+<td>Position offset</td>
+<td>INT32</td>
+<td>CSP 模式下的位置偏移（可选） (<a target="_blank" rel="noopener" href="https://doc-legacy.synapticon.com/software/41/object_dict/all_objects/index.html?utm_source=chatgpt.com" title="List of all Objects - Synapticon Documentation">doc-legacy.synapticon.com</a>)</td>
+</tr>
+<tr>
+<td><strong>0x60B1</strong></td>
+<td>0</td>
+<td>Velocity offset</td>
+<td>INT32</td>
+<td>CSV 模式下的速度偏移（可选） (<a target="_blank" rel="noopener" href="https://doc-legacy.synapticon.com/software/41/object_dict/all_objects/index.html?utm_source=chatgpt.com" title="List of all Objects - Synapticon Documentation">doc-legacy.synapticon.com</a>)</td>
+</tr>
+<tr>
+<td><strong>0x60B2</strong></td>
+<td>0</td>
+<td>Torque offset</td>
+<td>INT16</td>
+<td>CST 模式下的转矩偏移（可选） (<a target="_blank" rel="noopener" href="https://doc-legacy.synapticon.com/software/41/object_dict/all_objects/index.html?utm_source=chatgpt.com" title="List of all Objects - Synapticon Documentation">doc-legacy.synapticon.com</a>)</td>
+</tr>
+</tbody></table>
+<h5 id="⚙️-设备配置与诊断类对象（通用）"><a href="#⚙️-设备配置与诊断类对象（通用）" class="headerlink" title="⚙️ 设备配置与诊断类对象（通用）"></a>⚙️ 设备配置与诊断类对象（通用）</h5><table>
+<thead>
+<tr>
+<th>索引</th>
+<th>名称</th>
+<th>用途说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>0x1000</strong></td>
+<td>Device Type</td>
+<td>设备类型标识</td>
+</tr>
+<tr>
+<td><strong>0x1001</strong></td>
+<td>Error Register</td>
+<td>错误状态</td>
+</tr>
+<tr>
+<td><strong>0x1018</strong></td>
+<td>Identity Object</td>
+<td>厂商ID、产品ID、版本号等</td>
+</tr>
+<tr>
+<td><strong>0x1020</strong></td>
+<td>Verify Configuration Date</td>
+<td>配置校验</td>
+</tr>
+<tr>
+<td><strong>0x10F1</strong></td>
+<td>Firmware Version（非标准）</td>
+<td>某些厂商扩展的固件信息</td>
+</tr>
+</tbody></table>
+<p>强烈建议查询这个，基本的该有的都有。</p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2025-07-24</span>
+            
+            
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2025/07/24/202507/Pinia/'>Pinia 基本和源码简单分析</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2025/07/23/202507/Vuex/">Vuex 基本用法</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>
