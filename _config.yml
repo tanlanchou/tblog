@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 成天乱写
+title: CallMeTommy的博客
 subtitle: '代码和生活'
-description: '乱写东西的地方，讲讲代码和生活'
+description: '杂乱写东西的地方'
 keywords: 
 author: tommy
 language: zh-Hans
@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://callmetommy.cn
+url: http://blog.callmetommy.cn
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:

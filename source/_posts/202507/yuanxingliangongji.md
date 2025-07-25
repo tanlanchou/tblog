@@ -4,7 +4,7 @@ date: 2025-07-26 11:24:03
 tags: 
     - Javascript
     - prototype
-	- 攻击
+    - 攻击
 ---
 
 # 原型链攻击
