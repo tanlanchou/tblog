@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>成天乱写</title>
+  <title>CallMeTommy的博客</title>
   
   <subtitle>代码和生活</subtitle>
-  <link href="https://callmetommy.cn/atom.xml" rel="self"/>
+  <link href="http://blog.callmetommy.cn/atom.xml" rel="self"/>
   
-  <link href="https://callmetommy.cn/"/>
-  <updated>2025-07-24T01:54:22.762Z</updated>
-  <id>https://callmetommy.cn/</id>
+  <link href="http://blog.callmetommy.cn/"/>
+  <updated>2025-07-25T05:21:25.693Z</updated>
+  <id>http://blog.callmetommy.cn/</id>
   
   <author>
     <name>tommy</name>
@@ -17,9 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>原型链攻击</title>
+    <link href="http://blog.callmetommy.cn/2025/07/26/202507/yuanxingliangongji/"/>
+    <id>http://blog.callmetommy.cn/2025/07/26/202507/yuanxingliangongji/</id>
+    <published>2025-07-26T03:24:03.000Z</published>
+    <updated>2025-07-25T05:21:25.693Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h1 id=&quot;原型链攻击&quot;&gt;&lt;a href=&quot;#原型链攻击&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Javascript" scheme="http://blog.callmetommy.cn/tags/Javascript/"/>
+    
+    <category term="prototype" scheme="http://blog.callmetommy.cn/tags/prototype/"/>
+    
+    <category term="攻击" scheme="http://blog.callmetommy.cn/tags/%E6%94%BB%E5%87%BB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Prisma 基本应用</title>
-    <link href="https://callmetommy.cn/2025/07/25/202507/Prisma/"/>
-    <id>https://callmetommy.cn/2025/07/25/202507/Prisma/</id>
+    <link href="http://blog.callmetommy.cn/2025/07/25/202507/Prisma/"/>
+    <id>http://blog.callmetommy.cn/2025/07/25/202507/Prisma/</id>
     <published>2025-07-25T01:45:01.000Z</published>
     <updated>2025-07-24T01:54:22.762Z</updated>
     
@@ -35,18 +62,18 @@
     
     
     
-    <category term="Prisma" scheme="https://callmetommy.cn/tags/Prisma/"/>
+    <category term="Prisma" scheme="http://blog.callmetommy.cn/tags/Prisma/"/>
     
-    <category term="Orm" scheme="https://callmetommy.cn/tags/Orm/"/>
+    <category term="Orm" scheme="http://blog.callmetommy.cn/tags/Orm/"/>
     
-    <category term="Nestjs" scheme="https://callmetommy.cn/tags/Nestjs/"/>
+    <category term="Nestjs" scheme="http://blog.callmetommy.cn/tags/Nestjs/"/>
     
   </entry>
   
   <entry>
     <title>Pinia 基本和源码简单分析</title>
-    <link href="https://callmetommy.cn/2025/07/24/202507/Pinia/"/>
-    <id>https://callmetommy.cn/2025/07/24/202507/Pinia/</id>
+    <link href="http://blog.callmetommy.cn/2025/07/24/202507/Pinia/"/>
+    <id>http://blog.callmetommy.cn/2025/07/24/202507/Pinia/</id>
     <published>2025-07-24T09:47:01.000Z</published>
     <updated>2025-07-23T09:53:14.014Z</updated>
     
@@ -62,16 +89,16 @@
     
     
     
-    <category term="Vue3" scheme="https://callmetommy.cn/tags/Vue3/"/>
+    <category term="Vue3" scheme="http://blog.callmetommy.cn/tags/Vue3/"/>
     
-    <category term="Pinia" scheme="https://callmetommy.cn/tags/Pinia/"/>
+    <category term="Pinia" scheme="http://blog.callmetommy.cn/tags/Pinia/"/>
     
   </entry>
   
   <entry>
     <title></title>
-    <link href="https://callmetommy.cn/2025/07/24/202507/ethercat%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B/"/>
-    <id>https://callmetommy.cn/2025/07/24/202507/ethercat%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B/</id>
+    <link href="http://blog.callmetommy.cn/2025/07/24/202507/ethercat%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B/"/>
+    <id>http://blog.callmetommy.cn/2025/07/24/202507/ethercat%E5%9F%BA%E6%9C%AC%E6%B5%81%E7%A8%8B/</id>
     <published>2025-07-24T02:15:14.953Z</published>
     <updated>2025-07-24T09:23:56.095Z</updated>
     
@@ -91,8 +118,8 @@
   
   <entry>
     <title>Vuex 基本用法</title>
-    <link href="https://callmetommy.cn/2025/07/23/202507/Vuex/"/>
-    <id>https://callmetommy.cn/2025/07/23/202507/Vuex/</id>
+    <link href="http://blog.callmetommy.cn/2025/07/23/202507/Vuex/"/>
+    <id>http://blog.callmetommy.cn/2025/07/23/202507/Vuex/</id>
     <published>2025-07-23T11:59:03.000Z</published>
     <updated>2025-07-23T05:46:31.776Z</updated>
     
@@ -108,16 +135,16 @@
     
     
     
-    <category term="Vue3" scheme="https://callmetommy.cn/tags/Vue3/"/>
+    <category term="Vue3" scheme="http://blog.callmetommy.cn/tags/Vue3/"/>
     
-    <category term="Vuex" scheme="https://callmetommy.cn/tags/Vuex/"/>
+    <category term="Vuex" scheme="http://blog.callmetommy.cn/tags/Vuex/"/>
     
   </entry>
   
   <entry>
     <title>can 电机是否接入</title>
-    <link href="https://callmetommy.cn/2025/07/21/202507/can%E5%8D%8F%E8%AE%AE%E7%94%B5%E6%9C%BA%E6%8E%A5%E5%85%A5/"/>
-    <id>https://callmetommy.cn/2025/07/21/202507/can%E5%8D%8F%E8%AE%AE%E7%94%B5%E6%9C%BA%E6%8E%A5%E5%85%A5/</id>
+    <link href="http://blog.callmetommy.cn/2025/07/21/202507/can%E5%8D%8F%E8%AE%AE%E7%94%B5%E6%9C%BA%E6%8E%A5%E5%85%A5/"/>
+    <id>http://blog.callmetommy.cn/2025/07/21/202507/can%E5%8D%8F%E8%AE%AE%E7%94%B5%E6%9C%BA%E6%8E%A5%E5%85%A5/</id>
     <published>2025-07-21T13:30:22.000Z</published>
     <updated>2025-07-22T12:59:35.056Z</updated>
     
@@ -133,16 +160,16 @@
     
     
     
-    <category term="can2.0" scheme="https://callmetommy.cn/tags/can2-0/"/>
+    <category term="can2.0" scheme="http://blog.callmetommy.cn/tags/can2-0/"/>
     
-    <category term="canopen" scheme="https://callmetommy.cn/tags/canopen/"/>
+    <category term="canopen" scheme="http://blog.callmetommy.cn/tags/canopen/"/>
     
   </entry>
   
   <entry>
     <title>Tree-Sharking, rollup解析，vue</title>
-    <link href="https://callmetommy.cn/2025/07/20/202507/tree_shaking_base/"/>
-    <id>https://callmetommy.cn/2025/07/20/202507/tree_shaking_base/</id>
+    <link href="http://blog.callmetommy.cn/2025/07/20/202507/tree_shaking_base/"/>
+    <id>http://blog.callmetommy.cn/2025/07/20/202507/tree_shaking_base/</id>
     <published>2025-07-20T14:47:01.000Z</published>
     <updated>2025-07-21T08:19:55.997Z</updated>
     
@@ -158,20 +185,20 @@
     
     
     
-    <category term="Vue3" scheme="https://callmetommy.cn/tags/Vue3/"/>
+    <category term="Vue3" scheme="http://blog.callmetommy.cn/tags/Vue3/"/>
     
-    <category term="Vue2" scheme="https://callmetommy.cn/tags/Vue2/"/>
+    <category term="Vue2" scheme="http://blog.callmetommy.cn/tags/Vue2/"/>
     
-    <category term="Tree-Sharking" scheme="https://callmetommy.cn/tags/Tree-Sharking/"/>
+    <category term="Tree-Sharking" scheme="http://blog.callmetommy.cn/tags/Tree-Sharking/"/>
     
-    <category term="Commonjs" scheme="https://callmetommy.cn/tags/Commonjs/"/>
+    <category term="Commonjs" scheme="http://blog.callmetommy.cn/tags/Commonjs/"/>
     
   </entry>
   
   <entry>
     <title>jwt实现原理</title>
-    <link href="https://callmetommy.cn/2024/12/05/202412/jwt/"/>
-    <id>https://callmetommy.cn/2024/12/05/202412/jwt/</id>
+    <link href="http://blog.callmetommy.cn/2024/12/05/202412/jwt/"/>
+    <id>http://blog.callmetommy.cn/2024/12/05/202412/jwt/</id>
     <published>2024-12-05T14:47:01.000Z</published>
     <updated>2024-12-05T03:25:01.232Z</updated>
     
@@ -187,16 +214,16 @@
     
     
     
-    <category term="jwt" scheme="https://callmetommy.cn/tags/jwt/"/>
+    <category term="jwt" scheme="http://blog.callmetommy.cn/tags/jwt/"/>
     
-    <category term="原理" scheme="https://callmetommy.cn/tags/%E5%8E%9F%E7%90%86/"/>
+    <category term="原理" scheme="http://blog.callmetommy.cn/tags/%E5%8E%9F%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>sse EventSource 空格</title>
-    <link href="https://callmetommy.cn/2024/12/04/202412/eventsource_space/"/>
-    <id>https://callmetommy.cn/2024/12/04/202412/eventsource_space/</id>
+    <link href="http://blog.callmetommy.cn/2024/12/04/202412/eventsource_space/"/>
+    <id>http://blog.callmetommy.cn/2024/12/04/202412/eventsource_space/</id>
     <published>2024-12-04T14:47:01.000Z</published>
     <updated>2024-12-03T08:10:53.501Z</updated>
     
@@ -212,16 +239,16 @@
     
     
     
-    <category term="javascript" scheme="https://callmetommy.cn/tags/javascript/"/>
+    <category term="javascript" scheme="http://blog.callmetommy.cn/tags/javascript/"/>
     
-    <category term="eventsource" scheme="https://callmetommy.cn/tags/eventsource/"/>
+    <category term="eventsource" scheme="http://blog.callmetommy.cn/tags/eventsource/"/>
     
   </entry>
   
   <entry>
     <title>企业微信登录流程</title>
-    <link href="https://callmetommy.cn/2024/12/03/202412/company_wechat_login/"/>
-    <id>https://callmetommy.cn/2024/12/03/202412/company_wechat_login/</id>
+    <link href="http://blog.callmetommy.cn/2024/12/03/202412/company_wechat_login/"/>
+    <id>http://blog.callmetommy.cn/2024/12/03/202412/company_wechat_login/</id>
     <published>2024-12-03T14:47:01.000Z</published>
     <updated>2024-12-03T08:09:17.630Z</updated>
     
@@ -238,16 +265,16 @@
     
     
     
-    <category term="企业微信" scheme="https://callmetommy.cn/tags/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1/"/>
+    <category term="企业微信" scheme="http://blog.callmetommy.cn/tags/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1/"/>
     
-    <category term="javascrip" scheme="https://callmetommy.cn/tags/javascrip/"/>
+    <category term="javascrip" scheme="http://blog.callmetommy.cn/tags/javascrip/"/>
     
   </entry>
   
   <entry>
     <title>bitlocker命令行解锁</title>
-    <link href="https://callmetommy.cn/2024/12/02/202412/bitlocker/"/>
-    <id>https://callmetommy.cn/2024/12/02/202412/bitlocker/</id>
+    <link href="http://blog.callmetommy.cn/2024/12/02/202412/bitlocker/"/>
+    <id>http://blog.callmetommy.cn/2024/12/02/202412/bitlocker/</id>
     <published>2024-12-02T14:47:01.000Z</published>
     <updated>2024-12-03T06:22:44.028Z</updated>
     
@@ -263,18 +290,18 @@
     
     
     
-    <category term="java" scheme="https://callmetommy.cn/tags/java/"/>
+    <category term="java" scheme="http://blog.callmetommy.cn/tags/java/"/>
     
-    <category term="bitlocker" scheme="https://callmetommy.cn/tags/bitlocker/"/>
+    <category term="bitlocker" scheme="http://blog.callmetommy.cn/tags/bitlocker/"/>
     
-    <category term="bash" scheme="https://callmetommy.cn/tags/bash/"/>
+    <category term="bash" scheme="http://blog.callmetommy.cn/tags/bash/"/>
     
   </entry>
   
   <entry>
     <title>setInterval 浏览器执行频率</title>
-    <link href="https://callmetommy.cn/2024/03/11/javascript/setInterval_browser_execution_frequency/"/>
-    <id>https://callmetommy.cn/2024/03/11/javascript/setInterval_browser_execution_frequency/</id>
+    <link href="http://blog.callmetommy.cn/2024/03/11/javascript/setInterval_browser_execution_frequency/"/>
+    <id>http://blog.callmetommy.cn/2024/03/11/javascript/setInterval_browser_execution_frequency/</id>
     <published>2024-03-11T08:36:00.000Z</published>
     <updated>2024-12-02T05:28:09.910Z</updated>
     
@@ -292,16 +319,16 @@
     
     
     
-    <category term="web" scheme="https://callmetommy.cn/tags/web/"/>
+    <category term="web" scheme="http://blog.callmetommy.cn/tags/web/"/>
     
-    <category term="javascript" scheme="https://callmetommy.cn/tags/javascript/"/>
+    <category term="javascript" scheme="http://blog.callmetommy.cn/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>前端埋点</title>
-    <link href="https://callmetommy.cn/2024/02/23/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9/"/>
-    <id>https://callmetommy.cn/2024/02/23/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9/</id>
+    <link href="http://blog.callmetommy.cn/2024/02/23/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9/"/>
+    <id>http://blog.callmetommy.cn/2024/02/23/%E5%89%8D%E7%AB%AF%E5%9F%8B%E7%82%B9/</id>
     <published>2024-02-23T06:49:37.000Z</published>
     <updated>2024-12-02T05:28:09.935Z</updated>
     
@@ -317,16 +344,16 @@
     
     
     
-    <category term="前端" scheme="https://callmetommy.cn/tags/%E5%89%8D%E7%AB%AF/"/>
+    <category term="前端" scheme="http://blog.callmetommy.cn/tags/%E5%89%8D%E7%AB%AF/"/>
     
-    <category term="埋点" scheme="https://callmetommy.cn/tags/%E5%9F%8B%E7%82%B9/"/>
+    <category term="埋点" scheme="http://blog.callmetommy.cn/tags/%E5%9F%8B%E7%82%B9/"/>
     
   </entry>
   
   <entry>
     <title>rss数据对比</title>
-    <link href="https://callmetommy.cn/2024/02/23/rss%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94/"/>
-    <id>https://callmetommy.cn/2024/02/23/rss%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94/</id>
+    <link href="http://blog.callmetommy.cn/2024/02/23/rss%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94/"/>
+    <id>http://blog.callmetommy.cn/2024/02/23/rss%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94/</id>
     <published>2024-02-23T06:48:52.000Z</published>
     <updated>2024-12-02T05:28:09.915Z</updated>
     
@@ -343,16 +370,16 @@
     
     
     
-    <category term="rss" scheme="https://callmetommy.cn/tags/rss/"/>
+    <category term="rss" scheme="http://blog.callmetommy.cn/tags/rss/"/>
     
-    <category term="diff" scheme="https://callmetommy.cn/tags/diff/"/>
+    <category term="diff" scheme="http://blog.callmetommy.cn/tags/diff/"/>
     
   </entry>
   
   <entry>
     <title>nestjs modules mailer</title>
-    <link href="https://callmetommy.cn/2024/02/23/nestjs-modules-mailer/"/>
-    <id>https://callmetommy.cn/2024/02/23/nestjs-modules-mailer/</id>
+    <link href="http://blog.callmetommy.cn/2024/02/23/nestjs-modules-mailer/"/>
+    <id>http://blog.callmetommy.cn/2024/02/23/nestjs-modules-mailer/</id>
     <published>2024-02-23T06:45:22.000Z</published>
     <updated>2024-12-02T05:28:09.912Z</updated>
     
@@ -368,18 +395,18 @@
     
     
     
-    <category term="typescript" scheme="https://callmetommy.cn/tags/typescript/"/>
+    <category term="typescript" scheme="http://blog.callmetommy.cn/tags/typescript/"/>
     
-    <category term="后端" scheme="https://callmetommy.cn/tags/%E5%90%8E%E7%AB%AF/"/>
+    <category term="后端" scheme="http://blog.callmetommy.cn/tags/%E5%90%8E%E7%AB%AF/"/>
     
-    <category term="nestjs" scheme="https://callmetommy.cn/tags/nestjs/"/>
+    <category term="nestjs" scheme="http://blog.callmetommy.cn/tags/nestjs/"/>
     
   </entry>
   
   <entry>
     <title>浏览器缓存大赏.</title>
-    <link href="https://callmetommy.cn/2023/12/14/browser/cache/"/>
-    <id>https://callmetommy.cn/2023/12/14/browser/cache/</id>
+    <link href="http://blog.callmetommy.cn/2023/12/14/browser/cache/"/>
+    <id>http://blog.callmetommy.cn/2023/12/14/browser/cache/</id>
     <published>2023-12-14T06:35:00.000Z</published>
     <updated>2024-12-02T05:28:09.903Z</updated>
     
@@ -395,20 +422,20 @@
     
     
     
-    <category term="browser" scheme="https://callmetommy.cn/tags/browser/"/>
+    <category term="browser" scheme="http://blog.callmetommy.cn/tags/browser/"/>
     
-    <category term="cache" scheme="https://callmetommy.cn/tags/cache/"/>
+    <category term="cache" scheme="http://blog.callmetommy.cn/tags/cache/"/>
     
-    <category term="Cache-Control" scheme="https://callmetommy.cn/tags/Cache-Control/"/>
+    <category term="Cache-Control" scheme="http://blog.callmetommy.cn/tags/Cache-Control/"/>
     
-    <category term="Expires" scheme="https://callmetommy.cn/tags/Expires/"/>
+    <category term="Expires" scheme="http://blog.callmetommy.cn/tags/Expires/"/>
     
   </entry>
   
   <entry>
     <title>前端 docker 项目如何动态加载环境变量</title>
-    <link href="https://callmetommy.cn/2023/12/07/zaxiang/front_docker_env/"/>
-    <id>https://callmetommy.cn/2023/12/07/zaxiang/front_docker_env/</id>
+    <link href="http://blog.callmetommy.cn/2023/12/07/zaxiang/front_docker_env/"/>
+    <id>http://blog.callmetommy.cn/2023/12/07/zaxiang/front_docker_env/</id>
     <published>2023-12-07T06:25:00.000Z</published>
     <updated>2024-12-02T05:28:09.934Z</updated>
     
@@ -425,20 +452,20 @@
     
     
     
-    <category term="javascript" scheme="https://callmetommy.cn/tags/javascript/"/>
+    <category term="javascript" scheme="http://blog.callmetommy.cn/tags/javascript/"/>
     
-    <category term="docker" scheme="https://callmetommy.cn/tags/docker/"/>
+    <category term="docker" scheme="http://blog.callmetommy.cn/tags/docker/"/>
     
-    <category term="shell" scheme="https://callmetommy.cn/tags/shell/"/>
+    <category term="shell" scheme="http://blog.callmetommy.cn/tags/shell/"/>
     
-    <category term="nginx" scheme="https://callmetommy.cn/tags/nginx/"/>
+    <category term="nginx" scheme="http://blog.callmetommy.cn/tags/nginx/"/>
     
   </entry>
   
   <entry>
     <title>前端请求模拟</title>
-    <link href="https://callmetommy.cn/2023/12/07/zaxiang/mock/"/>
-    <id>https://callmetommy.cn/2023/12/07/zaxiang/mock/</id>
+    <link href="http://blog.callmetommy.cn/2023/12/07/zaxiang/mock/"/>
+    <id>http://blog.callmetommy.cn/2023/12/07/zaxiang/mock/</id>
     <published>2023-12-07T06:25:00.000Z</published>
     <updated>2024-12-02T05:28:09.935Z</updated>
     
@@ -456,16 +483,16 @@
     
     
     
-    <category term="前端" scheme="https://callmetommy.cn/tags/%E5%89%8D%E7%AB%AF/"/>
+    <category term="前端" scheme="http://blog.callmetommy.cn/tags/%E5%89%8D%E7%AB%AF/"/>
     
-    <category term="axios-mock-adapter" scheme="https://callmetommy.cn/tags/axios-mock-adapter/"/>
+    <category term="axios-mock-adapter" scheme="http://blog.callmetommy.cn/tags/axios-mock-adapter/"/>
     
   </entry>
   
   <entry>
     <title>自己实现一个 bind</title>
-    <link href="https://callmetommy.cn/2023/12/07/shuati/001_bind/"/>
-    <id>https://callmetommy.cn/2023/12/07/shuati/001_bind/</id>
+    <link href="http://blog.callmetommy.cn/2023/12/07/shuati/001_bind/"/>
+    <id>http://blog.callmetommy.cn/2023/12/07/shuati/001_bind/</id>
     <published>2023-12-07T06:14:00.000Z</published>
     <updated>2024-12-02T05:28:09.915Z</updated>
     
@@ -481,14 +508,14 @@
     
     
     
-    <category term="javascript" scheme="https://callmetommy.cn/tags/javascript/"/>
+    <category term="javascript" scheme="http://blog.callmetommy.cn/tags/javascript/"/>
     
   </entry>
   
   <entry>
     <title>electron url启动, 注册表, 打包</title>
-    <link href="https://callmetommy.cn/2023/12/07/electron/electron_caiken_01/"/>
-    <id>https://callmetommy.cn/2023/12/07/electron/electron_caiken_01/</id>
+    <link href="http://blog.callmetommy.cn/2023/12/07/electron/electron_caiken_01/"/>
+    <id>http://blog.callmetommy.cn/2023/12/07/electron/electron_caiken_01/</id>
     <published>2023-12-07T03:35:00.000Z</published>
     <updated>2024-12-02T05:28:09.908Z</updated>
     
@@ -505,36 +532,11 @@
     
     
     
-    <category term="环境" scheme="https://callmetommy.cn/tags/%E7%8E%AF%E5%A2%83/"/>
+    <category term="环境" scheme="http://blog.callmetommy.cn/tags/%E7%8E%AF%E5%A2%83/"/>
     
-    <category term="electron" scheme="https://callmetommy.cn/tags/electron/"/>
+    <category term="electron" scheme="http://blog.callmetommy.cn/tags/electron/"/>
     
-    <category term="打包" scheme="https://callmetommy.cn/tags/%E6%89%93%E5%8C%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>url 通过协议启动应用程序</title>
-    <link href="https://callmetommy.cn/2023/12/01/javascript/url_open_software/"/>
-    <id>https://callmetommy.cn/2023/12/01/javascript/url_open_software/</id>
-    <published>2023-12-01T03:12:00.000Z</published>
-    <updated>2024-12-02T05:28:09.911Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h1 id=&quot;01-url-如何关联到应用程序&quot;&gt;&lt;a href=&quot;#01-url-如何关联到应用程序&quot; class=&quot;headerlink&quot; title=&quot;01. url 如何关联到应用程序?&quot;&gt;&lt;/a&gt;01.</summary>
-        
-      
-    
-    
-    
-    
-    <category term="web" scheme="https://callmetommy.cn/tags/web/"/>
-    
-    <category term="javascript" scheme="https://callmetommy.cn/tags/javascript/"/>
+    <category term="打包" scheme="http://blog.callmetommy.cn/tags/%E6%89%93%E5%8C%85/"/>
     
   </entry>
   
