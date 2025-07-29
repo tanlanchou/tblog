@@ -1,5 +1,5 @@
 ---
-title: ethercat igh 安装流程
+title: ethercat igb模式 无法发现从站
 date: 2025-07-29 14:28:01
 tags: 
     - ethercat

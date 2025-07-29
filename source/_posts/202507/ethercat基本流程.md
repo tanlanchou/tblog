@@ -1,3 +1,14 @@
+---
+title: ethercat 操作的流程和基本原理
+date: 2025-07-29 14:28:01
+tags: 
+    - ethercat
+    - igh
+    - igb
+    - 机器人
+draft: true
+---
+
 ### 配置流程
 
 01ecrt_request_master 连接主站
