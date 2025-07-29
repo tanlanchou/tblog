@@ -19,8 +19,8 @@ ecrt_slave_config_pdos 配置pdo 规范
 * **过程数据对象 (PDOs)**：指定你希望通过这些“邮箱”交换的具体数据是什么。例如，“我希望将‘目标位置’这个PDO映射到输出邮箱，并将‘实际位置’这个PDO映射到输入邮箱”。
 
 * **信息来源**：这些配置信息（PDO索引、同步管理器设置）通常来自于从站设备的ESI (EtherCAT Slave Information) 文件，或者通过 `ethercat` 命令行工具扫描得到
-
-
+  
+  
 
 ecrt_slave_config_dc 设置分布式时钟
 
@@ -45,6 +45,8 @@ ecrt_domain_reg_pdo_entry_list 注册pdo
 
 
 ecrt_master_sdo_download 通过SDO 获取和设置字典对象.
+
+ethercat download -m 4 -p 3 0x2004 0 0 --type uint8
 
 
 
