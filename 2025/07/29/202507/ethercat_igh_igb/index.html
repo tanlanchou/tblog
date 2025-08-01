@@ -152,13 +152,13 @@
             <div class="post-head-meta-center">
         
                 
-                    <span>最近更新：2025-07-29</span> 
+                    <span>最近更新：2025-08-01</span> 
                 
                 
                     
                         &nbsp; | &nbsp;
                     
-                     <span>字数总计：849</span>
+                     <span>字数总计：894</span>
                 
                 
                     
@@ -180,7 +180,7 @@
     <div class="post-md">
         
             
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ethercat-igb%E6%A8%A1%E5%BC%8F-%E6%97%A0%E6%B3%95%E5%8F%91%E7%8E%B0%E4%BB%8E%E7%AB%99"><span class="post-toc-text">ethercat igb模式 无法发现从站</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E5%8E%9F%E7%90%86"><span class="post-toc-text">01. 原理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E5%88%86%E6%9E%90"><span class="post-toc-text">02. 分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E4%B8%B4%E6%97%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="post-toc-text">02. 临时的解决方案</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E7%BB%88%E6%9E%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="post-toc-text">03. 终极解决方案</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E7%9B%AE%E5%89%8D%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="post-toc-text">04. 目前的解决方案</span></a></li></ol></li></ol></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ethercat-igb%E6%A8%A1%E5%BC%8F-%E6%97%A0%E6%B3%95%E5%8F%91%E7%8E%B0%E4%BB%8E%E7%AB%99"><span class="post-toc-text">ethercat igb模式 无法发现从站</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E5%8E%9F%E7%90%86"><span class="post-toc-text">01. 原理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E5%88%86%E6%9E%90"><span class="post-toc-text">02. 分析</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E4%B8%B4%E6%97%B6%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="post-toc-text">02. 临时的解决方案</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E7%BB%88%E6%9E%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="post-toc-text">03. 终极解决方案</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E7%9B%AE%E5%89%8D%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="post-toc-text">04. 目前的解决方案</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-%E6%9B%B4%E6%96%B0"><span class="post-toc-text">05. 更新</span></a></li></ol></li></ol></li></ol>
             
         
         <div class=".article-gallery"><h1 id="ethercat-igb模式-无法发现从站"><a href="#ethercat-igb模式-无法发现从站" class="headerlink" title="ethercat igb模式 无法发现从站"></a>ethercat igb模式 无法发现从站</h1><h3 id="01-原理"><a href="#01-原理" class="headerlink" title="01. 原理"></a>01. 原理</h3><p>其实之前就讲过了</p>
@@ -244,6 +244,8 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ethtool -i eth4 | grep bus-info</span><br><span class="line">sudo sh -c &#x27;echo &quot;0000:04:00.0&quot; &gt; /sys/bus/pci/drivers/igb/unbind&#x27;</span><br></pre></td></tr></table></figure>
 
 <p>通过脚本绑定上去，然后就可以临时解决了。甚至可以说是永久解决。</p>
+<h3 id="05-更新"><a href="#05-更新" class="headerlink" title="05. 更新"></a>05. 更新</h3><p><code>CONFIG_IGB=m</code> 有效，不会再出现这个问题。</p>
+<p>只是没有测试，这个选项的副作用，是否会导致其他问题。 后续在测试吧</p>
 </div>
     </div>
 

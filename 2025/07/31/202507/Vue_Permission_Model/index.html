@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="前端权限有哪些模式?" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    前端权限有哪些模式?
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2025-08-01</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.2k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：4分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E5%89%8D%E7%AB%AF%E6%9D%83%E9%99%90%E6%9C%89%E5%93%AA%E4%BA%9B%E6%A8%A1%E5%BC%8F%EF%BC%9F"><span class="post-toc-text">前端权限有哪些模式？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-PBAC"><span class="post-toc-text">01. PBAC</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-RBAC"><span class="post-toc-text">02. RBAC</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-ABAC"><span class="post-toc-text">03. ABAC</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-ReBAC"><span class="post-toc-text">04. ReBAC</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-Mac"><span class="post-toc-text">05. Mac</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <div class=".article-gallery"><h1 id="前端权限有哪些模式？"><a href="#前端权限有哪些模式？" class="headerlink" title="前端权限有哪些模式？"></a>前端权限有哪些模式？</h1><h3 id="01-PBAC"><a href="#01-PBAC" class="headerlink" title="01. PBAC"></a>01. PBAC</h3><p>这就是之前提到的，经常用的 <strong>基于权限码（操作点）的访问控制</strong></p>
+<p>也就是之前的</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;customer v-<span class="keyword">if</span>(<span class="title function_">hasPermission</span>(<span class="string">&#x27;user:view&#x27;</span>)) /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这种其实更多的是去判断按钮，判断组件是否有权限加载。</p>
+<p>后端通过 token 找到用户权限，然后判断用户是否有权限去访问</p>
+<p>这种往往后端是通过那种树形结构的权限</p>
+<p>比如</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">首页 =&gt; 本身的权限 View(访问)</span><br><span class="line">     =&gt; 首页下面有按钮有图标之类的，单独设置</span><br></pre></td></tr></table></figure>
+
+<p>这种就可以确定每个页面(或者路由每个页面)的访问权限</p>
+<p>但是他这个的问题也很明显，前端和后端他需要手动的去匹配。</p>
+<p>所以这个名字就很重要</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">user</span>:view</span><br><span class="line"><span class="attr">user</span>:<span class="keyword">delete</span></span><br></pre></td></tr></table></figure>
+
+<p>如果涉及页面可能就需要改成</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">user</span>:<span class="attr">list</span>:view</span><br><span class="line"><span class="attr">user</span>:<span class="attr">mange</span>:view</span><br></pre></td></tr></table></figure>
+
+<p>之类的，需要有一个结构出来。</p>
+<p>前端就可以通过变量去动态生成。</p>
+<p>而不用去两边都去存一个结构</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;home&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;user&quot;</span>: &#123;</span><br><span class="line">            ....</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>之类的。</p>
+<p>这种是配置起来麻烦但是灵活，理论上前端的什么都能控制到。</p>
+<h3 id="02-RBAC"><a href="#02-RBAC" class="headerlink" title="02. RBAC"></a>02. RBAC</h3><p>这种是角色授权</p>
+<p>其实角色授权和基于权限码授权并不冲突，很多时候是一起用的。</p>
+<p>角色代表着一堆授权码。</p>
+<blockquote>
+<p><code>用户</code> ⬅️ 绑定 ➡️ <code>角色</code></p>
+<p><code>角色</code> ⬅️ 绑定 ➡️ <code>权限码</code></p>
+</blockquote>
+<p>或者说角色是权限的集合</p>
+<p>角色的好处是，</p>
+<p>设定好角色以后，用户绑定角色即可。逻辑清楚方便</p>
+<p>还可以用多角色去玩，继承之类</p>
+<p>这种前端表现差异不大，还是用权限码去解决。</p>
+<p>他也很难独立存在。不然代码自己维护太蠢了。</p>
+<h3 id="03-ABAC"><a href="#03-ABAC" class="headerlink" title="03. ABAC"></a>03. ABAC</h3><p><strong>Attribute-Based Access Control</strong> 基于用户属性的权限控制</p>
+<p>这种比较复杂，其实用的比较少(我用的比较少…)</p>
+<p>首先什么是属性？<br>ip 是一种属性，比如很多国外的AI是不对中国开放的，中国IP访问会说不支持。</p>
+<p>比如一个OA. </p>
+<p>那么我的部门，我的职位，我的职级，都会是属性。</p>
+<p>比如部门之间有层级，他的权限关联就不一样。</p>
+<p>比如最顶级部门的人有全部权限 &#x3D;&gt; 下级部门挨个挨个继承权限，越来越少。</p>
+<p>有一些基础权限.</p>
+<p>这个设计起来比较复杂。</p>
+<p>比如</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">你的角色 主治医生，你也是住院医师</span><br><span class="line">科室是 心脑血管科</span><br><span class="line">假设你的职级是5</span><br></pre></td></tr></table></figure>
+
+<p>这个时候一个病人来找你看病。</p>
+<p>你要看他的病历。</p>
+<p>这个时候看病里这个动作修需要审查</p>
+<blockquote>
+<p>病人是否挂号？</p>
+<p>是否在规定时间看病？</p>
+<p>病人挂号的科室 &#x3D;&#x3D; 你的科室</p>
+<p>他是住院的还是什么？</p>
+<p>他的病历是否是主治医生才能看的</p>
+</blockquote>
+<p><strong>每一次访问请求本质上就是用户（主体）试图对某个资源执行一个动作</strong></p>
+<p>然后根据你的属性 动作的要求的属性进行匹配。</p>
+<p>匹配之后做出允许或者拒绝的判断</p>
+<p>你可以理解为他重新抽象了角色这种定义。</p>
+<h3 id="04-ReBAC"><a href="#04-ReBAC" class="headerlink" title="04. ReBAC"></a>04. ReBAC</h3><blockquote>
+<p> Relationship-Based Access Control</p>
+</blockquote>
+<p>之前的都是角色或者人对于某个动作或者某个功能，模块之类的有没有权限</p>
+<p>这个是指对资源的权限。</p>
+<p>比如一个文档，比如某个设备，或者医院病人也是资源。</p>
+<p>他权限的点不一样。</p>
+<p>比如资源他只有4个权限，增删差改</p>
+<p>某个角色，某个人对于这个资源是否有权进行控制</p>
+<p>他是另一种维度的权限。主要还是后端需要新建表，对应人对于资源增加权限</p>
+<p>比如我新建了一个文档，那么我是 <strong>ower</strong> 那么我对这个文档有完全控制，另外的人我可以分给他部分权限，比如 reader</p>
+<p>类似这样。</p>
+<p>他和角色之类的可以共存。</p>
+<h3 id="05-Mac"><a href="#05-Mac" class="headerlink" title="05. Mac"></a>05. Mac</h3><p>这种在做军工或者涉密的时候用的比较多。</p>
+<p>他是根据你的级别和文档或者说资源的级别来确定是否有权限访问的一种方式</p>
+<p><strong>权限由系统强制决定，个人无权更改</strong></p>
+<p>比如我的文件，在其他模式下我理论上都可以给其他人权限看。</p>
+<p>在 ReBAC, 我可以给你一个 <code>reader</code></p>
+<p>但是这个不行。</p>
+<p>你自身有权限级别，比如3，如果文档属于3级别，那么就可以直接访问。<br>只要达不到这个权限就是强制不让访问</p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2025-07-31</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/%E5%89%8D%E7%AB%AF/'>
+                            前端
+                        </a>
+                    
+                        <a href='/tags/Vue3/'>
+                            Vue3
+                        </a>
+                    
+                        <a href='/tags/Vue2/'>
+                            Vue2
+                        </a>
+                    
+                        <a href='/tags/%E6%9D%83%E9%99%90/'>
+                            权限
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2025/07/30/202507/Vue_Permission/">Vue 权限方案</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

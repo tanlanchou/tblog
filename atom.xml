@@ -6,7 +6,7 @@
   <link href="http://blog.callmetommy.cn/atom.xml" rel="self"/>
   
   <link href="http://blog.callmetommy.cn/"/>
-  <updated>2025-07-29T09:02:47.375Z</updated>
+  <updated>2025-08-01T09:13:12.008Z</updated>
   <id>http://blog.callmetommy.cn/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>前端权限有哪些模式?</title>
+    <link href="http://blog.callmetommy.cn/2025/07/31/202507/Vue_Permission_Model/"/>
+    <id>http://blog.callmetommy.cn/2025/07/31/202507/Vue_Permission_Model/</id>
+    <published>2025-07-31T14:47:01.000Z</published>
+    <updated>2025-08-01T09:13:12.008Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h1 id=&quot;前端权限有哪些模式？&quot;&gt;&lt;a href=&quot;#前端权限有哪些模式？&quot; class=&quot;headerlink&quot; title=&quot;前端权限有哪些模式？&quot;&gt;&lt;/a&gt;前端权限有哪些模式？&lt;/h1&gt;&lt;h3</summary>
+        
+      
+    
+    
+    
+    
+    <category term="前端" scheme="http://blog.callmetommy.cn/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="Vue3" scheme="http://blog.callmetommy.cn/tags/Vue3/"/>
+    
+    <category term="Vue2" scheme="http://blog.callmetommy.cn/tags/Vue2/"/>
+    
+    <category term="权限" scheme="http://blog.callmetommy.cn/tags/%E6%9D%83%E9%99%90/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Vue 权限方案</title>
     <link href="http://blog.callmetommy.cn/2025/07/30/202507/Vue_Permission/"/>
     <id>http://blog.callmetommy.cn/2025/07/30/202507/Vue_Permission/</id>
     <published>2025-07-30T14:47:01.000Z</published>
-    <updated>2025-07-29T09:02:47.375Z</updated>
+    <updated>2025-08-01T09:13:12.007Z</updated>
     
     
       
@@ -34,6 +63,8 @@
     
     
     
+    
+    <category term="前端" scheme="http://blog.callmetommy.cn/tags/%E5%89%8D%E7%AB%AF/"/>
     
     <category term="Vue3" scheme="http://blog.callmetommy.cn/tags/Vue3/"/>
     
@@ -48,7 +79,7 @@
     <link href="http://blog.callmetommy.cn/2025/07/29/202507/ethercat_igh_igb/"/>
     <id>http://blog.callmetommy.cn/2025/07/29/202507/ethercat_igh_igb/</id>
     <published>2025-07-29T06:28:01.000Z</published>
-    <updated>2025-07-29T06:31:04.904Z</updated>
+    <updated>2025-08-01T09:13:11.981Z</updated>
     
     
       
@@ -525,33 +556,6 @@
     <category term="shell" scheme="http://blog.callmetommy.cn/tags/shell/"/>
     
     <category term="nginx" scheme="http://blog.callmetommy.cn/tags/nginx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端请求模拟</title>
-    <link href="http://blog.callmetommy.cn/2023/12/07/zaxiang/mock/"/>
-    <id>http://blog.callmetommy.cn/2023/12/07/zaxiang/mock/</id>
-    <published>2023-12-07T06:25:00.000Z</published>
-    <updated>2024-12-02T05:28:09.935Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;p&gt;这个迭代后端很麻烦, 所以接口不太可能第一时间提供给我.&lt;/p&gt;
-&lt;p&gt;于是我先开会约定了接口, 就开始找网上的模拟解决办法.&lt;/p&gt;
-&lt;h2 id=&quot;要求&quot;&gt;&lt;a href=&quot;#要求&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="前端" scheme="http://blog.callmetommy.cn/tags/%E5%89%8D%E7%AB%AF/"/>
-    
-    <category term="axios-mock-adapter" scheme="http://blog.callmetommy.cn/tags/axios-mock-adapter/"/>
     
   </entry>
   
