@@ -6,7 +6,7 @@
   <link href="http://blog.callmetommy.cn/atom.xml" rel="self"/>
   
   <link href="http://blog.callmetommy.cn/"/>
-  <updated>2025-08-01T09:13:12.008Z</updated>
+  <updated>2025-08-06T07:55:52.268Z</updated>
   <id>http://blog.callmetommy.cn/</id>
   
   <author>
@@ -15,6 +15,89 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>electron sudo 以及管理员权限</title>
+    <link href="http://blog.callmetommy.cn/2025/08/06/202507/electron_sudo/"/>
+    <id>http://blog.callmetommy.cn/2025/08/06/202507/electron_sudo/</id>
+    <published>2025-08-06T07:54:18.000Z</published>
+    <updated>2025-08-06T07:55:52.268Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h1 id=&quot;electron-sudo-以及管理员权限&quot;&gt;&lt;a href=&quot;#electron-sudo-以及管理员权限&quot; class=&quot;headerlink&quot; title=&quot;electron sudo</summary>
+        
+      
+    
+    
+    
+    
+    <category term="前端" scheme="http://blog.callmetommy.cn/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="electron" scheme="http://blog.callmetommy.cn/tags/electron/"/>
+    
+    <category term="sudo" scheme="http://blog.callmetommy.cn/tags/sudo/"/>
+    
+    <category term="管理员权限" scheme="http://blog.callmetommy.cn/tags/%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://blog.callmetommy.cn/2025/08/06/202507/casl/"/>
+    <id>http://blog.callmetommy.cn/2025/08/06/202507/casl/</id>
+    <published>2025-08-06T07:52:59.217Z</published>
+    <updated>2025-08-06T07:52:59.218Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h1 id=&quot;Casl&quot;&gt;&lt;a href=&quot;#Casl&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ethercat CIA4.2 运动模式</title>
+    <link href="http://blog.callmetommy.cn/2025/08/05/202507/ethercat_yundong_model/"/>
+    <id>http://blog.callmetommy.cn/2025/08/05/202507/ethercat_yundong_model/</id>
+    <published>2025-08-05T01:36:22.000Z</published>
+    <updated>2025-08-06T07:56:35.106Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h1 id=&quot;ethercat-CIA4-2-运动模式&quot;&gt;&lt;a href=&quot;#ethercat-CIA4-2-运动模式&quot; class=&quot;headerlink&quot; title=&quot;ethercat CIA4.2</summary>
+        
+      
+    
+    
+    
+    
+    <category term="机器人" scheme="http://blog.callmetommy.cn/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/"/>
+    
+    <category term="ethercat" scheme="http://blog.callmetommy.cn/tags/ethercat/"/>
+    
+    <category term="igh" scheme="http://blog.callmetommy.cn/tags/igh/"/>
+    
+    <category term="igb" scheme="http://blog.callmetommy.cn/tags/igb/"/>
+    
+    <category term="运动模式" scheme="http://blog.callmetommy.cn/tags/%E8%BF%90%E5%8A%A8%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="CIA4.2" scheme="http://blog.callmetommy.cn/tags/CIA4-2/"/>
+    
+  </entry>
   
   <entry>
     <title>前端权限有哪些模式?</title>
@@ -470,92 +553,6 @@
     <category term="rss" scheme="http://blog.callmetommy.cn/tags/rss/"/>
     
     <category term="diff" scheme="http://blog.callmetommy.cn/tags/diff/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nestjs modules mailer</title>
-    <link href="http://blog.callmetommy.cn/2024/02/23/nestjs-modules-mailer/"/>
-    <id>http://blog.callmetommy.cn/2024/02/23/nestjs-modules-mailer/</id>
-    <published>2024-02-23T06:45:22.000Z</published>
-    <updated>2024-12-02T05:28:09.912Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h2 id=&quot;文档&quot;&gt;&lt;a href=&quot;#文档&quot; class=&quot;headerlink&quot; title=&quot;文档&quot;&gt;&lt;/a&gt;文档&lt;/h2&gt;&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="typescript" scheme="http://blog.callmetommy.cn/tags/typescript/"/>
-    
-    <category term="后端" scheme="http://blog.callmetommy.cn/tags/%E5%90%8E%E7%AB%AF/"/>
-    
-    <category term="nestjs" scheme="http://blog.callmetommy.cn/tags/nestjs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>浏览器缓存大赏.</title>
-    <link href="http://blog.callmetommy.cn/2023/12/14/browser/cache/"/>
-    <id>http://blog.callmetommy.cn/2023/12/14/browser/cache/</id>
-    <published>2023-12-14T06:35:00.000Z</published>
-    <updated>2024-12-02T05:28:09.903Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h3 id=&quot;01-强制缓存&quot;&gt;&lt;a href=&quot;#01-强制缓存&quot; class=&quot;headerlink&quot; title=&quot;01. 强制缓存&quot;&gt;&lt;/a&gt;01. 强制缓存&lt;/h3&gt;&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="browser" scheme="http://blog.callmetommy.cn/tags/browser/"/>
-    
-    <category term="cache" scheme="http://blog.callmetommy.cn/tags/cache/"/>
-    
-    <category term="Cache-Control" scheme="http://blog.callmetommy.cn/tags/Cache-Control/"/>
-    
-    <category term="Expires" scheme="http://blog.callmetommy.cn/tags/Expires/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>前端 docker 项目如何动态加载环境变量</title>
-    <link href="http://blog.callmetommy.cn/2023/12/07/zaxiang/front_docker_env/"/>
-    <id>http://blog.callmetommy.cn/2023/12/07/zaxiang/front_docker_env/</id>
-    <published>2023-12-07T06:25:00.000Z</published>
-    <updated>2024-12-02T05:28:09.934Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;p&gt;首先我们需要明白一个前提, 前端打包出来的东西是 html, css, js, 字体, 图片……&lt;/p&gt;
-&lt;p&gt;他是没有能力访问服务器的环境变量的. 所以如果要动态使用环境变量, 我大概想了一想,</summary>
-        
-      
-    
-    
-    
-    
-    <category term="javascript" scheme="http://blog.callmetommy.cn/tags/javascript/"/>
-    
-    <category term="docker" scheme="http://blog.callmetommy.cn/tags/docker/"/>
-    
-    <category term="shell" scheme="http://blog.callmetommy.cn/tags/shell/"/>
-    
-    <category term="nginx" scheme="http://blog.callmetommy.cn/tags/nginx/"/>
     
   </entry>
   
