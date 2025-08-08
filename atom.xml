@@ -6,7 +6,7 @@
   <link href="http://blog.callmetommy.cn/atom.xml" rel="self"/>
   
   <link href="http://blog.callmetommy.cn/"/>
-  <updated>2025-08-06T07:55:52.268Z</updated>
+  <updated>2025-08-08T05:43:44.031Z</updated>
   <id>http://blog.callmetommy.cn/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>casl 简介</title>
+    <link href="http://blog.callmetommy.cn/2025/08/06/202507/casl/"/>
+    <id>http://blog.callmetommy.cn/2025/08/06/202507/casl/</id>
+    <published>2025-08-06T07:54:18.000Z</published>
+    <updated>2025-08-08T05:43:44.031Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h1 id=&quot;Casl&quot;&gt;&lt;a href=&quot;#Casl&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="前端" scheme="http://blog.callmetommy.cn/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="vue" scheme="http://blog.callmetommy.cn/tags/vue/"/>
+    
+    <category term="权限" scheme="http://blog.callmetommy.cn/tags/%E6%9D%83%E9%99%90/"/>
+    
+    <category term="casl" scheme="http://blog.callmetommy.cn/tags/casl/"/>
+    
+  </entry>
   
   <entry>
     <title>electron sudo 以及管理员权限</title>
@@ -42,27 +71,6 @@
     <category term="sudo" scheme="http://blog.callmetommy.cn/tags/sudo/"/>
     
     <category term="管理员权限" scheme="http://blog.callmetommy.cn/tags/%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://blog.callmetommy.cn/2025/08/06/202507/casl/"/>
-    <id>http://blog.callmetommy.cn/2025/08/06/202507/casl/</id>
-    <published>2025-08-06T07:52:59.217Z</published>
-    <updated>2025-08-06T07:52:59.218Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;div class=&quot;.article-gallery&quot;&gt;&lt;h1 id=&quot;Casl&quot;&gt;&lt;a href=&quot;#Casl&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
     
   </entry>
   
