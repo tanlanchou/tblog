@@ -1,3 +1,13 @@
+---
+title: casl 简介
+date: 2025-08-06 15:54:18
+tags: 
+    - 权限
+    - 前端
+    - vue
+    - casl
+---
+
 # Casl
 
 之前一直在找Vue有没有权限的合集。
@@ -105,6 +115,100 @@ testPost():string {
         return ability.rules;
 ```
 
+通过这样会直接返回前端一个**JSON**对象，前端引入。
+
+前端通过自己的规则，然后也能实现
+
+```javascript
+ability.can("update", article)
+```
+
+类似的操作.
 
 
-通过这样会直接返回前端一个**JSON**对象，前端引入
+
+### 02. 为什么要使用casl?
+
+首先就是前后端统一。
+
+前端用什么后端就用什么这个确实香。
+
+
+
+另外他可以和其他数据库联动，直接查询可以省一些事情
+
+```typescript
+    import { accessibleBy } from '@casl/prisma';
+
+    const where = accessibleBy(ability, 'read').Article;
+    const rows = await prisma.article.findMany({ where, select: { id: true, title: true } });
+```
+
+我可以直接把权限直接放在查询里面.
+
+虽然其实如果你自己来也不是很麻烦，毕竟我也没有那么复杂的逻辑..
+
+
+
+casl 本质上是一种权限引擎。
+
+比如现在后台权限系统，一个树形的权限 => 基于菜单来做管理，基于文字类似于 `User:view` 其实很类似
+
+只是他给你做了一部分功能
+
+
+
+并且他可以进行灵活的配置，甚至可以管理到具体资源的级别。
+
+如果做一个大型的管理系统还是不错的.
+
+小型的，你根据角色权限直接写死也是不错的。
+
+
+比如我有一个权限表 permissions
+
+id: 42
+action: "update"
+subject: "Article"
+inverted: false
+conditions: {"authorId":"${user.id}"}
+
+
+这是后端的权限表，比如说如果直接写死应该是这样的
+
+```
+cannot('delete', 'Article', { isPublished: true }); 
+```
+
+那么我们去实例化
+```
+const { can, cannot, build } = new AbilityBuilder<AppAbility>(Ability as AbilityClass<AppAbility>);
+
+//拿到权限
+const dbPermissions: PermissionFromDB[] = await this.permissionsService.findAllForUser(user);
+
+//我懒得写了 dbPermissions 遍历得到 => permission
+if (permission.conditions) {
+  // 将 JSON 字符串解析为对象
+  const parsedConditions = JSON.parse(permission.conditions);
+  // !! 关键步骤: 替换占位符 !!
+  conditions = this.replacePlaceholders(parsedConditions, user);
+}
+
+// 4. 根据 inverted 字段决定调用 can 还是 cannot
+if (permission.inverted) {
+  // inverted: true -> cannot
+  cannot(permission.action as Action, permission.subject, conditions);
+} else {
+  // inverted: false -> can
+  can(permission.action as Action, permission.subject, conditions);
+}
+```
+
+看规则就有了，剩下的就是需要做一些其他的铺垫，怎么传给前端，怎么生成。
+
+因为他是写json的，有一套自己的规则，比如：`{"authorId":"${user.id}"}` 。
+
+他就是其他的 "user:view" 之类的纯粹的是和否这种机制相比，就强大很多，可以给很多权限。
+
+
