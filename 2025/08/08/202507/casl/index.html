@@ -158,13 +158,13 @@
                     
                         &nbsp; | &nbsp;
                     
-                     <span>字数总计：1k</span>
+                     <span>字数总计：1.3k</span>
                 
                 
                     
                         &nbsp; | &nbsp;
                     
-                    <span>阅读估时：4分钟</span>
+                    <span>阅读估时：5分钟</span>
                 
                 
                     
@@ -180,7 +180,7 @@
     <div class="post-md">
         
             
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Casl"><span class="post-toc-text">Casl</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="post-toc-text">01. 核心概念</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8casl"><span class="post-toc-text">02. 为什么要使用casl?</span></a></li></ol></li></ol></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Casl"><span class="post-toc-text">Casl</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="post-toc-text">01. 核心概念</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8casl"><span class="post-toc-text">02. 为什么要使用casl?</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E6%A0%B8%E5%BF%83%E4%BC%98%E5%8A%BF%EF%BC%8C%E5%8A%A8%E6%80%81%E5%A4%8D%E6%9D%82%E6%9D%83%E9%99%90"><span class="post-toc-text">03. 核心优势，动态复杂权限</span></a></li></ol></li></ol></li></ol>
             
         
         <div class=".article-gallery"><h1 id="Casl"><a href="#Casl" class="headerlink" title="Casl"></a>Casl</h1><p>之前一直在找Vue有没有权限的合集。</p>
@@ -235,21 +235,38 @@
 <p>比如我有一个权限表 permissions</p>
 <p>id: 42<br>action: “update”<br>subject: “Article”<br>inverted: false<br>conditions: {“authorId”:”${user.id}”}</p>
 <p>这是后端的权限表，比如说如果直接写死应该是这样的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cannot(&#x27;delete&#x27;, &#x27;Article&#x27;, &#123; isPublished: true &#125;); </span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">cannot</span>(<span class="string">&#x27;delete&#x27;</span>, <span class="string">&#x27;Article&#x27;</span>, &#123; <span class="attr">isPublished</span>: <span class="literal">true</span> &#125;); </span><br></pre></td></tr></table></figure>
 
 <p>那么我们去实例化</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">const &#123; can, cannot, build &#125; = new AbilityBuilder&lt;AppAbility&gt;(Ability as AbilityClass&lt;AppAbility&gt;);</span><br><span class="line"></span><br><span class="line">//拿到权限</span><br><span class="line">const dbPermissions: PermissionFromDB[] = await this.permissionsService.findAllForUser(user);</span><br><span class="line"></span><br><span class="line">//我懒得写了 dbPermissions 遍历得到 =&gt; permission</span><br><span class="line">if (permission.conditions) &#123;</span><br><span class="line">  // 将 JSON 字符串解析为对象</span><br><span class="line">  const parsedConditions = JSON.parse(permission.conditions);</span><br><span class="line">  // !! 关键步骤: 替换占位符 !!</span><br><span class="line">  conditions = this.replacePlaceholders(parsedConditions, user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 4. 根据 inverted 字段决定调用 can 还是 cannot</span><br><span class="line">if (permission.inverted) &#123;</span><br><span class="line">  // inverted: true -&gt; cannot</span><br><span class="line">  cannot(permission.action as Action, permission.subject, conditions);</span><br><span class="line">&#125; else &#123;</span><br><span class="line">  // inverted: false -&gt; can</span><br><span class="line">  can(permission.action as Action, permission.subject, conditions);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; can, cannot, build &#125; = <span class="keyword">new</span> <span class="title class_">AbilityBuilder</span>&lt;<span class="title class_">AppAbility</span>&gt;(<span class="title class_">Ability</span> <span class="keyword">as</span> <span class="title class_">AbilityClass</span>&lt;<span class="title class_">AppAbility</span>&gt;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//拿到权限</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">dbPermissions</span>: <span class="title class_">PermissionFromDB</span>[] = <span class="keyword">await</span> <span class="variable language_">this</span>.<span class="property">permissionsService</span>.<span class="title function_">findAllForUser</span>(user);</span><br><span class="line"></span><br><span class="line"><span class="comment">//我懒得写了 dbPermissions 遍历得到 =&gt; permission</span></span><br><span class="line"><span class="keyword">if</span> (permission.<span class="property">conditions</span>) &#123;</span><br><span class="line">  <span class="comment">// 将 JSON 字符串解析为对象</span></span><br><span class="line">  <span class="keyword">const</span> parsedConditions = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(permission.<span class="property">conditions</span>);</span><br><span class="line">  <span class="comment">// !! 关键步骤: 替换占位符 !!</span></span><br><span class="line">  conditions = <span class="variable language_">this</span>.<span class="title function_">replacePlaceholders</span>(parsedConditions, user);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. 根据 inverted 字段决定调用 can 还是 cannot</span></span><br><span class="line"><span class="keyword">if</span> (permission.<span class="property">inverted</span>) &#123;</span><br><span class="line">  <span class="comment">// inverted: true -&gt; cannot</span></span><br><span class="line">  <span class="title function_">cannot</span>(permission.<span class="property">action</span> <span class="keyword">as</span> <span class="title class_">Action</span>, permission.<span class="property">subject</span>, conditions);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="comment">// inverted: false -&gt; can</span></span><br><span class="line">  <span class="title function_">can</span>(permission.<span class="property">action</span> <span class="keyword">as</span> <span class="title class_">Action</span>, permission.<span class="property">subject</span>, conditions);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>看规则就有了，剩下的就是需要做一些其他的铺垫，怎么传给前端，怎么生成。</p>
 <p>因为他是写json的，有一套自己的规则，比如：<code>&#123;&quot;authorId&quot;:&quot;$&#123;user.id&#125;&quot;&#125;</code> 。</p>
 <p>他就是其他的 “user:view” 之类的纯粹的是和否这种机制相比，就强大很多，可以给很多权限。</p>
+<h3 id="03-核心优势，动态复杂权限"><a href="#03-核心优势，动态复杂权限" class="headerlink" title="03. 核心优势，动态复杂权限"></a>03. 核心优势，动态复杂权限</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="string">&quot;authorId&quot;</span>: <span class="string">&quot;$&#123;user.id&#125;&quot;</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个是最简单的，仅自己可见对吧？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="string">&quot;action&quot;</span>: <span class="string">&quot;update&quot;</span>, <span class="string">&quot;subject&quot;</span>: <span class="string">&quot;Article&quot;</span>, <span class="string">&quot;fields&quot;</span>: [<span class="string">&quot;title&quot;</span>, <span class="string">&quot;summary&quot;</span>], <span class="string">&quot;conditions&quot;</span>: &#123; <span class="string">&quot;authorId&quot;</span>: <span class="string">&quot;$&#123;user.id&#125;&quot;</span> &#125; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>我甚至可以通过字段进行全权限控制</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="string">&quot;$or&quot;</span>: [ &#123; <span class="string">&quot;isPublic&quot;</span>: <span class="literal">true</span> &#125;, &#123; <span class="string">&quot;sharedWith&quot;</span>: &#123; <span class="string">&quot;$in&quot;</span>: [<span class="string">&quot;$&#123;user.id&#125;&quot;</span>] &#125; &#125; ] &#125;</span><br></pre></td></tr></table></figure>
+
+<p>多条件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="string">&quot;tags&quot;</span>: &#123; <span class="string">&quot;$all&quot;</span>: [<span class="string">&quot;tech&quot;</span>, <span class="string">&quot;ai&quot;</span>] &#125; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>数组匹配</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="string">&quot;inverted&quot;</span>: <span class="literal">true</span>, <span class="string">&quot;action&quot;</span>: <span class="string">&quot;delete&quot;</span>, <span class="string">&quot;subject&quot;</span>: <span class="string">&quot;Article&quot;</span>, <span class="string">&quot;conditions&quot;</span>: &#123; <span class="string">&quot;isLocked&quot;</span>: <span class="literal">true</span> &#125; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>他还可以玩优先级覆盖</p>
+<p>等等等等等，他可以动态管理复杂的资源。各种动态权限。</p>
+<p>有机会我已经要试试。</p>
 </div>
     </div>
 
     <div class="post-meta">
         <i>
         
-            <span>2025-08-06</span>
+            <span>2025-08-08</span>
             
                 <span>该篇文章被 tommy</span>
             
