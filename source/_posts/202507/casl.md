@@ -1,6 +1,6 @@
 ---
 title: casl 简介
-date: 2025-08-06 15:54:18
+date: 2025-08-08 15:54:18
 tags: 
     - 权限
     - 前端
@@ -164,7 +164,6 @@ casl 本质上是一种权限引擎。
 
 小型的，你根据角色权限直接写死也是不错的。
 
-
 比如我有一个权限表 permissions
 
 id: 42
@@ -173,15 +172,15 @@ subject: "Article"
 inverted: false
 conditions: {"authorId":"${user.id}"}
 
-
 这是后端的权限表，比如说如果直接写死应该是这样的
 
-```
+```typescript
 cannot('delete', 'Article', { isPublished: true }); 
 ```
 
 那么我们去实例化
-```
+
+```typescript
 const { can, cannot, build } = new AbilityBuilder<AppAbility>(Ability as AbilityClass<AppAbility>);
 
 //拿到权限
@@ -210,5 +209,57 @@ if (permission.inverted) {
 因为他是写json的，有一套自己的规则，比如：`{"authorId":"${user.id}"}` 。
 
 他就是其他的 "user:view" 之类的纯粹的是和否这种机制相比，就强大很多，可以给很多权限。
+
+
+
+### 03. 核心优势，动态复杂权限
+
+```javascript
+{ "authorId": "${user.id}" }
+```
+
+这个是最简单的，仅自己可见对吧？
+
+
+
+```javascript
+{ "action": "update", "subject": "Article", "fields": ["title", "summary"], "conditions": { "authorId": "${user.id}" } }
+```
+
+我甚至可以通过字段进行全权限控制
+
+
+
+```typescript
+  { "$or": [ { "isPublic": true }, { "sharedWith": { "$in": ["${user.id}"] } } ] }
+```
+
+多条件
+
+
+
+```javascript
+{ "tags": { "$all": ["tech", "ai"] } }
+```
+
+数组匹配
+
+
+
+```typescript
+  { "inverted": true, "action": "delete", "subject": "Article", "conditions": { "isLocked": true } }
+```
+
+他还可以玩优先级覆盖
+
+
+
+
+
+等等等等等，他可以动态管理复杂的资源。各种动态权限。
+
+剩下的就要看文档了，目前还没有开始做项目。
+
+有机会我已经要试试。
 
 
