@@ -96,7 +96,7 @@ createForUser(user: User) {
 testPost():string {
     const ability = createForUser(user) //通过token拿到
     const article = //通过ID获取文章对象
-    ability.can("update", article)
+    ability.can("update", article)x
 }
 ```
 
