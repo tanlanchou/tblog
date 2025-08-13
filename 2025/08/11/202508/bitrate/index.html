@@ -4,7 +4,7 @@
     <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <meta name="description" content="vue3 setup" />
+    <meta name="description" content="什么是波特率?" />
     <meta name="hexo-theme-A4" content="v1.7.0" />
     <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
     <title>CallMeTommy的博客 | 代码和生活</title>
@@ -139,7 +139,7 @@
         
             
                 <div class="post-main-title" style="text-align: center;">
-                    vue3 setup
+                    什么是波特率?
                 </div>
             
         
@@ -152,19 +152,19 @@
             <div class="post-head-meta-center">
         
                 
-                    <span>最近更新：2024-12-02</span> 
+                    <span>最近更新：2025-08-13</span> 
                 
                 
                     
                         &nbsp; | &nbsp;
                     
-                     <span>字数总计：544</span>
+                     <span>字数总计：547</span>
                 
                 
                     
                         &nbsp; | &nbsp;
                     
-                    <span>阅读估时：2分钟</span>
+                    <span>阅读估时：1分钟</span>
                 
                 
                     
@@ -180,43 +180,75 @@
     <div class="post-md">
         
             
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84%EF%BC%9F"><span class="post-toc-text">怎么实现的？</span></a></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B3%A2%E7%89%B9%E7%8E%87"><span class="post-toc-text">什么是波特率</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E6%B3%A2%E7%89%B9%E7%8E%87"><span class="post-toc-text">01. 波特率</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E4%BF%A1%E5%8F%B7%E6%98%AF%E6%80%8E%E4%B9%88%E4%BC%A0%E8%BE%93%E7%9A%84%EF%BC%9F"><span class="post-toc-text">02. 信号是怎么传输的？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-NRZ-%E7%BC%96%E7%A0%81"><span class="post-toc-text">03. NRZ 编码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E6%80%BB%E7%BB%93"><span class="post-toc-text">04. 总结</span></a></li></ol></li></ol></li></ol>
             
         
-        <div class=".article-gallery"><h3 id="怎么实现的？"><a href="#怎么实现的？" class="headerlink" title="怎么实现的？"></a>怎么实现的？</h3><p>之前在 <a href="/tblog/2023/06/20/vue_setup_created_before_created/">beforeCreate, created vs setup</a> 当中说过 setup 函数。</p>
-<p>在 <strong>packages&#x2F;runtime-core&#x2F;src&#x2F;renderer.ts</strong> mountComponent 函数。</p>
-<p>我们可以快速过一下他怎么实现的。</p>
-<p>首先为什么会调用 <strong>mountComponent</strong> , 这个其实不管是 Vue2 还是 Vue3, 都是通过 patch 的调用，对比之后需要创建组件，才会调用。</p>
-<p><strong>mountComponent</strong> 做了什么?</p>
-<ol>
-<li>获取组件实例 instance</li>
-<li>如果是 keepalive 组件的话，将默认的渲染方法，加入到 KeepAliveContext 当然的 render 当中</li>
-<li>setupComponent 执行, 解析 solt, props 然后执行 setup 函数，处理返回值，异步，function, 或者直接返回。 然后处理返回值，如果是 function 的话，就会替换默认 render。</li>
-<li>调用 setupRenderEffect 渲染节点</li>
-</ol>
-<p>也就是说 <code>setupComponent</code> 调用, <code>setupRenderEffect</code> 渲染.</p>
-<p>setupRenderEffect 做了些事情。</p>
-<p>创建一个 componentUpdateFn 函数，通过 effect 函数，用来调度 componentUpdateFn, 调度的源码分析在 <a href="/tblog/2023/07/08/Vue3_queue/">vue3 任务调度源码解析</a>。 </p>
-<p>简单理解就是，通过 proxy 劫持 set &#x3D;&gt; 触发到 scheduler 也就是</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> effect = (instance.<span class="property">effect</span> = <span class="keyword">new</span> <span class="title class_">ReactiveEffect</span>(</span><br><span class="line">      componentUpdateFn,</span><br><span class="line">      <span class="function">() =&gt;</span> <span class="title function_">queueJob</span>(update),</span><br><span class="line">      instance.<span class="property">scope</span> <span class="comment">// track it in component&#x27;s effect scope</span></span><br><span class="line">    ))</span><br></pre></td></tr></table></figure>
-
-<p>中的 <code>() =&gt; queueJob(update)</code> 然后统一调度 <code>componentUpdateFn</code></p>
-<p>componentUpdateFn 其实本质上是使用 patch 去对比，不过区分了是否有 <code>instance.isMounted</code>, 从而触发不同的生命周期</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!instance.<span class="property">isMounted</span>) &#123;</span><br><span class="line">   <span class="keyword">const</span> &#123; bm, m, parent &#125; = instance;</span><br><span class="line">   <span class="comment">// beforeMount hook</span></span><br><span class="line">   <span class="keyword">if</span> (bm) &#123;</span><br><span class="line">       <span class="title function_">invokeArrayFns</span>(bm)</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">   <span class="title function_">patch</span>(</span><br><span class="line">       <span class="literal">null</span>,</span><br><span class="line">       subTree,</span><br><span class="line">       container,</span><br><span class="line">       anchor,</span><br><span class="line">       instance,</span><br><span class="line">       parentSuspense,</span><br><span class="line">       isSVG</span><br><span class="line">   )</span><br><span class="line"></span><br><span class="line">   <span class="comment">//..</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">// mounted hook</span></span><br><span class="line">   <span class="keyword">if</span> (m) &#123;</span><br><span class="line">       <span class="title function_">queuePostRenderEffect</span>(m, parentSuspense)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="keyword">let</span> &#123; next, bu, u, parent, vnode &#125; = instance</span><br><span class="line"></span><br><span class="line">   <span class="comment">// beforeUpdate hook</span></span><br><span class="line">   <span class="keyword">if</span> (bu) &#123;</span><br><span class="line">       <span class="title function_">invokeArrayFns</span>(bu)</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="title function_">patch</span>(</span><br><span class="line">       prevTree,</span><br><span class="line">       nextTree,</span><br><span class="line">       <span class="comment">// parent may have changed if it&#x27;s in a teleport</span></span><br><span class="line">       <span class="title function_">hostParentNode</span>(prevTree.<span class="property">el</span>!)!,</span><br><span class="line">       <span class="comment">// anchor may have changed if it&#x27;s in a fragment</span></span><br><span class="line">       <span class="title function_">getNextHostNode</span>(prevTree),</span><br><span class="line">       instance,</span><br><span class="line">       parentSuspense,</span><br><span class="line">       isSVG</span><br><span class="line">   )</span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> (u) &#123;</span><br><span class="line">       <span class="title function_">queuePostRenderEffect</span>(u, parentSuspense)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里涉及一个知识点. <code>queuePostRenderEffect</code> 并不是立刻执行的， 而是一个会加入队列，然后最后调用，先进先出。</p>
-<p>所以 updated 或者 mounted 最后是这种结果</p>
-<p>组件1 beforeMounted, 子组件1 beforeMounted &#x3D;&gt; 子组件1 mounted &#x3D;&gt; 组件1 mounted。</p>
-<p>这大概就是 setup 的执行过程。</p>
-<p>并且在需要注意的是，如果自定义了 render , 那么每次更新都会调用。 setup 函数只会在 mountComponent 的时候调用一次。</p>
-<p>大概是这样.</p>
+        <div class=".article-gallery"><h1 id="什么是波特率"><a href="#什么是波特率" class="headerlink" title="什么是波特率"></a>什么是波特率</h1><p>在看 can 和 cia402 相关协议的时候会出现这个东西，比特率。</p>
+<p>我不是硬件或者嵌入式出身的程序员，完全不了解这个概念.</p>
+<p>于是查了下。</p>
+<h3 id="01-波特率"><a href="#01-波特率" class="headerlink" title="01. 波特率"></a>01. 波特率</h3><blockquote>
+<p>波特率是<strong>信号符号变化的次数</strong>，也就是每秒钟信号能够变化多少次。</p>
+</blockquote>
+<p>根据资料来说，can 点击采用的是 </p>
+<blockquote>
+<p>NRZ 编码，全称 <strong>Non-Return to Zero</strong>（不归零编码）</p>
+</blockquote>
+<p>这里就引入了很多概念了。</p>
+<p><strong>比特率（Bit Rate）是什么？</strong></p>
+<blockquote>
+<p> 比特率是<strong>每秒传输的比特数</strong>，也就是每秒钟传递多少个二进制位（0 或 1）。</p>
+</blockquote>
+<p>也就是说 如果<strong>波特率</strong>每次只传输一个 <code>bit</code> 那么 <strong>波特率</strong> &#x3D; <strong>比特率</strong></p>
+<h3 id="02-信号是怎么传输的？"><a href="#02-信号是怎么传输的？" class="headerlink" title="02. 信号是怎么传输的？"></a>02. 信号是怎么传输的？</h3><p>这里就是我的知识盲区了。</p>
+<p>首先就是信号是通过电压的变化来传递的，这个我真的是大开眼界…</p>
+<p>拿 <code>canopen</code> 的双绞线来说.</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>CAN_H 电压</th>
+<th>CAN_L 电压</th>
+<th>电压差（CAN_H - CAN_L）</th>
+<th>比特值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>显性（Dominant）</td>
+<td>~3.5 V</td>
+<td>~1.5 V</td>
+<td>≈ 2 V</td>
+<td>0</td>
+</tr>
+<tr>
+<td>隐性（Recessive）</td>
+<td>~2.5 V</td>
+<td>~2.5 V</td>
+<td>≈ 0 V</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>我么传的 <strong>1</strong> 和 <strong>0</strong> tmd是通过这个传过去的。</p>
+<p>网线也同样，只是他双绞线多，并且通过调制解调器，不仅仅是一次符号变化只有一个bit，可能是多个bit</p>
+<h3 id="03-NRZ-编码"><a href="#03-NRZ-编码" class="headerlink" title="03. NRZ 编码"></a>03. NRZ 编码</h3><blockquote>
+<p> 每个比特用一个固定的电平（电压）来表示，</p>
+<p>0 和 1 对应两个不同的电平，</p>
+<p>在一个比特时间内，电平保持恒定 <strong>不变化</strong>，也就是说不会中途“回零”或切换其他电平，直到下一个比特开始。</p>
+</blockquote>
+<p>这是他的核心概念。</p>
+<p>电平就是电压，每一个bit，就是一种电压。<br>每次传输，就是bit周期，保证电压不变</p>
+<p>那么网线呢？</p>
+<p>PAM-5，他多个符号，可能大于1个bit。</p>
+<p>他电压就是会变化的。</p>
+<h3 id="04-总结"><a href="#04-总结" class="headerlink" title="04. 总结"></a>04. 总结</h3><p>简单说了下比特率和波特率的区别，以及他们背后的原理。</p>
+<p>怎么也没想到这个网络世界居然就是靠电压的差别支撑起来的。。</p>
+<p>太牛逼了。</p>
 </div>
     </div>
 
     <div class="post-meta">
         <i>
         
-            <span>2023-07-31</span>
+            <span>2025-08-11</span>
             
                 <span>该篇文章被 tommy</span>
             
@@ -224,20 +256,16 @@
                 <span>打上标签:
                     
                     
-                        <a href='/tags/vue3/'>
-                            vue3
+                        <a href='/tags/canopen/'>
+                            canopen
                         </a>
                     
-                        <a href='/tags/%E5%89%8D%E7%AB%AF/'>
-                            前端
+                        <a href='/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/'>
+                            机器人
                         </a>
                     
-                        <a href='/tags/%E6%BA%90%E7%A0%81/'>
-                            源码
-                        </a>
-                    
-                        <a href='/tags/setup/'>
-                            setup
+                        <a href='/tags/cia402/'>
+                            cia402
                         </a>
                     
                 </span>
@@ -254,11 +282,11 @@
     
             <div class="post-footer-pre-next">
                 
-                    <span>上一篇：<a href='/2023/08/19/Vue_extends/'>Vue2.extend</a></span>
+                    <span>上一篇：<a href='/2025/08/12/202508/can_cia402/'></a></span>
                 
 
                 
-                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2023/07/19/uniapp_login/">uni-app 登录</a>
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2025/08/11/202508/can_arbitration/">canopen 仲裁</a>
                     </span>
                 
             </div>

@@ -4,7 +4,7 @@
     <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
-    <meta name="description" content="vue3 setup" />
+    <meta name="description" content="canopen 仲裁" />
     <meta name="hexo-theme-A4" content="v1.7.0" />
     <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
     <title>CallMeTommy的博客 | 代码和生活</title>
@@ -139,7 +139,7 @@
         
             
                 <div class="post-main-title" style="text-align: center;">
-                    vue3 setup
+                    canopen 仲裁
                 </div>
             
         
@@ -152,19 +152,19 @@
             <div class="post-head-meta-center">
         
                 
-                    <span>最近更新：2024-12-02</span> 
+                    <span>最近更新：2025-08-13</span> 
                 
                 
                     
                         &nbsp; | &nbsp;
                     
-                     <span>字数总计：544</span>
+                     <span>字数总计：775</span>
                 
                 
                     
                         &nbsp; | &nbsp;
                     
-                    <span>阅读估时：2分钟</span>
+                    <span>阅读估时：3分钟</span>
                 
                 
                     
@@ -180,43 +180,206 @@
     <div class="post-md">
         
             
-                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84%EF%BC%9F"><span class="post-toc-text">怎么实现的？</span></a></li></ol>
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#canopen-%E4%BB%B2%E8%A3%81"><span class="post-toc-text">canopen 仲裁</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E4%BB%B2%E8%A3%81%E7%9A%84%E8%A7%84%E5%88%99"><span class="post-toc-text">01. 仲裁的规则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-01-CAN-%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7%E4%BB%B2%E8%A3%81"><span class="post-toc-text">01.01 CAN 的优先级仲裁</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-02-COB-ID"><span class="post-toc-text">01.02 COB-ID</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BB%B2%E8%A3%81%EF%BC%9F"><span class="post-toc-text">03. 为什么要仲裁？</span></a></li></ol></li></ol></li></ol>
             
         
-        <div class=".article-gallery"><h3 id="怎么实现的？"><a href="#怎么实现的？" class="headerlink" title="怎么实现的？"></a>怎么实现的？</h3><p>之前在 <a href="/tblog/2023/06/20/vue_setup_created_before_created/">beforeCreate, created vs setup</a> 当中说过 setup 函数。</p>
-<p>在 <strong>packages&#x2F;runtime-core&#x2F;src&#x2F;renderer.ts</strong> mountComponent 函数。</p>
-<p>我们可以快速过一下他怎么实现的。</p>
-<p>首先为什么会调用 <strong>mountComponent</strong> , 这个其实不管是 Vue2 还是 Vue3, 都是通过 patch 的调用，对比之后需要创建组件，才会调用。</p>
-<p><strong>mountComponent</strong> 做了什么?</p>
-<ol>
-<li>获取组件实例 instance</li>
-<li>如果是 keepalive 组件的话，将默认的渲染方法，加入到 KeepAliveContext 当然的 render 当中</li>
-<li>setupComponent 执行, 解析 solt, props 然后执行 setup 函数，处理返回值，异步，function, 或者直接返回。 然后处理返回值，如果是 function 的话，就会替换默认 render。</li>
-<li>调用 setupRenderEffect 渲染节点</li>
-</ol>
-<p>也就是说 <code>setupComponent</code> 调用, <code>setupRenderEffect</code> 渲染.</p>
-<p>setupRenderEffect 做了些事情。</p>
-<p>创建一个 componentUpdateFn 函数，通过 effect 函数，用来调度 componentUpdateFn, 调度的源码分析在 <a href="/tblog/2023/07/08/Vue3_queue/">vue3 任务调度源码解析</a>。 </p>
-<p>简单理解就是，通过 proxy 劫持 set &#x3D;&gt; 触发到 scheduler 也就是</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> effect = (instance.<span class="property">effect</span> = <span class="keyword">new</span> <span class="title class_">ReactiveEffect</span>(</span><br><span class="line">      componentUpdateFn,</span><br><span class="line">      <span class="function">() =&gt;</span> <span class="title function_">queueJob</span>(update),</span><br><span class="line">      instance.<span class="property">scope</span> <span class="comment">// track it in component&#x27;s effect scope</span></span><br><span class="line">    ))</span><br></pre></td></tr></table></figure>
-
-<p>中的 <code>() =&gt; queueJob(update)</code> 然后统一调度 <code>componentUpdateFn</code></p>
-<p>componentUpdateFn 其实本质上是使用 patch 去对比，不过区分了是否有 <code>instance.isMounted</code>, 从而触发不同的生命周期</p>
-<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!instance.<span class="property">isMounted</span>) &#123;</span><br><span class="line">   <span class="keyword">const</span> &#123; bm, m, parent &#125; = instance;</span><br><span class="line">   <span class="comment">// beforeMount hook</span></span><br><span class="line">   <span class="keyword">if</span> (bm) &#123;</span><br><span class="line">       <span class="title function_">invokeArrayFns</span>(bm)</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//...</span></span><br><span class="line"></span><br><span class="line">   <span class="title function_">patch</span>(</span><br><span class="line">       <span class="literal">null</span>,</span><br><span class="line">       subTree,</span><br><span class="line">       container,</span><br><span class="line">       anchor,</span><br><span class="line">       instance,</span><br><span class="line">       parentSuspense,</span><br><span class="line">       isSVG</span><br><span class="line">   )</span><br><span class="line"></span><br><span class="line">   <span class="comment">//..</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">// mounted hook</span></span><br><span class="line">   <span class="keyword">if</span> (m) &#123;</span><br><span class="line">       <span class="title function_">queuePostRenderEffect</span>(m, parentSuspense)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="keyword">let</span> &#123; next, bu, u, parent, vnode &#125; = instance</span><br><span class="line"></span><br><span class="line">   <span class="comment">// beforeUpdate hook</span></span><br><span class="line">   <span class="keyword">if</span> (bu) &#123;</span><br><span class="line">       <span class="title function_">invokeArrayFns</span>(bu)</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="title function_">patch</span>(</span><br><span class="line">       prevTree,</span><br><span class="line">       nextTree,</span><br><span class="line">       <span class="comment">// parent may have changed if it&#x27;s in a teleport</span></span><br><span class="line">       <span class="title function_">hostParentNode</span>(prevTree.<span class="property">el</span>!)!,</span><br><span class="line">       <span class="comment">// anchor may have changed if it&#x27;s in a fragment</span></span><br><span class="line">       <span class="title function_">getNextHostNode</span>(prevTree),</span><br><span class="line">       instance,</span><br><span class="line">       parentSuspense,</span><br><span class="line">       isSVG</span><br><span class="line">   )</span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> (u) &#123;</span><br><span class="line">       <span class="title function_">queuePostRenderEffect</span>(u, parentSuspense)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里涉及一个知识点. <code>queuePostRenderEffect</code> 并不是立刻执行的， 而是一个会加入队列，然后最后调用，先进先出。</p>
-<p>所以 updated 或者 mounted 最后是这种结果</p>
-<p>组件1 beforeMounted, 子组件1 beforeMounted &#x3D;&gt; 子组件1 mounted &#x3D;&gt; 组件1 mounted。</p>
-<p>这大概就是 setup 的执行过程。</p>
-<p>并且在需要注意的是，如果自定义了 render , 那么每次更新都会调用。 setup 函数只会在 mountComponent 的时候调用一次。</p>
-<p>大概是这样.</p>
+        <div class=".article-gallery"><h1 id="canopen-仲裁"><a href="#canopen-仲裁" class="headerlink" title="canopen 仲裁"></a>canopen 仲裁</h1><p>比如说ethercat，他是一个环形的结构，根据从站顺序，然后一个一个交换数据。</p>
+<p>但是 can 电机他不是这样。</p>
+<h3 id="01-仲裁的规则"><a href="#01-仲裁的规则" class="headerlink" title="01. 仲裁的规则"></a>01. 仲裁的规则</h3><blockquote>
+<p><strong>CAN 的优先级仲裁</strong> + <strong>CANopen 的 COB-ID（Communication Object Identifier）规则</strong></p>
+</blockquote>
+<p>这是整个的核心机制</p>
+<h3 id="01-01-CAN-的优先级仲裁"><a href="#01-01-CAN-的优先级仲裁" class="headerlink" title="01.01 CAN 的优先级仲裁"></a>01.01 CAN 的优先级仲裁</h3><ul>
+<li><p>电平分为 <strong>显性位（dominant, 0）</strong> 和 <strong>隐性位（recessive, 1）</strong></p>
+</li>
+<li><p>如果总线上同时出现 0 和 1，最终表现是 <strong>0 占优</strong>（dominant wins）</p>
+</li>
+</ul>
+<blockquote>
+<p>发送节点的 CAN 控制器根据它要发送的报文标识符（COB-ID）和数据帧位，决定这一位是0（显性）还是1（隐性）</p>
+</blockquote>
+<p>也就是说</p>
+<table>
+<thead>
+<tr>
+<th>节点1 (bit)</th>
+<th>节点2 (bit)</th>
+<th>节点5 (bit)</th>
+<th>总线电平</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>-</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>-</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<p>谁是 0 谁优先。其他的就等待。下一轮.</p>
+<h3 id="01-02-COB-ID"><a href="#01-02-COB-ID" class="headerlink" title="01.02 COB-ID"></a>01.02 COB-ID</h3><p>什么是 COB-ID（Communication Object Identifier）规则</p>
+<p>理论上电机出厂就有设置，你也可以修改</p>
+<table>
+<thead>
+<tr>
+<th>通信对象类型</th>
+<th>COB-ID 起始值 (十六进制)</th>
+<th>组成</th>
+<th>说明</th>
+<th>优先级说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>NMT (网络管理)</strong></td>
+<td>0x000</td>
+<td>固定值 0x000</td>
+<td>网络管理消息，控制节点状态</td>
+<td>最高优先级</td>
+</tr>
+<tr>
+<td><strong>SYNC (同步消息)</strong></td>
+<td>0x080</td>
+<td>固定值 0x080</td>
+<td>同步信号</td>
+<td>非常高优先级</td>
+</tr>
+<tr>
+<td><strong>EMCY (紧急消息)</strong></td>
+<td>0x080 + 节点ID</td>
+<td>0x080 + 节点ID</td>
+<td>紧急错误消息</td>
+<td>高优先级</td>
+</tr>
+<tr>
+<td><strong>TPDO1 (发送PDO1)</strong></td>
+<td>0x180 + 节点ID</td>
+<td>0x180 + 节点ID</td>
+<td>第1发送PDO</td>
+<td>中等偏高优先级</td>
+</tr>
+<tr>
+<td><strong>TPDO2</strong></td>
+<td>0x280 + 节点ID</td>
+<td>0x280 + 节点ID</td>
+<td>第2发送PDO</td>
+<td>中等优先级</td>
+</tr>
+<tr>
+<td><strong>TPDO3</strong></td>
+<td>0x380 + 节点ID</td>
+<td>0x380 + 节点ID</td>
+<td>第3发送PDO</td>
+<td>中等偏低优先级</td>
+</tr>
+<tr>
+<td><strong>TPDO4</strong></td>
+<td>0x480 + 节点ID</td>
+<td>0x480 + 节点ID</td>
+<td>第4发送PDO</td>
+<td>较低优先级</td>
+</tr>
+<tr>
+<td><strong>RPDO1 (接收PDO1)</strong></td>
+<td>0x200 + 节点ID</td>
+<td>0x200 + 节点ID</td>
+<td>第1接收PDO</td>
+<td>低优先级</td>
+</tr>
+<tr>
+<td><strong>RPDO2</strong></td>
+<td>0x300 + 节点ID</td>
+<td>0x300 + 节点ID</td>
+<td>第2接收PDO</td>
+<td>更低优先级</td>
+</tr>
+<tr>
+<td><strong>RPDO3</strong></td>
+<td>0x400 + 节点ID</td>
+<td>0x400 + 节点ID</td>
+<td>第3接收PDO</td>
+<td>较低优先级</td>
+</tr>
+<tr>
+<td><strong>RPDO4</strong></td>
+<td>0x500 + 节点ID</td>
+<td>0x500 + 节点ID</td>
+<td>第4接收PDO</td>
+<td>更低优先级</td>
+</tr>
+<tr>
+<td><strong>SDO 服务器响应</strong></td>
+<td>0x580 + 节点ID</td>
+<td>0x580 + 节点ID</td>
+<td>从设备响应SDO请求</td>
+<td>高优先级</td>
+</tr>
+<tr>
+<td><strong>SDO 客户端请求</strong></td>
+<td>0x600 + 节点ID</td>
+<td>0x600 + 节点ID</td>
+<td>主设备发送SDO请求</td>
+<td>中等优先级</td>
+</tr>
+<tr>
+<td><strong>HeartBeat (心跳)</strong></td>
+<td>0x700 + 节点ID</td>
+<td>0x700 + 节点ID</td>
+<td>定期心跳消息</td>
+<td>低优先级</td>
+</tr>
+</tbody></table>
+<p>记住越小优先级越高.</p>
+<p>每种不同的请求，他的优先级都是不一样的。</p>
+<p>就是有些机器很重要，比如机器人某个重要关节，你需要重点照顾。</p>
+<p>这个时候就需要自己去通过 <code>SDO</code> 去修改 <strong>COB-ID</strong> 了</p>
+<p>然后通过他去影响显性和隐性</p>
+<h3 id="03-为什么要仲裁？"><a href="#03-为什么要仲裁？" class="headerlink" title="03. 为什么要仲裁？"></a>03. 为什么要仲裁？</h3><p>这个其实是最关键的。</p>
+<p>其实源于他们接线的不一样。</p>
+<p>因为 canopen 这种双绞线，你可以理解为一根线，他们是共享电平的。一条共享的差分总线</p>
+<p>所以 canopen 的 controller 和 电机(从站) 其实每次都是广播。</p>
+<p>在这种广播的机制下，就不可能采用 ethercat 这种进，出的循环，就需要有一个机制去决定优先级。</p>
 </div>
     </div>
 
     <div class="post-meta">
         <i>
         
-            <span>2023-07-31</span>
+            <span>2025-08-11</span>
             
                 <span>该篇文章被 tommy</span>
             
@@ -224,20 +387,16 @@
                 <span>打上标签:
                     
                     
-                        <a href='/tags/vue3/'>
-                            vue3
+                        <a href='/tags/canopen/'>
+                            canopen
                         </a>
                     
-                        <a href='/tags/%E5%89%8D%E7%AB%AF/'>
-                            前端
+                        <a href='/tags/%E6%9C%BA%E5%99%A8%E4%BA%BA/'>
+                            机器人
                         </a>
                     
-                        <a href='/tags/%E6%BA%90%E7%A0%81/'>
-                            源码
-                        </a>
-                    
-                        <a href='/tags/setup/'>
-                            setup
+                        <a href='/tags/cia402/'>
+                            cia402
                         </a>
                     
                 </span>
@@ -254,11 +413,11 @@
     
             <div class="post-footer-pre-next">
                 
-                    <span>上一篇：<a href='/2023/08/19/Vue_extends/'>Vue2.extend</a></span>
+                    <span>上一篇：<a href='/2025/08/11/202508/bitrate/'>什么是波特率?</a></span>
                 
 
                 
-                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2023/07/19/uniapp_login/">uni-app 登录</a>
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2025/08/11/202508/jserror/">javascript 错误</a>
                     </span>
                 
             </div>

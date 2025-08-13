@@ -152,7 +152,7 @@
             <div class="post-head-meta-center">
         
                 
-                    <span>最近更新：2025-08-08</span> 
+                    <span>最近更新：2025-08-12</span> 
                 
                 
                     
@@ -206,7 +206,7 @@
 <p>这是一个实例化的过程，他会返回一个 <code>AppAbility</code> 对象。那么这个对象可以开始检查权限</p>
 <p>这个时候就可以开始搞了。</p>
 <p>比如，我有一个 <code>router</code></p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Get</span>(<span class="string">&quot;:id&quot;</span>)</span><br><span class="line"><span class="title function_">testPost</span>():<span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> ability = <span class="title function_">createForUser</span>(user) <span class="comment">//通过token拿到</span></span><br><span class="line">    <span class="keyword">const</span> article = <span class="comment">//通过ID获取文章对象</span></span><br><span class="line">    ability.<span class="title function_">can</span>(<span class="string">&quot;update&quot;</span>, article)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Get</span>(<span class="string">&quot;:id&quot;</span>)</span><br><span class="line"><span class="title function_">testPost</span>():<span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> ability = <span class="title function_">createForUser</span>(user) <span class="comment">//通过token拿到</span></span><br><span class="line">    <span class="keyword">const</span> article = <span class="comment">//通过ID获取文章对象</span></span><br><span class="line">    ability.<span class="title function_">can</span>(<span class="string">&quot;update&quot;</span>, article)x</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -259,6 +259,7 @@
 
 <p>他还可以玩优先级覆盖</p>
 <p>等等等等等，他可以动态管理复杂的资源。各种动态权限。</p>
+<p>剩下的就要看文档了，目前还没有开始做项目。</p>
 <p>有机会我已经要试试。</p>
 </div>
     </div>
@@ -303,6 +304,8 @@
             
     
             <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2025/08/11/202508/jserror/'>javascript 错误</a></span>
                 
 
                 

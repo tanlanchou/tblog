@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2025-08-12</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.2k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：5分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Can-amp-CIA402"><span class="post-toc-text">Can &amp; CIA402</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%E5%A4%87%E4%BB%BD"><span class="post-toc-text">整体流程备份</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%EF%BC%88%E6%8E%A8%E8%8D%90%E5%81%9A%E6%B3%95%EF%BC%89"><span class="post-toc-text">整体流程（推荐做法）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%9E%81%E7%AE%80%E7%A4%BA%E4%BE%8B%EF%BC%88%E4%BB%85%E7%A4%BA%E6%84%8F%EF%BC%8CNodeID-x3D-N%EF%BC%89"><span class="post-toc-text">极简示例（仅示意，NodeID&#x3D;N）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%B8%B8%E8%A7%81%E6%B3%A8%E6%84%8F"><span class="post-toc-text">常见注意</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <div class=".article-gallery"><h1 id="Can-amp-CIA402"><a href="#Can-amp-CIA402" class="headerlink" title="Can &amp; CIA402"></a>Can &amp; CIA402</h1><p>这篇文章是为了梳理整个 <strong>Can</strong> 电机和 <strong>Cia402</strong> 的流程</p>
+<h3 id="整体流程备份"><a href="#整体流程备份" class="headerlink" title="整体流程备份"></a>整体流程备份</h3><p>我来给你一条“从上电到闭环”的完整文字流程，涵盖要配什么、怎么使能、是否需要 PDO、以及怎么收反馈。默认场景：Classic CANopen + CiA 402，节点号为 N（1..127）。</p>
+<h3 id="整体流程（推荐做法）"><a href="#整体流程（推荐做法）" class="headerlink" title="整体流程（推荐做法）"></a>整体流程（推荐做法）</h3><ul>
+<li><p><strong>0) 上电与总线就绪</strong></p>
+<ul>
+<li>确认波特率一致、两端120 Ω终端正确、所有节点共地。</li>
+<li>可先下发 NMT “进入预运行态（Pre‑op）”：<code>COB=0x000</code>, Data&#x3D;<code>80 N</code>。</li>
+</ul>
+</li>
+<li><p><strong>1) 配置（SDO，常见且必要）</strong></p>
+<ul>
+<li><strong>设备工作模式</strong>：<code>0x6060</code> 写入模式（PP&#x3D;1、PV&#x3D;3、PT&#x3D;4、Homing&#x3D;6、CSP&#x3D;8、CSV&#x3D;9、CST&#x3D;10）。  </li>
+<li><strong>运动学参数（按模式选）</strong>：<ul>
+<li>PP：<code>0x607A 目标位置</code>（单位&#x2F;缩放按厂商EDS）、<code>0x6081 轮廓速度</code>、<code>0x6083/0x6084 加/减速度</code>。</li>
+<li>PV：<code>0x60FF 目标速度</code>、<code>0x6083/0x6084</code>。</li>
+<li>CST&#x2F;CSV&#x2F;CSP：周期量由 PDO 周期写入，仍可设限速&#x2F;加减速度上限等。</li>
+</ul>
+</li>
+<li><strong>系统管理&#x2F;心跳（建议）</strong>：<code>0x1017 Producer Heartbeat Time</code>（例如 1000 ms），必要时配置 <code>0x1016 Consumer</code>。</li>
+<li>（可选）<strong>PDO 映射与通信参数</strong>（见第3步说明；为了实时性通常需要）</li>
+</ul>
+</li>
+<li><p><strong>2) 切到运行态并“使能驱动”</strong></p>
+<ul>
+<li>切 Operational：NMT Start Remote Node：<code>COB=0x000</code>, Data&#x3D;<code>01 N</code>。</li>
+<li>402 使能三步（写 <code>0x6040 Controlword</code>，无故障前提）：<ol>
+<li><code>0x0006</code> → Ready to switch on</li>
+<li><code>0x0007</code> → Switched on</li>
+<li><code>0x000F</code> → Operation enabled</li>
+</ol>
+</li>
+<li>如在 Fault：先 <code>Fault reset</code>（置位 bit7，常写 <code>0x0080</code> 或在当前值基础上置位），待 <code>0x6041</code> 清故障后再走三步。</li>
+</ul>
+</li>
+<li><p><strong>3) 实时控制（是否需要 PDO？）</strong></p>
+<ul>
+<li>不强制，但强烈建议：<ul>
+<li>SDO 适合配置与偶发写；实时控制用 PDO 延迟小、开销低、易同步。</li>
+</ul>
+</li>
+<li>快捷做法：<ul>
+<li>许多驱动出厂就带默认 PDO 映射（TPDO1 含状态&#x2F;位置，RPDO1 含控制&#x2F;目标），你可直接用；若不符合需求再改映射。</li>
+</ul>
+</li>
+<li>自定义（常用映射，示例）：<ul>
+<li>RPDO1：<code>0x6040 控制字</code>(16) + 目标值（PP: <code>0x607A</code>&#x2F;32；PV: <code>0x60FF</code>&#x2F;32；CST: <code>0x6071</code>&#x2F;16）</li>
+<li>TPDO1：<code>0x6041 状态字</code>(16) + <code>0x6064 实际位置</code>(32)</li>
+<li>配置步骤（对每个 PDO）：<ul>
+<li>先把映射禁用：<code>0x1600:00 = 0</code></li>
+<li>写映射项：如 <code>0x1600:01 = 0x60400010</code>（<code>index=0x6040, sub=0, len=16</code>）</li>
+<li>继续写下一个映射：如 <code>0x1600:02 = 0x607A0020</code></li>
+<li>设置项数：<code>0x1600:00 = 2</code></li>
+<li>通信参数：<code>0x1400:01 传输类型</code>（<code>1..240</code>&#x3D;同步；<code>255</code>&#x3D;事件&#x2F;异步），<code>0x1400:05 事件定时</code>（ms，可选），<code>0x1400:01/03</code>等按需要设定；COB‑ID 通常维持默认（<code>RPDO1=0x200+N</code>，<code>TPDO1=0x180+N</code>）。</li>
+</ul>
+</li>
+<li>如需时间对齐：配置 SYNC（<code>0x1005 COB-ID</code>，<code>0x1006 周期</code>），将 PDO 设为同步型，然后周期发送 <code>SYNC（COB=0x080）</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>4) 运行指令（按模式）</strong></p>
+<ul>
+<li>PP（位置轮廓）：写目标位置（RPDO&#x2F;SDO），再触发“新目标”位（Controlword 中的模式相关位，常为 bit4 上跳沿）。</li>
+<li>PV：周期写 <code>0x60FF 目标速度</code>（建议 PDO）。</li>
+<li>CSP&#x2F;CSV&#x2F;CST：每个控制周期通过 RPDO 写目标位置&#x2F;速度&#x2F;转矩；若为同步模式，用 SYNC 锁定周期。</li>
+<li>任何时刻可通过 <code>0x6040</code> 的 Halt&#x2F;Enable bits 控制暂停&#x2F;继续。</li>
+</ul>
+</li>
+<li><p><strong>5) 反馈与监控（怎么接收？）</strong></p>
+<ul>
+<li>订阅 TPDO（如 <code>0x180+N</code>, <code>0x280+N</code> 等），解析你映射的对象：<code>0x6041 状态字</code>、<code>0x6064 实际位置</code>、<code>0x606C 实际速度</code>、<code>0x6077 实际转矩</code> 等。</li>
+<li>读状态&#x2F;参数：任意时刻可 SDO 读（<code>0x580+N</code> 回）。</li>
+<li>心跳：监听 <code>0x700+N</code>，周期未到即离线判定。</li>
+<li>异常：监听 EMCY <code>0x080+N</code>，含错误码&#x2F;寄存器；也可观察 <code>0x6041</code> 的 Fault 位。</li>
+</ul>
+</li>
+</ul>
+<h3 id="极简示例（仅示意，NodeID-x3D-N）"><a href="#极简示例（仅示意，NodeID-x3D-N）" class="headerlink" title="极简示例（仅示意，NodeID&#x3D;N）"></a>极简示例（仅示意，NodeID&#x3D;N）</h3><ul>
+<li><p>设模式为 CSP&#x3D;8（SDO 快速写1字节）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Tx: COB=0x600+N  Data=2F 60 60 00 08 00 00 00</span><br><span class="line">Rx: COB=0x580+N  Data=60 60 60 00 08 00 00 00</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使能三步（通过 RPDO1 或 SDO，示意 SDO）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Tx: COB=0x600+N  Data=2B 40 60 00 06 00 00 00</span><br><span class="line">Tx: COB=0x600+N  Data=2B 40 60 00 07 00 00 00</span><br><span class="line">Tx: COB=0x600+N  Data=2B 40 60 00 0F 00 00 00</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>周期控制（CSP）：每周期写目标位置（RPDO1，COB&#x3D;0x200+N），并（若同步）发 SYNC <code>COB=0x080</code> 触发。</p>
+</li>
+</ul>
+<h3 id="常见注意"><a href="#常见注意" class="headerlink" title="常见注意"></a>常见注意</h3><ul>
+<li><p>SDO 配置期间建议处于 Pre‑op；完成后切 Operational 才会发送&#x2F;接收 PDO。</p>
+</li>
+<li><p>具体单位、缩放、默认 PDO 映射和控制字位语义，务必以厂商 EDS&#x2F;手册为准。</p>
+</li>
+<li><p>Fault 状态必须先复位再使能；PDO&#x2F;SDO 写失败时检查 NMT 状态与 0x6041。</p>
+</li>
+<li><p>如果你告诉我目标模式（PP&#x2F;PV&#x2F;CSP&#x2F;CSV&#x2F;CST）和 NodeID，我可以给出“可直接下发的最小帧序列”，按你的驱动默认映射或自定义映射两版。</p>
+</li>
+<li><p>变更&#x2F;下一步：已提供从 NMT、SDO 配置、使能、PDO 实时控制到 TPDO 反馈的整体流程与关键对象、典型映射。你可据此实现基础控制与监测。</p>
+</li>
+<li><p>重点回顾</p>
+<ul>
+<li><strong>配置（SDO）</strong>：设 <code>0x6060</code>、必要运动参数、心跳、（可选）PDO 映射。</li>
+<li><strong>使能</strong>：<code>0x6040</code> 三步（故障先复位）。</li>
+<li><strong>实时控制</strong>：建议用 PDO；同步场景配 SYNC。</li>
+<li><strong>反馈</strong>：TPDO&#x2F;SDO 读 + Heartbeat&#x2F;EMCY 监控。</li>
+</ul>
+</li>
+</ul>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2025-08-12</span>
+            
+            
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2025/08/11/202508/bitrate/">什么是波特率?</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>
