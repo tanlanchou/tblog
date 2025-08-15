@@ -107,3 +107,19 @@ tags:
 在这种广播的机制下，就不可能采用 ethercat 这种进，出的循环，就需要有一个机制去决定优先级。
 
 
+
+### 04. NodeID
+
+[CANopen之LSS Node-ID节点管理_canopen lss-CSDN博客](https://blog.csdn.net/wjjontheway/article/details/106085788)
+
+这个玩起来比较麻烦，我后续跟厂商联系下，在学习下。
+
+现在无非3种方式.
+
+1. LSS. 最有用但是也最麻烦
+
+2. 一个一个上电，这个只能保证不冲突，但是如果你想设置某一个优先级高，很不确定。
+
+3. 通过厂商的软件解决。
+
+
