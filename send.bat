@@ -4,7 +4,7 @@ setlocal
 :: Settings
 set TAR_NAME=html.tar
 set REMOTE_USER=root
-set REMOTE_HOST=60.205.227.108
+set REMOTE_HOST=47.115.212.11
 set REMOTE_TARGET_DIR=/var/www/html/tblog
 
 :: Step 1: Clean and generate hexo site

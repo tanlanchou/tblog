@@ -1,3 +1,13 @@
+---
+title: CIA402 SDO
+date: 2025-09-21 23:30:22
+tags: 
+    - canopen
+    - 机器人
+    - cia402
+    - SDO
+---
+
 # CIA402 SDO
 
 
@@ -19,8 +29,6 @@ SDO = Service Data Object（服务数据对象)。
 
 
 > SDO 是请求-响应模式：Master 发请求 → Slave 解析 → Slave 响应 → Master 接收 → 完成。每个操作都要等待应答。
-
-
 
 他能做什么呢？
 
@@ -45,18 +53,18 @@ SDO = Service Data Object（服务数据对象)。
 
 
 
-### SDO 的写法
+### 02. SDO 的写法
 
 下面的表格是一些基础信息
 
-| 操作   | COB‑ID       | Byte0(CS)                        | Byte1  | Byte2  | Byte3    | Byte4..7       |
-| ---- | ------------ | -------------------------------- | ------ | ------ | -------- | -------------- |
-| 写4B  | 0x600+NodeID | 0x23                             | index低 | index高 | subindex | data4B         |
-| 写3B  | 0x600+NodeID | 0x27                             | index低 | index高 | subindex | data3B + 1B 填0 |
-| 写2B  | 0x600+NodeID | 0x2B                             | index低 | index高 | subindex | data2B + 2B 填0 |
-| 写1B  | 0x600+NodeID | 0x2F | index低 | index高 | subindex | data1B + 3B 填0 |
-| 成功应答 | 0x580+NodeID | 0x60                             | index低 | index高 | subindex | 0x00 × 4       |
-| 失败应答 | 0x580+NodeID | 0x80                             | index低 | index高 | subindex | 4B Abort Code  |
+| 操作   | COB‑ID       | Byte0(CS) | Byte1  | Byte2  | Byte3    | Byte4..7       |
+| ---- | ------------ | --------- | ------ | ------ | -------- | -------------- |
+| 写4B  | 0x600+NodeID | 0x23      | index低 | index高 | subindex | data4B         |
+| 写3B  | 0x600+NodeID | 0x27      | index低 | index高 | subindex | data3B + 1B 填0 |
+| 写2B  | 0x600+NodeID | 0x2B      | index低 | index高 | subindex | data2B + 2B 填0 |
+| 写1B  | 0x600+NodeID | 0x2F      | index低 | index高 | subindex | data1B + 3B 填0 |
+| 成功应答 | 0x580+NodeID | 0x60      | index低 | index高 | subindex | 0x00 × 4       |
+| 失败应答 | 0x580+NodeID | 0x80      | index低 | index高 | subindex | 4B Abort Code  |
 
 | 操作    | COB‑ID       | Byte0(CS) | Byte1  | Byte2  | Byte3    | Byte4..7       |
 | ----- | ------------ | --------- | ------ | ------ | -------- | -------------- |
@@ -112,6 +120,76 @@ cansend can0 605#240600001000000
 
 写就是这么写
 
+### 03. 配置PDO
+
+一般来说 PDO 是厂家默认的，但是你查 `eds` 文档
+
+```shell
+[2002]
+ParameterName=MotorPara
+ObjectType=7
+AccessType=RW
+DataType=0x0007
+PDOMapping=1
+ObjFlags=0x00000000
+DefaultValue=0
+```
+
+当这个 PDOMapping = 1 的时候，表示他是可以配置的
+
+这个时候你可以用 `SDO` 去配置它，当然 `PDO` 也是可以。只是如果你区分功能在配置的时候做这件事儿，那么就用 `SDO` 去做。
 
 
 
+```shell
+# 禁用 RPDO1（0x1400:01 = 0x80000205）
+cansend can0 605#2300140105020080
+# 传输类型=255（事件驱动）
+cansend can0 605#2F001402FF000000
+# 清映射计数
+cansend can0 605#2F00160000000000
+```
+
+类似这样。
+
+
+
+| PDO 编号    | Communication Parameter Index | Mapping Parameter Index |
+| --------- | ----------------------------- | ----------------------- |
+| **RPDO1** | 0x1400                        | **0x1600**              |
+| **RPDO2** | 0x1401                        | **0x1601**              |
+| **RPDO3** | 0x1402                        | **0x1602**              |
+| **RPDO4** | 0x1403                        | **0x1603**              |
+
+
+
+那这里就需要具体讲讲了
+
+```shell
+cansend can0 605#2300140105020080   # 0x1400:1 禁用，COB-ID=0x205
+cansend can0 605#2F00140201000000   # 0x1400:2 传输类型=1（同步）
+cansend can0 605#2F00160000000000   # 0x1600:0 = 0（清映射）
+cansend can0 605#2300160110004060   # 0x1600:1 = 0x6040:00, 16b
+cansend can0 605#2300160208006060   # 0x1600:2 = 0x6060:00, 8b
+cansend can0 605#2F00160002000000   # 0x1600:0 = 2（两项）
+cansend can0 605#2300140105020000   # 0x1400:1 使能，COB-ID=0x205
+
+```
+
+我这里做了什么呢？
+
+我设置我的 **RPDO1** 只需要2个参数，**6040** 和 **6060**.
+
+我们来对应一下
+
+**6040** 是控制字
+
+**6060** 是模式
+
+
+
+所以说**PDO**应该怎么传？
+
+```shell
+cansend can0 205#0F0008
+```
