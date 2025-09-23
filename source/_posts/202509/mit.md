@@ -1,6 +1,7 @@
 ---
 title: 什么是MIT协议?
 date: 2025-09-22 16:05:05
+mathjax: true
 tags: 
     - can
     - 机器人
