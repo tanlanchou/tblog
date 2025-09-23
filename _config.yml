@@ -133,4 +133,4 @@ mathjax:
   packages: # extra packages to load
   extension_options: {}
 
-all_minifier: true
+# all_minifier: true
