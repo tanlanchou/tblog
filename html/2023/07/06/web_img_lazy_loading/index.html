@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="图片懒加载方案" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    图片懒加载方案
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：4分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E4%BD%8D%E7%BD%AE%E8%AE%A1%E7%AE%97-%E6%BB%9A%E5%8A%A8%E4%BA%8B%E4%BB%B6-Scroll-DataSet-API"><span class="post-toc-text">01. 位置计算 + 滚动事件 (Scroll) + DataSet API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E6%96%B9%E6%A1%882-getBoundingClientRect"><span class="post-toc-text">02. 方案2 getBoundingClientRect</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E6%96%B9%E6%A1%883-Intersection-Observer-API"><span class="post-toc-text">03. 方案3 Intersection_Observer_API</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E6%96%B9%E6%A1%884"><span class="post-toc-text">04. 方案4</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%80%BB%E7%BB%93"><span class="post-toc-text">总结</span></a></li></ol>
+            
+        
+        <div class=".article-gallery"><p>虽然这里只说图片懒加载，还是得知道什么是懒加载</p>
+<blockquote>
+<p>延迟加载（懒加载）是一种将资源标识为非阻塞（非关键）资源并仅在需要时加载它们的策略。这是一种缩短关键渲染路径长度的方法，可以缩短页面加载时间。</p>
+</blockquote>
+<p>如果只局限到图片这一个点上，就是延后加载非必须的图片。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=`` /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="01-位置计算-滚动事件-Scroll-DataSet-API"><a href="#01-位置计算-滚动事件-Scroll-DataSet-API" class="headerlink" title="01. 位置计算 + 滚动事件 (Scroll) + DataSet API"></a>01. 位置计算 + 滚动事件 (Scroll) + DataSet API</h3><p>就是说，我知道图片位置，我能监听滚动事件，当图片位置和滚动事件重合的时候，获取图片的 data-src, 渲染图片.</p>
+<p>有些网站方案细节不一样，比如提前多少距离加载。</p>
+<p>这种方案有点儿类似于移动端分页，划到某些位置自动加载下面的。</p>
+<p>在这个思路之下，写了一点代码 <a target="_blank" rel="noopener" href="https://codesandbox.io/s/polished-resonance-fw3hfy?file=/index.html">方案一 Demo</a></p>
+<p>url 可以换，这个方案最大的问题是什么？</p>
+<p>这里还可以有什么优化的点？比如 ImgClass 完成以后需要删除监听。其他就是优化判断是否在里面。</p>
+<h3 id="02-方案2-getBoundingClientRect"><a href="#02-方案2-getBoundingClientRect" class="headerlink" title="02. 方案2 getBoundingClientRect"></a>02. 方案2 getBoundingClientRect</h3><blockquote>
+<p>getBoundingClientRect 是一个 DOM 元素的方法，它返回一个包含该元素位置和尺寸信息的 DOMRect 对象。DOMRect 对象包含以下属性：</p>
+<p>top：元素上边界相对于视口顶部的距离。<br>right：元素右边界相对于视口左边的距离。<br>bottom：元素下边界相对于视口顶部的距离。<br>left：元素左边界相对于视口左边的距离。<br>width：元素的宽度。<br>height：元素的高度。</p>
+</blockquote>
+<p>他的 top 是基于滚动的位置, 是基于 document.documentElement.scrollTop 再做运算的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">isInViewport</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">element</span>.<span class="title function_">getBoundingClientRect</span>().<span class="property">top</span> &lt; <span class="variable language_">document</span>.<span class="property">documentElement</span>.<span class="property">clientHeight</span> + <span class="number">100</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://caniuse.com/?search=getBoundingClientRect">https://caniuse.com/?search=getBoundingClientRect</a> 兼容性ok.</p>
+<h3 id="03-方案3-Intersection-Observer-API"><a href="#03-方案3-Intersection-Observer-API" class="headerlink" title="03. 方案3 Intersection_Observer_API"></a>03. 方案3 Intersection_Observer_API</h3><blockquote>
+<p>Intersection Observer API 是一个用于观察元素在视口中可见性变化的 JavaScript API。它提供了一种异步方式来监听一个或多个元素与其祖先元素或整个文档视口的交叉状态。通过使用 Intersection Observer API，开发者可以有效地检测元素是否进入或离开视口，或者与其他元素相交的程度。</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="keyword">class</span>=<span class="string">&quot;box&quot;</span>&gt;&lt;/div&gt; * <span class="number">10</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    <span class="comment">// 创建 Intersection Observer 对象</span></span><br><span class="line">    <span class="keyword">const</span> observer = <span class="keyword">new</span> <span class="title class_">IntersectionObserver</span>(<span class="function">(<span class="params">entries, observer</span>) =&gt;</span> &#123;</span><br><span class="line">        entries.<span class="title function_">forEach</span>(<span class="function"><span class="params">entry</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (entry.<span class="property">isIntersecting</span>) &#123;</span><br><span class="line">                <span class="comment">// 元素进入视口时添加 CSS 类名</span></span><br><span class="line">                entry.<span class="property">target</span>.<span class="property">classList</span>.<span class="title function_">add</span>(<span class="string">&#x27;visible&#x27;</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 元素离开视口时移除 CSS 类名</span></span><br><span class="line">                entry.<span class="property">target</span>.<span class="property">classList</span>.<span class="title function_">remove</span>(<span class="string">&#x27;visible&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 监听所有具有 &quot;.box&quot; 类名的元素</span></span><br><span class="line">    <span class="keyword">const</span> boxes = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;.box&#x27;</span>);</span><br><span class="line">    boxes.<span class="title function_">forEach</span>(<span class="function"><span class="params">box</span> =&gt;</span> &#123;</span><br><span class="line">        observer.<span class="title function_">observe</span>(box);</span><br><span class="line">    &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这是一个简单例子，如果用在之前的例子中应用 <a target="_blank" rel="noopener" href="https://codesandbox.io/s/polished-resonance-fw3hfy?file=/intersectionObserver.html">demo</a></p>
+<p><a target="_blank" rel="noopener" href="https://caniuse.com/?search=IntersectionObserver">https://caniuse.com/?search=IntersectionObserver</a></p>
+<h3 id="04-方案4"><a href="#04-方案4" class="headerlink" title="04. 方案4"></a>04. 方案4</h3><p><a target="_blank" rel="noopener" href="https://caniuse.com/?search=loading">https://caniuse.com/?search=loading</a></p>
+<p>这个方案最简单直接，而且浏览器直支持，现在来看还行。</p>
+<blockquote>
+<p>loading 属性是 HTML <img> 元素的一个属性，用于指定图像的加载行为。该属性可帮助开发者优化图像的加载性能和用户体验。loading 属性在 HTML5.2 规范中被引入，支持现代浏览器。</p>
+</blockquote>
+<p>loading 属性有以下几个可选值：</p>
+<ul>
+<li>auto：默认值，浏览器自动选择加载方式，根据网络条件和用户体验来决定。</li>
+<li>lazy：图像延迟加载，只有当图像进入视口附近时才开始加载。这可以提高页面的加载速度和性能。</li>
+<li>eager：图像立即加载，优先级高于页面其他内容的加载。适用于需要尽快展示图像的情况。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>第一种方案兼容性最好，所有浏览器都能支持，因为他就是靠位置计算。</p>
+<p>第二种方法，getBoundingClientRect，可以根据当前浏览的窗口来计算 top。</p>
+<p>第三种方法，IntersectionObserver，他避免了对于 scoll 事件的监控，很平滑。</p>
+<p>第四种方法，loading &#x3D; lazy 其实简单有效，但是原理目前不是很清楚。</p>
+<p><a target="_blank" rel="noopener" href="https://addyosmani.com/blog/lazy-loading/">https://addyosmani.com/blog/lazy-loading/</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/DOMRect">https://developer.mozilla.org/zh-CN/docs/Web/API/DOMRect</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Performance/Lazy_loading">https://developer.mozilla.org/zh-CN/docs/Web/Performance/Lazy_loading</a><br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Intersection_Observer_API">https://developer.mozilla.org/zh-CN/docs/Web/API/Intersection_Observer_API</a></p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-06</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/web/'>
+                            web
+                        </a>
+                    
+                        <a href='/tags/javascript/'>
+                            javascript
+                        </a>
+                    
+                        <a href='/tags/lazyloading/'>
+                            lazyloading
+                        </a>
+                    
+                        <a href='/tags/%E6%87%92%E5%8A%A0%E8%BD%BD/'>
+                            懒加载
+                        </a>
+                    
+                        <a href='/tags/%E6%96%B9%E6%A1%88/'>
+                            方案
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2023/07/07/web_fetch/'>fetch 简单介绍</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2023/07/06/Vue3_Suspense/">vue3 defineAsyncComponent &amp; Suspense 用法以及源码</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

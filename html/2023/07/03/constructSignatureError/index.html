@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="ConstructSignature 错误" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    ConstructSignature 错误
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：644</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：3分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ConstructSignature"><span class="post-toc-text">ConstructSignature</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E4%BB%80%E4%B9%88%E6%98%AF%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%AD%BE%E5%90%8D"><span class="post-toc-text">01. 什么是构造函数签名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E6%B3%9B%E5%9E%8B%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%AD%BE%E5%90%8D"><span class="post-toc-text">02. 泛型构造函数签名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="post-toc-text">03. 应用场景</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E5%AE%9A%E4%B9%89%E4%BA%86%E6%9E%84%E9%80%A0%E5%99%A8%E7%AD%BE%E5%90%8D%E7%9A%84%E6%8E%A5%E5%8F%A3%E6%97%A0%E6%B3%95%E8%A2%AB%E5%AE%9E%E7%8E%B0"><span class="post-toc-text">04. 定义了构造器签名的接口无法被实现</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-link"><span class="post-toc-text">05. link</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <div class=".article-gallery"><h1 id="ConstructSignature"><a href="#ConstructSignature" class="headerlink" title="ConstructSignature"></a>ConstructSignature</h1><p>看构造函数签名起源于一个错误</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">commonMobileFunc</span> &#123;</span><br><span class="line">  <span class="keyword">abstract</span> <span class="title function_">call</span>(<span class="attr">ph</span>: <span class="built_in">number</span>): <span class="built_in">void</span>;</span><br><span class="line">  <span class="keyword">abstract</span> <span class="title function_">sms</span>(<span class="attr">ph</span>: <span class="built_in">number</span>, <span class="attr">text</span>: <span class="built_in">string</span>): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">oldMobile</span> <span class="keyword">extends</span> <span class="title class_ inherited__">commonMobileFunc</span> &#123;</span><br><span class="line">  <span class="title function_">call</span>(<span class="attr">ph</span>: <span class="built_in">number</span>): <span class="built_in">void</span> &#123;&#125;</span><br><span class="line">  <span class="title function_">sms</span>(<span class="attr">ph</span>: <span class="built_in">number</span>, <span class="attr">text</span>: <span class="built_in">string</span>): <span class="built_in">void</span> &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">newMobile</span> <span class="keyword">extends</span> <span class="title class_ inherited__">commonMobileFunc</span> &#123;</span><br><span class="line">  <span class="title function_">call</span>(<span class="attr">ph</span>: <span class="built_in">number</span>): <span class="built_in">void</span> &#123;&#125;</span><br><span class="line">  <span class="title function_">sms</span>(<span class="attr">ph</span>: <span class="built_in">number</span>, <span class="attr">text</span>: <span class="built_in">string</span>): <span class="built_in">void</span> &#123;&#125;</span><br><span class="line">  <span class="title function_">videoCall</span>(<span class="params">ph: <span class="built_in">number</span></span>) &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">exec</span>&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">  <span class="attr">model</span>: T;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">arg: T</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">model</span> = <span class="keyword">new</span> <span class="title function_">arg</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">sms</span>(<span class="params">ph: <span class="built_in">number</span>, text: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">model</span>.<span class="title function_">sms</span>(ph, text);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>抽象出一个通用的手机功能类型<br>新手机 call sms videoCall<br>旧手机 call sms<br>如果我想实例化对象，可以通过工厂方法，依赖注入等等方式<br>这次想通过泛型的方法去实例化，但是报错了。</p>
+</blockquote>
+<p>但是构造函数签名可以解决这个问题</p>
+<h3 id="01-什么是构造函数签名"><a href="#01-什么是构造函数签名" class="headerlink" title="01. 什么是构造函数签名"></a>01. 什么是构造函数签名</h3><p>语法</p>
+<blockquote>
+<p>ConstructSignature: new TypeParametersopt (ParameterListopt) TypeAnnotationopt</p>
+</blockquote>
+<p>TypeScript 官方解释</p>
+<blockquote>
+<p>An object type containing one or more construct signatures is said to be a constructor type. Constructor types may be written using constructor type literals or by including construct signatures in object type literals.</p>
+</blockquote>
+<p>机翻</p>
+<blockquote>
+<p>包含一个或多个构造签名的对象类型被称为构造函数类型。 构造函数类型可以使用构造函数类型文字或通过在对象类型文字中包含构造签名来编写。</p>
+</blockquote>
+<p>也就是下面这种</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> &lt;<span class="variable constant_">T1</span>,<span class="variable constant_">T2</span> ...&gt;<span class="function">(<span class="params">p1, p2</span>) =&gt;</span> <span class="title class_">Result</span></span><br></pre></td></tr></table></figure>
+
+<p>这样问题就得到了解决, 沿用最开始抽象的例子</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> I1 &#123;</span><br><span class="line">  <span class="keyword">new</span> (): commonMobileFunc;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">C2</span> &#123;</span><br><span class="line">    <span class="attr">model</span>: commonMobileFunc;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">arg: I1</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">model</span> = <span class="keyword">new</span> <span class="title function_">arg</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除此之外，还可以用简写的方式</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">C2</span> &#123;</span><br><span class="line">    <span class="attr">model</span>: commonMobileFunc;</span><br><span class="line">    <span class="title function_">constructor</span>(<span class="params">arg: &#123; <span class="keyword">new</span>(): commonMobileFunc &#125;</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">model</span> = <span class="keyword">new</span> <span class="title function_">arg</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="02-泛型构造函数签名"><a href="#02-泛型构造函数签名" class="headerlink" title="02. 泛型构造函数签名"></a>02. 泛型构造函数签名</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> T3&lt;T&gt; &#123;</span><br><span class="line">  <span class="keyword">new</span> (): T;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> T4 &#123;</span><br><span class="line">    <span class="title function_">sms</span>(<span class="attr">ph</span>: <span class="built_in">number</span>, <span class="attr">text</span>: <span class="built_in">string</span>): <span class="built_in">void</span>;</span><br><span class="line">    <span class="title function_">call</span>(<span class="attr">ph</span>: <span class="built_in">number</span>): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">C3</span>&lt;T&gt; <span class="keyword">implements</span> <span class="variable constant_">T4</span> &#123;</span><br><span class="line">  <span class="attr">model</span>: T;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">arg: T3&lt;T&gt;</span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">model</span> = <span class="keyword">new</span> <span class="title function_">arg</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">sms</span>(<span class="attr">ph</span>: <span class="built_in">number</span>, <span class="attr">text</span>: <span class="built_in">string</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">      <span class="comment">//..</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">call</span>(<span class="attr">ph</span>: <span class="built_in">number</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">      <span class="comment">//..</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果需要智能提示，可以增加约束</p>
+<h3 id="03-应用场景"><a href="#03-应用场景" class="headerlink" title="03. 应用场景"></a>03. 应用场景</h3><p>我们可以创建一个泛型工厂</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function F1&lt;T&gt;(arg: &#123; new():T &#125;) &#123;</span><br><span class="line">    return new arg();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我上文写的也是一种工厂，比如我想实现依赖注入,就是源于类似的思路</p>
+<h3 id="04-定义了构造器签名的接口无法被实现"><a href="#04-定义了构造器签名的接口无法被实现" class="headerlink" title="04. 定义了构造器签名的接口无法被实现"></a>04. 定义了构造器签名的接口无法被实现</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">interface T2&lt;T&gt; &#123;</span><br><span class="line">  new (): T;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class C5&lt;T&gt; implements T2&lt;T&gt; &#123;</span><br><span class="line">    constructor(arg: T) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Class ‘C5 T’ incorrectly implements interface ‘T2 T’.<br>Type ‘C5 T’ provides no match for the signature ‘new (): T’.ts(2420)</p>
+</blockquote>
+<p>我觉得这个应该实现</p>
+<h3 id="05-link"><a href="#05-link" class="headerlink" title="05. link"></a>05. link</h3><ol>
+<li><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/2/functions.html">More on Functions</a></li>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/13407036/how-does-interfaces-with-construct-signatures-work">How does interfaces with construct signatures work?</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904184894980104#heading-14">一文读懂 TypeScript 泛型及应用（ 7.8K字）</a></li>
+</ol>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-03</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/typescript/'>
+                            typescript
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2023/07/03/ts_decorator/'>装饰器(js &amp; ts)</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2023/07/03/repaint_reflow/">重绘和回流的基本概念</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

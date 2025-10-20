@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="uni-app 登录" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    uni-app 登录
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.6k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：6分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E8%8E%B7%E5%8F%96%E6%89%8B%E6%9C%BA%E5%8F%B7"><span class="post-toc-text">01. 获取手机号</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E9%82%AE%E7%AE%B1%E7%99%BB%E5%BD%95"><span class="post-toc-text">02. 邮箱登录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E5%BE%AE%E4%BF%A1%E7%99%BB%E5%BD%95"><span class="post-toc-text">03. 微信登录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E7%99%BB%E5%BD%95"><span class="post-toc-text">03. 登录</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#http%E8%AF%B7%E6%B1%82"><span class="post-toc-text">http请求</span></a></li></ol>
+            
+        
+        <div class=".article-gallery"><p>总是要登录的，每个平台的登录方式都不一样。</p>
+<p>h5, app 只需要 token 就可以了，其他小程序，比如wx小程序，就是由他自己的流程，也就是说，如何去统一不同的登录方式？</p>
+<p>如何整合，比如我是小程序和app都在使用，那么手机号就是很重要的点，但是尴尬的是，我并没有购买短信发送服务，只是似乎可以都不用短信，而是直接通过平台获取手机号(除了h5)</p>
+<h3 id="01-获取手机号"><a href="#01-获取手机号" class="headerlink" title="01. 获取手机号"></a>01. 获取手机号</h3><p>uniapp 一键登录 <a target="_blank" rel="noopener" href="https://ask.dcloud.net.cn/article/37965">https://ask.dcloud.net.cn/article/37965</a></p>
+<p>单次收费 0.02</p>
+<p>微信小程序 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html">https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/getPhoneNumber.html</a></p>
+<blockquote>
+<p>目前该接口针对非个人开发者，且完成了认证的小程序开放（不包含海外主体）；<br>该能力使用时，用户可选择绑定号码，或自主添加号码。平台会基于中国三大运营商提供的短信等底层能力对号码进行验证，但不保证是实时验证；<br>请开发者根据业务场景需要自行判断并选择是否使用，必要时可考虑增加其他安全验证手段。<br>开发者需合理使用，若被发现或用户举报开发者不合理地要求用户提供手机号等个人信息，中断了正常的使用流程，影响了用户的使用体验，微信有权依据《微信小程序平台运营管理规范》对该小程序进行处理。常见违规事例和具体解析；</p>
+</blockquote>
+<p>也就是说个人开发者是无法获取到手机号的，而且必须认证.</p>
+<p>而且要收费，单次 0.03</p>
+<p>支付宝小程序 <a target="_blank" rel="noopener" href="https://opendocs.alipay.com/mini/api/getphonenumber">https://opendocs.alipay.com/mini/api/getphonenumber</a></p>
+<blockquote>
+<p>目前只支持商家会员卡功能的 alipay.user.info.share（支付宝会员授权信息查询接口）和小程序获取会员手机号功能的 getPhoneNumber 获取用户手机号，其他应用功能暂无法获取敏感信息，详见 用户信息申请流程。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">my.<span class="title function_">getPhoneNumber</span>(<span class="title class_">Object</span> object)</span><br></pre></td></tr></table></figure>
+
+<p>抖音小程序 <a target="_blank" rel="noopener" href="https://developer.open-douyin.com/docs/resource/zh-CN/mini-app/develop/guide/open-capabilities/acquire-phone-number-acquire/">https://developer.open-douyin.com/docs/resource/zh-CN/mini-app/develop/guide/open-capabilities/acquire-phone-number-acquire/</a></p>
+<p>和微信一个路子，不允许个人开发者使用，只允许企业开发者，并且通过了认证的开发者</p>
+<p>看到这里，其实个人开发者通过手机号支持全平台的路子已经很麻烦了，你需要去找没有小程序有企业的朋友或者自己搞一个企业(虽然不贵，但是很麻烦)，而且微信和UNIAPP平台还要收费。</p>
+<p>所以这个手机号登录流程暂时放弃了。</p>
+<h3 id="02-邮箱登录"><a href="#02-邮箱登录" class="headerlink" title="02. 邮箱登录"></a>02. 邮箱登录</h3><p>发送邮件是免费的，可以直接使用个人的邮箱服务来发送邮件，拿 outlook 举例</p>
+<p><a target="_blank" rel="noopener" href="https://support.microsoft.com/zh-cn/office/%E4%BB%A5-outlook-com-%E5%8F%91%E9%80%81%E9%99%90%E5%88%B6-279ee200-594c-40f0-9ec8-bb6af7735c2e">https://support.microsoft.com/zh-cn/office/%E4%BB%A5-outlook-com-%E5%8F%91%E9%80%81%E9%99%90%E5%88%B6-279ee200-594c-40f0-9ec8-bb6af7735c2e</a></p>
+<p>每日上限是 5000 封邮件，虽然用户会麻烦一些，但是可以在做商业程序的时候，再一个一个打通通道。</p>
+<p>也就是，小程序用户不需要登录，只是需要获取平台的唯一ID. 当有整合需求，比如同时开始使用 app 或者其他小程序平台登录，那么就需要邮箱验证，或者通过 APP 生成token的方式整合。</p>
+<h3 id="03-微信登录"><a href="#03-微信登录" class="headerlink" title="03. 微信登录"></a>03. 微信登录</h3><p>这种方式就是暂时不考虑其他小程序平台，但是兼容了APP，微信小程序</p>
+<h3 id="03-登录"><a href="#03-登录" class="headerlink" title="03. 登录"></a>03. 登录</h3><p><a target="_blank" rel="noopener" href="https://zh.uniapp.dcloud.io/api/plugins/login.html#">https://zh.uniapp.dcloud.io/api/plugins/login.html#</a></p>
+<p><a target="_blank" rel="noopener" href="https://zh.uniapp.dcloud.io/api/plugins/provider.html">https://zh.uniapp.dcloud.io/api/plugins/provider.html</a></p>
+<p>首先看这个，这个是根据程序配置来确定。</p>
+<p>比如在微信小程序中，只支持 weixin 登录</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">provider<span class="punctuation">:</span> <span class="punctuation">[</span>&#x27;weixin&#x27;<span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<p>在 app 当中，不仅仅可以支持 weixin 登录，还有很多其他登录方式。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">provider<span class="punctuation">:</span> <span class="punctuation">[</span>`qq`<span class="punctuation">,</span> `sinaweibo`<span class="punctuation">,</span> `xiaomi`<span class="punctuation">,</span> `univerify`<span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
+
+<p>也就是说 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">uni.<span class="title function_">getProvider</span>(&#123;</span><br><span class="line">    <span class="attr">service</span>: <span class="string">&#x27;oauth&#x27;</span>,</span><br><span class="line">    <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123; &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这个代码是为了获取，当前支持哪些登录方式。</p>
+<p>问题在于每个平台，每个登录方式都不一样，所以需要写很多不一样的代码, 所以需要兼容性处理。</p>
+<p>举个例子，我现在的代码目前打算完全以微信登录为基准，兼容小程序，在这个基础之上我需要做什么？</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">uni.<span class="title function_">getProvider</span>(&#123;</span><br><span class="line">    <span class="attr">service</span>: <span class="string">&#x27;oauth&#x27;</span>,</span><br><span class="line">    <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (res.<span class="property">provider</span>.<span class="title function_">indexOf</span>(<span class="string">&#x27;weixin&#x27;</span>) &gt; -<span class="number">1</span>) &#123;</span><br><span class="line">            <span class="comment">//这里我确认，支持微信</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">fail</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;fail&quot;</span>, res)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>接下来就是很奇怪的问题了</p>
+<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/tutorial/app-oauth-weixin.html">https://uniapp.dcloud.net.cn/tutorial/app-oauth-weixin.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html">https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/login.html</a></p>
+<p>根据文档他们两都是通过一个临时code，然后通过服务器向微信服务器鉴权，但是我在测试的时候直接拿到了数据</p>
+<p>app端 通过微信登录返回数据。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;authResult&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;access_token&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;expires_in&quot;</span><span class="punctuation">:</span> <span class="number">7200</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;refresh_token&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;openid&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;scope&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;unionid&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;errMsg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;login:ok&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里直接拿到了 unionid，难道是因为测试基座的问题？这点现在不得而知，那么先实现以下代码。</p>
+<p>首先我有一个用于微信登录的接口 <strong>&#x2F;users&#x2F;login&#x2F;wx&#x2F;dsadas</strong></p>
+<p>然后这个时候就需要 http 请求的接口了。</p>
+<h3 id="http请求"><a href="#http请求" class="headerlink" title="http请求"></a>http请求</h3><p><strong>uniapp</strong> 本身有 <code>http.request</code>, 文档在这里 <a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/api/request/request.html#">https://uniapp.dcloud.net.cn/api/request/request.html#</a></p>
+<p>当然也可以使用其他请求框架，比如 <code>axios</code>.</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> whiteList <span class="keyword">from</span> <span class="string">&#x27;./whiteList&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ajaxTimes = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> timeout = <span class="number">10000</span>;</span><br><span class="line"><span class="keyword">const</span> baseUrl = <span class="string">&#x27;http://localhost:3000&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> requestOptions &#123;</span><br><span class="line">	url : <span class="built_in">string</span>;</span><br><span class="line">	header? : <span class="built_in">any</span>;</span><br><span class="line">	method : <span class="string">&quot;POST&quot;</span> | <span class="string">&quot;GET&quot;</span> | <span class="string">&quot;PUT&quot;</span> | <span class="string">&quot;DELET&quot;</span>,</span><br><span class="line">	data? : <span class="built_in">any</span>; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> myRequest = (options : requestOptions) : <span class="title class_">Promise</span>&lt;<span class="built_in">any</span>&gt; =&gt; &#123;</span><br><span class="line">	<span class="keyword">let</span> header = &#123; ...options.<span class="property">header</span> &#125;;</span><br><span class="line">	<span class="keyword">if</span> (whiteList.<span class="title function_">indexOf</span>(options.<span class="property">url</span>) === -<span class="number">1</span>) &#123;</span><br><span class="line">		header[<span class="string">&quot;token&quot;</span>] = uni.<span class="title function_">getStorageSync</span>(<span class="string">&#x27;token&#x27;</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	ajaxTimes++;</span><br><span class="line">	uni.<span class="title function_">showLoading</span>(&#123;</span><br><span class="line">		<span class="attr">title</span>: <span class="string">&quot;加载中..&quot;</span>,</span><br><span class="line">		<span class="attr">mask</span>: <span class="literal">true</span>,</span><br><span class="line">	&#125;);</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">		uni.<span class="title function_">request</span>(&#123;</span><br><span class="line">			<span class="attr">url</span>: baseUrl + options.<span class="property">url</span>,</span><br><span class="line">			<span class="attr">method</span>: options.<span class="property">method</span> || <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">			<span class="attr">data</span>: options.<span class="property">data</span> || &#123;&#125;,</span><br><span class="line">			<span class="attr">timeout</span>: timeout,</span><br><span class="line">			header,</span><br><span class="line">			<span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">				<span class="title function_">resolve</span>(res)</span><br><span class="line">			&#125;,</span><br><span class="line">			<span class="attr">fail</span>: <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">				<span class="title function_">reject</span>(err)</span><br><span class="line">			&#125;,</span><br><span class="line">			<span class="attr">complete</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">				ajaxTimes--;</span><br><span class="line">				<span class="keyword">if</span> (ajaxTimes === <span class="number">0</span>) &#123;</span><br><span class="line">					<span class="comment">//  关闭正在等待的图标</span></span><br><span class="line">					uni.<span class="title function_">hideLoading</span>();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> myRequest</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/api/plugins/login.html#getuserinfo">https://uniapp.dcloud.net.cn/api/plugins/login.html#getuserinfo</a></p>
+<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/api/plugins/login.html#getuserprofile">https://uniapp.dcloud.net.cn/api/plugins/login.html#getuserprofile</a></p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-19</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/vue/'>
+                            vue
+                        </a>
+                    
+                        <a href='/tags/%E5%A4%9A%E7%AB%AF/'>
+                            多端
+                        </a>
+                    
+                        <a href='/tags/uniapp/'>
+                            uniapp
+                        </a>
+                    
+                        <a href='/tags/login/'>
+                            login
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2023/07/31/vue3_setup/'>vue3 setup</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2023/07/19/uniapp_nest_login_list/">nestjs 登录和任务</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

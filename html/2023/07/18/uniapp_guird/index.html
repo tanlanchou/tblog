@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="uni-app 引导图和广告" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    uni-app 引导图和广告
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：2.4k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：10分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E7%BC%93%E5%AD%98"><span class="post-toc-text">01. 缓存</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E6%9C%89%E5%93%AA%E4%BA%9B%E8%AE%BE%E7%BD%AE%E9%A1%B9%EF%BC%9F"><span class="post-toc-text">02. 有哪些设置项？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-swiper"><span class="post-toc-text">03. swiper</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E5%BC%95%E5%AF%BC%E5%9B%BE"><span class="post-toc-text">04. 引导图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-%E5%B9%BF%E5%91%8A"><span class="post-toc-text">05. 广告</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#06-%E5%85%B6%E4%BB%96%E7%9A%84%E4%BF%AE%E6%AD%A3"><span class="post-toc-text">06. 其他的修正</span></a></li></ol>
+            
+        
+        <div class=".article-gallery"><h3 id="01-缓存"><a href="#01-缓存" class="headerlink" title="01. 缓存"></a>01. 缓存</h3><p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/api/storage/storage.html#clearstorage">https://uniapp.dcloud.net.cn/api/storage/storage.html#clearstorage</a></p>
+<blockquote>
+<p>H5端为localStorage，浏览器限制5M大小，是缓存概念，可能会被清理<br>App端为原生的plus.storage，无大小限制，不是缓存，是持久化的<br>各个小程序端为其自带的storage api，数据存储生命周期跟小程序本身一致，即除用户主动删除或超过一定时间被自动清理，否则数据都一直可用。<br>微信小程序单个 key 允许存储的最大数据长度为 1MB，所有数据存储上限为 10MB。<br>支付宝小程序单条数据转换成字符串后，字符串长度最大200*1024。同一个支付宝用户，同一个小程序缓存总上限为10MB。<br>百度小程序策略详见、抖音小程序策略详见<br>非App平台清空Storage会导致uni.getSystemInfo获取到的deviceId改变</p>
+</blockquote>
+<p>在 h5 端，每个其实不一样，反正不能存大东西, 如果想要多端兼容，建议还是有服务器，别在这里存东西。</p>
+<ul>
+<li>uni.setStorage</li>
+<li>uni.setStorageSync</li>
+<li>uni.getStorage</li>
+<li>uni.getStorageSync</li>
+<li>uni.getStorageInfo</li>
+<li>uni.getStorageInfoSync</li>
+<li>uni.removeStorage</li>
+<li>uni.removeStorageSync</li>
+<li>uni.clearStorage</li>
+<li>uni.clearStorageSync</li>
+</ul>
+<p>具体的自己看文档.</p>
+<p>为什么要知道这个？引导页面或者开场的广告需要判断显示，是否需要每次都显示，如果不是第一次怎么显示之类的。</p>
+<h3 id="02-有哪些设置项？"><a href="#02-有哪些设置项？" class="headerlink" title="02. 有哪些设置项？"></a>02. 有哪些设置项？</h3><p>manifest.json 中，第一个 <strong>等待首页渲染完毕后再关闭Splash图</strong></p>
+<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/tutorial/app-splashscreen.html#">https://uniapp.dcloud.net.cn/tutorial/app-splashscreen.html#</a></p>
+<blockquote>
+<p>勾选“等待首页渲染完毕后再关闭Splash图”，表示需要等待首页渲染完成后再关闭启动界面<br>不勾选“等待首页渲染完毕后再关闭Splash图”，则表示首页加载完成后就会关闭启动界面，此时首页可能没有完成渲染，在部分设备可能&gt;会闪一下白屏，不推荐使用。</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;splashscreen&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span>               <span class="comment">//可选，JSON对象，splash界面配置</span></span><br><span class="line">    <span class="attr">&quot;alwaysShowBeforeRender&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span>     <span class="comment">//可选，Boolean类型，是否等待首页渲染完毕后再关闭启动界面</span></span><br><span class="line">    <span class="attr">&quot;autoclose&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span>                  <span class="comment">//可选，Boolean类型，是否自动关闭启动界面</span></span><br><span class="line">    <span class="attr">&quot;waiting&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span>                    <span class="comment">//可选，Boolean类型，是否在程序启动界面显示等待雪花</span></span><br><span class="line">    <span class="attr">&quot;event&quot;</span><span class="punctuation">:</span> <span class="string">&quot;loaded&quot;</span><span class="punctuation">,</span>                  <span class="comment">//可选，字符串类型，可取值titleUpdate、rendering、loaded，uni-app项目已废弃</span></span><br><span class="line">    <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;defalt&quot;</span><span class="punctuation">,</span>                 <span class="comment">//可选，字符串类型，可取值default、second，uni-app项目已废弃</span></span><br><span class="line">    <span class="attr">&quot;dealy&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span>                         <span class="comment">//可选，数字类型，延迟自动关闭启动时间，单位为毫秒，uni-app项目已废弃</span></span><br><span class="line">    <span class="attr">&quot;ads&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span>                            <span class="comment">//可选，JSON对象，开屏广告配置</span></span><br><span class="line">        <span class="attr">&quot;backaground&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#RRGGBB&quot;</span><span class="punctuation">,</span>               <span class="comment">//可选，字符串类型，格式为#RRGGBB，开屏广告背景颜色</span></span><br><span class="line">        <span class="attr">&quot;image&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span>                             <span class="comment">//可选，字符串类型，底部图片地址，相对应用资源目录路径</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;androidTranslucent&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span>         <span class="comment">//可选，Boolean类型，使用“自定义启动图”启动界面时是否显示透明过渡界面，可解决点击桌面图标延时启动应用的效果</span></span><br><span class="line"><span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;app-plus&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;splashscreen&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span>               <span class="comment">//可选，JSON对象，splash界面配置</span></span><br><span class="line">        <span class="attr">&quot;alwaysShowBeforeRender&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span>     <span class="comment">//可选，Boolean类型，是否等待首页渲染完毕后再关闭启动界面</span></span><br><span class="line">        <span class="attr">&quot;autoclose&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span>                  <span class="comment">//可选，Boolean类型，是否自动关闭启动界面</span></span><br><span class="line">        <span class="attr">&quot;waiting&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span>                    <span class="comment">//可选，Boolean类型，是否在程序启动界面显示等待雪花</span></span><br><span class="line">        <span class="attr">&quot;event&quot;</span><span class="punctuation">:</span> <span class="string">&quot;loaded&quot;</span><span class="punctuation">,</span>                  <span class="comment">//可选，字符串类型，可取值titleUpdate、rendering、loaded，uni-app项目已废弃</span></span><br><span class="line">        <span class="attr">&quot;target&quot;</span><span class="punctuation">:</span> <span class="string">&quot;defalt&quot;</span><span class="punctuation">,</span>                 <span class="comment">//可选，字符串类型，可取值default、second，uni-app项目已废弃</span></span><br><span class="line">        <span class="attr">&quot;dealy&quot;</span><span class="punctuation">:</span> <span class="number">0</span><span class="punctuation">,</span>                         <span class="comment">//可选，数字类型，延迟自动关闭启动时间，单位为毫秒，uni-app项目已废弃</span></span><br><span class="line">        <span class="attr">&quot;ads&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span>                            <span class="comment">//可选，JSON对象，开屏广告配置</span></span><br><span class="line">            <span class="attr">&quot;backaground&quot;</span><span class="punctuation">:</span> <span class="string">&quot;#RRGGBB&quot;</span><span class="punctuation">,</span>               <span class="comment">//可选，字符串类型，格式为#RRGGBB，开屏广告背景颜色</span></span><br><span class="line">            <span class="attr">&quot;image&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span>                             <span class="comment">//可选，字符串类型，底部图片地址，相对应用资源目录路径</span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;androidTranslucent&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span>         <span class="comment">//可选，Boolean类型，使用“自定义启动图”启动界面时是否显示透明过渡界面，可解决点击桌面图标延时启动应用的效果</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="03-swiper"><a href="#03-swiper" class="headerlink" title="03. swiper"></a>03. swiper</h3><p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/swiper.html">https://uniapp.dcloud.net.cn/component/swiper.html</a></p>
+<blockquote>
+<p>一般用于左右滑动或上下滑动，比如banner轮播图。</p>
+<p>注意滑动切换和滚动的区别，滑动切换是一屏一屏的切换。swiper下的每个swiper-item是一个滑动切换区域，不能停留在2个滑动区域之间。</p>
+</blockquote>
+<h3 id="04-引导图"><a href="#04-引导图" class="headerlink" title="04. 引导图"></a>04. 引导图</h3><p>首先需要明白，如果要兼容小程序，不能有超过200k的静态资源，如果需要就智能第三方或者base64显示。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ITold/article/details/124660256">https://blog.csdn.net/ITold/article/details/124660256</a></p>
+<p>base64 又可能造成文件过大的问题，所以还是自己服务器或者图床最理想。</p>
+<p>所以我使用 docker 安装了一个图床 <a target="_blank" rel="noopener" href="https://hub.docker.com/r/halcyonazure/lsky-pro-docker">https://hub.docker.com/r/halcyonazure/lsky-pro-docker</a></p>
+<p>于是有了这5张图片</p>
+<p><a target="_blank" rel="noopener" href="http://60.205.227.108:8089/i/2023/07/18/64b65e55b284e.jpg">http://60.205.227.108:8089/i/2023/07/18/64b65e55b284e.jpg</a><br><a target="_blank" rel="noopener" href="http://60.205.227.108:8089/i/2023/07/18/64b65e5652a1a.jpg">http://60.205.227.108:8089/i/2023/07/18/64b65e5652a1a.jpg</a><br><a target="_blank" rel="noopener" href="http://60.205.227.108:8089/i/2023/07/18/64b65e56d5b91.jpg">http://60.205.227.108:8089/i/2023/07/18/64b65e56d5b91.jpg</a><br><a target="_blank" rel="noopener" href="http://60.205.227.108:8089/i/2023/07/18/64b65e576749e.jpg">http://60.205.227.108:8089/i/2023/07/18/64b65e576749e.jpg</a><br><a target="_blank" rel="noopener" href="http://60.205.227.108:8089/i/2023/07/18/64b65e58a16df.jpg">http://60.205.227.108:8089/i/2023/07/18/64b65e58a16df.jpg</a></p>
+<p>现在可以开始引导</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">&quot;height: 100%;&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">swiper</span> <span class="attr">class</span>=<span class="string">&quot;swiper&quot;</span> <span class="attr">circular</span></span></span><br><span class="line"><span class="tag">			<span class="attr">:duration</span>=<span class="string">&quot;duration&quot;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">swiper-item</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">swiper-item</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">swiper-item</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">swiper-item</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">swiper-item</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">swiper-item</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">swiper</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;skipButton&quot;</span>&gt;</span>跳过<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里需要铺满，所以加入样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.swiper</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">z-index</span>:<span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.swiper</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>button 右上角</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.skipButton</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: fixed;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="comment">/* 将 bottom 改为 top */</span></span><br><span class="line">    <span class="attribute">right</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#888</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">border</span>: none;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">999</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>加入轮播的指示</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">indicator-dots=&quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+<p>增加点击跳过的事件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">        <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;skipButton&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;skip&quot;</span>&gt;</span>跳过<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">const</span> skip = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">		uni.<span class="title function_">redirectTo</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="attr">url</span>: <span class="string">&#x27;/pages/index/index&#x27;</span></span></span><br><span class="line"><span class="language-javascript">		&#125;);</span></span><br><span class="line"><span class="language-javascript">	&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当用户划过第三张图片的时候，也要跳过，所以需要绑定事件</p>
+<p><a target="_blank" rel="noopener" href="https://uniapp.dcloud.net.cn/component/swiper.html">https://uniapp.dcloud.net.cn/component/swiper.html</a></p>
+<p>本来想实现一个右滑进入的，但是有点麻烦，虽然有思路，但是麻烦，所以划到第三张图片1秒后，自动跳转。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@change=<span class="string">&quot;swiperChange&quot;</span></span><br><span class="line"><span class="keyword">const</span> swiperChange = <span class="keyword">function</span>(<span class="params">event</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(event.<span class="property">detail</span>.<span class="property">current</span> === <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="title function_">skip</span>();</span><br><span class="line">        &#125;, <span class="number">1000</span>)</span><br><span class="line">    &#125;		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样，引导页面就ok了，回到首页</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> value = uni.<span class="title function_">getStorageSync</span>(<span class="string">&#x27;launchFlag&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span> (value) &#123;</span><br><span class="line">    <span class="comment">// 如何已经有，直接去home首页</span></span><br><span class="line">    uni.<span class="title function_">switchTab</span>(&#123;</span><br><span class="line">        <span class="attr">url</span>: <span class="string">&#x27;/pages/index/index&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 没有值，跳到引导页，并存储，下次打开就不会进去引导页</span></span><br><span class="line">    uni.<span class="title function_">setStorage</span>(&#123;</span><br><span class="line">        <span class="attr">key</span>: <span class="string">&#x27;launchFlag&#x27;</span>,</span><br><span class="line">        <span class="attr">data</span>: <span class="literal">true</span></span><br><span class="line">    &#125;);</span><br><span class="line">    uni.<span class="title function_">redirectTo</span>(&#123;</span><br><span class="line">        <span class="attr">url</span>: <span class="string">&#x27;/pages/index/guide&#x27;</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个代码放在 <code>onLoad</code> 当中，就成型了。</p>
+<h3 id="05-广告"><a href="#05-广告" class="headerlink" title="05. 广告"></a>05. 广告</h3><p>广告就是同样的思路，只是很多广告不需要多张图，所以不需要 <code>swiper</code></p>
+<p>所以需要的是什么？</p>
+<p>一张图片带有连接和按钮</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;coverAd&quot;</span> <span class="attr">style</span>=<span class="string">&quot;height: 100%;&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;...&quot;</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;skipButton&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;skip&quot;</span>&gt;</span>跳过(&#123;&#123;timeCount&#125;&#125;)<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">import</span> &#123;</span></span><br><span class="line"><span class="language-javascript">		ref</span></span><br><span class="line"><span class="language-javascript">	&#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">const</span> timeCount = <span class="title function_">ref</span>(<span class="number">5</span>);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">const</span> <span class="title function_">to</span> = (<span class="params"></span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">		uni.<span class="title function_">redirectTo</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="attr">url</span>: <span class="string">&#x27;/pages/index/index&#x27;</span></span></span><br><span class="line"><span class="language-javascript">		&#125;);</span></span><br><span class="line"><span class="language-javascript">	&#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">const</span> <span class="title function_">skip</span> = (<span class="params"></span>) =&gt; &#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">if</span> (!!t) &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="built_in">clearInterval</span>(t);</span></span><br><span class="line"><span class="language-javascript">			t = <span class="literal">null</span>;</span></span><br><span class="line"><span class="language-javascript">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;t:&#x27;</span>, t)</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">		<span class="title function_">to</span>();</span></span><br><span class="line"><span class="language-javascript">	&#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="keyword">let</span> t = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">if</span> (timeCount.<span class="property">value</span> &gt; <span class="number">0</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">			timeCount.<span class="property">value</span>--;</span></span><br><span class="line"><span class="language-javascript">		&#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="title function_">skip</span>();</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;, <span class="number">1000</span>)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">	<span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">		<span class="keyword">if</span> (!!t) &#123;</span></span><br><span class="line"><span class="language-javascript">			<span class="built_in">clearInterval</span>(t);</span></span><br><span class="line"><span class="language-javascript">			<span class="title function_">to</span>();</span></span><br><span class="line"><span class="language-javascript">		&#125;</span></span><br><span class="line"><span class="language-javascript">	&#125;, <span class="number">7000</span>);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">	<span class="selector-class">.coverAd</span> &#123;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">top</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">bottom</span>: <span class="number">0px</span>;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">z-index</span>: <span class="number">10</span></span></span><br><span class="line"><span class="language-css">	&#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">	<span class="selector-class">.coverAd</span> <span class="selector-tag">img</span> &#123;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">height</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">width</span>: <span class="number">100%</span>;</span></span><br><span class="line"><span class="language-css">	&#125;</span></span><br><span class="line"><span class="language-css"></span></span><br><span class="line"><span class="language-css">	<span class="selector-class">.skipButton</span> &#123;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">position</span>: fixed;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">top</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">		<span class="comment">/* 将 bottom 改为 top */</span></span></span><br><span class="line"><span class="language-css">		<span class="attribute">right</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">padding</span>: <span class="number">10px</span> <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">background-color</span>: <span class="number">#888</span>;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">color</span>: <span class="number">#fff</span>;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">border</span>: none;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">border-radius</span>: <span class="number">5px</span>;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">font-size</span>: <span class="number">16px</span>;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">cursor</span>: pointer;</span></span><br><span class="line"><span class="language-css">		<span class="attribute">z-index</span>: <span class="number">999</span>;</span></span><br><span class="line"><span class="language-css">	&#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>暂时没有连接，但是我希望这张图能动一下。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> scaleIn &#123;</span><br><span class="line">    <span class="number">0%</span> &#123;</span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="number">100%</span> &#123;</span><br><span class="line">        <span class="attribute">transform</span>: <span class="built_in">scale</span>(<span class="number">1.2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.animate-scale</span> &#123;</span><br><span class="line">    <span class="attribute">animation</span>: scaleIn <span class="number">6s</span> infinite alternate;</span><br><span class="line">    <span class="attribute">transform-origin</span>: center center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="06-其他的修正"><a href="#06-其他的修正" class="headerlink" title="06. 其他的修正"></a>06. 其他的修正</h3><p>引导轮播图也需要加入倒计时，所以需要考虑代码如何复用。</p>
+<p>新建一个组件，封装一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	&lt;button class=&quot;skipButton&quot; @click=&quot;skip&quot;&gt;&#123;&#123;txtName&#125;&#125;(&#123;&#123;timeCount&#125;&#125;)&lt;/button&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script setup&gt;</span><br><span class="line">	import &#123;</span><br><span class="line">		ref,</span><br><span class="line">		defineProps</span><br><span class="line">	&#125; from &quot;vue&quot;;</span><br><span class="line"></span><br><span class="line">	const props = defineProps(&#123;</span><br><span class="line">		delay: &#123;</span><br><span class="line">			type: Number,</span><br><span class="line">			required: false, </span><br><span class="line">			default: 5, </span><br><span class="line">		&#125;,</span><br><span class="line">		jump: &#123;</span><br><span class="line">			type: String,</span><br><span class="line">			required: true, </span><br><span class="line">		&#125;,</span><br><span class="line">		txtName: &#123;</span><br><span class="line">			type: String,</span><br><span class="line">			required: false, </span><br><span class="line">			default: &quot;跳过&quot;</span><br><span class="line">		&#125;,</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	const &#123;</span><br><span class="line">		delay,</span><br><span class="line">		jump,</span><br><span class="line">		txtName</span><br><span class="line">	&#125; = props;</span><br><span class="line"></span><br><span class="line">	const timeCount = ref(delay);</span><br><span class="line"></span><br><span class="line">	const to = () =&gt; &#123;</span><br><span class="line">		uni.redirectTo(&#123;</span><br><span class="line">			url: jump</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	const skip = () =&gt; &#123;</span><br><span class="line">		if (!!t) &#123;</span><br><span class="line">			clearInterval(t);</span><br><span class="line">			t = null;</span><br><span class="line">			console.log(&#x27;t:&#x27;, t)</span><br><span class="line">		&#125;</span><br><span class="line">		to();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	let t = setInterval(() =&gt; &#123;</span><br><span class="line">		if (timeCount.value &gt; 0) &#123;</span><br><span class="line">			timeCount.value--;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			skip();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;, 1000)</span><br><span class="line"></span><br><span class="line">	setTimeout(() =&gt; &#123;</span><br><span class="line">		if (!!t) &#123;</span><br><span class="line">			clearInterval(t);</span><br><span class="line">			to();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;, 7000);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">	.skipButton &#123;</span><br><span class="line">		position: fixed;</span><br><span class="line">		top: 20px;</span><br><span class="line">		/* 将 bottom 改为 top */</span><br><span class="line">		right: 20px;</span><br><span class="line">		padding: 10px 20px;</span><br><span class="line">		background-color: #888;</span><br><span class="line">		color: #fff;</span><br><span class="line">		border: none;</span><br><span class="line">		border-radius: 5px;</span><br><span class="line">		font-size: 16px;</span><br><span class="line">		cursor: pointer;</span><br><span class="line">		z-index: 999;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>但是这个存在一个问题，就是如果页面自行跳转，比如引导页，那么中间是没有停止参数的，那么还需要和组件进行通信。</p>
+<p>vue 组件通信有很多方法, 反正就是通信停止或者外部不要跳转。</p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-18</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/vue/'>
+                            vue
+                        </a>
+                    
+                        <a href='/tags/%E5%A4%9A%E7%AB%AF/'>
+                            多端
+                        </a>
+                    
+                        <a href='/tags/uniapp/'>
+                            uniapp
+                        </a>
+                    
+                        <a href='/tags/guid/'>
+                            guid
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2023/07/19/uniapp_nest_login_list/'>nestjs 登录和任务</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2023/07/18/uniapp_tiaoshi/">uni-app 调试</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

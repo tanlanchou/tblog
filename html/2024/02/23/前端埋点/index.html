@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="前端埋点" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    前端埋点
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.5k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：4分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-%E9%A6%96%E5%85%88%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E6%98%AF%E5%9F%8B%E7%82%B9"><span class="post-toc-text">1. 首先需要知道什么是埋点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-%E6%9C%80%E4%BC%A0%E7%BB%9F%E7%9A%84%E6%96%B9%E5%BC%8F-%E4%B9%9F%E5%B0%B1%E6%98%AF%E6%89%8B%E5%8A%A8%E5%8E%BB%E5%9F%8B"><span class="post-toc-text">2. 最传统的方式, 也就是手动去埋.</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-%E5%8F%AF%E8%A7%86%E5%8C%96%E5%9F%8B%E7%82%B9"><span class="post-toc-text">3. 可视化埋点</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E5%9F%8B%E7%82%B9-%E5%9F%8B%E7%82%B9%E7%9A%84%E5%85%B7%E4%BD%93%E6%96%B9%E6%A1%88%E6%98%AF%E4%BB%80%E4%B9%88"><span class="post-toc-text">4. 应该怎么埋点? 埋点的具体方案是什么?</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#05-%E8%87%AA%E5%B7%B1%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%85%B7%E4%BD%93%E6%96%B9%E6%A1%88"><span class="post-toc-text">05. 自己实现的具体方案</span></a></li></ol>
+            
+        
+        <div class=".article-gallery"><h2 id="1-首先需要知道什么是埋点"><a href="#1-首先需要知道什么是埋点" class="headerlink" title="1. 首先需要知道什么是埋点"></a>1. 首先需要知道什么是埋点</h2><blockquote>
+<p>所谓“埋点”，是数据采集领域（尤其是用户行为数据采集领域）的术语，指的是针对特定用户行为或事件进行捕获、处理和发送的相关技术及其实施过程。比如用户某个icon点击次数、观看某个视频的时长等等。</p>
+<p>埋点的技术实质，是先监听软件应用运行过程中的事件，当需要关注的事件发生时进行判断和捕获。</p>
+</blockquote>
+<p>网站分析、用户行为分析、产品数据分析等领域，以帮助企业了解用户行为习惯、优化产品设计、改进用户体验，从而提升产品的用户满意度和市场竞争力</p>
+<p>其实异常捕获也算是一种埋点.</p>
+<p>所以对于前端来说, APP, 小程序, 网页可能都需要埋点. 如果你使用的是各种框架就又需要注意框架里应该怎么埋点</p>
+<h2 id="2-最传统的方式-也就是手动去埋"><a href="#2-最传统的方式-也就是手动去埋" class="headerlink" title="2. 最传统的方式, 也就是手动去埋."></a>2. <strong>最传统的方式, 也就是手动去埋.</strong></h2><p>进入页面, 你根据页面生命周期, 去算, 点击了哪些, 去布置事件, 也可以拿<code>performance</code>数据</p>
+<p>存在对象里, 存在localstorage, indexdb里</p>
+<p>然后在特定时间或者事件点, 上传服务器.</p>
+<p>觉得太麻烦就用别的统计, 比如当年我用过的百度</p>
+<p><a target="_blank" rel="noopener" href="https://tongji.baidu.com/web5/welcome/login">百度统计——一站式智能数据分析与应用平台</a></p>
+<p>引入即可获得页面上的活动.</p>
+<h2 id="3-可视化埋点"><a href="#3-可视化埋点" class="headerlink" title="3. 可视化埋点"></a>3. 可视化埋点</h2><p>传统手动埋点的问题在于麻烦, 就是沟通麻烦, 程序员你开发也麻烦. 所以有可视化埋点这个功能.</p>
+<p>很美好, 就是产品用可视化的方式, 点击软件, 网页, 然后选择要怎么埋点. 然后就不需要程序员写代码了</p>
+<p><a target="_blank" rel="noopener" href="https://manual.sensorsdata.cn/sa/1.17/zh_cn/app-7541658.html">App 可视化全埋点使用指南</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903878371049480">可视化埋点技术揭秘 - 掘金</a></p>
+<p>好处, 灵活, 不用开发人员就可以搞. </p>
+<p>坏处</p>
+<ol>
+<li>大概率要接入第三方api, 可能收费</li>
+<li>性能不明</li>
+<li>特殊场景无法处理</li>
+<li>兼容性不明</li>
+<li>特殊平台可能不可用, 比如说你使用uniapp这种方案, 你怎么接入第三方埋点呢? 可能还是只能接入页面埋点, 关注一下整体性能, 但是无法实现可视化埋点.</li>
+</ol>
+<p>最大的问题在于, 很多项目早期是不需要埋点的, 到达一定规模才开始做这件事, 这个时候代价就比较大了</p>
+<p>如果只是简单的使用埋点功能, 我觉得ok. 省的开发了</p>
+<p>大方向上主要是这两个分类, 无非就是自己开发或者引入另一套系统</p>
+<h2 id="4-应该怎么埋点-埋点的具体方案是什么"><a href="#4-应该怎么埋点-埋点的具体方案是什么" class="headerlink" title="4. 应该怎么埋点? 埋点的具体方案是什么?"></a>4. 应该怎么埋点? 埋点的具体方案是什么?</h2><p>前面是大方向, 那么当业务来了, 究竟需要怎么去埋点?</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6978131459655598094">Vue埋点初探 | 前端埋点 | PV埋点| 交互埋点 - 掘金</a></p>
+<p>在上面这篇文章中提出了几个方案</p>
+<ul>
+<li><strong>命令式埋点</strong>是用比较常见的方式，在用户产生行为的地方使用js方法进行数据上报，优点是埋点方式比较简单，缺点是与业务耦合度较高</li>
+<li><strong>声明式埋点</strong>是在具体DOM元素上进行数据绑定，只需组件开发人员在sdk上制定埋点方案，业务开发人员设置数据即可，优点是埋点代码与具体的交互和业务逻辑解耦</li>
+<li><strong>可视化埋点</strong>是通过可视化工具配置埋点，需要另外配套一个平台控制埋点的埋入，优点是自动生成埋点代码嵌入到页面中，减轻业务开发人员的埋点负担，目前做得好得例如<a href="https://link.juejin.cn/?target=https://github.com/mixpanel">Mixpanel</a></li>
+<li><strong>无埋点</strong>是前端自动采集全部事件，上报埋点数据，由后端来过滤和计算出有用的数据，优点是完全无需业务参与，完全与业务解耦，目前比较流行的例如<a href="https://link.juejin.cn/?target=https://www.growingio.com/">GrowingIO</a></li>
+</ul>
+<p>这个东西在词汇上很混乱</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/79439716">带你了解埋点、无埋点、全埋点</a></p>
+<p><a target="_blank" rel="noopener" href="https://mtj.baidu.com/static/userguide/book/chapter5/what.html">什么是无埋点技术 · 百度移动统计帮助文档</a></p>
+<p>无埋点和可视化埋点有点冲突.</p>
+<p>总之可以理解为他给出了4种方案</p>
+<ol>
+<li>自己纯手写</li>
+<li>自己写库(你叫sdk也可以), 然后初级程序员调用库埋点, 本质上和第一种没区别, 只是增加了分工</li>
+<li>可视化配置埋点</li>
+<li>全部收集</li>
+</ol>
+<p>可视化埋点我刚才说了, 优缺点.</p>
+<p>全部收集, 也就是用户所有动作都捕捉, 页面滑动, 滚动条滚动, 点击, 双击…….</p>
+<p>这种收集简单粗暴, 但是数据可能没有针对性. 因为数据多, 压力可能稍微大一点.</p>
+<h2 id="05-自己实现的具体方案"><a href="#05-自己实现的具体方案" class="headerlink" title="05. 自己实现的具体方案"></a>05. 自己实现的具体方案</h2><p>很多时候还是要自己写, 去买别人的.</p>
+<p>这种情况下怎么快速的高效的埋点?</p>
+<p><strong>页面pv,</strong> 这个主要是受收集页面加载时间, 性能, 报错, 用户停留时间等等</p>
+<p>这个就看框架生命周期了, 如果是原生的dom也有生命周期.</p>
+<p>操作的记录</p>
+<p>vue 用自定义指令解决问题</p>
+<p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/reusability/custom-directives">Vue.js</a></p>
+<p>也就是所谓的声明式</p>
+<p>react 我不是很了解. 但是高阶组件(也就是闭包) 我觉得可以解决.</p>
+<p>ag 就完全不熟悉了.</p>
+<p>剩下的”痛点” 就在于如果让产品快速自定义, 形成一个文档很麻烦. 这也就是为什么很多时候 可视化埋点方便的点.</p>
+<p><a target="_blank" rel="noopener" href="https://hughfenghen.github.io/posts/2018/05/01/vue-directive-track/">基于vue directive实现声明式埋点方案 | 风痕 · 術&amp;思</a></p>
+<p>这篇文章的做法是, 写chrome插件, userscipt. </p>
+<p>可以解决部分问题</p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2024-02-23</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/%E5%89%8D%E7%AB%AF/'>
+                            前端
+                        </a>
+                    
+                        <a href='/tags/%E5%9F%8B%E7%82%B9/'>
+                            埋点
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2024/03/11/javascript/setInterval_browser_execution_frequency/'>setInterval 浏览器执行频率</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2024/02/23/rss%E6%95%B0%E6%8D%AE%E5%AF%B9%E6%AF%94/">rss数据对比</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

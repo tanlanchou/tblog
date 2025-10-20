@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="Pinia 基本和源码简单分析" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    Pinia 基本和源码简单分析
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2025-07-23</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.2k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：5分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Pinia-%E5%9F%BA%E6%9C%AC"><span class="post-toc-text">Pinia 基本</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E6%83%85%E5%86%B5"><span class="post-toc-text">01. 情况</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="post-toc-text">02. 基本使用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E6%A6%82%E5%BF%B5%E4%B8%8A-Pinia-%E5%92%8C-Vuex-%E7%9A%84%E5%B7%AE%E5%88%AB"><span class="post-toc-text">03. 概念上 Pinia 和 Vuex 的差别</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#03-01-Mutations"><span class="post-toc-text">03.01 Mutations</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#03-02-modules"><span class="post-toc-text">03.02 modules</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E7%AE%80%E5%8D%95%E7%9A%84%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="post-toc-text">04. 简单的源码解析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#04-01-%E4%BC%A0%E9%80%92%E6%96%B9%E5%BC%8F"><span class="post-toc-text">04.01 传递方式</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#04-02-createOptionsStore"><span class="post-toc-text">04.02 createOptionsStore</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+            
+        
+        <div class=".article-gallery"><h1 id="Pinia-基本"><a href="#Pinia-基本" class="headerlink" title="Pinia 基本"></a>Pinia 基本</h1><h3 id="01-情况"><a href="#01-情况" class="headerlink" title="01. 情况"></a>01. 情况</h3><p>在看 <code>Pinia</code> 之前专门看了下 <code>Vuex</code> ，相当于说为了这个醋包了饺子。</p>
+<p>主要是想知道差别在什么地方</p>
+<p>为什么要管理状态？为什么要使用他？其实之前已经看过了，需要的话就去看 <code>Vuex</code> 那一篇</p>
+<h3 id="02-基本使用"><a href="#02-基本使用" class="headerlink" title="02. 基本使用"></a>02. 基本使用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// stores/counter.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineStore &#125; <span class="keyword">from</span> <span class="string">&#x27;pinia&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> useCounterStore = <span class="title function_">defineStore</span>(<span class="string">&#x27;counter&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">state</span>: <span class="function">() =&gt;</span> (&#123;</span><br><span class="line">    <span class="attr">count</span>: <span class="number">0</span></span><br><span class="line">  &#125;),</span><br><span class="line">  <span class="attr">getters</span>: &#123;</span><br><span class="line">    <span class="attr">double</span>: <span class="function">(<span class="params">state</span>) =&gt;</span> state.<span class="property">count</span> * <span class="number">2</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">actions</span>: &#123;</span><br><span class="line">    <span class="title function_">increment</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">count</span>++</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="title function_">incrementBy</span>(<span class="params">n: number</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">count</span> += n</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>App.vue</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Pinia Counter<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Count: &#123;&#123; counter.count &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Double: &#123;&#123; counter.double &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;counter.increment&quot;</span>&gt;</span>+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;counter.incrementBy(5)&quot;</span>&gt;</span>+5<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span> <span class="attr">lang</span>=<span class="string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">import</span> &#123; useCounterStore &#125; <span class="keyword">from</span> <span class="string">&#x27;./stores/counter&#x27;</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">const</span> counter = <span class="title function_">useCounterStore</span>()</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>实话实说简单了很多，很多东西确实原本就不需要去关注</p>
+<h3 id="03-概念上-Pinia-和-Vuex-的差别"><a href="#03-概念上-Pinia-和-Vuex-的差别" class="headerlink" title="03. 概念上 Pinia 和 Vuex 的差别"></a>03. 概念上 Pinia 和 Vuex 的差别</h3><p>他在使用上主要有2个差别。</p>
+<h5 id="03-01-Mutations"><a href="#03-01-Mutations" class="headerlink" title="03.01 Mutations"></a>03.01 Mutations</h5><p>首先是没有了 <code>Mutations</code> 也是最重要的。</p>
+<p>我第一反应是改变了设计思路。</p>
+<p>因为对于 <code>Vuex</code> 来说， <code>Mutations =&gt; State</code> 的作用其实是保证数据可控。</p>
+<p>设计为同步，你再严格限制数据，做校验，那么就能在一定程度上保证 <code>State</code> 数据可控。</p>
+<p>Actions 相对来说只是为了易用性打的补丁。</p>
+<p>但是如果直接用Actions，就相当于为了易用性，减少了对数据的控制.</p>
+<p>从设计思路上来说是这样</p>
+<p>也有人认为 <code>Actions =&gt; Mutations</code> 本身就是脱了裤子放屁，反而多一个概念，脱了裤子放屁。</p>
+<p>形式大于实际</p>
+<p>取消掉了 <code>Mutations</code> , 依然需要调用 <code>Actions</code> ，依然不能随意修改</p>
+<p>因为数据是响应式的，还是可以追踪</p>
+<p>依然是需要 <code>UseXXXStore</code> 不随意修改</p>
+<p>只是允许了异步的 <code>Actions</code> 的差别，对于整体的目的没有直接破坏</p>
+<h5 id="03-02-modules"><a href="#03-02-modules" class="headerlink" title="03.02 modules"></a>03.02 modules</h5><p>这个是改成了你直接调用你写的，而不是统一调用然后 “xxx&#x2F;xxx”</p>
+<p>没什么好说的。</p>
+<h3 id="04-简单的源码解析"><a href="#04-简单的源码解析" class="headerlink" title="04. 简单的源码解析"></a>04. 简单的源码解析</h3><p>主要讲2个点。</p>
+<h5 id="04-01-传递方式"><a href="#04-01-传递方式" class="headerlink" title="04.01 传递方式"></a>04.01 传递方式</h5><p>他和 <code>Vuex</code> 一样，都使用注入搞定的，但是细节还是有变化的</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">useStore</span>(<span class="params">pinia?: Pinia | <span class="literal">null</span>, hot?: StoreGeneric</span>): <span class="title class_">StoreGeneric</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> hasContext = <span class="title function_">hasInjectionContext</span>()</span><br><span class="line">    pinia =</span><br><span class="line">      <span class="comment">// ...</span></span><br><span class="line">      (hasContext ? <span class="title function_">inject</span>(piniaSymbol, <span class="literal">null</span>) : <span class="literal">null</span>) <span class="comment">// &lt;-- 关键在这里！</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (pinia) <span class="title function_">setActivePinia</span>(pinia)</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// ...</span></span><br></pre></td></tr></table></figure>
+
+<p>看得懂吧。</p>
+<h5 id="04-02-createOptionsStore"><a href="#04-02-createOptionsStore" class="headerlink" title="04.02 createOptionsStore"></a>04.02 <code>createOptionsStore</code></h5><p>这个是核心代码，创建 state, getter, action 都在这个方法里面。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> createOptionsStore&lt;</span><br><span class="line">  <span class="title class_">Id</span> <span class="keyword">extends</span> <span class="built_in">string</span>,</span><br><span class="line">  S <span class="keyword">extends</span> <span class="title class_">StateTree</span>,</span><br><span class="line">  G <span class="keyword">extends</span> _GettersTree&lt;S&gt;,</span><br><span class="line">  A <span class="keyword">extends</span> _ActionsTree,</span><br><span class="line">&gt;(</span><br><span class="line">  <span class="attr">id</span>: <span class="title class_">Id</span>,</span><br><span class="line">  <span class="attr">options</span>: <span class="title class_">DefineStoreOptions</span>&lt;<span class="title class_">Id</span>, S, G, A&gt;,</span><br><span class="line">  <span class="attr">pinia</span>: <span class="title class_">Pinia</span>,</span><br><span class="line">  hot?: <span class="built_in">boolean</span></span><br><span class="line">): <span class="title class_">Store</span>&lt;<span class="title class_">Id</span>, S, G, A&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; state, actions, getters &#125; = options</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> <span class="attr">initialState</span>: <span class="title class_">StateTree</span> | <span class="literal">undefined</span> = pinia.<span class="property">state</span>.<span class="property">value</span>[id]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> <span class="attr">store</span>: <span class="title class_">Store</span>&lt;<span class="title class_">Id</span>, S, G, A&gt;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">setup</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!initialState &amp;&amp; (!__DEV__ || !hot)) &#123;</span><br><span class="line">      <span class="comment">/* istanbul ignore if */</span></span><br><span class="line">      pinia.<span class="property">state</span>.<span class="property">value</span>[id] = state ? <span class="title function_">state</span>() : &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// avoid creating a state in pinia.state.value</span></span><br><span class="line">    <span class="keyword">const</span> localState =</span><br><span class="line">      __DEV__ &amp;&amp; hot</span><br><span class="line">        ? <span class="comment">// use ref() to unwrap refs inside state <span class="doctag">TODO:</span> check if this is still necessary</span></span><br><span class="line">          <span class="title function_">toRefs</span>(<span class="title function_">ref</span>(state ? <span class="title function_">state</span>() : &#123;&#125;).<span class="property">value</span>)</span><br><span class="line">        : <span class="title function_">toRefs</span>(pinia.<span class="property">state</span>.<span class="property">value</span>[id])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">assign</span>(</span><br><span class="line">      localState,</span><br><span class="line">      actions,</span><br><span class="line">      <span class="title class_">Object</span>.<span class="title function_">keys</span>(getters || &#123;&#125;).<span class="title function_">reduce</span>(</span><br><span class="line">        <span class="function">(<span class="params">computedGetters, name</span>) =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">if</span> (__DEV__ &amp;&amp; name <span class="keyword">in</span> localState) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">warn</span>(</span><br><span class="line">              <span class="string">`[🍍]: A getter cannot have the same name as another state property. Rename one of them. Found with &quot;<span class="subst">$&#123;name&#125;</span>&quot; in store &quot;<span class="subst">$&#123;id&#125;</span>&quot;.`</span></span><br><span class="line">            )</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          computedGetters[name] = <span class="title function_">markRaw</span>(</span><br><span class="line">            <span class="title function_">computed</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">              <span class="title function_">setActivePinia</span>(pinia)</span><br><span class="line">              <span class="comment">// it was created just before</span></span><br><span class="line">              <span class="keyword">const</span> store = pinia.<span class="property">_s</span>.<span class="title function_">get</span>(id)!</span><br><span class="line"></span><br><span class="line">              <span class="comment">// allow cross using stores</span></span><br><span class="line"></span><br><span class="line">              <span class="comment">// @ts-expect-error</span></span><br><span class="line">              <span class="comment">// return getters![name].call(context, context)</span></span><br><span class="line">              <span class="comment">// <span class="doctag">TODO:</span> avoid reading the getter while assigning with a global variable</span></span><br><span class="line">              <span class="keyword">return</span> getters![name].<span class="title function_">call</span>(store, store)</span><br><span class="line">            &#125;)</span><br><span class="line">          )</span><br><span class="line">          <span class="keyword">return</span> computedGetters</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;&#125; <span class="keyword">as</span> <span class="title class_">Record</span>&lt;<span class="built_in">string</span>, <span class="title class_">ComputedRef</span>&gt;</span><br><span class="line">      )</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  store = <span class="title function_">createSetupStore</span>(id, setup, options, pinia, hot, <span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> store <span class="keyword">as</span> <span class="built_in">any</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>首先看 <code>state</code></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">initialState</span>: <span class="title class_">StateTree</span> | <span class="literal">undefined</span> = pinia.<span class="property">state</span>.<span class="property">value</span>[id]st</span><br><span class="line"></span><br><span class="line"> pinia.<span class="property">state</span>.<span class="property">value</span></span><br><span class="line">    <span class="keyword">const</span> localState =</span><br><span class="line">      __DEV__ &amp;&amp; hot</span><br><span class="line">        ? <span class="comment">// use ref() to unwrap refs inside state <span class="doctag">TODO:</span> check if this is still necessary</span></span><br><span class="line">          <span class="title function_">toRefs</span>(<span class="title function_">ref</span>(state ? <span class="title function_">state</span>() : &#123;&#125;).<span class="property">value</span>)</span><br><span class="line">        : t  : t</span><br></pre></td></tr></table></figure>
+
+<p>就是获取 你传入的 <code>options</code> ， 然后响应式</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="title function_">assign</span>(</span><br><span class="line">  localState,</span><br><span class="line">  actions,</span><br><span class="line">  <span class="title class_">Object</span>.<span class="title function_">keys</span>(getters || &#123;&#125;).<span class="title function_">reduce</span>(</span><br></pre></td></tr></table></figure>
+
+<p>然后传递给新生的 <code>newStore</code></p>
+<p>你就可以通过 <code>actions</code>  去访问，比如说 </p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">actions</span>: &#123;</span><br><span class="line">  <span class="title function_">increment</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">count</span>++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个 <code>this</code> 是指向 <code>store</code> 的, 就能通过 <code>store =&gt; pinia.state.value</code></p>
+<p><code>getter</code> 在刚才代码里面也说明了</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Object</span>.<span class="title function_">keys</span>(getters || &#123;&#125;).<span class="title function_">reduce</span>(</span><br><span class="line">  <span class="function">(<span class="params">computedGetters, name</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (__DEV__ &amp;&amp; name <span class="keyword">in</span> localState) &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">warn</span>(</span><br><span class="line">        <span class="string">`[🍍]: A getter cannot have the same name as another state property. Rename one of them. Found with &quot;<span class="subst">$&#123;name&#125;</span>&quot; in store &quot;<span class="subst">$&#123;id&#125;</span>&quot;.`</span></span><br><span class="line">      )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    computedGetters[name] = <span class="title function_">markRaw</span>(</span><br><span class="line">      <span class="title function_">computed</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="title function_">setActivePinia</span>(pinia)</span><br><span class="line">        <span class="comment">// it was created just before</span></span><br><span class="line">        <span class="keyword">const</span> store = pinia.<span class="property">_s</span>.<span class="title function_">get</span>(id)!</span><br><span class="line"></span><br><span class="line">        <span class="comment">// allow cross using stores</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// @ts-expect-error</span></span><br><span class="line">        <span class="comment">// return getters![name].call(context, context)</span></span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> avoid reading the getter while assigning with a global variable</span></span><br><span class="line">        <span class="keyword">return</span> getters![name].<span class="title function_">call</span>(store, store)</span><br><span class="line">      &#125;)</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> computedGetters</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;&#125; <span class="keyword">as</span> <span class="title class_">Record</span>&lt;<span class="built_in">string</span>, <span class="title class_">ComputedRef</span>&gt;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>只需要注意2个点</p>
+<p>为什么要去用 <code>computed</code> 主要是为了缓存和依赖追踪</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> getters![name].<span class="title function_">call</span>(store, store)</span><br></pre></td></tr></table></figure>
+
+<p>获取最新的值</p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2025-07-24</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/Vue3/'>
+                            Vue3
+                        </a>
+                    
+                        <a href='/tags/Pinia/'>
+                            Pinia
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2025/07/25/202507/Prisma/'>Prisma 基本应用</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2025/07/23/202507/Vuex/">Vuex 基本用法</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

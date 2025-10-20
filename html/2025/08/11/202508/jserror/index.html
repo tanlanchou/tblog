@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="javascript 错误" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    javascript 错误
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2025-08-12</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.4k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：5分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#javascript-%E9%94%99%E8%AF%AF"><span class="post-toc-text">javascript 错误</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E5%9F%BA%E6%9C%AC%E7%9A%84%E6%8D%95%E8%8E%B7"><span class="post-toc-text">01. 基本的捕获</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E4%BB%96%E4%BB%AC%E4%B8%8D%E8%83%BD%E5%B9%B2%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="post-toc-text">02. 他们不能干什么？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#02-01-%E5%BD%93%E7%94%A8%E6%88%B7%E8%87%AA%E8%A1%8C-try-x2F-catch-%E5%B0%B1%E4%B8%8D%E8%83%BD%E6%8D%95%E8%8E%B7-%E6%88%96%E8%80%85-Promise-catch-%E4%B9%9F%E6%98%AF%E4%B8%80%E6%A0%B7"><span class="post-toc-text">02.01 当用户自行 try&#x2F;catch 就不能捕获, 或者 Promise.catch 也是一样</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#02-02-Web-Worker-%E6%98%AF%E4%B8%8D%E8%83%BD%E6%8D%95%E8%8E%B7%E7%9A%84"><span class="post-toc-text">02.02 Web Worker 是不能捕获的</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#02-03-iframe-%E7%9A%84%E9%94%99%E8%AF%AF%E6%97%A0%E6%B3%95%E6%8D%95%E8%8E%B7"><span class="post-toc-text">02.03 iframe 的错误无法捕获</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#02-04-%E8%AF%AD%E6%B3%95%E8%A7%A3%E6%9E%90%E9%94%99%E8%AF%AF"><span class="post-toc-text">02.04 语法解析错误</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#02-05-fetch%EF%BC%8CXHR"><span class="post-toc-text">02.05 fetch，XHR</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E5%88%86%E7%B1%BB"><span class="post-toc-text">03. 分类</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E4%B8%8A%E6%8A%A5"><span class="post-toc-text">04. 上报</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <div class=".article-gallery"><h1 id="javascript-错误"><a href="#javascript-错误" class="headerlink" title="javascript 错误"></a>javascript 错误</h1><h3 id="01-基本的捕获"><a href="#01-基本的捕获" class="headerlink" title="01. 基本的捕获"></a>01. 基本的捕获</h3><pre><code>// 同步异常
+window.addEventListener(&#39;error&#39;,(error)=&gt;&#123; // 分析错误-&gt;上报 
+&#125;)
+// 异步异常
+window.addEventListener(&#39;unhandledrejection&#39;,(rejection)=&gt;&#123;
+// 分析错误-&gt;上报
+&#125;)
+</code></pre>
+<blockquote>
+<p>error &#x3D;&gt; ErrorEvent</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/ErrorEvent">ErrorEvent - Web API | MDN</a></p>
+<blockquote>
+<p>rejection</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/PromiseRejectionEvent">https://developer.mozilla.org/en-US/docs/Web/API/PromiseRejectionEvent</a></p>
+<p>首先就是<br>    window.addEventListener(‘error’,(error)&#x3D;&gt;{})</p>
+<p>他主要捕获什么？</p>
+<ol>
+<li><p>同步运行的错误, 就是同步运行的所有错误，只要你没有 <code>try/catch</code></p>
+</li>
+<li><p>异步任务回调中的异常, settimeout 之类的的，那种回调函数都是，<code>document.body.addEventListener(&#39;click&#39;, ()=&gt; &#123;&#125;</code> 这种也是。</p>
+</li>
+<li><p><code>&lt;img&gt;</code>、<code>&lt;script&gt;</code>、<code>&lt;link&gt;</code>、<code>&lt;video&gt;</code>、<code>&lt;audio&gt;</code>、<code>&lt;iframe&gt;</code> 等资源加载失败，也会触发 <code>error</code>。</p>
+</li>
+<li><p>跨域脚本运行时错误</p>
+<p> window.addEventListener(‘unhandledrejection’,(rejection)&#x3D;&gt;{})</p>
+</li>
+</ol>
+<p><code>unhandledrejection</code> 他其实是专门去捕获 <code>Promise</code> 的错误，比如你们有 <code>catch</code> 的情况。或者 <code>await</code> 之类的没有 <code>try/catch</code> 的情况</p>
+<p>他主要是给异步错误进行兜底的。</p>
+<h3 id="02-他们不能干什么？"><a href="#02-他们不能干什么？" class="headerlink" title="02. 他们不能干什么？"></a>02. 他们不能干什么？</h3><ol>
+<li><p>当用户自行 try&#x2F;catch 就不能捕获, 或者 <code>Promise.catch</code> 也是一样</p>
+</li>
+<li><p>Web Worker 是不能捕获的</p>
+</li>
+<li><p>iframe 的错误无法捕获</p>
+</li>
+<li><p>如果是语法错误，也是无法捕获</p>
+</li>
+<li><p>部分网络错误</p>
+</li>
+</ol>
+<p>这里分很多种情况，可能需要代码进行约定</p>
+<h5 id="02-01-当用户自行-try-x2F-catch-就不能捕获-或者-Promise-catch-也是一样"><a href="#02-01-当用户自行-try-x2F-catch-就不能捕获-或者-Promise-catch-也是一样" class="headerlink" title="02.01 当用户自行 try&#x2F;catch 就不能捕获, 或者 Promise.catch 也是一样"></a>02.01 当用户自行 try&#x2F;catch 就不能捕获, 或者 <code>Promise.catch</code> 也是一样</h5><p>这个因为错误已经捕获了，所以认为你已经处理了。</p>
+<p>所以是不会冒泡到<br>        window.addEventListener(‘error’,(error)&#x3D;&gt;{})</p>
+<p>如果想要继续给统一的 <code>error</code> 处理, 需要重新抛出事件<br>    try {<br>        …<br>    }<br>    catch(ex) {<br>        throw ex;<br>        throw new Exp…<br>    }</p>
+<p>这样就能统一的做记录了</p>
+<p>在 <code>Promise</code> 种也是一样，在 <code>catch</code> 以后要重新抛出。</p>
+<p>在这种思路之下，<code>catch</code> 中是不能右返回值的，只能处理异常的提示信息</p>
+<h5 id="02-02-Web-Worker-是不能捕获的"><a href="#02-02-Web-Worker-是不能捕获的" class="headerlink" title="02.02 Web Worker 是不能捕获的"></a>02.02 Web Worker 是不能捕获的</h5><p>他需要自己去捕获。<br>    const worker &#x3D; new Worker(‘worker.js’);</p>
+<pre><code>worker.addEventListener(&#39;error&#39;, (event) =&gt; &#123;
+  console.error(&#39;主线程捕获 Worker 错误:&#39;, event.message, event.filename, event.lineno);
+&#125;);
+
+worker.addEventListener(&#39;messageerror&#39;, (event) =&gt; &#123;
+  console.error(&#39;主线程收到无法反序列化的消息:&#39;, event.data);
+&#125;);
+</code></pre>
+<p><code>webworker</code> 的内部同理，如果自行 <code>catch</code>, 就不会冒泡。这种情况最好是封装一层 <code>worker</code>. 统一调用后就自己有日志了。</p>
+<h5 id="02-03-iframe-的错误无法捕获"><a href="#02-03-iframe-的错误无法捕获" class="headerlink" title="02.03 iframe 的错误无法捕获"></a>02.03 iframe 的错误无法捕获</h5><p>理论上其实可以捕获，只是要专门写代码，前提是同源页面<br>    const iframe &#x3D; document.querySelector(‘iframe’);</p>
+<pre><code>iframe.contentWindow.addEventListener(&#39;error&#39;, (event) =&gt; &#123;
+  console.log(&#39;iframe 同源错误:&#39;, event.message, event.filename, event.lineno);
+&#125;);
+
+iframe.contentWindow.addEventListener(&#39;unhandledrejection&#39;, (event) =&gt; &#123;
+  console.log(&#39;iframe 同源 Promise 错误:&#39;, event.reason);
+&#125;);
+</code></pre>
+<p>或者通过 <code>postmessage</code><br>    window.addEventListener(‘error’, e &#x3D;&gt; {<br>      parent.postMessage({ type: ‘iframe-error’, message: e.message, filename: e.filename, lineno: e.lineno }, ‘<em>‘);<br>    });<br>    window.addEventListener(‘unhandledrejection’, e &#x3D;&gt; {<br>      parent.postMessage({ type: ‘iframe-unhandledrejection’, reason: e.reason }, ‘</em>‘);<br>    });</p>
+<p>类似这种。不同源的就不要想了。</p>
+<h5 id="02-04-语法解析错误"><a href="#02-04-语法解析错误" class="headerlink" title="02.04 语法解析错误"></a>02.04 语法解析错误</h5><p>这个目前不知道怎么捕获。。估计要特殊的写法，js引擎会直接报错。</p>
+<h5 id="02-05-fetch，XHR"><a href="#02-05-fetch，XHR" class="headerlink" title="02.05 fetch，XHR"></a>02.05 fetch，XHR</h5><p><code>XHR </code>是肯定不会报错的，在<code>onError</code>里面自己写吧，或者你非得用 <code>XHR</code>，那建议自己封装一层。</p>
+<p><code>fetch</code> 和 <code>Promise</code> 一样，在没<code>catch</code> 的情况下，会触发 <code>unhandledrejection</code> 但是 <code>unhandledrejection</code> 是集中处理错的地方。还是自己封装吧，或者用第三方的。</p>
+<h3 id="03-分类"><a href="#03-分类" class="headerlink" title="03. 分类"></a>03. 分类</h3><table>
+<thead>
+<tr>
+<th>分类</th>
+<th>典型来源</th>
+<th>区分方法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>JS运行时错误</strong></td>
+<td><code>ReferenceError</code>, <code>TypeError</code> 等</td>
+<td>来自 <code>window.onerror</code>，<code>event.error</code> 是 Error 对象</td>
+</tr>
+<tr>
+<td><strong>资源加载错误</strong></td>
+<td>图片、CSS、JS 404</td>
+<td>来自 <code>window.onerror</code> 且 <code>event.target</code> 是 DOM 元素（非 <code>window</code>）</td>
+</tr>
+<tr>
+<td><strong>Promise 异常</strong></td>
+<td>async&#x2F;await 报错、fetch 无网络等</td>
+<td>来自 <code>unhandledrejection</code>，<code>event.reason</code> 是 Error 或其他类型</td>
+</tr>
+<tr>
+<td><strong>网络请求错误</strong></td>
+<td>fetch、XHR 超时、4xx&#x2F;5xx</td>
+<td>在请求封装里 <code>.catch()</code>，或根据响应码判断</td>
+</tr>
+<tr>
+<td><strong>业务逻辑异常</strong></td>
+<td>后端返回业务错误码</td>
+<td>接口响应成功但 <code>code != 0</code>，业务层判断</td>
+</tr>
+<tr>
+<td><strong>跨域&#x2F;安全错误</strong></td>
+<td>CORS 拒绝、Mixed Content</td>
+<td>fetch 报错 reason 含 <code>TypeError</code> 且 message 提示跨域</td>
+</tr>
+</tbody></table>
+<p>错误也需要分级</p>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>特征</th>
+<th>影响范围</th>
+<th>处理优先级</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>P0（致命）</strong></td>
+<td>核心功能完全不可用</td>
+<td>所有用户 &#x2F; 大部分用户</td>
+<td>立即上报 &amp; 立即处理</td>
+<td>JS语法错误导致页面空白、主入口文件 404、fetch 核心接口失败</td>
+</tr>
+<tr>
+<td><strong>P1（高）</strong></td>
+<td>核心功能部分不可用</td>
+<td>较多用户</td>
+<td>快速修复 &amp; 优先上报</td>
+<td>支付流程异常、重要按钮点击无反应</td>
+</tr>
+<tr>
+<td><strong>P2（中）</strong></td>
+<td>非核心功能不可用</td>
+<td>部分用户</td>
+<td>正常排期修复</td>
+<td>评论区加载失败、个人头像上传失败</td>
+</tr>
+<tr>
+<td><strong>P3（低）</strong></td>
+<td>体验问题、兼容问题</td>
+<td>少数用户 &#x2F; 特定环境</td>
+<td>低优先级处理</td>
+<td>样式错位、低版本浏览器兼容警告</td>
+</tr>
+</tbody></table>
+<p>这种具体要怎么判断就需要去细分了。</p>
+<h3 id="04-上报"><a href="#04-上报" class="headerlink" title="04. 上报"></a>04. 上报</h3><p>去重 &#x2F; 合并</p>
+<ul>
+<li><p><strong>去重</strong>：相同 <code>message + file + line + col + stack</code> 的错误只记录一次（可加上出现次数计数）。</p>
+</li>
+<li><p><strong>合并</strong>：比如一分钟内的相同错误只上报一次，并统计重复次数。</p>
+</li>
+</ul>
+<p>本地暂存（LocalStorage &#x2F; IndexedDB）</p>
+<ul>
+<li><p>避免用户刷新或关闭页面时丢失错误数据。</p>
+</li>
+<li><p>在网络恢复或下次启动时再批量上报</p>
+</li>
+</ul>
+<p>延迟上报。收集到一定条数，并且还可以判断网络状况，离线也可以收集错误。PWA之类的</p>
+<p>比如P0的致命错误，可能就需要立刻上报。</p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2025-08-11</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/%E5%89%8D%E7%AB%AF/'>
+                            前端
+                        </a>
+                    
+                        <a href='/tags/javascript/'>
+                            javascript
+                        </a>
+                    
+                        <a href='/tags/error/'>
+                            error
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2025/08/11/202508/can_arbitration/'>canopen 仲裁</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2025/08/08/202507/casl/">casl 简介</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

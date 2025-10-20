@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="Vue3 nextTick" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    Vue3 nextTick
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：536</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：2分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E4%BB%80%E4%B9%88%E6%98%AF-nextTick"><span class="post-toc-text">01. 什么是 nextTick</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E8%B0%83%E5%BA%A6%E8%BF%87%E7%A8%8B"><span class="post-toc-text">02. 调度过程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-nextTick-%E6%BA%90%E7%A0%81"><span class="post-toc-text">03. nextTick 源码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E6%80%BB%E7%BB%93"><span class="post-toc-text">04. 总结</span></a></li></ol>
+            
+        
+        <div class=".article-gallery"><h3 id="01-什么是-nextTick"><a href="#01-什么是-nextTick" class="headerlink" title="01. 什么是 nextTick"></a>01. 什么是 nextTick</h3><p>首先要知道什么是 nextTick</p>
+<blockquote>
+<p>等待下一次 DOM 更新刷新的工具方法。</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">nextTick</span>(<span class="params">callback?: () =&gt; <span class="built_in">void</span></span>): <span class="title class_">Promise</span>&lt;<span class="built_in">void</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这里说了语法和定义，下面这个例子会会说明，为什么需要 nextTick</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; ref, nextTick &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> count = <span class="title function_">ref</span>(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">increment</span>(<span class="params"></span>) &#123;</span><br><span class="line">    count.<span class="property">value</span>++</span><br><span class="line"></span><br><span class="line">    <span class="comment">// DOM 还未更新</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;counter&#x27;</span>).<span class="property">textContent</span>) <span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">await</span> <span class="title function_">nextTick</span>()</span><br><span class="line">    <span class="comment">// DOM 此时已经更新</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;counter&#x27;</span>).<span class="property">textContent</span>) <span class="comment">// 1</span></span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>nextTick 例子1<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;counter&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;increment&quot;</span>&gt;</span>&#123;&#123; count &#125;&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>这里展示一下结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">0 index.vue:14 </span><br><span class="line">1 index.vue:10 </span><br><span class="line">1 index.vue:14 </span><br><span class="line">2 index.vue:14 </span><br></pre></td></tr></table></figure>
+
+<p>就是说，当 <code>count.value++</code> 变量发生变化，他不会立刻更新，而是触发调度。</p>
+<p>为什么要这么做？</p>
+<p>如果我写一个循环</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="number">1000</span>;i++) &#123;</span><br><span class="line">    count.<span class="property">value</span> = i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么，<strong>vue</strong> 是不是需要更新 <strong>1000</strong> 次？很明显不是。也就是说中间有一个调度</p>
+<p>那么 <code>nextTick</code> 就是等待更新完成以后，会调用的回调，他可以使用 <code>await</code>, 也可以使用回调。</p>
+<h3 id="02-调度过程"><a href="#02-调度过程" class="headerlink" title="02. 调度过程"></a>02. 调度过程</h3><p>我在看 nextTick 之前，专门学习了一下任务调度的源码，地址在这里 <a href="/tblog/2023/07/08/Vue3_queue/">任务调度源码解析</a>。</p>
+<p>这里可以解释</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="number">1000</span>;i++) &#123;</span><br><span class="line">    count.<span class="property">value</span> = i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为什么不会一直更新。</p>
+<h3 id="03-nextTick-源码"><a href="#03-nextTick-源码" class="headerlink" title="03. nextTick 源码"></a>03. nextTick 源码</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> resolvedPromise = <span class="comment">/*#__PURE__*/</span> <span class="title class_">Promise</span>.<span class="title function_">resolve</span>() <span class="keyword">as</span> <span class="title class_">Promise</span>&lt;<span class="built_in">any</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> nextTick&lt;T = <span class="built_in">void</span>&gt;(</span><br><span class="line">  <span class="attr">this</span>: T,</span><br><span class="line">  fn?: <span class="function">(<span class="params"><span class="variable language_">this</span>: T</span>) =&gt;</span> <span class="built_in">void</span></span><br><span class="line">): <span class="title class_">Promise</span>&lt;<span class="built_in">void</span>&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> p = currentFlushPromise || resolvedPromise</span><br><span class="line">  <span class="keyword">return</span> fn ? p.<span class="title function_">then</span>(<span class="variable language_">this</span> ? fn.<span class="title function_">bind</span>(<span class="variable language_">this</span>) : fn) : p</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>currentFlushPromise</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">queueFlush</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (!isFlushing &amp;&amp; !isFlushPending) &#123;</span><br><span class="line">    isFlushPending = <span class="literal">true</span></span><br><span class="line">    currentFlushPromise = resolvedPromise.<span class="title function_">then</span>(flushJobs)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 flushJobs 执行完成所有当前 Job 以后的 finally 中</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">currentFlushPromise = <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<p>所以这个这个原理就很清楚了</p>
+<p>当你修改了属性，然后后面设置了 nextTick. 就会在执行 flushJobs(也就是一个更新的循环) 以后，执行 nextTick。</p>
+<p>如果你没有修改任何属性，那么 nextTick 就是一个单纯的异步，一个微任务。</p>
+<h3 id="04-总结"><a href="#04-总结" class="headerlink" title="04. 总结"></a>04. 总结</h3><p>这个够清晰了，不用总结了…</p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-08</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6/'>
+                            任务调度
+                        </a>
+                    
+                        <a href='/tags/Vue3/'>
+                            Vue3
+                        </a>
+                    
+                        <a href='/tags/nextTick/'>
+                            nextTick
+                        </a>
+                    
+                        <a href='/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/'>
+                            源码解析
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2023/07/08/%5BQ017%5DHow_does_css_achieve_a_fixed_300px_on_the_left_and_an_daptive_layout_on_the_right/'>css 如何实现左侧固定 300px，右侧自适应的布局</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2023/07/08/Vue3_queue/">vue3 任务调度源码解析</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

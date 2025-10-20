@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2025-10-20</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：522</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：2分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#typescript-%E7%B4%A2%E5%BC%95%E7%AD%BE%E5%90%8D"><span class="post-toc-text">typescript 索引签名</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%B4%A2%E5%BC%95%E7%AD%BE%E5%90%8D%EF%BC%9F"><span class="post-toc-text">什么是索引签名？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95"><span class="post-toc-text">基本语法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%95%B0%E5%AD%97%E7%B4%A2%E5%BC%95"><span class="post-toc-text">数字索引</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#type%E4%B9%9F%E5%8F%AF%E4%BB%A5"><span class="post-toc-text">type也可以</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Key%E7%9A%84%E7%B4%A2%E5%BC%95%E9%99%90%E5%88%B6"><span class="post-toc-text">Key的索引限制</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%B3%9B%E5%9E%8B"><span class="post-toc-text">泛型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%BA%A6%E6%9D%9F-type-%E6%88%96%E8%80%85-interface-%E5%86%85%E9%83%A8%E5%85%83%E7%B4%A0"><span class="post-toc-text">约束 type 或者 interface 内部元素</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <div class=".article-gallery"><h1 id="typescript-索引签名"><a href="#typescript-索引签名" class="headerlink" title="typescript 索引签名"></a>typescript 索引签名</h1><h3 id="什么是索引签名？"><a href="#什么是索引签名？" class="headerlink" title="什么是索引签名？"></a>什么是索引签名？</h3><blockquote>
+<p>索引签名是 TypeScript 中一个强大的特性，它允许你为对象定义动态属性的类型，而不是事先列出所有属性。当你在编译时无法确定对象会包含哪些具体属性，但能确定所有属性的键和值的类型时，索引签名就非常有用</p>
+</blockquote>
+<p>比如我们要定义一个对象，想要规范那么就需要索引签名去约束。</p>
+<p>比如我只需要一个 key:string value: number 为了检查，为了避免其他人乱写，就可以用索引签名。</p>
+<h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><p>索引签名通常在接口（Interface）或类型别名（Type Alias）中定义，其基本语法为 <code>[key: KeyType]: ValueType</code>。 </p>
+<ul>
+<li><code>key</code>：这是一个占位符名称，可以是任意合法的变量名（如 <code>index</code> 或 <code>prop</code>），其名称本身不重要，只为可读性服务。</li>
+<li><code>KeyType</code>：键的类型，必须是 <code>string</code>、<code>number</code> 或 <code>symbol</code> 中的一种。</li>
+<li><code>ValueType</code>：值的类型，可以是任何有效的 TypeScript 类型。</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">Dictionary</span> &#123;</span><br><span class="line">  [<span class="attr">key</span>: <span class="built_in">string</span>]: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一个很简单的索引签名</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="attr">myDict</span>: <span class="title class_">Dictionary</span> = &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;Alice&quot;</span>,</span><br><span class="line">  <span class="attr">city</span>: <span class="string">&quot;New York&quot;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>我定义了 <code>key</code> 必须是 <code>string</code>，<code>value</code> 必须是 <code>string</code></p>
+<h3 id="数字索引"><a href="#数字索引" class="headerlink" title="数字索引"></a>数字索引</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">MyArr</span> &#123;</span><br><span class="line">    [<span class="attr">index</span>: <span class="built_in">number</span>]: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="attr">myArr</span>: <span class="title class_">MyArr</span> = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//这样也是合法的 </span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">myArr1</span>: <span class="title class_">MyArr</span> = &#123;</span><br><span class="line">    <span class="number">0</span>: <span class="string">&#x27;1&#x27;</span>,</span><br><span class="line">    <span class="number">1</span>: <span class="string">&#x27;2&#x27;</span>,</span><br><span class="line">    <span class="number">2</span>: <span class="string">&#x27;3&#x27;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>他就是个对象，不是数组，这点需要清楚。</p>
+<p>只能说 <code>[&quot;1&quot;,&quot;2&quot;,&quot;3&quot;] </code>  他也是合法的，只要满足了条件都是合法的.</p>
+<h3 id="type也可以"><a href="#type也可以" class="headerlink" title="type也可以"></a>type也可以</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> test = &#123;</span><br><span class="line">    [<span class="attr">key</span>: <span class="built_in">string</span>]: <span class="built_in">string</span> | <span class="built_in">number</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="Key的索引限制"><a href="#Key的索引限制" class="headerlink" title="Key的索引限制"></a>Key的索引限制</h3><blockquote>
+<p>Type ‘T’ is not assignable to type ‘string | number | symbol’.ts(2322)</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<p>Index_Signatures.ts(28, 12): This type parameter might need an `extends string | number | symbol` constraint.</p>
+</blockquote>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>根据上面的索引限制，所以泛型要这样写</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> test1&lt;T <span class="keyword">extends</span> <span class="title class_">PropertyKey</span>,K&gt; = &#123;</span><br><span class="line">    [key <span class="keyword">in</span> T]: K;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> newTest1 = test1&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="约束-type-或者-interface-内部元素"><a href="#约束-type-或者-interface-内部元素" class="headerlink" title="约束 type 或者 interface 内部元素"></a>约束 type 或者 interface 内部元素</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> test = &#123;</span><br><span class="line">    [<span class="attr">key</span>: <span class="built_in">string</span>]: <span class="built_in">string</span>;</span><br><span class="line">    <span class="number">1</span>: <span class="built_in">boolean</span>; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>Property ‘1’ of type ‘boolean’ is not assignable to ‘string’ index type ‘string’.ts(2411)</p>
+</blockquote>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2025-10-20</span>
+            
+            
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2025/10/20/202510/ethercat%20%E8%BF%90%E8%A1%8C%E7%94%B5%E6%9C%BA%E4%BB%A3%E7%A0%81%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/">ethercat 运行电机代码流程解析</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

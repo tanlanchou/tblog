@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="Vuex 基本用法" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    Vuex 基本用法
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2025-07-23</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.2k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：5分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E4%BB%80%E4%B9%88%E6%98%AFVuex"><span class="post-toc-text">01. 什么是Vuex?</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#01-01-%E4%BB%80%E4%B9%88%E6%98%AF%E7%8A%B6%E6%80%81"><span class="post-toc-text">01.01 什么是状态?</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#01-02-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%BB%9F%E4%B8%80%E7%AE%A1%E7%90%86%E7%8A%B6%E6%80%81"><span class="post-toc-text">01.02 为什么要统一管理状态</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="post-toc-text">02. 基本概念</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%EF%BC%9F"><span class="post-toc-text">03. 为什么要这么设计？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-Vuex-%E6%98%AF%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E7%9A%84"><span class="post-toc-text">04. Vuex 是怎么实现的?</span></a></li></ol>
+            
+        
+        <div class=".article-gallery"><h3 id="01-什么是Vuex"><a href="#01-什么是Vuex" class="headerlink" title="01. 什么是Vuex?"></a>01. 什么是Vuex?</h3><p>他就是一个Vue插件，用来管理状态。</p>
+<p>那么第一个问题就来了，什么是状态</p>
+<h5 id="01-01-什么是状态"><a href="#01-01-什么是状态" class="headerlink" title="01.01 什么是状态?"></a>01.01 什么是状态?</h5><p>他不是一个单纯的<strong>boolean</strong>值</p>
+<p>比如你是否登录，这个是一种状态。</p>
+<p>比如用户信息，用户名，邮箱，他的权限，这些可能属于信息，但是一般也放进去了。</p>
+<p>比如设置里面的东西，比如UI。比如一些功能的开关？</p>
+<p>就是一个大家都会用的东西，这里的大家就是指组件，各个页面需要用的东西.</p>
+<p>甚至一些常用的API我看有些项目也会缓存在里面。</p>
+<h5 id="01-02-为什么要统一管理状态"><a href="#01-02-为什么要统一管理状态" class="headerlink" title="01.02 为什么要统一管理状态"></a>01.02 为什么要统一管理状态</h5><p>ok，我状态肯定是要常用的对吧，我直接缓存起来，比如全部放在根组件上。</p>
+<p>你哪个组件我一个一个传下去。</p>
+<p>这个时候就发现问题了，很麻烦。</p>
+<p>比如我通过 <code>props</code> 一个一个传下去, 他不是不行，他是真的累。</p>
+<p>那我改一下。我直接挂在全局上？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="property">config</span>.<span class="property">globalProperties</span>.<span class="property">$myGlobalString</span> = <span class="string">&#x27;A global string&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>我一样可以 <code>watch</code> 或者 <code>computed</code> 监控变化对吧。</p>
+<p>有几个问题。</p>
+<ol>
+<li><p>任何人都可以修改全局变量，你用这个 <code>Vuex</code> 可以预测改变</p>
+</li>
+<li><p>配合开发工具 <code>Vuex</code> 可以追溯变化</p>
+</li>
+<li><p>封装后可以逻辑分离</p>
+</li>
+</ol>
+<p>当然，如果你自己项目小，其实 <code>Provide</code> 和 <code>Inject</code> 就可以了，简单做做管理</p>
+<h3 id="02-基本概念"><a href="#02-基本概念" class="headerlink" title="02. 基本概念"></a>02. 基本概念</h3><ol>
+<li><p>State(状态)</p>
+</li>
+<li><p>Getters(获取器)</p>
+</li>
+<li><p>Mutations(变更)</p>
+</li>
+<li><p>Actions(动作)</p>
+</li>
+<li><p>modules(模块)</p>
+</li>
+</ol>
+<p>逻辑很简单</p>
+<p><code>State</code>  就是数据</p>
+<p><code>Getters </code> 就是获取</p>
+<p><code>Mutations</code> 去修改他的值(注意他是同步的，并且怎么修改也是固定的)</p>
+<p><code>actions</code> 业务流程的操作，可以进行异步操作，比如获取设置状态，然后调用 <code>Mutations</code> 进行修改</p>
+<p>定义一个 counter</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// testvuevuex/src/store/modules/counter.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> state = &#123;</span><br><span class="line">  <span class="attr">count</span>: <span class="number">0</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> getters = &#123;</span><br><span class="line">  <span class="attr">doubleCount</span>: <span class="function"><span class="params">state</span> =&gt;</span> state.<span class="property">count</span> * <span class="number">2</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> actions = &#123;</span><br><span class="line">  <span class="title function_">incrementAsync</span>(<span class="params">&#123; commit &#125;</span>) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="title function_">commit</span>(<span class="string">&#x27;increment&#x27;</span>);</span><br><span class="line">    &#125;, <span class="number">200</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mutations = &#123;</span><br><span class="line">  <span class="title function_">increment</span>(<span class="params">state</span>) &#123;</span><br><span class="line">    state.<span class="property">count</span>++;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">decrement</span>(<span class="params">state</span>) &#123;</span><br><span class="line">    state.<span class="property">count</span>--;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">namespaced</span>: <span class="literal">true</span>,</span><br><span class="line">  state,</span><br><span class="line">  getters,</span><br><span class="line">  actions,</span><br><span class="line">  mutations</span><br><span class="line">&#125;; </span><br></pre></td></tr></table></figure>
+
+<p>然后组件调用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; computed &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; useStore &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">useStore</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过 computed 来访问 state 和 getters，确保响应性</span></span><br><span class="line"><span class="keyword">const</span> count = <span class="title function_">computed</span>(<span class="function">() =&gt;</span> store.<span class="property">state</span>.<span class="property">counter</span>.<span class="property">count</span>);</span><br><span class="line"><span class="keyword">const</span> doubleCount = <span class="title function_">computed</span>(<span class="function">() =&gt;</span> store.<span class="property">getters</span>[<span class="string">&#x27;counter/doubleCount&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// mutations 和 actions 可以直接 commit 或 dispatch</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">increment</span> = (<span class="params"></span>) =&gt; store.<span class="title function_">commit</span>(<span class="string">&#x27;counter/increment&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">decrement</span> = (<span class="params"></span>) =&gt; store.<span class="title function_">commit</span>(<span class="string">&#x27;counter/decrement&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> <span class="title function_">incrementAsync</span> = (<span class="params"></span>) =&gt; store.<span class="title function_">dispatch</span>(<span class="string">&#x27;counter/incrementAsync&#x27;</span>);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Vuex Counter<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      Count: &#123;&#123; count &#125;&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      Double Count (Getter): &#123;&#123; doubleCount &#125;&#125;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;increment&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;decrement&quot;</span>&gt;</span>-<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;incrementAsync&quot;</span>&gt;</span>Increment Async<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>大概的过程就是这样。 有个 <code>counter</code> 就可以了</p>
+<p>需要稍微注意的就是，<code>Modules</code></p>
+<p><code>namespace: true</code> 这个是我在 <code>counter</code> 中加的.</p>
+<p>然后就避免的重名问题，因为调用的时候都需要在前面 <code>counter/doubleCount</code> 这种</p>
+<h3 id="03-为什么要这么设计？"><a href="#03-为什么要这么设计？" class="headerlink" title="03. 为什么要这么设计？"></a>03. 为什么要这么设计？</h3><p>其实应该是直接用了 <strong>react redux</strong> 的做法。</p>
+<p>核心其实是，<strong>数据流向单一</strong></p>
+<p>****其实这个第一个词反过来就是不单一，什么叫不单一？</p>
+<p>比如我用 全局变量，我用 <code>Provide</code>, 就会有一个问题，谁都可以改这个</p>
+<p>他的入口是多是，任何一个地方都可以修改。</p>
+<p>你根本不知道是谁改的。这个时候就只能一个一个的排查。</p>
+<p>而且来源根本不固定，甚至有人拿来做双向绑定都可能</p>
+<p>所以至少他必须用 <code>mutations</code> ，你加断点都好加一些。</p>
+<p>当你数据来源统一的走了 <code>mutations </code>, 那么就可以管理了 </p>
+<p>而且由于 mutations 的存在，可以控制类型，控制结果，控制数据，让状态处于可以预测。</p>
+<p>测试也方面，同样受益。</p>
+<p>总之他就是希望进行单向数据流，保证结果可靠性，数据可靠性，并且可以追踪。</p>
+<h3 id="04-Vuex-是怎么实现的"><a href="#04-Vuex-是怎么实现的" class="headerlink" title="04. Vuex 是怎么实现的?"></a>04. Vuex 是怎么实现的?</h3><p>这次本来就是为了看源码而来的。</p>
+<p>插件注册的时候，有一个 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">install (app, injectKey) &#123;</span><br><span class="line">  app.<span class="title function_">provide</span>(injectKey || storeKey, <span class="variable language_">this</span>)</span><br><span class="line">  app.<span class="property">config</span>.<span class="property">globalProperties</span>.<span class="property">$store</span> = <span class="variable language_">this</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> useDevtools = <span class="variable language_">this</span>.<span class="property">_devtools</span> !== <span class="literal">undefined</span></span><br><span class="line">    ? <span class="variable language_">this</span>.<span class="property">_devtools</span></span><br><span class="line">    : __DEV__ || __VUE_PROD_DEVTOOLS__</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (useDevtools) &#123;</span><br><span class="line">    <span class="title function_">addDevtools</span>(app, <span class="variable language_">this</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后在 useStore 的时候</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/injectKey.js</span></span><br><span class="line"><span class="keyword">import</span> &#123; inject &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> storeKey = <span class="string">&#x27;store&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">useStore</span> (key = <span class="literal">null</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">inject</span>(key !== <span class="literal">null</span> ? key : storeKey)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对，其实这就是核心代码..</p>
+<p><code>app.use(store) -&gt; store.install() -&gt; app.provide(&#39;store&#39;, ...)</code></p>
+<p><code>组件 setup() -&gt; useStore() -&gt; inject(&#39;store&#39;)</code></p>
+<p>其他源码简单看了一下。</p>
+<p>就是有一个对象 <code>store</code></p>
+<p>然后遍历出 <code>options</code>,  options 就是参数, state，getter, mutations 之类的</p>
+<p>然后注册，然后绑定，并且让 state computer 并且 响应式.</p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2025-07-23</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/Vue3/'>
+                            Vue3
+                        </a>
+                    
+                        <a href='/tags/Vuex/'>
+                            Vuex
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2025/07/24/202507/Pinia/'>Pinia 基本和源码简单分析</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2025/07/21/202507/can%E5%8D%8F%E8%AE%AE%E7%94%B5%E6%9C%BA%E6%8E%A5%E5%85%A5/">can 电机是否接入</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

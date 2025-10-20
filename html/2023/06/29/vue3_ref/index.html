@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="vue3 ref" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    vue3 ref
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.3k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：6分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#ref"><span class="post-toc-text">ref</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-%E4%BB%A3%E7%A0%81"><span class="post-toc-text">01. 代码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E6%A2%B3%E7%90%86"><span class="post-toc-text">02. 梳理</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <div class=".article-gallery"><h1 id="ref"><a href="#ref" class="headerlink" title="ref"></a>ref</h1><h3 id="01-代码"><a href="#01-代码" class="headerlink" title="01. 代码"></a>01. 代码</h3><p><strong>packages\reactivity\src\ref.ts</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">RefImpl</span>&lt;T&gt; &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">_value</span>: T</span><br><span class="line">  <span class="keyword">private</span> <span class="attr">_rawValue</span>: T</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> dep?: <span class="title class_">Dep</span> = <span class="literal">undefined</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">readonly</span> __v_isRef = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params">value: T, <span class="keyword">public</span> <span class="keyword">readonly</span> __v_isShallow: <span class="built_in">boolean</span></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_rawValue</span> = __v_isShallow ? value : <span class="title function_">toRaw</span>(value)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_value</span> = __v_isShallow ? value : <span class="title function_">toReactive</span>(value)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">get</span> <span class="title function_">value</span>() &#123;</span><br><span class="line">    <span class="title function_">trackRefValue</span>(<span class="variable language_">this</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">_value</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">set</span> <span class="title function_">value</span>(<span class="params">newVal</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> useDirectValue =</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">__v_isShallow</span> || <span class="title function_">isShallow</span>(newVal) || <span class="title function_">isReadonly</span>(newVal)</span><br><span class="line">    newVal = useDirectValue ? newVal : <span class="title function_">toRaw</span>(newVal)</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">hasChanged</span>(newVal, <span class="variable language_">this</span>.<span class="property">_rawValue</span>)) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">_rawValue</span> = newVal</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">_value</span> = useDirectValue ? newVal : <span class="title function_">toReactive</span>(newVal)</span><br><span class="line">      <span class="title function_">triggerRefValue</span>(<span class="variable language_">this</span>, newVal)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个是 <code>ref</code> 核心代码, 不管是创建 <code>ref</code> 或者 <code>shallowRef</code> 都是通过 <code>RefImpl</code> 去实现的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">export function shallowRef(value?: unknown) &#123;</span><br><span class="line">  return createRef(value, true)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function createRef(rawValue: unknown, shallow: boolean) &#123;</span><br><span class="line">  if (isRef(rawValue)) &#123;</span><br><span class="line">    return rawValue</span><br><span class="line">  &#125;</span><br><span class="line">  return new RefImpl(rawValue, shallow)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先看看他的<strong>构造函数</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">constructor</span>(<span class="params">value: T, <span class="keyword">public</span> <span class="keyword">readonly</span> __v_isShallow: <span class="built_in">boolean</span></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_rawValue</span> = __v_isShallow ? value : <span class="title function_">toRaw</span>(value)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_value</span> = __v_isShallow ? value : <span class="title function_">toReactive</span>(value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里需要知道 <code>toRaw</code> 和 <code>toReactive</code> 是做什么的</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="keyword">enum</span> <span class="title class_">ReactiveFlags</span> &#123;</span><br><span class="line">  <span class="variable constant_">SKIP</span> = <span class="string">&#x27;__v_skip&#x27;</span>,</span><br><span class="line">  <span class="variable constant_">IS_REACTIVE</span> = <span class="string">&#x27;__v_isReactive&#x27;</span>,</span><br><span class="line">  <span class="variable constant_">IS_READONLY</span> = <span class="string">&#x27;__v_isReadonly&#x27;</span>,</span><br><span class="line">  <span class="variable constant_">IS_SHALLOW</span> = <span class="string">&#x27;__v_isShallow&#x27;</span>,</span><br><span class="line">  <span class="variable constant_">RAW</span> = <span class="string">&#x27;__v_raw&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> <span class="title class_">Target</span> &#123;</span><br><span class="line">  [<span class="title class_">ReactiveFlags</span>.<span class="property">SKIP</span>]?: <span class="built_in">boolean</span></span><br><span class="line">  [<span class="title class_">ReactiveFlags</span>.<span class="property">IS_REACTIVE</span>]?: <span class="built_in">boolean</span></span><br><span class="line">  [<span class="title class_">ReactiveFlags</span>.<span class="property">IS_READONLY</span>]?: <span class="built_in">boolean</span></span><br><span class="line">  [<span class="title class_">ReactiveFlags</span>.<span class="property">IS_SHALLOW</span>]?: <span class="built_in">boolean</span></span><br><span class="line">  [<span class="title class_">ReactiveFlags</span>.<span class="property">RAW</span>]?: <span class="built_in">any</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>SKIP：用于标记不需要代理为响应式的属性<br>IS_REACTIVE：用于标记对象是否为响应式的<br>IS_READONLY：用于标记对象是否为只读的<br>IS_SHALLOW：用于标记对象是否进行了浅层代理<br>RAW：用于存储对象的原始值，方便在需要时获取</p>
+</blockquote>
+<p>这里理解为一个对象有标记，比如对象是 <code>let o = &#123; a:1 &#125;</code>，那么这些标记，就是表示对象的属性，意义如上</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> toRaw&lt;T&gt;(<span class="attr">observed</span>: T): T &#123;</span><br><span class="line">  <span class="keyword">const</span> raw = observed &amp;&amp; (observed <span class="keyword">as</span> <span class="title class_">Target</span>)[<span class="title class_">ReactiveFlags</span>.<span class="property">RAW</span>]</span><br><span class="line">  <span class="keyword">return</span> raw ? <span class="title function_">toRaw</span>(raw) : observed</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>toRaw</code> 就是递归获取用于存储对象的原始值。</p>
+<p>接下来就是 <code>toReactive</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> toReactive = &lt;T <span class="keyword">extends</span> <span class="built_in">unknown</span>&gt;(<span class="attr">value</span>: T): <span class="function"><span class="params">T</span> =&gt;</span></span><br><span class="line">  <span class="title function_">isObject</span>(value) ? <span class="title function_">reactive</span>(value) : value</span><br></pre></td></tr></table></figure>
+
+<p><strong>packages\reactivity\src\reactive.ts</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">reactive</span>(<span class="params">target: <span class="built_in">object</span></span>) &#123;</span><br><span class="line">  <span class="comment">// if trying to observe a readonly proxy, return the readonly version.</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_">isReadonly</span>(target)) &#123;</span><br><span class="line">    <span class="keyword">return</span> target</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">createReactiveObject</span>(</span><br><span class="line">    target,</span><br><span class="line">    <span class="literal">false</span>,</span><br><span class="line">    mutableHandlers,</span><br><span class="line">    mutableCollectionHandlers,</span><br><span class="line">    reactiveMap</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>就是如果是一个 <code>object</code> 直接将对象响应式, 也就是 <code>reactive</code>, 会把对象转为 <code>proxy</code></p>
+<p>现在我们回到构造函数</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">constructor</span>(<span class="params">value: T, <span class="keyword">public</span> <span class="keyword">readonly</span> __v_isShallow: <span class="built_in">boolean</span></span>) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_rawValue</span> = __v_isShallow ? value : <span class="title function_">toRaw</span>(value)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_value</span> = __v_isShallow ? value : <span class="title function_">toReactive</span>(value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>__v_isShallow</code> <strong>true</strong>, 也就是 <code>shallowRef</code>, 两个值会存储原始值<br>如果是 <code>__v_isShallow</code> <strong>false</strong>, 也就是 <code>ref</code></p>
+<p>this._rawValue &#x3D; value的原始值<br>this._value &#x3D; 转换为 <code>reactive</code> 对象</p>
+<p><strong>取值和赋值</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">get</span> <span class="title function_">value</span>() &#123;</span><br><span class="line">    <span class="title function_">trackRefValue</span>(<span class="variable language_">this</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">_value</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">set</span> <span class="title function_">value</span>(<span class="params">newVal</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> useDirectValue =</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">__v_isShallow</span> || <span class="title function_">isShallow</span>(newVal) || <span class="title function_">isReadonly</span>(newVal)</span><br><span class="line">    newVal = useDirectValue ? newVal : <span class="title function_">toRaw</span>(newVal)</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">hasChanged</span>(newVal, <span class="variable language_">this</span>.<span class="property">_rawValue</span>)) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">_rawValue</span> = newVal</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">_value</span> = useDirectValue ? newVal : <span class="title function_">toReactive</span>(newVal)</span><br><span class="line">        <span class="title function_">triggerRefValue</span>(<span class="variable language_">this</span>, newVal)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里又出来了两个新的方法，<code>trackRefValue</code> 和 <code>triggerRefValue</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">trackRefValue</span>(<span class="params">ref: RefBase&lt;<span class="built_in">any</span>&gt;</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (shouldTrack &amp;&amp; activeEffect) &#123;</span><br><span class="line">    ref = <span class="title function_">toRaw</span>(ref)</span><br><span class="line">    <span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">      <span class="title function_">trackEffects</span>(ref.<span class="property">dep</span> || (ref.<span class="property">dep</span> = <span class="title function_">createDep</span>()), &#123;</span><br><span class="line">        <span class="attr">target</span>: ref,</span><br><span class="line">        <span class="attr">type</span>: <span class="title class_">TrackOpTypes</span>.<span class="property">GET</span>,</span><br><span class="line">        <span class="attr">key</span>: <span class="string">&#x27;value&#x27;</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="title function_">trackEffects</span>(ref.<span class="property">dep</span> || (ref.<span class="property">dep</span> = <span class="title function_">createDep</span>()))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">triggerRefValue</span>(<span class="params">ref: RefBase&lt;<span class="built_in">any</span>&gt;, newVal?: <span class="built_in">any</span></span>) &#123;</span><br><span class="line">  ref = <span class="title function_">toRaw</span>(ref)</span><br><span class="line">  <span class="keyword">const</span> dep = ref.<span class="property">dep</span></span><br><span class="line">  <span class="keyword">if</span> (dep) &#123;</span><br><span class="line">    <span class="keyword">if</span> (__DEV__) &#123;</span><br><span class="line">      <span class="title function_">triggerEffects</span>(dep, &#123;</span><br><span class="line">        <span class="attr">target</span>: ref,</span><br><span class="line">        <span class="attr">type</span>: <span class="title class_">TriggerOpTypes</span>.<span class="property">SET</span>,</span><br><span class="line">        <span class="attr">key</span>: <span class="string">&#x27;value&#x27;</span>,</span><br><span class="line">        <span class="attr">newValue</span>: newVal</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="title function_">triggerEffects</span>(dep)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在Vue2.0当中，会在 <code>Object.defineProperty</code> 通过 <code>get</code> 和 <code>set</code> 劫持去解决响应式的核心问题，至少现在来说 <code>ref</code> 其实是通过访问器中添加代码去解决的的, <code>get trackRefValue</code> 收集依赖，<code>set triggerEffects</code> 触发依赖，然后回调。</p>
+<p>鉴于目前，我还不是很清楚其中实现过程，先暂时简单的理解为下面内容</p>
+<blockquote>
+<p>trackRefValue 函数用于追踪响应式引用对象的变化依赖，将当前活动的副作用函数（即当前调用 trackRefValue 函数的函数）添加到响应式引用对象的依赖集合中。在引用对象的值被修改时，会触发相关的依赖执行回调函数。</p>
+<p>triggerRefValue 函数用于触发响应式引用对象的依赖更新，会依次执行响应式引用对象的所有依赖，调用它们的回调函数，以实现响应式数据的自动更新。同时，它还会触发依赖于引用对象的 computed 以及 watchEffect 等响应式函数的更新。</p>
+</blockquote>
+<p>在大概清楚了这个概念以后，我们可以回过头看访问器。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">get</span> <span class="title function_">value</span>() &#123;</span><br><span class="line">    <span class="title function_">trackRefValue</span>(<span class="variable language_">this</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">_value</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>dep</code> 中新增一个依赖，然后返回 <code>_value</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">set</span> <span class="title function_">value</span>(<span class="params">newVal</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> useDirectValue =</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">__v_isShallow</span> || <span class="title function_">isShallow</span>(newVal) || <span class="title function_">isReadonly</span>(newVal)</span><br><span class="line">    newVal = useDirectValue ? newVal : <span class="title function_">toRaw</span>(newVal)</span><br><span class="line">    <span class="keyword">if</span> (<span class="title function_">hasChanged</span>(newVal, <span class="variable language_">this</span>.<span class="property">_rawValue</span>)) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">_rawValue</span> = newVal</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">_value</span> = useDirectValue ? newVal : <span class="title function_">toReactive</span>(newVal)</span><br><span class="line">        <span class="title function_">triggerRefValue</span>(<span class="variable language_">this</span>, newVal)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>判断 <code>newVal</code> ， <code>this.__v_isShallow || isShallow(newVal) || isReadonly(newVal)</code></p>
+<blockquote>
+<p>IS_READONLY：用于标记对象是否为只读的<br>IS_SHALLOW：用于标记对象是否进行了浅层代理</p>
+</blockquote>
+<p>主要用于区分是否是浅层代理，如果是 <code>newVal</code> 等于本身，如果不是，通过 <code>toRaw</code> 返回原始值</p>
+<p>接下来对比新的值和原始值是否一致，如果不一致</p>
+<p>存储原始值，并且根据 useDirectValue，是否响应式处理 newVal, 最后触发追踪，更新。</p>
+<h3 id="02-梳理"><a href="#02-梳理" class="headerlink" title="02. 梳理"></a>02. 梳理</h3><p><code>RefImpl</code> 只提供 value 访问器</p>
+<p>如果是 shallowRef, 并不对值做响应式处理，他的响应式只是在 get，set 中进行依赖收集和触发，你输入什么，那么我接收什么，我也返回什么。</p>
+<p>如果是 ref, 在 shallowRef 的基础之上，增加了对于值的响应式，输入值，返回响应式处理以后的值，其他一样。</p>
+<p>所以 ref 和 shallowRef 两者的相同和不同就很明显了。</p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-06-29</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/vue3/'>
+                            vue3
+                        </a>
+                    
+                        <a href='/tags/%E6%BA%90%E7%A0%81/'>
+                            源码
+                        </a>
+                    
+                        <a href='/tags/ref/'>
+                            ref
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2023/06/29/vue3_reactive/'>vue3 reactive</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2023/06/29/vue_destroyed_onUnmounted/">vue destroyed vs onUnmounted</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

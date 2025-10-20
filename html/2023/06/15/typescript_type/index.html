@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="typescript 类型有哪些？" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    typescript 类型有哪些？
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：531</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：2分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#typescript-%E7%B1%BB%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="post-toc-text">typescript 类型有哪些？</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">1. 基本类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">2. 数组类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">3. 对象类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-%E5%87%BD%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="post-toc-text">4. 函数类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-%E6%9E%9A%E4%B8%BE"><span class="post-toc-text">5. 枚举</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-class"><span class="post-toc-text">6. class</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-%E6%B3%9B%E5%9E%8B"><span class="post-toc-text">7. 泛型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#8-%E5%85%B6%E4%BB%96"><span class="post-toc-text">8. 其他</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#9-%E6%80%BB%E7%BB%93"><span class="post-toc-text">9. 总结</span></a></li></ol></li></ol></li></ol>
+            
+        
+        <div class=".article-gallery"><h1 id="typescript-类型有哪些？"><a href="#typescript-类型有哪些？" class="headerlink" title="typescript 类型有哪些？"></a>typescript 类型有哪些？</h1><h3 id="1-基本类型"><a href="#1-基本类型" class="headerlink" title="1. 基本类型"></a>1. 基本类型</h3><ul>
+<li>number </li>
+<li>string</li>
+<li>null</li>
+<li>undefined</li>
+<li>bealean</li>
+<li>bigInt</li>
+<li>symbol</li>
+</ul>
+<p>这是基础类型，现在的 <code>javascript</code> 也支持对应类型，先不赘述了。</p>
+<h3 id="2-数组类型"><a href="#2-数组类型" class="headerlink" title="2. 数组类型"></a>2. 数组类型</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">build</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="attr">arr1</span>: T[];</span><br><span class="line">    <span class="attr">arr2</span>: <span class="title class_">Array</span>&lt;T&gt;();</span><br><span class="line">    <span class="attr">arr3</span>: <span class="built_in">string</span>[];</span><br><span class="line">    <span class="attr">arr4</span>: <span class="built_in">symbol</span>[];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> o = <span class="keyword">new</span> build&lt;<span class="built_in">string</span>&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>typescript 支持参数数组</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [];</span><br><span class="line"><span class="keyword">let</span> arr1 = <span class="built_in">never</span>[];</span><br></pre></td></tr></table></figure>
+
+<p>是等价的。</p>
+<p>数组还有一个特别的<strong>元组类型</strong></p>
+<blockquote>
+<p>[T1, T2, …]：表示具有固定长度和特定顺序的元素类型为 T1, T2, … 的元组。</p>
+</blockquote>
+<p>可以简单理解为，固定顺序的数组，[string, number, type, interface].</p>
+<h3 id="3-对象类型"><a href="#3-对象类型" class="headerlink" title="3. 对象类型"></a>3. 对象类型</h3><p>object 类型，表示一切非原始类型，除了 null or undefined. 比如 {}, 比如 Date() 往大了说都是 object.</p>
+<p>{} or Reacord&lt;k, v&gt;. 表示任意对象类型</p>
+<p>type or interface 是自定义类型</p>
+<h3 id="4-函数类型"><a href="#4-函数类型" class="headerlink" title="4. 函数类型"></a>4. 函数类型</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>) &#123;&#125;</span><br><span class="line">() =&gt; &#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-枚举"><a href="#5-枚举" class="headerlink" title="5. 枚举"></a>5. 枚举</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">enum</span> a &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-class"><a href="#6-class" class="headerlink" title="6. class"></a>6. class</h3><h3 id="7-泛型"><a href="#7-泛型" class="headerlink" title="7. 泛型"></a>7. 泛型</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Array</span>&lt;T&gt;</span><br><span class="line">T[]</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">a</span>&lt;T&gt;</span><br><span class="line"><span class="keyword">type</span> a&lt;T&gt; = ...</span><br><span class="line">inferce a&lt;T&gt; = &#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>泛型和type的很多修饰符组合起来有奇效.</p>
+<h3 id="8-其他"><a href="#8-其他" class="headerlink" title="8. 其他"></a>8. 其他</h3><p>any: 任意类型，他会忽略类型检查，就跟 javascript 一样使用，被官方不推荐使用。<br>unknow: 效果类似，但是更推荐使用, 因为他必须使用额外的类型检查来确定。</p>
+<p>举个例子</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">c</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">d</span>: <span class="built_in">any</span> = <span class="title function_">c</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(d.<span class="title function_">toLocaleLowerCase</span>());</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="attr">e</span>: <span class="built_in">unknown</span> = <span class="title function_">c</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="title function_">toLocaleLowerCase</span>()); <span class="comment">//报错</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">typeof</span> e === <span class="string">&#x27;string&#x27;</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="title function_">toLocaleLowerCase</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>明白差别了把，他更安全的原因在于，他必须进行一次类型检查。</p>
+<p>void 表示方法的返回类型，虽然 typescript 允许下面代码</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">a</span>(<span class="params"></span>):<span class="built_in">void</span> &#123;&#125;</span><br><span class="line"><span class="keyword">let</span> b = <span class="title function_">a</span>();</span><br></pre></td></tr></table></figure>
+
+<p>但是实际上不推荐。</p>
+<p>never 表示类型通常用于表示不可到达的代码路径，例如抛出异常、死循环或类型推断失败等情况。</p>
+<h3 id="9-总结"><a href="#9-总结" class="headerlink" title="9. 总结"></a>9. 总结</h3><p>基础类型</p>
+<ul>
+<li>number</li>
+<li>string</li>
+<li>bealean</li>
+<li>null</li>
+<li>undefined</li>
+<li>symbol</li>
+<li>bigInt</li>
+</ul>
+<p>数组类型</p>
+<ul>
+<li>T[]</li>
+<li>Array</li>
+</ul>
+<p>函数类型</p>
+<ul>
+<li>function() {}</li>
+<li>() &#x3D;&gt; {}</li>
+</ul>
+<p>复杂类型</p>
+<ul>
+<li>{}</li>
+<li>object</li>
+<li>record</li>
+<li>type</li>
+<li>interface</li>
+</ul>
+<p>其他类型</p>
+<ul>
+<li>any</li>
+<li>unknow</li>
+<li>never</li>
+<li>void</li>
+</ul>
+<p>泛型 T<br>class<br>枚举</p>
+<p>因为最近要开始写 typescript 做一个简单的复习。</p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-06-15</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/javascript/'>
+                            javascript
+                        </a>
+                    
+                        <a href='/tags/typescript/'>
+                            typescript
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2023/06/15/async&defer/'>async &amp; defer</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2023/06/15/type_interface/">type 和 interface 区别</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

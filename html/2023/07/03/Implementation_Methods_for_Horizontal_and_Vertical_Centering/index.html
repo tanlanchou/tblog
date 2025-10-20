@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="css 垂直居中方案" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    css 垂直居中方案
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：1.6k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：5分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#01-flex-%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"><span class="post-toc-text">01. flex 基本知识</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-flex-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="post-toc-text">02. flex 垂直居中</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-grid-%E5%B8%83%E5%B1%80%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86"><span class="post-toc-text">03. grid 布局基本知识</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-grid-%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD"><span class="post-toc-text">04. grid 垂直居中</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-table"><span class="post-toc-text">05. table</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#06-absolute"><span class="post-toc-text">06. absolute</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#07-%E6%80%BB%E7%BB%93"><span class="post-toc-text">07. 总结</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#08-%E5%BC%95%E7%94%A8"><span class="post-toc-text">08. 引用</span></a></li></ol>
+            
+        
+        <div class=".article-gallery"><p>一般方案上来说很多。</p>
+<ol>
+<li>flex</li>
+<li>grid</li>
+<li>table</li>
+<li>absolute</li>
+</ol>
+<h3 id="01-flex-基本知识"><a href="#01-flex-基本知识" class="headerlink" title="01. flex 基本知识"></a>01. flex 基本知识</h3><p>做这个之前需要先简单知道一下 flex 是做什么的，阮一峰的那一篇就挺好。</p>
+<p><a href="/img/bg2015071004.png" title="alt text" class="gallery-item" style="box-shadow: none;"> <img src="/img/bg2015071004.png" alt="alt text"></a></p>
+<blockquote>
+<p>容器默认存在两根轴：水平的主轴（main axis）和垂直的交叉轴（cross axis）。主轴的开始位置（与边框的交叉点）叫做main start，结束位置叫做main end；交叉轴的开始位置叫做cross start，结束位置叫做cross end。</p>
+<p>项目默认沿主轴排列。单个项目占据的主轴空间叫做main size，占据的交叉轴空间叫做cross size。</p>
+</blockquote>
+<p>这个是基本概念，由这些点来控制 flex 布局，接下来就是基本的属性</p>
+<ul>
+<li>flex-direction 方向，main axis &amp; cross axis 切换</li>
+<li>flex-wrap 控制换行</li>
+<li>flex-flow 前两个的简写</li>
+<li>justify-content 定义了项目在主轴上的对齐方式。</li>
+<li>align-items 交叉轴的对齐方式</li>
+<li>align-content 多根轴线的对齐方式</li>
+</ul>
+<p>在这个基础只上，就基本理解了, flex 运作方式</p>
+<p><code>display:flex</code> 声明容器布局方式，他按照从左到又一次排列，你可以根据属性来修改主轴，以及轴的对齐方式。</p>
+<p>上面的都是对容器进行设置，除此之外，我们还可以设置以下属性。</p>
+<ul>
+<li>order 设置优先级，用于排序</li>
+<li>flex-grow 可以放大，原本每个单元格都是1, 你可以单独设置他</li>
+<li>flex-shrink 缩小的比例</li>
+<li>flex-basis</li>
+<li>flex 上面的简写</li>
+<li>align-self 单独设置对齐方式，一般用不到，你要玩花活的时候就需要了</li>
+</ul>
+<h3 id="02-flex-垂直居中"><a href="#02-flex-垂直居中" class="headerlink" title="02. flex 垂直居中"></a>02. flex 垂直居中</h3><p>在上面的基础之上，就可以知道如何写了</p>
+<ol>
+<li>display: flex</li>
+<li>设置交叉轴对齐方式居中</li>
+<li>设置水平轴对齐方式居中</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">   &lt;style&gt;</span><br><span class="line">     .box &#123;</span><br><span class="line">       display: flex;</span><br><span class="line">       align-items: center;</span><br><span class="line">       justify-content: center;</span><br><span class="line">       width: 500px;</span><br><span class="line">       height: 500px;</span><br><span class="line">       border: 1px black solid;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     .item &#123;</span><br><span class="line">     &#125;</span><br><span class="line">   &lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;div class=&quot;box&quot;&gt;</span><br><span class="line">     &lt;div class=&quot;item&quot;&gt;a&lt;/div&gt;</span><br><span class="line">   &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>就完成了。</p>
+<h3 id="03-grid-布局基本知识"><a href="#03-grid-布局基本知识" class="headerlink" title="03. grid 布局基本知识"></a>03. grid 布局基本知识</h3><p>grid 的概念和 flex 区别很大，flex只关心 item, grid 是在于 row 和 column,</p>
+<ul>
+<li>grid-template-columns 指定每一列的列宽</li>
+<li>grid-template-rows 指定每一行的行高</li>
+<li>repeat 重复，不用每个都写</li>
+<li>auto-fill 自动计算，类似于自动换行，这个是针对于 repeat(个数, 宽度)</li>
+<li>fr 百分比</li>
+<li>auto 自行决定宽度</li>
+<li>grid-row-gap 行间距</li>
+<li>grid-column-gap 列间距</li>
+<li>grid-gap 上面两位集合</li>
+<li>grid-template-areas 合并单元格所用。</li>
+<li>grid-auto-flow 先行后列，还是先列后行</li>
+<li>justify-items item内部水平位置</li>
+<li>align-items item内部垂直位置</li>
+<li>place-items 上面两个集合</li>
+<li>justify-content item本身对于容器的水平位置</li>
+<li>align-content item本身对于容器的垂直位置</li>
+<li>place-content 上面两个集合</li>
+<li>grid-auto-columns 设置额外网格打小</li>
+<li>grid-auto-rows</li>
+</ul>
+<p>这里就很明确了，区别。</p>
+<p>一个是一维，一个是二维。grid 明显更适合布局，然而flex更适合局部的布局。</p>
+<h3 id="04-grid-垂直居中"><a href="#04-grid-垂直居中" class="headerlink" title="04. grid 垂直居中"></a>04. grid 垂直居中</h3><p>如果只是垂直居中的话很简单</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;</span><br><span class="line">	display: grid;</span><br><span class="line">	grid-template-columns: 100px;</span><br><span class="line">	grid-template-rows: 100px;</span><br><span class="line">	justify-content: center;</span><br><span class="line">	align-content: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>原理都一样。</p>
+<h3 id="05-table"><a href="#05-table" class="headerlink" title="05. table"></a>05. table</h3><p>其实就是使用 td 的 <code>vertical-align: middle &amp; text-align: center</code>.</p>
+<p>这里需要知道一个概念 重绘 和 回流, 这个概念如果要讲清楚，需要从浏览器加载过程说起。</p>
+<p>简单说，就是</p>
+<blockquote>
+<p>重绘（Repaint）：当元素的样式发生改变，但不影响其布局时，浏览器会执行重绘操作。重绘意味着浏览器会重新绘制元素的可视部分，以反映新的样式，但并不会影响元素的大小和位置。重绘操作比回流操作更加轻量级，对性能影响较小。</p>
+<p>回流（Reflow）：当页面的布局发生改变，例如元素的尺寸、位置、显示&#x2F;隐藏状态等改变时，浏览器会执行回流操作。回流会重新计算并应用所有受影响元素的几何属性，然后重新排列页面中的元素。回流操作相对较为昂贵，会引起页面重新布局，对性能有较大的影响。</p>
+</blockquote>
+<p>也就是说，当你更改一个元素的宽高，或者背景颜色都可能触发，关键是 table 特别容易触发。</p>
+<blockquote>
+<p>table 及其内部元素可能需要多次计算才能确定好其在渲染树中节点的属性值，比同等元素要多花两倍时间，这就是我们尽量避免使用 table 布局页面的原因之一</p>
+</blockquote>
+<p>这是table我查到的问题，但是现代浏览器优化做的很好，并且怎么去使用table，比如包含大量的嵌套或跨行&#x2F;跨列的单元格时确实很复杂，确实会计算很多。</p>
+<p>但是如果你通过其他方式去实现，比如 grid 或者 flex，在这种复杂度下，是否性能会比table好，这个我没有做过测试，但是我觉得很难说。</p>
+<p>另外，如果只是简单的为了居中 <code>display:table</code> 也是一种方案。</p>
+<h3 id="06-absolute"><a href="#06-absolute" class="headerlink" title="06. absolute"></a>06. absolute</h3><p>这个比较简单，就是说</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">  position: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.centered &#123;</span><br><span class="line">  position: absolute;</span><br><span class="line">  top: 50%;</span><br><span class="line">  left: 50%;</span><br><span class="line">  transform: translate(-50%, -50%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种方式主要点在于 <code> transform: translate(-50%, -50%);</code> 上。</p>
+<p>top &amp; left 计算的是父结点，所以是300px，如果再加上元素本身高和宽，那么就不是正确的。</p>
+<p>但是加上了 transform: translate，这里的百分比是根据当前元素计算的，这个移动就能保证居中</p>
+<h3 id="07-总结"><a href="#07-总结" class="headerlink" title="07. 总结"></a>07. 总结</h3><p>这里记录了4种垂直居中的方案, 如果在没有浏览器兼容性问题的情况下还是使用 flex，因为他基本没有什么缺点。</p>
+<p>使用绝对定位是需要确定父级高度的。而且需要设置容器的定位属性，可能会对其他布局属性产生影响。</p>
+<p>使用 display:table,对于一些特殊布局要求可能不适用。</p>
+<h3 id="08-引用"><a href="#08-引用" class="headerlink" title="08. 引用"></a>08. 引用</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">Flex 布局教程：语法篇</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Coffcer/flex-layout">flex-layout</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html">CSS Grid 网格布局教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.duidaima.com/Group/Topic/CSS/9504">CSS布局中Grid 和Flex 该用哪个比较好？</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/JHXL_/article/details/124046715">一文教会你何为重绘、回流？</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/chunxiaqiudong5/article/details/104049484">CSS 变形(CSS3) transform</a></li>
+</ul>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-03</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/web/'>
+                            web
+                        </a>
+                    
+                        <a href='/tags/css/'>
+                            css
+                        </a>
+                    
+                        <a href='/tags/flex/'>
+                            flex
+                        </a>
+                    
+                        <a href='/tags/grid/'>
+                            grid
+                        </a>
+                    
+                        <a href='/tags/table/'>
+                            table
+                        </a>
+                    
+                        <a href='/tags/transform/'>
+                            transform
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2023/07/03/repaint_reflow/'>重绘和回流的基本概念</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2023/07/03/IFC/">IFC 布局模型</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

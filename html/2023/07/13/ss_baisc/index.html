@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="微信小程序入门" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    微信小程序入门
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2024-12-02</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：2.7k</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：9分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E7%9C%9F%E5%85%A5%E9%97%A8"><span class="post-toc-text">真入门</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#02-%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%EF%BC%9F"><span class="post-toc-text">02. 双向绑定？</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#03-%E5%9C%BA%E6%99%AF%E5%80%BC"><span class="post-toc-text">03. 场景值</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#04-%E9%80%BB%E8%BE%91%E5%B1%82"><span class="post-toc-text">04. 逻辑层</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#05-%E8%A7%86%E5%9B%BE%E5%B1%82-View"><span class="post-toc-text">05. 视图层 View</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#06-%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83"><span class="post-toc-text">06. 运行时环境</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#07-Skyline-%E6%B8%B2%E6%9F%93%E5%BC%95%E6%93%8E"><span class="post-toc-text">07. Skyline 渲染引擎</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#08-%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6"><span class="post-toc-text">08. 自定义组件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#%E6%80%BB%E7%BB%93"><span class="post-toc-text">总结</span></a></li></ol>
+            
+        
+        <div class=".article-gallery"><p>小程序入门。</p>
+<h3 id="真入门"><a href="#真入门" class="headerlink" title="真入门"></a>真入门</h3><p>小程序 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/quickstart/">开发文档</a> ，<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html">工具下载地址</a></p>
+<p>最好还是跟着他的工具来。</p>
+<p><a href="/%5Cimg%5C2023-07-10-164309.png" title="alt text" class="gallery-item" style="box-shadow: none;"> <img src="/%5Cimg%5C2023-07-10-164309.png" alt="alt text"></a></p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html">全局配置 app.json</a>，<br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/sitemap.html">sitemap</a></p>
+<p>js，wxml，wxss，json。他主要的四个文件。</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxs/">wxs文档</a><br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxml/">WXML 语法参考 </a><br>[小程序框架 &#x2F;视图层 &#x2F;WXML]<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/">https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/</a>)</p>
+<p>很疑惑, 有点类似于 Vue 模版语法，但是介绍的又很不全。</p>
+<p>比如我想写一个标题，h1. 试了下似乎没有效果。</p>
+<p>在看文档的过程中 </p>
+<blockquote>
+<p>往往写 HTML 的时候，经常会用到的标签是 div, p, span，开发者在写一个页面的时候可以根据这些基础的标签组合出不一样的组件，例如日历、弹窗等等。换个思路，既然大家都需要这些组件，为什么我们不能把这些常用的组件包装起来，大大提高我们的开发效率。</p>
+</blockquote>
+<p>不知道我是否可以理解为，他们这些都作为组件提供？后面试了一试大概是这样。</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxs/">https://developers.weixin.qq.com/miniprogram/dev/reference/wxs/</a></p>
+<p>脚本介绍也不是很全，查询了一下，他其实只支持es5，能写es6，因为用 babel  转了。</p>
+<p>最开始看的时候，我连他是否支持 settimeout 都不知道。</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/config.html">配置</a></p>
+<ul>
+<li>全局配置 小程序根目录下的 app.json 文件用来对微信小程序进行全局配置，决定页面文件的路径、窗口表现、设置网络超时时间、设置多 tab 等。</li>
+<li>页面配置 每一个小程序页面也可以使用同名 .json 文件来对本页面的窗口表现进行配置，页面中配置项会覆盖 app.json 的 window 中相同的配置项。</li>
+<li>sitemap 配置</li>
+</ul>
+<p>sitemap 配置类似于以前网页seo用的东西</p>
+<h3 id="02-双向绑定？"><a href="#02-双向绑定？" class="headerlink" title="02. 双向绑定？"></a>02. 双向绑定？</h3><p>在介绍里面说了一个东西, <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/MINA.html">介绍</a></p>
+<blockquote>
+<p>框架的核心是一个响应的数据绑定系统，可以让数据与视图非常简单地保持同步。当做数据修改的时候，只需要在逻辑层修改数据，视图层就会做相应的更新。</p>
+</blockquote>
+<p>这里我就开始好奇了，他的分层是直接从 webview &#x3D;&gt; (逻辑层，视图层)？ 还是中间还有一层？是原生就实现了？</p>
+<p>也就是说 <strong>微信小程序是如何实现双向绑定的?</strong></p>
+<p>我查了半天也没有查到小程序框架源码在哪里，有分析的也是逆向出来的, 这个也太麻烦了。</p>
+<h3 id="03-场景值"><a href="#03-场景值" class="headerlink" title="03. 场景值"></a>03. 场景值</h3><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/scene-list.html">https://developers.weixin.qq.com/miniprogram/dev/reference/scene-list.html</a></p>
+<p>在页面中你能拿到的东西</p>
+<blockquote>
+<p>场景值用来描述用户进入小程序的路径</p>
+</blockquote>
+<h3 id="04-逻辑层"><a href="#04-逻辑层" class="headerlink" title="04. 逻辑层"></a>04. 逻辑层</h3><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/">https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/</a></p>
+<p>微信代码分为视图层和逻辑层。</p>
+<blockquote>
+<p>逻辑层将数据进行处理后发送给视图层，同时接受视图层的事件反馈。</p>
+<p>开发者写的所有代码最终将会打包成一份 JavaScript 文件，并在小程序启动的时候运行，直到小程序销毁。这一行为类似 ServiceWorker，所以逻辑层也称之为 App Service。</p>
+</blockquote>
+<p>他这里讲了很多关于生命周期上的东西。</p>
+<p><a href="/%5Cimg%5Cpage-lifecycle.2e646c86.png" title="alt text" class="gallery-item" style="box-shadow: none;"> <img src="/%5Cimg%5Cpage-lifecycle.2e646c86.png" alt="alt text"></a></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/">api</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html">app 钩子</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html">page 钩子</a></li>
+<li><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/route.html">路由</a></li>
+</ul>
+<h3 id="05-视图层-View"><a href="#05-视图层-View" class="headerlink" title="05. 视图层 View"></a>05. 视图层 View</h3><blockquote>
+<p>框架的视图层由 WXML 与 WXSS 编写，由组件来进行展示。<br>将逻辑层的数据反映成视图，同时将视图层的事件发送给逻辑层。<br>WXML(WeiXin Markup language) 用于描述页面的结构。<br>WXS(WeiXin Script) 是小程序的一套脚本语言，结合 WXML，可以构建出页面的结构。<br>WXSS(WeiXin Style Sheet) 用于描述页面的样式。<br>组件(Component)是视图的基本组成单元。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxml/">WXML基本语法</a><br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxss.html">WXSS基本语法</a><br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxs/">WXS基本语法</a></p>
+<p><strong>WXSS</strong> 中提到了一个概念，是做移动端开发必须要知道的。</p>
+<blockquote>
+<p>rpx（responsive pixel）: 可以根据屏幕宽度进行自适应。规定屏幕宽为750rpx。如在 iPhone6 上，屏幕宽度为375px，共有750个物理像素，则750rpx &#x3D; 375px &#x3D; 750物理像素，1rpx &#x3D; 0.5px &#x3D; 1物理像素。</p>
+</blockquote>
+<p>我比较少参与移动端开发，对于这个的理解就是。</p>
+<p>屏幕的大小以及分辨率，不同设备是完全不一样的。屏幕大像素小，屏幕小像素大，都可能造成极端情况。所以这个是需要做自适应处理的。</p>
+<p>但是平板和手机，或者说电脑端差异过大，简单的使用百分比自适应可能不能达到理想的效果，还是需要更特殊的处理。</p>
+<p>比如不同分辨率下的完全不同的样式，b站在平板就推出了完全不同的客户端来解决问题。</p>
+<p>当然 微信小程序可能使用场景大都在手机端，是否要考虑折叠屏也是一个问题。</p>
+<p>其他的和css差不多，导入，内联，class之类，只是希望他优先级还有一些其他东西差异不要太大。</p>
+<p><strong>wxs</strong> 就是行内脚本</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;wxs <span class="variable language_">module</span>=<span class="string">&quot;m1&quot;</span>&gt;</span><br><span class="line"><span class="keyword">var</span> msg = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">message</span> = msg;</span><br><span class="line">&lt;/wxs&gt;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">view</span>&gt;</span> &#123;&#123;m1.message&#125;&#125; <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html">事件系统</a></p>
+<p>说了一大堆，其实说了5件事</p>
+<ol>
+<li>bindtap 绑定方法</li>
+<li>bindtap 可以动态绑定方法 </li>
+<li>事件循环和浏览器类似，可以支持冒泡和捕获(我没有测试有没有自身那个阶段，应该有吧。。)</li>
+<li>支持事件类型，以及事件中有哪些参数，参数具体作用。</li>
+<li>dataset，mark(数据冒泡，这个获取父节点)</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/">组件</a></p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/resizable.html">响应显示区域变化</a></p>
+<p>这里提到了旋转这个概念，这个是需要考虑的，并且提供 Media Query 这个解决方案来解决自适应问题，就是css中 <code>@media</code>. 以及屏幕旋转的钩子事件。</p>
+<p>手机中的屏幕大小问题，我想了一下存在3个方面</p>
+<ol>
+<li>屏幕旋转</li>
+<li>双屏切换，比如折叠机。</li>
+<li>小窗显示(这个要看微信是否支持)</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/frameset.html">分栏模式</a></p>
+<p>这里完全不懂，需要测试，当然前期可以完全不管，我大概知道他什么意思。类似于手机直的时候，一种显示，旋转以后另一种显示模式。只是这种是在代码层面，然而为什么在他的描述中似乎只要设置就可以了。</p>
+<h3 id="06-运行时环境"><a href="#06-运行时环境" class="headerlink" title="06. 运行时环境"></a>06. 运行时环境</h3><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/runtime/env.html">运行时环境</a><br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/runtime/js-support.html">JavaScript 支持情况</a><br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/runtime/operating-mechanism.html">小程序运行机制</a></p>
+<p>这里说说了几点</p>
+<ol>
+<li>运行时究竟在什么环境下运行代码</li>
+<li>javascript 可能有哪些问题，比如说 promise 时序问题，以及某些可能不能使用的语法</li>
+<li>什么是冷启动，什么是热启动，以及小程序销毁的机制</li>
+</ol>
+<h3 id="07-Skyline-渲染引擎"><a href="#07-Skyline-渲染引擎" class="headerlink" title="07. Skyline 渲染引擎"></a>07. Skyline 渲染引擎</h3><p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/546709238">https://www.zhihu.com/question/546709238</a></p>
+<p>这个可以后面看，主要告诉你使用这个引擎以后对于组件，wxss支持。</p>
+<p>详情可以看一下这个知乎回答</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/546709238">如何评价微信小程序新渲染引擎skyline?</a></p>
+<blockquote>
+<p>小程序基于 Webview 的渲染架构</p>
+<p>优点:<br>大量复用 Web 基建，包括 DOM 、CSS 等。</p>
+<p>缺点是：<br>内存占用大：每个 Page() 实例对应一个独立的 Webview （相当于 MPA），那么用户打开的每个小程序都对应 n+1 个 Webview。<br>渲染初始化流水线长：需要加载一个 page-frame.html ，该 page-frame.html 包含所在 bundle 的所有 app + page + component 的渲染函数、样式、WXS，甚至可能会达到 MB 级别。<br>原生组件融合困难：通过所谓 “同层渲染” 的 hack 手段尝试解决原生组件的渲染融合问题，但 bug 巨多，稳定性差。<br>无法在页面之间共享元素：都是不同的渲染实例了，那当然共享元素就做不了。<br>页面跳转呆板：半屏渲染不好做，导航动画比较死板。<br>jsbridge 传递数据效率低。</p>
+</blockquote>
+<blockquote>
+<p>Skyline<br>好处是：</p>
+<p>节约内存占用。<br>flutter 渲染流水线比较精简和可控，可以很好解决局部渲染、原生组件融合等问题。<br>可以在页面间共享显示元素。<br>可以灵活控制页面导航行为和动画。<br>context 之间可以通过结构化克隆交换数据，性能比 jsbridge 高。<br>缺点是：</p>
+<p>需要自己实现 CSS 子集，兼容性较差。<br>flutter 控件与 Webview 控件的行为差异。<br>框架失控风险：<br>微信小程序框架本来就是补丁之上打补丁，不成体系且 BUG 巨多。<br>现在又新增一个渲染上下文和渲染层，侵入业务代码和 BUG 膨胀是不可避免的。<br>微信能否保证在新旧架构下各功能的兼容性和体验？个人表示怀疑。很有可能开发者不得不同时使用 Webview &#x2F; Skyline ，并且同时应对来自两种架构的 BUG 。</p>
+</blockquote>
+<p>并且介绍了支持哪些组件，哪些css。</p>
+<p>以及 Skyline 一些新特性，自定义路由，Worklet 动画，手势，共享元素动画。</p>
+<h3 id="08-自定义组件"><a href="#08-自定义组件" class="headerlink" title="08. 自定义组件"></a>08. 自定义组件</h3><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/wxml-wxss.html">组件基础</a></p>
+<p>包含了怎么写组件，数据如何绑定，solt，样式隔离，如何引入外部样式，如何引入外部样式，虚化组件…</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/events.html">组件间通信与事件</a></p>
+<p>讲了组件如何通过事件触发和page的通信，应该也能和父组件的通信，如何获取组件实例</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/lifetimes.html">组件生命周期</a></p>
+<p>这里需要知道，<code>lifetimes</code> 是组件生命周期，<code>pageLifetimes</code> 是页面生命周期</p>
+<p><strong>组件生命周期</strong></p>
+<p><a href="/%5Cimg%5C2023-07-11-155309.png" title="alt text" class="gallery-item" style="box-shadow: none;"> <img src="/%5Cimg%5C2023-07-11-155309.png" alt="alt text"></a></p>
+<p><strong>和组件相关的 page 生命周期</strong></p>
+<p><a href="/%5Cimg%5C2023-07-11-155339.png" title="alt text" class="gallery-item" style="box-shadow: none;"> <img src="/%5Cimg%5C2023-07-11-155339.png" alt="alt text"></a></p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/behaviors.html">behaviors</a></p>
+<p>其实就是 mixins, 算是一种继承的方法</p>
+<blockquote>
+<p>my-behavior 结构为：<br>属性：myBehaviorProperty<br>数据字段：myBehaviorData<br>方法：myBehaviorMethod<br>生命周期函数：attached、created、ready</p>
+</blockquote>
+<p>覆盖规则和Vue没区别，只是有 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/form.html#wx-form-field">内置behavior</a></p>
+<p>其实他还是没给源码… </p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/relations.html">relations</a></p>
+<blockquote>
+<p>定义和使用组件间关系</p>
+</blockquote>
+<p>这个不建议使用，强关联了.. 除非真的是强关联。</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/observer.html">数据监听器</a> 当 this.setData 以后触发 observers</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/pure-data.html">纯数据字段</a> 提供一种不能被渲染只是用于 flag 之类的数据。</p>
+<p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/generics.html">抽象组件</a> 看得我头疼。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>文档我没有完全看完，后续还有插件，域名管理(只能向审核过的域名发起请求)，worker，存储，文件系统，消息推送等等，不过先了解这些暂时不影响我进行我的第一次开发了。</p>
+<p>扫完整个文档，给我一种感觉，不舒服。</p>
+<p>整个文档没有建议的开发方式，这个ok，但是要给源码啊。。。</p>
+<p>不知道你大概实现，你怎么玩的，怎么去好好开发呢？</p>
+<p>而且文档例子不够多，只能自己查资料，自己试，完全是体力活。</p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2023-07-13</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/'>
+                            微信小程序
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2023/07/14/ss_simple_todo/'>简单的todoList</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2023/07/12/es6_array/">Javascript Array</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>

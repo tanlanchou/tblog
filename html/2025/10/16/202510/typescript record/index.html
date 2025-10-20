@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+    
+    <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport" />
+    <meta name="description" content="什么是MIT协议?" />
+    <meta name="hexo-theme-A4" content="v1.7.0" />
+    <link rel="alternate icon" type="image/webp" href="/img/favicon.webp">
+    <title>CallMeTommy的博客 | 代码和生活</title>
+
+    
+        
+<link rel="stylesheet" href="/css/highlight/style1.css">
+
+        
+<link rel="stylesheet" href="/css/reset.css">
+
+        
+<link rel="stylesheet" href="/css/markdown.css">
+
+        
+<link rel="stylesheet" href="/css/fonts.css">
+ 
+         <!--注意：首页既不是post也不是page-->
+        
+            
+<link rel="stylesheet" href="/css/waline.css">
+
+        
+        
+        
+<link rel="stylesheet" href="/css/ui.css">
+ 
+        
+<link rel="stylesheet" href="/css/style.css">
+
+
+        
+            <!--返回顶部css-->
+            
+<link rel="stylesheet" href="/css/returnToTop.css">
+
+            
+<link rel="stylesheet" href="/css/unicons.css">
+
+        
+        
+            <!--目录-->
+            
+<link rel="stylesheet" href="/css/toc.css">
+
+        
+    
+
+    
+        
+<link rel="stylesheet" href="/css/returnToLastPage.css">
+
+    
+    
+   
+<link rel="stylesheet" href="/css/lightgallery-bundle.min.css">
+
+
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style><link rel="alternate" href="/atom.xml" title="CallMeTommy的博客" type="application/atom+xml">
+</head>
+    
+    
+
+    
+    
+
+
+
+    
+
+    
+    
+
+    
+    
+    
+    <body>
+        <script src="/js/darkmode-js.min.js"></script>
+        
+        
+            <div class="left-toc-container">
+                <nav id="toc" class="bs-docs-sidebar"></nav>
+            </div>
+        
+        <div class="paper">
+            
+            
+            
+            
+                <div class="shadow-drop-2-bottom paper-main">
+                    
+
+
+<div class="header">
+    <div class="header-container">
+        <img style="
+        width: 56px;
+        height: auto;" alt="^-^" cache-control="max-age=86400" class="header-img" src="/img/favicon.webp" width="10%"></img>
+        <div class="header-content">
+            <a class="logo" href="/">CallMeTommy的博客</a> 
+            <span class="description">杂乱写东西的地方</span> 
+        </div>
+        
+    </div>
+    
+   
+    <ul class="nav">
+        
+            
+                <li><a href="/">首页</a></li>
+            
+        
+            
+                <li><a href="/list/">文章</a></li>
+            
+        
+    </ul>
+</div> 
+        
+                    
+                    
+
+                    
+                    
+                    
+                    <!--说明是文章post页面-->
+                    
+                        <div class="post-main">
+    
+
+    
+        
+            
+                <div class="post-main-title" style="text-align: center;">
+                    什么是MIT协议?
+                </div>
+            
+        
+      
+    
+
+    
+
+        
+            <div class="post-head-meta-center">
+        
+                
+                    <span>最近更新：2025-10-20</span> 
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                     <span>字数总计：374</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span>阅读估时：1分钟</span>
+                
+                
+                    
+                        &nbsp; | &nbsp;
+                    
+                    <span id="busuanzi_container_page_pv">
+                        阅读量：<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                
+            </div>
+    
+
+    <div class="post-md">
+        
+            
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#typescript-record"><span class="post-toc-text">typescript record</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link"><span class="post-toc-text"></span></a></li></ol></li></ol>
+            
+        
+        <div class=".article-gallery"><h1 id="typescript-record"><a href="#typescript-record" class="headerlink" title="typescript record"></a>typescript record</h1><h2 id=""><a href="#" class="headerlink" title=""></a></h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Record</span>&lt;<span class="built_in">string</span> | <span class="built_in">number</span> | <span class="built_in">symbol</span>, <span class="built_in">any</span>&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>构造一个对象类型，其属性key是Keys,属性value是Type。被用于映射一个类型的属性到另一个类型。</p>
+</blockquote>
+<blockquote>
+</blockquote>
+<blockquote>
+<p>简单来说，TypeScript中的Record可以实现定义一个对象的 key 和 value 类型，Record 后面的泛型就是对象键和值的类型。</p>
+</blockquote>
+<p>定义一个对象的key和value的类型。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> A = <span class="title class_">Record</span>&lt;<span class="built_in">string</span>, <span class="built_in">any</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>那么结果就是</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="attr">a</span>:A = {</span><br><span class="line"> <span class="string">"a"</span>: { <span class="attr">a</span>: <span class="number">1</span> }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<p>我 <code>key</code> 用了 <code>string</code> 就合法了.</p>
+<p>玩法还是比较多的</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这些用或去限定, key 和 value 都可以限定</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">User</span> = <span class="title class_">Record</span>&lt;<span class="string">"id"</span> | <span class="string">"name"</span> | <span class="string">"age"</span>, <span class="built_in">string</span>&gt;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//可以用symbol 去限定枚举</span></span><br><span class="line"><span class="keyword">const</span> s1 = <span class="title class_">Symbol</span>(<span class="string">"s1"</span>);</span><br><span class="line"><span class="keyword">const</span> s2 = <span class="title class_">Symbol</span>(<span class="string">"s2"</span>);</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">SymbolMap</span> = <span class="title class_">Record</span>&lt;<span class="keyword">typeof</span> s1 | <span class="keyword">typeof</span> s2, <span class="built_in">number</span>&gt;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//不光用symbol，用枚举也行</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Status</span> {</span><br><span class="line">  <span class="title class_">Loading</span> = <span class="string">"loading"</span>,</span><br><span class="line">  <span class="title class_">Success</span> = <span class="string">"success"</span>,</span><br><span class="line">  <span class="title class_">Error</span> = <span class="string">"error"</span>,</span><br><span class="line">}</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">StateData</span> = <span class="title class_">Record</span>&lt;<span class="title class_">Status</span>, <span class="built_in">string</span>&gt;;</span><br><span class="line"><span class="comment">//然后</span></span><br><span class="line"><span class="keyword">const</span> <span class="attr">data</span>: <span class="title class_">StateData</span> = {</span><br><span class="line">  [<span class="title class_">Status</span>.<span class="property">Loading</span>]: <span class="string">"加载中"</span>,</span><br><span class="line">  [<span class="title class_">Status</span>.<span class="property">Success</span>]: <span class="string">"成功"</span>,</span><br><span class="line">  [<span class="title class_">Status</span>.<span class="property">Error</span>]: <span class="string">"失败"</span>,</span><br><span class="line">};</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//我们可以提前写一个，直接放进去</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Action</span> = <span class="string">"start"</span> | <span class="string">"stop"</span> | <span class="string">"pause"</span>;</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">ActionHandlers</span> = <span class="title class_">Record</span>&lt;<span class="title class_">Action</span>, <span class="function">() =&gt;</span> <span class="built_in">void</span>&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用keyof也行</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">RequiredUser</span> = { <span class="attr">id</span>: <span class="built_in">number</span>; <span class="attr">name</span>: <span class="built_in">string</span> };</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">PartialUser</span> = <span class="title class_">Record</span>&lt;keyof <span class="title class_">RequiredUser</span>, <span class="built_in">string</span> | <span class="built_in">number</span> | <span class="literal">undefined</span>&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//后面也不仅仅是简单对象，我可以强制你都相同，当然也可以可选</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">ModuleConfig</span> = <span class="title class_">Record</span>&lt;<span class="built_in">string</span>, { <span class="attr">enable</span>: <span class="built_in">boolean</span>; <span class="attr">version</span>: <span class="built_in">string</span> }&gt;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//也可以用泛型去玩</span></span><br><span class="line"><span class="keyword">type</span> <span class="title class_">Flags</span>&lt;T&gt; = <span class="title class_">Record</span>&lt;keyof T, <span class="built_in">boolean</span>&gt;;</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">User</span> = { <span class="attr">id</span>: <span class="built_in">number</span>; <span class="attr">name</span>: <span class="built_in">string</span>; <span class="attr">age</span>: <span class="built_in">number</span> };</span><br><span class="line"><span class="keyword">type</span> <span class="title class_">UserFlags</span> = <span class="title class_">Flags</span>&lt;<span class="title class_">User</span>&gt;;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>甚至，他还可以做嵌套</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="title class_">Matrix</span>&lt;T&gt; = <span class="title class_">Record</span>&lt;<span class="built_in">string</span>, <span class="title class_">Record</span>&lt;<span class="built_in">string</span>, T&gt;&gt;;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7040805750775480350">https://juejin.cn/post/7040805750775480350</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/356662885">https://zhuanlan.zhihu.com/p/356662885</a></p>
+</div>
+    </div>
+
+    <div class="post-meta">
+        <i>
+        
+            <span>2025-10-16</span>
+            
+                <span>该篇文章被 tommy</span>
+            
+            
+                <span>打上标签:
+                    
+                    
+                        <a href='/tags/%E5%89%8D%E7%AB%AF/'>
+                            前端
+                        </a>
+                    
+                        <a href='/tags/typescript/'>
+                            typescript
+                        </a>
+                    
+                </span>
+             
+             
+        
+        </i>
+    </div>
+    <br>
+    
+    
+        
+            
+    
+            <div class="post-footer-pre-next">
+                
+                    <span>上一篇：<a href='/2025/10/20/202510/ethercat%20%E8%BF%90%E8%A1%8C%E7%94%B5%E6%9C%BA%E4%BB%A3%E7%A0%81%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/'>ethercat 运行电机代码流程解析</a></span>
+                
+
+                
+                    <span class="post-footer-pre-next-last-span-right">下一篇：<a href="/2025/09/22/202509/mit/">什么是MIT协议?</a>
+                    </span>
+                
+            </div>
+    
+        
+    
+
+    
+        
+    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+         
+    </div>
+    
+        
+
+    <div id="waline"></div>
+    <script type="module"  >
+        import { init } from 'https://npm.elemecdn.com/hexo-theme-a4@latest/source/js/waline.mjs'; 
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'walineserver-phi.vercel.app',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+                search: false, // 禁止表情包搜索
+                reaction: false, // 对文章打分
+                pageview: false, // 浏览量统计
+                comment: false, // 评论数统计
+
+                locale: {
+                    placeholder: '留下你的评论吧。', 
+                    sofa: ''
+                },
+            });
+            
+        }
+        window.addEventListener('DOMContentLoaded', loadWaline);
+    </script>
+
+
+
+    
+    
+    
+    </div>
+
+
+     
+</div>
+
+
+
+                                      
+                    
+                    
+                    <div class="footer">
+    
+        <span> 
+            © 1949-2023 China 
+
+            
+                
+
+            
+        </span>
+       
+    
+</div>
+
+
+
+<!--这是指一条线往下的内容-->
+<div class="footer-last">
+    
+            <span>神仙树暴龙战士</span>
+            
+                <span class="footer-last-span-right"><i>本站由<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/index.html">Hexo</a>驱动｜使用<a target="_blank" rel="noopener" href="https://github.com/HiNinoJay/hexo-theme-A4">Hexo-theme-A4</a>主题</i></span>
+            
+    
+</div>
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <!--目录-->
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript" ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tocify/1.9.0/javascripts/jquery.tocify.min.js" type="text/javascript" ></script>
+        
+<script src="/js/toc.js"></script>
+
+    
+
+    
+<script src="/js/randomHeaderContent.js"></script>
+
+    <!--回到顶部按钮-->
+    
+        
+<script src="/js/returnToTop.js"></script>
+
+    
+
+    
+        
+<script src="/js/returnToLastPage.js"></script>
+
+    
+
+
+
+
+
+<script src="/js/lightgallery/lightgallery.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-thumbnail.umd.min.js"></script>
+
+
+
+<script src="/js/lightgallery/plugins/lg-fullscreen.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-autoplay.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-zoom.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-rotate.umd.min.js"></script>
+
+
+<script src="/js/lightgallery/plugins/lg-paper.umd.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+     
+    if (typeof lightGallery !== "undefined") {
+        var options1 = {
+            selector: '.gallery-item',
+            plugins: [lgThumbnail, lgFullscreen, lgAutoplay, lgZoom, lgRotate, lgPager], // 启用插件
+            thumbnail: true,          // 显示缩略图
+            zoom: true,               // 启用缩放功
+            rotate: true,             // 启用旋转功能能
+            autoplay: true,        // 启用自动播放功能
+            fullScreen: true,      // 启用全屏功能
+            pager: false, //页码,
+            zoomFromOrigin: true,   // 从原始位置缩放
+            actualSize: true,       // 启用查看实际大小的功能
+            enableZoomAfter: 300,    // 延迟缩放，确保图片加载完成后可缩放
+        };
+        lightGallery(document.getElementsByClassName('.article-gallery')[0], options1); // 修复选择器
+    }
+    
+</script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> 
+
+                </div>
+            
+            
+                <!-- 回到顶部的按钮-->  
+                <div class="progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+            
+                <!-- 返回的按钮-->  
+                <div class="return-to-last-progress-wrap shadow-drop-2-bottom">
+                    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+                        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/>
+                    </svg>
+                </div>
+            
+    </body>
+</html>
