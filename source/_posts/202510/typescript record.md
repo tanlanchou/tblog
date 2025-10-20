@@ -1,5 +1,5 @@
 ---
-title: 什么是MIT协议?
+title: typescript record?
 date: 2025-10-16 16:05:05
 mathjax: true
 tags: 
