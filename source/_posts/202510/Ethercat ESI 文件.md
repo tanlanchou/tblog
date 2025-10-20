@@ -108,7 +108,7 @@ EtherCATInfo
 ### Groups 
 配置工具使用组中设备的结构将设备分组在一起。没有连接到 Groups 元素的从属功能。
 
-![image](images/DQgqirDur1ZVaS2jjoV0TzrpQdPd62--vpJ1sWTY43s.png)
+![image](\img\DQgqirDur1ZVaS2jjoV0TzrpQdPd62--vpJ1sWTY43s.png)
 
 
 
@@ -163,7 +163,7 @@ EtherCATInfo
 ### Devices
 Devices 元素的组成方式。它描述了运行设备所需的所有设置和功能。
 
-![image](images/2G1fkV1uxIUrE0BV7uLXJep84kB4CfRuFozx9iAhlDg.png)
+![image](\img\2G1fkV1uxIUrE0BV7uLXJep84kB4CfRuFozx9iAhlDg.png)
 
 子元素
 
@@ -187,7 +187,7 @@ Devices 元素的组成方式。它描述了运行设备所需的所有设置和
 
 
 #### DeviceType
-![image](images/YNQtrZgt3Rc75MogtFK5OqvGuOW2L7W8AG4Tfmi-UtE.png)
+![image](\img\YNQtrZgt3Rc75MogtFK5OqvGuOW2L7W8AG4Tfmi-UtE.png)
 
 他的属性非常多，所有我会找一些常用的来说，具体的看文档吧
 
@@ -376,7 +376,7 @@ Identity:
 
 > 使用的配置文件和对象字典的描述，包括数据类型定义。
 
-![image](images/YmgDKZ242oKr4Z1TFWDGouTHlnOQgfk7FxQKcfiz2Wo.png)
+![image](\img\YmgDKZ242oKr4Z1TFWDGouTHlnOQgfk7FxQKcfiz2Wo.png)
 
 主要是2个东西。
 
@@ -394,7 +394,7 @@ Identity:
 
 另外一个就是字典
 
-![image](images/92TbNGfXJoBxHrWgVCnN9OxakZGbqF-7yXLuJ1MgpdE.png)
+![image](\img\92TbNGfXJoBxHrWgVCnN9OxakZGbqF-7yXLuJ1MgpdE.png)
 
 不用一个一个去读他
 
@@ -519,7 +519,7 @@ BitOffs 指定每个 SubItem 从第几位开始。
         <BitSize>16</BitSize>      ← 继承 UINT 的 BitSize
     </Object>
 ```
-![image](images/Q1bJ5Gt-k-d6zG_UzmhOvajXNIDmU3Y394onHnQl7po.png)
+![image](\img\Q1bJ5Gt-k-d6zG_UzmhOvajXNIDmU3Y394onHnQl7po.png)
 
 `Index` 索引
 
@@ -537,7 +537,7 @@ BitOffs 指定每个 SubItem 从第几位开始。
 
 他会有一些其他限制 
 
-![image](images/yGCIY-2ND3b5sJQnpqowvtQ2bogoNh6vQWRaGKlUDL0.png)
+![image](\img\yGCIY-2ND3b5sJQnpqowvtQ2bogoNh6vQWRaGKlUDL0.png)
 
 不过目前还没有遇见过其他的
 
@@ -1033,7 +1033,7 @@ if (ecrt_slave_config_sdo8(sc[i], 0x6060, 0x00, OP_MODE_CSP)) {
 
 
 ##### Dc
-![image](images/yDwwpE3U2jWxgmNO34Y-GeqUNsOqZLBtQqRf-VJFa9I.png)
+![image](\img\yDwwpE3U2jWxgmNO34Y-GeqUNsOqZLBtQqRf-VJFa9I.png)
 
 属性
 
