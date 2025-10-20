@@ -15,7 +15,7 @@ tags:
 
 最好还是跟着他的工具来。
 
-![alt text](\img\2023-07-10-164309.png)
+![alt text](/img/2023-07-10-164309.png)
 
 [全局配置 app.json](https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html)，
 [sitemap](https://developers.weixin.qq.com/miniprogram/dev/framework/sitemap.html)
@@ -84,7 +84,7 @@ https://developers.weixin.qq.com/miniprogram/dev/framework/app-service/
 
 他这里讲了很多关于生命周期上的东西。
 
-![alt text](\img\page-lifecycle.2e646c86.png)
+![alt text](/img/page-lifecycle.2e646c86.png)
 
 - [api](https://developers.weixin.qq.com/miniprogram/dev/api/)
 - [app 钩子](https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html)
@@ -234,11 +234,11 @@ https://www.zhihu.com/question/546709238
 
 **组件生命周期**
 
-![alt text](\img\2023-07-11-155309.png)
+![alt text](/img/2023-07-11-155309.png)
 
 **和组件相关的 page 生命周期**
 
-![alt text](\img\2023-07-11-155339.png)
+![alt text](/img/2023-07-11-155339.png)
 
 [behaviors](https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/behaviors.html)
 

@@ -40,7 +40,7 @@ https://blog.csdn.net/naocan10211050/article/details/123865184
 
 然后在
 
-![Alt text](\img\528c7feafa5a997a4d00099ac5926804.png)
+![Alt text](/img/528c7feafa5a997a4d00099ac5926804.png)
 
 这个位置输入你的测试地址，可以是本地地址，在测试的时候。
 
